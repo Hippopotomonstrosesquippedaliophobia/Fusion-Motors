@@ -41,6 +41,8 @@ namespace Database_Application_Chris
             this.callBackCheckbox = new System.Windows.Forms.CheckBox();
             this.updateCustomerBtn = new System.Windows.Forms.Button();
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
+            this.addVehicle = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +66,7 @@ namespace Database_Application_Chris
             this.nameLbl.Size = new System.Drawing.Size(536, 34);
             this.nameLbl.TabIndex = 1;
             this.nameLbl.Text = "James Bond";
+            this.nameLbl.TextChanged += new System.EventHandler(this.nameLbl_TextChanged);
             // 
             // addressLbl
             // 
@@ -76,6 +79,7 @@ namespace Database_Application_Chris
             this.addressLbl.Size = new System.Drawing.Size(536, 23);
             this.addressLbl.TabIndex = 1;
             this.addressLbl.Text = "Lot # 555 Test Hill, St. James, Barbados";
+            this.addressLbl.TextChanged += new System.EventHandler(this.addressLbl_TextChanged);
             // 
             // num1Lbl
             // 
@@ -88,6 +92,7 @@ namespace Database_Application_Chris
             this.num1Lbl.Size = new System.Drawing.Size(120, 23);
             this.num1Lbl.TabIndex = 1;
             this.num1Lbl.Text = "555-5555";
+            this.num1Lbl.TextChanged += new System.EventHandler(this.num1Lbl_TextChanged);
             // 
             // num2Lbl
             // 
@@ -100,6 +105,7 @@ namespace Database_Application_Chris
             this.num2Lbl.Size = new System.Drawing.Size(120, 23);
             this.num2Lbl.TabIndex = 1;
             this.num2Lbl.Text = "555-5555";
+            this.num2Lbl.TextChanged += new System.EventHandler(this.num2Lbl_TextChanged);
             // 
             // email2Lbl
             // 
@@ -112,6 +118,7 @@ namespace Database_Application_Chris
             this.email2Lbl.Size = new System.Drawing.Size(277, 23);
             this.email2Lbl.TabIndex = 1;
             this.email2Lbl.Text = "testeremail@outlook.com";
+            this.email2Lbl.TextChanged += new System.EventHandler(this.email2Lbl_TextChanged);
             // 
             // email1Lbl
             // 
@@ -124,6 +131,7 @@ namespace Database_Application_Chris
             this.email1Lbl.Size = new System.Drawing.Size(277, 23);
             this.email1Lbl.TabIndex = 1;
             this.email1Lbl.Text = "testeremail@outlook.com";
+            this.email1Lbl.TextChanged += new System.EventHandler(this.email1Lbl_TextChanged);
             // 
             // interestedVehiclesListBox
             // 
@@ -133,6 +141,7 @@ namespace Database_Application_Chris
             this.interestedVehiclesListBox.Name = "interestedVehiclesListBox";
             this.interestedVehiclesListBox.Size = new System.Drawing.Size(277, 244);
             this.interestedVehiclesListBox.TabIndex = 2;
+            this.interestedVehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.interestedVehiclesListBox_SelectedIndexChanged);
             // 
             // inProgressCheckbox
             // 
@@ -154,18 +163,21 @@ namespace Database_Application_Chris
             this.callBackCheckbox.TabIndex = 4;
             this.callBackCheckbox.Text = "Call back";
             this.callBackCheckbox.UseVisualStyleBackColor = true;
+            this.callBackCheckbox.CheckedChanged += new System.EventHandler(this.callBackCheckbox_CheckedChanged);
             // 
             // updateCustomerBtn
             // 
             this.updateCustomerBtn.BackColor = System.Drawing.Color.Gold;
+            this.updateCustomerBtn.Enabled = false;
             this.updateCustomerBtn.FlatAppearance.BorderSize = 0;
             this.updateCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updateCustomerBtn.Location = new System.Drawing.Point(72, 542);
+            this.updateCustomerBtn.Location = new System.Drawing.Point(235, 542);
             this.updateCustomerBtn.Name = "updateCustomerBtn";
             this.updateCustomerBtn.Size = new System.Drawing.Size(148, 44);
             this.updateCustomerBtn.TabIndex = 5;
             this.updateCustomerBtn.Text = "↻ Update";
             this.updateCustomerBtn.UseVisualStyleBackColor = false;
+            this.updateCustomerBtn.Visible = false;
             this.updateCustomerBtn.Click += new System.EventHandler(this.updateCustomerBtn_Click);
             // 
             // deleteCustomerBtn
@@ -173,7 +185,7 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
             this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteCustomerBtn.Location = new System.Drawing.Point(236, 542);
+            this.deleteCustomerBtn.Location = new System.Drawing.Point(72, 542);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(148, 44);
             this.deleteCustomerBtn.TabIndex = 5;
@@ -181,12 +193,39 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.UseVisualStyleBackColor = false;
             this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
             // 
+            // addVehicle
+            // 
+            this.addVehicle.BackColor = System.Drawing.Color.LightGray;
+            this.addVehicle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.addVehicle.Location = new System.Drawing.Point(713, 497);
+            this.addVehicle.Name = "addVehicle";
+            this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.addVehicle.Size = new System.Drawing.Size(277, 23);
+            this.addVehicle.TabIndex = 1;
+            this.addVehicle.Text = "X4893";
+            this.addVehicle.TextChanged += new System.EventHandler(this.email2Lbl_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gold;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(713, 542);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(277, 44);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "+ Add Vehicle";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
+            // 
             // Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.deleteCustomerBtn);
             this.Controls.Add(this.updateCustomerBtn);
             this.Controls.Add(this.callBackCheckbox);
@@ -194,6 +233,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.interestedVehiclesListBox);
             this.Controls.Add(this.num2Lbl);
             this.Controls.Add(this.email1Lbl);
+            this.Controls.Add(this.addVehicle);
             this.Controls.Add(this.email2Lbl);
             this.Controls.Add(this.num1Lbl);
             this.Controls.Add(this.addressLbl);
@@ -222,5 +262,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.CheckBox callBackCheckbox;
         private System.Windows.Forms.Button updateCustomerBtn;
         private System.Windows.Forms.Button deleteCustomerBtn;
+        private System.Windows.Forms.TextBox addVehicle;
+        private System.Windows.Forms.Button button1;
     }
 }

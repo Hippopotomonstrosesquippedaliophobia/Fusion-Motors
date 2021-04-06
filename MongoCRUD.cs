@@ -1,12 +1,13 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 
 namespace Database_Application_Chris
 {
     public class MongoCRUD
     {
-        private IMongoDatabase db;
+        private IMongoDatabase db; 
 
         public MongoCRUD (string database)
         {
@@ -52,6 +53,22 @@ namespace Database_Application_Chris
             } 
 
             return collection.Find(filter).ToList();
+        }
+         
+        public void UpsertRecord<T>(string table, Guid id, T record)
+        {
+            var collection = db.GetCollection<T>(table);
+            var result = collection.ReplaceOne(
+                new BsonDocument("_id", id),
+                record,
+                new ReplaceOptions { IsUpsert = true });
+        } 
+
+        public void DeleteRecord<T>(string table, Guid id)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filter = Builders<T>.Filter.Eq("Id", id);
+            collection.DeleteOne(filter);
         }
     }
 }
