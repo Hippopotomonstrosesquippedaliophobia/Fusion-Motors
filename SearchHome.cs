@@ -107,9 +107,6 @@ namespace Database_Application_Chris
                 return;
             }
 
-            //Refresh of controls
-            main.Instance.PanelContainer.Controls.Clear();
-
             //CALL SEARCH FUNCTION AND RETURN RESULTS 
             List<CustomerModel> listCResults;
 
@@ -123,6 +120,16 @@ namespace Database_Application_Chris
                 {
                     totalResults++; //Counts records returned
                 }
+
+                // Nothing found
+                if (totalResults == 0)
+                {
+                    MessageBox.Show("No customers found by the name: " + names[0] + " " + lastname, "Search Error");
+                    return;
+                }
+
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
 
                 // If only one returned, go directly to Customer page
                 if (totalResults == 1)
@@ -145,18 +152,21 @@ namespace Database_Application_Chris
                     return;
                 }
 
-                //Else go to customer search results page
-                //Open search results form
-                if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
+                //Else go to customer search results page 
+                if (totalResults > 1)
                 {
-                    SearchResultsControl uc = new SearchResultsControl();
-                    //Send data of search results accross to Search Results form
-                    uc.searchResults = listCResults;
-                    uc.Dock = DockStyle.Fill;
-                    main.Instance.PanelContainer.Controls.Add(uc);
-                }
+                    //Open search results form
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
+                    {
+                        SearchResultsControl uc = new SearchResultsControl();
+                        //Send data of search results accross to Search Results form
+                        uc.searchResults = listCResults;
+                        uc.Dock = DockStyle.Fill;
+                        main.Instance.PanelContainer.Controls.Add(uc);
+                    }
 
-                main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
+                    main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
+                }
             }
             else if (vehiclesRadio.Checked == true)
             {

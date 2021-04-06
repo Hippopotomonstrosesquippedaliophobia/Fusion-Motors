@@ -40,11 +40,12 @@ namespace Database_Application_Chris
             this.Result9 = new System.Windows.Forms.Panel();
             this.backBtn = new System.Windows.Forms.Button();
             this.fwdBtn = new System.Windows.Forms.Button();
-            this.numResultsLbl = new System.Windows.Forms.TextBox();
+            this.numResultsLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Result1
             // 
+            this.Result1.BackColor = System.Drawing.Color.White;
             this.Result1.Location = new System.Drawing.Point(81, 62);
             this.Result1.Name = "Result1";
             this.Result1.Size = new System.Drawing.Size(244, 122);
@@ -116,29 +117,39 @@ namespace Database_Application_Chris
             // 
             // backBtn
             // 
+            this.backBtn.BackColor = System.Drawing.Color.Gold;
+            this.backBtn.FlatAppearance.BorderSize = 0;
+            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backBtn.Location = new System.Drawing.Point(378, 550);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(117, 49);
             this.backBtn.TabIndex = 4;
             this.backBtn.Text = "<";
-            this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // fwdBtn
             // 
+            this.fwdBtn.BackColor = System.Drawing.Color.Gold;
+            this.fwdBtn.FlatAppearance.BorderSize = 0;
+            this.fwdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fwdBtn.Location = new System.Drawing.Point(505, 550);
             this.fwdBtn.Name = "fwdBtn";
             this.fwdBtn.Size = new System.Drawing.Size(117, 49);
             this.fwdBtn.TabIndex = 4;
             this.fwdBtn.Text = ">";
-            this.fwdBtn.UseVisualStyleBackColor = true;
+            this.fwdBtn.UseVisualStyleBackColor = false;
+            this.fwdBtn.Click += new System.EventHandler(this.fwdBtn_Click);
             // 
             // numResultsLbl
             // 
-            this.numResultsLbl.Location = new System.Drawing.Point(661, 564);
+            this.numResultsLbl.AutoSize = true;
+            this.numResultsLbl.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numResultsLbl.Location = new System.Drawing.Point(661, 566);
             this.numResultsLbl.Name = "numResultsLbl";
-            this.numResultsLbl.Size = new System.Drawing.Size(125, 27);
-            this.numResultsLbl.TabIndex = 5;
-            this.numResultsLbl.Text = "0 Results";
+            this.numResultsLbl.Size = new System.Drawing.Size(16, 21);
+            this.numResultsLbl.TabIndex = 6;
+            this.numResultsLbl.Text = "-";
             // 
             // SearchResultsControl
             // 
@@ -178,6 +189,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Panel Result9;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button fwdBtn;
-        private System.Windows.Forms.TextBox numResultsLbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label numResultsLbl;
     }
 }

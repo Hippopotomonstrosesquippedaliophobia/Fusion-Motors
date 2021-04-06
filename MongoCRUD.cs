@@ -39,12 +39,16 @@ namespace Database_Application_Chris
             var collection = db.GetCollection<T>(table);
 
             //Starts with assumption only first name is provided
-            var filter = Builders<T>.Filter.Eq("FirstName", firstName);
+            var filter = Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "$/i"));
 
             // If last name provided, then uses this variant of filter
             if (!firstName.Equals("") && !lastName.Equals(""))
             {
-                filter = Builders<T>.Filter.Eq("FirstName", firstName) & Builders<T>.Filter.Eq("LastName", lastName);
+                filter = Builders<T>.Filter.And(
+                                                Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "$/i")),
+                                                Builders<T>.Filter.Regex("LastName", new BsonRegularExpression("/^" + lastName + "$/i"))
+                                            );
+
             } 
 
             return collection.Find(filter).ToList();

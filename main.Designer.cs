@@ -31,6 +31,7 @@ namespace Database_Application_Chris
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.versionLbl = new System.Windows.Forms.Label();
             this.mongoReconnect = new System.Windows.Forms.Button();
             this.mongoDBLbl = new System.Windows.Forms.Label();
             this.mongoStatusLbl = new System.Windows.Forms.Label();
@@ -55,6 +56,7 @@ namespace Database_Application_Chris
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.panel1.Controls.Add(this.versionLbl);
             this.panel1.Controls.Add(this.mongoReconnect);
             this.panel1.Controls.Add(this.mongoDBLbl);
             this.panel1.Controls.Add(this.mongoStatusLbl);
@@ -70,6 +72,17 @@ namespace Database_Application_Chris
             this.panel1.Size = new System.Drawing.Size(284, 800);
             this.panel1.TabIndex = 0;
             // 
+            // versionLbl
+            // 
+            this.versionLbl.AutoSize = true;
+            this.versionLbl.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.versionLbl.ForeColor = System.Drawing.Color.White;
+            this.versionLbl.Location = new System.Drawing.Point(25, 776);
+            this.versionLbl.Name = "versionLbl";
+            this.versionLbl.Size = new System.Drawing.Size(10, 15);
+            this.versionLbl.TabIndex = 5;
+            this.versionLbl.Text = "-";
+            // 
             // mongoReconnect
             // 
             this.mongoReconnect.FlatAppearance.BorderSize = 0;
@@ -77,7 +90,7 @@ namespace Database_Application_Chris
             this.mongoReconnect.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mongoReconnect.ForeColor = System.Drawing.Color.White;
             this.mongoReconnect.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.mongoReconnect.Location = new System.Drawing.Point(218, 747);
+            this.mongoReconnect.Location = new System.Drawing.Point(213, 729);
             this.mongoReconnect.Name = "mongoReconnect";
             this.mongoReconnect.Size = new System.Drawing.Size(43, 38);
             this.mongoReconnect.TabIndex = 4;
@@ -90,7 +103,7 @@ namespace Database_Application_Chris
             this.mongoDBLbl.AutoSize = true;
             this.mongoDBLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mongoDBLbl.ForeColor = System.Drawing.Color.LightGray;
-            this.mongoDBLbl.Location = new System.Drawing.Point(30, 767);
+            this.mongoDBLbl.Location = new System.Drawing.Point(25, 749);
             this.mongoDBLbl.Name = "mongoDBLbl";
             this.mongoDBLbl.Size = new System.Drawing.Size(134, 18);
             this.mongoDBLbl.TabIndex = 3;
@@ -101,7 +114,7 @@ namespace Database_Application_Chris
             this.mongoStatusLbl.AutoSize = true;
             this.mongoStatusLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mongoStatusLbl.ForeColor = System.Drawing.Color.LightGray;
-            this.mongoStatusLbl.Location = new System.Drawing.Point(30, 747);
+            this.mongoStatusLbl.Location = new System.Drawing.Point(25, 729);
             this.mongoStatusLbl.Name = "mongoStatusLbl";
             this.mongoStatusLbl.Size = new System.Drawing.Size(182, 18);
             this.mongoStatusLbl.TabIndex = 3;
@@ -319,5 +332,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Label mongoStatusLbl;
         private System.Windows.Forms.Label mongoDBLbl;
         private System.Windows.Forms.Button mongoReconnect;
+        private System.Windows.Forms.Label versionLbl;
     }
 }

@@ -16,6 +16,9 @@ namespace Database_Application_Chris
             {"mongoServiceEnd", "Stops the mongo database background service to free up resources"}
         };
 
+        //Version information about the application
+        public int version = 1; // Large update
+        public int versionIteration = 0; // Incremental change
 
         public string database = "FusionMotors";
     }

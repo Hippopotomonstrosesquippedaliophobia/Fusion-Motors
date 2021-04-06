@@ -49,11 +49,19 @@ namespace Database_Application_Chris
             // Start the clock
             InitializeClock();
 
+            //Display version information
+            SetVersion();
+
             // Initialize Starting page
             GoToHomepage();
 
             // Set up search Control for reference across main
             //sc = searchResultsControl1;
+        }
+
+        private void SetVersion()
+        {
+            versionLbl.Text = "v" + settings.version.ToString() + "." + settings.versionIteration.ToString();
         }
 
         // Sets up the clock
@@ -249,11 +257,11 @@ namespace Database_Application_Chris
             //CustomerModel customer = new CustomerModel
             //{
             //    FirstName = "Petra",
-            //    LastName = "Sauce",
+            //    LastName = "Testerino",
             //    PrimaryAddress = new AddressModel
             //    {
-            //        StreetAddress = "Gun Hill",
-            //        Parish = "St.Peter",
+            //        StreetAddress = "New Hill",
+            //        Parish = "St.TEST",
             //        Country = "Barbados"
             //    },
             //    ContactNums = new ContactModel
@@ -263,15 +271,15 @@ namespace Database_Application_Chris
             //    },
             //    Emails = new EmailModel
             //    {
-            //        Email1 = "Lola@hotmail.com",
-            //        Email2 = "DEE@gmail.com",
+            //        Email1 = "tester@hotmail.com",
+            //        Email2 = "TEST@gmail.com",
             //    },
             //    //InterestedVehicles = {"", ""},
             //    InProgressFlag = false,
             //    CallBackFlag = true
             //};
 
-            //db.InsertRecord("Customers", customer);
+            //db.InsertRecord("Customers", customer); 
 
 
             // READ ALL
