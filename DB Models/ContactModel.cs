@@ -2,7 +2,7 @@
 {
     public class ContactModel
     {
-        public int ContactNum1 { get; set; }
-        public int ContactNum2 { get; set; } 
+        public long ContactNum1 { get; set; }
+        public long ContactNum2 { get; set; } 
     }
 }

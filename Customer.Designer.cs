@@ -62,11 +62,12 @@ namespace Database_Application_Chris
             this.nameLbl.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nameLbl.Location = new System.Drawing.Point(30, 13);
             this.nameLbl.Name = "nameLbl";
-            this.nameLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.nameLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.nameLbl.Size = new System.Drawing.Size(536, 34);
             this.nameLbl.TabIndex = 1;
             this.nameLbl.Text = "James Bond";
-            this.nameLbl.TextChanged += new System.EventHandler(this.nameLbl_TextChanged);
+            this.nameLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nameLbl.Leave += new System.EventHandler(this.nameLbl_Leave);
             // 
             // addressLbl
             // 
@@ -75,37 +76,40 @@ namespace Database_Application_Chris
             this.addressLbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addressLbl.Location = new System.Drawing.Point(454, 85);
             this.addressLbl.Name = "addressLbl";
-            this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addressLbl.Size = new System.Drawing.Size(536, 23);
             this.addressLbl.TabIndex = 1;
             this.addressLbl.Text = "Lot # 555 Test Hill, St. James, Barbados";
-            this.addressLbl.TextChanged += new System.EventHandler(this.addressLbl_TextChanged);
+            this.addressLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.addressLbl.Leave += new System.EventHandler(this.addressLbl_Leave);
             // 
             // num1Lbl
             // 
             this.num1Lbl.BackColor = System.Drawing.Color.LightGray;
             this.num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.num1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num1Lbl.Location = new System.Drawing.Point(870, 114);
+            this.num1Lbl.Location = new System.Drawing.Point(713, 114);
             this.num1Lbl.Name = "num1Lbl";
-            this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.num1Lbl.Size = new System.Drawing.Size(120, 23);
+            this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.num1Lbl.Size = new System.Drawing.Size(277, 23);
             this.num1Lbl.TabIndex = 1;
             this.num1Lbl.Text = "555-5555";
-            this.num1Lbl.TextChanged += new System.EventHandler(this.num1Lbl_TextChanged);
+            this.num1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.num1Lbl.Leave += new System.EventHandler(this.num1Lbl_Leave);
             // 
             // num2Lbl
             // 
             this.num2Lbl.BackColor = System.Drawing.Color.LightGray;
             this.num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.num2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num2Lbl.Location = new System.Drawing.Point(870, 143);
+            this.num2Lbl.Location = new System.Drawing.Point(713, 143);
             this.num2Lbl.Name = "num2Lbl";
-            this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.num2Lbl.Size = new System.Drawing.Size(120, 23);
+            this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.num2Lbl.Size = new System.Drawing.Size(277, 23);
             this.num2Lbl.TabIndex = 1;
             this.num2Lbl.Text = "555-5555";
-            this.num2Lbl.TextChanged += new System.EventHandler(this.num2Lbl_TextChanged);
+            this.num2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.num2Lbl.Leave += new System.EventHandler(this.num2Lbl_Leave);
             // 
             // email2Lbl
             // 
@@ -114,11 +118,12 @@ namespace Database_Application_Chris
             this.email2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.email2Lbl.Location = new System.Drawing.Point(713, 201);
             this.email2Lbl.Name = "email2Lbl";
-            this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email2Lbl.Size = new System.Drawing.Size(277, 23);
             this.email2Lbl.TabIndex = 1;
             this.email2Lbl.Text = "testeremail@outlook.com";
-            this.email2Lbl.TextChanged += new System.EventHandler(this.email2Lbl_TextChanged);
+            this.email2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.email2Lbl.Leave += new System.EventHandler(this.email2Lbl_Leave);
             // 
             // email1Lbl
             // 
@@ -127,11 +132,12 @@ namespace Database_Application_Chris
             this.email1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.email1Lbl.Location = new System.Drawing.Point(713, 172);
             this.email1Lbl.Name = "email1Lbl";
-            this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email1Lbl.Size = new System.Drawing.Size(277, 23);
             this.email1Lbl.TabIndex = 1;
             this.email1Lbl.Text = "testeremail@outlook.com";
-            this.email1Lbl.TextChanged += new System.EventHandler(this.email1Lbl_TextChanged);
+            this.email1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.email1Lbl.Leave += new System.EventHandler(this.email1Lbl_Leave);
             // 
             // interestedVehiclesListBox
             // 
@@ -200,11 +206,11 @@ namespace Database_Application_Chris
             this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addVehicle.Location = new System.Drawing.Point(713, 497);
             this.addVehicle.Name = "addVehicle";
-            this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addVehicle.Size = new System.Drawing.Size(277, 23);
             this.addVehicle.TabIndex = 1;
             this.addVehicle.Text = "X4893";
-            this.addVehicle.TextChanged += new System.EventHandler(this.email2Lbl_TextChanged);
+            this.addVehicle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button1
             // 
@@ -241,6 +247,7 @@ namespace Database_Application_Chris
             this.Name = "Customer";
             this.Size = new System.Drawing.Size(1016, 631);
             this.Load += new System.EventHandler(this.Customer_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Customer_MouseClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

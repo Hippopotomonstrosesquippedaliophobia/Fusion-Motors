@@ -266,8 +266,8 @@ namespace Database_Application_Chris
             //    },
             //    ContactNums = new ContactModel
             //    {
-            //        ContactNum1 = 5555555,
-            //        ContactNum2 = 2222222,
+            //        ContactNum1 = 12464235323, //must be like this so database makes it into a long
+            //        ContactNum2 = 12464235323,
             //    },
             //    Emails = new EmailModel
             //    {
