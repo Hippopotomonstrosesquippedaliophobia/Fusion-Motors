@@ -5,6 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Database_Application_Chris</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Fusion Motors</AssemblyName>
+    <ApplicationIcon>images\fusion Motors.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

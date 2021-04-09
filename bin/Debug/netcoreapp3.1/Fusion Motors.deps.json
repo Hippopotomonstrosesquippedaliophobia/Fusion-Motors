@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Database Application Chris/1.0.0": {
+      "Fusion Motors/1.0.0": {
         "dependencies": {
           "MongoDB.Driver": "2.12.1"
         },
         "runtime": {
-          "Database Application Chris.dll": {}
+          "Fusion Motors.dll": {}
         }
       },
       "DnsClient/1.4.0": {
@@ -133,7 +133,7 @@
     }
   },
   "libraries": {
-    "Database Application Chris/1.0.0": {
+    "Fusion Motors/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
