@@ -15,11 +15,9 @@ namespace Database_Application_Chris
             db = client.GetDatabase(database);
         }
 
-        public string GetConnection()
+        public async System.Threading.Tasks.Task GetConnectionAsync()
         {
-            var collection = db.GetCollection<BsonDocument>("Customers");
-
-            return collection.Find(new BsonDocument()).Limit(1).ToString();
+            await db.RunCommandAsync((Command<BsonDocument>)"{ping:1}");
         }
 
         public void InsertRecord<T>(string table, T record)

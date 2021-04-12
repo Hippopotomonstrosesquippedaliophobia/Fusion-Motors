@@ -41,7 +41,7 @@ namespace Database_Application_Chris
             this.searchBtn = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.titleBar = new System.Windows.Forms.Panel();
             this.Title = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.PictureBox();
@@ -206,14 +206,15 @@ namespace Database_Application_Chris
             this.panel2.Size = new System.Drawing.Size(915, 17);
             this.panel2.TabIndex = 1;
             // 
-            // panel3
+            // titleBar
             // 
-            this.panel3.BackColor = System.Drawing.Color.Gold;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(284, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1016, 17);
-            this.panel3.TabIndex = 1;
+            this.titleBar.BackColor = System.Drawing.Color.Gold;
+            this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleBar.Location = new System.Drawing.Point(284, 0);
+            this.titleBar.Name = "titleBar";
+            this.titleBar.Size = new System.Drawing.Size(1016, 30);
+            this.titleBar.TabIndex = 1;
+            this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDown);
             // 
             // Title
             // 
@@ -229,15 +230,15 @@ namespace Database_Application_Chris
             // 
             this.panel5.BackColor = System.Drawing.Color.Gold;
             this.panel5.Controls.Add(this.logo);
-            this.panel5.Location = new System.Drawing.Point(328, 0);
+            this.panel5.Location = new System.Drawing.Point(328, 29);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(161, 151);
+            this.panel5.Size = new System.Drawing.Size(161, 116);
             this.panel5.TabIndex = 3;
             // 
             // logo
             // 
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(10, 24);
+            this.logo.Location = new System.Drawing.Point(10, 0);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(148, 118);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -258,12 +259,12 @@ namespace Database_Application_Chris
             this.closeBtn.BackColor = System.Drawing.Color.Gold;
             this.closeBtn.FlatAppearance.BorderSize = 0;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.closeBtn.Location = new System.Drawing.Point(1265, 0);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(35, 30);
             this.closeBtn.TabIndex = 5;
-            this.closeBtn.Text = "X";
+            this.closeBtn.Text = "✖";
             this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
@@ -278,7 +279,7 @@ namespace Database_Application_Chris
             this.minimizeBtn.Name = "minimizeBtn";
             this.minimizeBtn.Size = new System.Drawing.Size(35, 30);
             this.minimizeBtn.TabIndex = 5;
-            this.minimizeBtn.Text = "-";
+            this.minimizeBtn.Text = "−";
             this.minimizeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.minimizeBtn.UseVisualStyleBackColor = false;
             this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
@@ -294,7 +295,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.UC);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Title);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.titleBar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -304,6 +305,7 @@ namespace Database_Application_Chris
             this.Text = "main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
             this.Load += new System.EventHandler(this.main_Load);
+            this.Shown += new System.EventHandler(this.main_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -317,7 +319,7 @@ namespace Database_Application_Chris
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel titleBar;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button searchBtn;

@@ -16,6 +16,11 @@ namespace Database_Application_Chris
             string[] splitName = name.Split(' ');
             bool tooManySpaces = false;
 
+            if (name == "")
+            {
+                err.Add("Name cannot be blank!"); 
+            }
+
             if (splitName.Length > 2)
             {
                 int countNames = 0;
@@ -113,6 +118,17 @@ namespace Database_Application_Chris
         {
             List<string> err = new List<string>();
 
+            string[] addressPieces = address.Split(',');
+
+            if (address == "")
+            {
+                err.Add("Address should not be empty!"); 
+            }
+
+            if (addressPieces.Length != 3)
+            {
+                err.Add("Invalid Address Format \nCorrect Format: [Street Address], [Parish], [Country] \n- No commas except to seperate these parts");
+            }
 
             return err;
         }

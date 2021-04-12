@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>Fusion Motors</AssemblyName>
     <ApplicationIcon>images\fusion Motors.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>

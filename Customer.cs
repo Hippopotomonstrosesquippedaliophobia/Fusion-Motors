@@ -14,22 +14,51 @@ namespace Database_Application_Chris
         public CustomerModel customerResult;
         public string name;
         public bool nameEdited = false;
+        public bool addCustomer = false;
 
         public Customer()
         {
             InitializeComponent();
+
+            addThisCustomer.Visible = false;
+            addThisCustomer.Enabled = false;
+
+            deleteCustomerBtn.Visible = true;
+            deleteCustomerBtn.Enabled = true;
+        }
+        
+        public Customer(bool addCustomer)
+        {
+            InitializeComponent();
+
+            // Switched to add mode
+            if (addCustomer)
+            {
+                customerResult = new CustomerModel();
+                //EmptyCustomerList();
+
+                addCustomer = true;
+                addThisCustomer.Visible = true;
+                addThisCustomer.Enabled = true;
+
+                deleteCustomerBtn.Visible = false;
+                deleteCustomerBtn.Enabled = false;
+                
+                updateCustomerBtn.Visible = false;
+                updateCustomerBtn.Enabled = false;
+            }
         }
 
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete "+customerResult.FirstName+ " " +customerResult.LastName+ "?", "Confirm Deletion", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete "+customerResult.FirstName+ " " +customerResult.LastName+ "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 //Try to delete
                 try
                 {
                     main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id);
-                    MessageBox.Show("Successfully deleted " + customerResult.FirstName + " " + customerResult.LastName, "Success");
+                   MessageBox.Show("Successfully deleted " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception err)
                 {
@@ -50,7 +79,7 @@ namespace Database_Application_Chris
 
             if (nameEdited)
             {
-                DialogResult dialogResult = MessageBox.Show("You are editing the user's name, is this correct?", "Customer Information Edit", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("You are editing the user's name, is this correct?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     //Do something
@@ -65,18 +94,18 @@ namespace Database_Application_Chris
             //Get info from fields
             UpdateCustomerList();
 
-            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this customer?", "Customer Information Edit", MessageBoxButtons.YesNo);
+            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this customer?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult2 == DialogResult.Yes)
             {
                 //Try to update
                 try
                 {
                     main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult);
-                    MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success");
+                    MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception err)
-                {
-                    System.Windows.Forms.MessageBox.Show(err.Message);
+                { 
+                    MessageBox.Show(err.Message, "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (dialogResult2 == DialogResult.No)
@@ -88,20 +117,63 @@ namespace Database_Application_Chris
             DisableUpdateBtn();
         }
 
+        private void addThisCustomer_Click(object sender, EventArgs e)
+        {
+            UpdateCustomerList();
+
+            DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this customer?", "Add Customer Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult3 == DialogResult.Yes)
+            {
+                //Try to update
+                try
+                {
+                    main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult);
+                    MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Add Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult3 == DialogResult.No)
+            {
+                return;
+            }
+
+            RefreshInformation();
+            DisableUpdateBtn();
+
+        }
         private void UpdateCustomerList()
         {
             string[] names;
             names = nameLbl.Text.Split(' ');
 
-            customerResult.FirstName = names[0].Trim();
-            customerResult.LastName = names[1].Trim();
+            try
+            {
+                customerResult.FirstName = names[0].Trim();
+                customerResult.LastName = names[1].Trim();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Name error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
 
             string[] address;
             address = addressLbl.Text.Split(',');
 
-            customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
-            customerResult.PrimaryAddress.Parish = address[1].Trim();
-            customerResult.PrimaryAddress.Country = address[2].Trim(); 
+            try
+            {
+                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
+                customerResult.PrimaryAddress.Parish = address[1].Trim();
+                customerResult.PrimaryAddress.Country = address[2].Trim();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Address error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
             customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
@@ -129,11 +201,12 @@ namespace Database_Application_Chris
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error converting telephone number to integer \n"+err, "Conversion Error");
+                MessageBox.Show("Error converting telephone number to integer \n"+err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return returnVal;
         }
+
         private void inProgressCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (inProgressCheckbox.Checked == true)
@@ -156,9 +229,19 @@ namespace Database_Application_Chris
         {
             nameLbl.Text = customerResult.FirstName + " "+ customerResult.LastName;
             name = nameLbl.Text;
-            addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + ", " 
-                            + customerResult.PrimaryAddress.Parish + ", " 
-                            + customerResult.PrimaryAddress.Country;
+
+            if (customerResult.PrimaryAddress.StreetAddress != "")
+            {
+                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + ", "
+                                + customerResult.PrimaryAddress.Parish + ", "
+                                + customerResult.PrimaryAddress.Country;
+            }
+            else
+            {
+                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + " "
+                                + customerResult.PrimaryAddress.Parish + " "
+                                + customerResult.PrimaryAddress.Country;
+            }
 
             BeautifulPhoneText(customerResult.ContactNums.ContactNum1.ToString(), num1Lbl);
             BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
@@ -230,8 +313,7 @@ namespace Database_Application_Chris
                 foreach (var letter in name)
                 {
                     if (letter != nameLbl.Text[counter])
-                    {
-                        MessageBox.Show("Found error");
+                    { 
                         nameEdited = true;
                         return;
                     }
@@ -309,6 +391,10 @@ namespace Database_Application_Chris
                     err = validate.CheckName(nameLbl.Text.Trim());
                     OutputErrors(field, err); 
                     break;
+                case "addressLbl":
+                    err = validate.CheckAddress(addressLbl.Text.Trim());
+                    OutputErrors(field, err);
+                    break;
                 case "num1Lbl":
                     err = validate.CheckNum(num1Lbl.Text.Trim());
                     OutputErrors(field, err);
@@ -371,7 +457,7 @@ namespace Database_Application_Chris
                     compileErrors += "\n" + item;
                 }
 
-                MessageBox.Show(compileErrors, "Validation Error");
+                MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -379,5 +465,7 @@ namespace Database_Application_Chris
         {
             this.ActiveControl = panel1;
         }
+
+ 
     }
 }

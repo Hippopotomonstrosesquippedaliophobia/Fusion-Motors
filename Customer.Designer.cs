@@ -43,6 +43,7 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
             this.addVehicle = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.addThisCustomer = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -209,7 +210,6 @@ namespace Database_Application_Chris
             this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addVehicle.Size = new System.Drawing.Size(277, 23);
             this.addVehicle.TabIndex = 1;
-            this.addVehicle.Text = "X4893";
             this.addVehicle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button1
@@ -225,12 +225,28 @@ namespace Database_Application_Chris
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
             // 
+            // addThisCustomer
+            // 
+            this.addThisCustomer.BackColor = System.Drawing.Color.Gold;
+            this.addThisCustomer.Enabled = false;
+            this.addThisCustomer.FlatAppearance.BorderSize = 0;
+            this.addThisCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addThisCustomer.Location = new System.Drawing.Point(72, 542);
+            this.addThisCustomer.Name = "addThisCustomer";
+            this.addThisCustomer.Size = new System.Drawing.Size(311, 44);
+            this.addThisCustomer.TabIndex = 5;
+            this.addThisCustomer.Text = "+ Add Customer";
+            this.addThisCustomer.UseVisualStyleBackColor = false;
+            this.addThisCustomer.Visible = false;
+            this.addThisCustomer.Click += new System.EventHandler(this.addThisCustomer_Click);
+            // 
             // Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Controls.Add(this.addThisCustomer);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.deleteCustomerBtn);
             this.Controls.Add(this.updateCustomerBtn);
@@ -271,5 +287,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button deleteCustomerBtn;
         private System.Windows.Forms.TextBox addVehicle;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addThisCustomer;
     }
 }

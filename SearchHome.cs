@@ -103,7 +103,7 @@ namespace Database_Application_Chris
 
             if (searchQuery == customerTipString || searchQuery == vehicleTipString)
             {
-                MessageBox.Show("Please provide a first name, or both first name and last name to search!", "Search Error");
+                MessageBox.Show("Please provide a first name, or both first name and last name to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -124,7 +124,7 @@ namespace Database_Application_Chris
                 // Nothing found
                 if (totalResults == 0)
                 {
-                    MessageBox.Show("No customers found by the name: " + names[0] + " " + lastname, "Search Error");
+                    MessageBox.Show("No customers found by the name: " + names[0] + " " + lastname, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
