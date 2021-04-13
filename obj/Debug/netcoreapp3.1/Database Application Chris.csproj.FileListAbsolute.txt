@@ -34,3 +34,4 @@ C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\D
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.SearchResultsControl.resources
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.addHome.resources
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database Application Chris.csprojAssemblyReference.cache
+C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.Vehicle.resources

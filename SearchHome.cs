@@ -85,38 +85,47 @@ namespace Database_Application_Chris
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            string searchQuery = searchTxt.Text;
+            string searchQuery = searchTxt.Text;            
 
-            string[] names = { "", "" };
-            string lastname = "";
-
-            names = searchQuery.Split(' ');
-
-            if (names.Length <= 1)
-            {
-                lastname = "";
-            }
-            if (names.Length == 2)
-            {
-                lastname = names[1];
-            }
-
-            if (searchQuery == customerTipString || searchQuery == vehicleTipString)
+            // If search field is empty
+            if (searchQuery == customerTipString)
             {
                 MessageBox.Show("Please provide a first name, or both first name and last name to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //CALL SEARCH FUNCTION AND RETURN RESULTS 
-            List<CustomerModel> listCResults;
+            if (searchQuery == vehicleTipString)
+            {
+                MessageBox.Show("Please provide an engine no. to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            //CALL SEARCH FUNCTION AND RETURN RESULTS 
+
+            // Search for customer
             if (customersRadio.Checked == true)
             {
-                listCResults = searchCustomers(names[0], lastname);
+                List<CustomerModel> listResults;
+
+                string[] names = { "", "" };
+                string lastname = "";
+
+                names = searchQuery.Split(' ');
+
+                if (names.Length <= 1)
+                {
+                    lastname = "";
+                }
+                if (names.Length == 2)
+                {
+                    lastname = names[1];
+                }
+
+                listResults = searchCustomers(names[0], lastname);
 
                 int totalResults = 0; 
 
-                foreach (var rec in listCResults)
+                foreach (var rec in listResults)
                 {
                     totalResults++; //Counts records returned
                 }
@@ -139,7 +148,7 @@ namespace Database_Application_Chris
                     {
                         Customer uc = new Customer();
                         //Send data of Customer form 
-                        uc.customerResult = listCResults[0];
+                        uc.customerResult = listResults[0];
                         //Refresh form
                         uc.RefreshInformation();
 
@@ -160,7 +169,7 @@ namespace Database_Application_Chris
                     {
                         SearchResultsControl uc = new SearchResultsControl();
                         //Send data of search results accross to Search Results form
-                        uc.searchResults = listCResults;
+                        uc.searchResults = listResults;
                         uc.Dock = DockStyle.Fill;
                         main.Instance.PanelContainer.Controls.Add(uc);
                     }
@@ -168,9 +177,65 @@ namespace Database_Application_Chris
                     main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
                 }
             }
+            //Search for vehicle
             else if (vehiclesRadio.Checked == true)
             {
-                //listVResults = searchVehicles();
+                List<VehicleModel> listResults;
+                listResults = searchVehicles(searchQuery);
+
+                int totalResults = 0;
+
+                foreach (var rec in listResults)
+                {
+                    totalResults++; //Counts records returned
+                }
+
+                // Nothing found
+                if (totalResults == 0)
+                {
+                    MessageBox.Show("No vehicles found with the engine number: " +searchQuery, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
+
+                // If only one returned, go directly to Customer page
+                if (totalResults == 1)
+                {
+
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+                    {
+                        Vehicle uc = new Vehicle();
+                        //Send data of Customer form 
+                        uc.vehicleResult = listResults[0];
+                        //Refresh form
+                        uc.RefreshInformation();
+
+                        uc.Dock = DockStyle.Fill;
+                        main.Instance.PanelContainer.Controls.Add(uc);
+                    }
+
+                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
+
+                    return;
+                }
+
+                //Else go to customer search results page 
+                //if (totalResults > 1)
+                //{
+                //    //Open search results form
+                //    if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
+                //    {
+                //        SearchResultsControl uc = new SearchResultsControl();
+                //        //Send data of search results accross to Search Results form
+                //        uc.searchResults = listResults;
+                //        uc.Dock = DockStyle.Fill;
+                //        main.Instance.PanelContainer.Controls.Add(uc);
+                //    }
+
+                //    main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
+                //}
             }            
 
         }
@@ -181,9 +246,10 @@ namespace Database_Application_Chris
             return recs;
         }
 
-        private List<VehicleModel> searchVehicles()
+        private List<VehicleModel> searchVehicles(string engineNo)
         {
-            return null;
+            var recs = main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNo);
+            return recs;
         }
          
     }

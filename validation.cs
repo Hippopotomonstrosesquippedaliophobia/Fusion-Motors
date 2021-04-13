@@ -142,7 +142,56 @@ namespace Database_Application_Chris
             return err;
         }
 
+        public List<string> CheckEngineNum(string engineNum)
+        {
+            List<string> err = new List<string>();
 
+            string[] splitEngineNum = engineNum.Split(' ');
+
+            if (engineNum == "")
+            {
+                err.Add("Engine Number cannot be blank!");
+            }
+
+            //Too many words
+            if (splitEngineNum.Length > 1)
+            {
+                err.Add("Invalid engine number format!");
+            }
+            return err;
+        }
+
+        public List<string> CheckChassisNum(string chassisNum)
+        {
+            List<string> err = new List<string>();
+
+            string[] splitChassisNum = chassisNum.Split(' '); 
+
+            if (chassisNum == "")
+            {
+                err.Add("Chassis Number cannot be blank!");
+            }
+
+            //Too many words
+            if (splitChassisNum.Length > 1)
+            {
+                err.Add("Invalid chassis number format!");
+            }
+
+            return err;
+        }
+        
+        public List<string> CheckColour(string colour)
+        {
+            List<string> err = new List<string>();
+
+            if (colour == "")
+            {
+                err.Add("Colour cannot be blank!");
+            }
+
+            return err;
+        }
 
     }
 }

@@ -22,5 +22,8 @@
     <Compile Update="SearchResults.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Vehicle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

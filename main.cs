@@ -425,7 +425,7 @@ namespace Database_Application_Chris
             IsOnlineAsync();
 
 
-            //ADD RECORD
+            //ADD CUSTOMER RECORD
             //CustomerModel customer = new CustomerModel
             //{
             //    FirstName = "Petra",
@@ -453,6 +453,16 @@ namespace Database_Application_Chris
 
             //db.InsertRecord("Customers", customer); 
 
+            //ADD VEHICLE RECORD
+            //VehicleModel vehicle = new VehicleModel
+            //{
+            //    EngineNum = "HR12-111111B",
+            //    ChassisNum = "ZC72S-338292",
+            //    Colour = "Black"
+            //    InterestedCustomers = { "", "" }
+            //};
+
+            //db.InsertRecord("Vehicles", vehicle);
 
             // READ ALL
             //var recs = db.LoadRecords<CustomerModel>("Customers");

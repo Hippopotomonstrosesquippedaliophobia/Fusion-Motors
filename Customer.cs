@@ -49,16 +49,97 @@ namespace Database_Application_Chris
             }
         }
 
+        private void Customer_Load(object sender, EventArgs e)
+        {
+            RefreshInformation();
+        }
+
+        /*
+         * Data Update Functions
+         */
+
+        public void RefreshInformation()
+        {
+            nameLbl.Text = customerResult.FirstName + " "+ customerResult.LastName;
+            name = nameLbl.Text;
+
+            if (customerResult.PrimaryAddress.StreetAddress != "")
+            {
+                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + ", "
+                                + customerResult.PrimaryAddress.Parish + ", "
+                                + customerResult.PrimaryAddress.Country;
+            }
+            else
+            {
+                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + " "
+                                + customerResult.PrimaryAddress.Parish + " "
+                                + customerResult.PrimaryAddress.Country;
+            }
+
+            BeautifulPhoneText(customerResult.ContactNums.ContactNum1.ToString(), num1Lbl);
+            BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
+            email1Lbl.Text = customerResult.Emails.Email1;
+            email2Lbl.Text = customerResult.Emails.Email2;
+            inProgressCheckbox.Checked = customerResult.InProgressFlag;
+            callBackCheckbox.Checked = customerResult.CallBackFlag;
+
+            nameEdited = false;
+            DisableUpdateBtn();
+        }
+
+        private void UpdateCustomerList()
+        {
+            string[] names;
+            names = nameLbl.Text.Split(' ');
+
+            try
+            {
+                customerResult.FirstName = names[0].Trim();
+                customerResult.LastName = names[1].Trim();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Name error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            string[] address;
+            address = addressLbl.Text.Split(',');
+
+            try
+            {
+                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
+                customerResult.PrimaryAddress.Parish = address[1].Trim();
+                customerResult.PrimaryAddress.Country = address[2].Trim();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Address error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
+            customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
+            customerResult.Emails.Email1 = email1Lbl.Text.Trim();
+            customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+            customerResult.InProgressFlag = inProgressCheckbox.Checked;
+            customerResult.CallBackFlag = callBackCheckbox.Checked;
+        }
+
+
+        /*
+         * Button Functions
+         */
+
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete "+customerResult.FirstName+ " " +customerResult.LastName+ "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + customerResult.FirstName + " " + customerResult.LastName + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 //Try to delete
                 try
                 {
                     main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id);
-                   MessageBox.Show("Successfully deleted " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Successfully deleted " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception err)
                 {
@@ -104,7 +185,7 @@ namespace Database_Application_Chris
                     MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception err)
-                { 
+                {
                     MessageBox.Show(err.Message, "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -144,42 +225,100 @@ namespace Database_Application_Chris
             DisableUpdateBtn();
 
         }
-        private void UpdateCustomerList()
+
+
+        /*
+         * Field Functions
+         */
+
+        private void nameLbl_Leave(object sender, EventArgs e)
         {
-            string[] names;
-            names = nameLbl.Text.Split(' ');
-
-            try
+            int counter = 0;
+            if (name.Length == nameLbl.Text.Length)
             {
-                customerResult.FirstName = names[0].Trim();
-                customerResult.LastName = names[1].Trim();
+                foreach (var letter in name)
+                {
+                    if (letter != nameLbl.Text[counter])
+                    { 
+                        nameEdited = true;
+                        return;
+                    }
+                    counter++;
+                }
             }
-            catch (Exception err)
+            else
             {
-                MessageBox.Show(err.Message, "Name error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-
-            string[] address;
-            address = addressLbl.Text.Split(',');
-
-            try
-            {
-                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
-                customerResult.PrimaryAddress.Parish = address[1].Trim();
-                customerResult.PrimaryAddress.Country = address[2].Trim();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Address error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                nameEdited = true;
             }
 
-            customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
-            customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
-            customerResult.Emails.Email1 = email1Lbl.Text.Trim();
-            customerResult.Emails.Email2 = email2Lbl.Text.Trim();
-            customerResult.InProgressFlag = inProgressCheckbox.Checked;
-            customerResult.CallBackFlag = callBackCheckbox.Checked;
+            ValidationProcess(nameLbl);
+        }
+
+        private void addressLbl_Leave(object sender, EventArgs e)
+        { 
+            ValidationProcess(addressLbl); 
+        }
+
+        private void num1Lbl_Leave(object sender, EventArgs e)
+        {
+            ValidationProcess(num1Lbl);
+            FormatNum(num1Lbl);
+        }
+         
+        private void num2Lbl_Leave(object sender, EventArgs e)
+        {
+            ValidationProcess(num2Lbl);
+            FormatNum(num2Lbl);
+        }
+
+        private void email1Lbl_Leave(object sender, EventArgs e)
+        { 
+            ValidationProcess(email1Lbl); 
+        }
+
+        private void email2Lbl_Leave(object sender, EventArgs e)
+        { 
+            ValidationProcess(email2Lbl); 
+        }
+
+        private void interestedVehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnableUpdateBtn();
+        }
+
+        private void callBackCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableUpdateBtn();
+        }
+
+        private void inProgressCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (inProgressCheckbox.Checked == true)
+            {
+                callBackCheckbox.Enabled = true;
+            }
+            else if (inProgressCheckbox.Checked == false)
+            {
+                callBackCheckbox.Checked = false;
+                callBackCheckbox.Enabled = false;
+            }
+        }
+
+        /*
+         *  Aesthetic Functions
+         */
+
+        private void FormatNum(TextBox field)
+        {
+            //Once number is validated to be of correct length - Format it in the field
+            string extractedNum = "";
+            string reconstructedNum = "";
+            string number = field.Text.Trim();
+
+            long extractedNumInt = ConvertTelToInt(number);
+            extractedNum = extractedNumInt.ToString();
+
+            BeautifulPhoneText(extractedNum, field);
         }
 
         private long ConvertTelToInt(string number)
@@ -196,62 +335,15 @@ namespace Database_Application_Chris
             }
             try
             {
-                
-                returnVal = Int64.Parse(extractedNum); 
+
+                returnVal = Int64.Parse(extractedNum);
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error converting telephone number to integer \n"+err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error converting telephone number to integer \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return returnVal;
-        }
-
-        private void inProgressCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (inProgressCheckbox.Checked == true)
-            {
-                callBackCheckbox.Enabled = true;
-            }
-            else if (inProgressCheckbox.Checked == false)
-            {
-                callBackCheckbox.Checked = false;
-                callBackCheckbox.Enabled = false;
-            }
-        }
-
-        private void Customer_Load(object sender, EventArgs e)
-        {
-            RefreshInformation();
-        }
-
-        public void RefreshInformation()
-        {
-            nameLbl.Text = customerResult.FirstName + " "+ customerResult.LastName;
-            name = nameLbl.Text;
-
-            if (customerResult.PrimaryAddress.StreetAddress != "")
-            {
-                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + ", "
-                                + customerResult.PrimaryAddress.Parish + ", "
-                                + customerResult.PrimaryAddress.Country;
-            }
-            else
-            {
-                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + " "
-                                + customerResult.PrimaryAddress.Parish + " "
-                                + customerResult.PrimaryAddress.Country;
-            }
-
-            BeautifulPhoneText(customerResult.ContactNums.ContactNum1.ToString(), num1Lbl);
-            BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
-            email1Lbl.Text = customerResult.Emails.Email1;
-            email2Lbl.Text = customerResult.Emails.Email2;
-            inProgressCheckbox.Checked = customerResult.InProgressFlag;
-            callBackCheckbox.Checked = customerResult.CallBackFlag;
-
-            nameEdited = false;
-            DisableUpdateBtn();
         }
 
         private void BeautifulPhoneText(string extractedNum, TextBox field)
@@ -292,91 +384,20 @@ namespace Database_Application_Chris
             }
         }
 
+        /*
+         *  Assisting Functions
+         */
+
         private void EnableUpdateBtn()
         {
             updateCustomerBtn.Enabled = true;
             updateCustomerBtn.Visible = true;
-        } 
-        
+        }
+
         private void DisableUpdateBtn()
         {
             updateCustomerBtn.Enabled = false;
             updateCustomerBtn.Visible = false;
-        }
-        
-
-        private void nameLbl_Leave(object sender, EventArgs e)
-        {
-            int counter = 0;
-            if (name.Length == nameLbl.Text.Length)
-            {
-                foreach (var letter in name)
-                {
-                    if (letter != nameLbl.Text[counter])
-                    { 
-                        nameEdited = true;
-                        return;
-                    }
-                    counter++;
-                }
-            }
-            else
-            {
-                nameEdited = true;
-            }
-
-            ValidationProcess(nameLbl);
-        }
-
-        private void addressLbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(addressLbl); 
-        }
-
-        private void FormatNum(TextBox field)
-        {
-            //Once number is validated to be of correct length - Format it in the field
-            string extractedNum = "";
-            string reconstructedNum = "";
-            string number = field.Text.Trim();
-
-            long extractedNumInt = ConvertTelToInt(number);
-            extractedNum = extractedNumInt.ToString();
-
-            BeautifulPhoneText(extractedNum, field);
-        }
-
-        private void num1Lbl_Leave(object sender, EventArgs e)
-        {
-            ValidationProcess(num1Lbl);
-            FormatNum(num1Lbl);
-        }
-         
-
-        private void num2Lbl_Leave(object sender, EventArgs e)
-        {
-            ValidationProcess(num2Lbl);
-            FormatNum(num2Lbl);
-        }
-
-        private void email1Lbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(email1Lbl); 
-        }
-
-        private void email2Lbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(email2Lbl); 
-        }
-
-        private void interestedVehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            EnableUpdateBtn();
-        }
-
-        private void callBackCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableUpdateBtn();
         }
 
         private void ValidationProcess(TextBox field)
@@ -416,26 +437,6 @@ namespace Database_Application_Chris
                     OutputErrors(field, err);
                     break;
             }
-
-
-            //case "addressLbl":
-            //    err = validate.CheckName(addressLbl.Text.Trim());
-            //    OutputErrors(field, err);
-            //    break;
-            //case "num1Lbl":
-            //    err = validate.CheckName(num1Lbl.Text.Trim());
-            //OutputErrors(field, err);
-            //    break;
-            //case "num2Lbl":
-            //    err = validate.CheckName(num2Lbl.Text.Trim());
-            //OutputErrors(field, err);
-            //break;
-            //case "addVehicle":
-            //    err = validate.CheckName(addVehicle.Text.Trim());
-            //OutputErrors(field, err);
-            //    break;  
-
-
         }
 
         private void OutputErrors(TextBox field, List<string> err)
