@@ -81,6 +81,7 @@ namespace Database_Application_Chris
             // 
             this.closeBtn.BackColor = System.Drawing.Color.Gold;
             this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.closeBtn.Location = new System.Drawing.Point(889, 0);
