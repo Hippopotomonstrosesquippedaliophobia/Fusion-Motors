@@ -291,7 +291,7 @@ namespace Database_Application_Chris
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            Title.Text = "Search";
+            Title.Text = "Search Database";
             sidePanel.Height = searchBtn.Height;
             sidePanel.Top = searchBtn.Top;
 
@@ -311,7 +311,7 @@ namespace Database_Application_Chris
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            Title.Text = "Add";
+            Title.Text = "Add to Database";
             sidePanel.Height = AddBtn.Height;
             sidePanel.Top = AddBtn.Top;
 
@@ -330,7 +330,7 @@ namespace Database_Application_Chris
 
         private void DatabaseBtn_Click(object sender, EventArgs e)
         {
-            Title.Text = "Full Database";
+            Title.Text = "View Database";
             sidePanel.Height = DatabaseBtn.Height;
             sidePanel.Top = DatabaseBtn.Top;             
 
@@ -615,5 +615,10 @@ namespace Database_Application_Chris
             }
         }
 
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            //Closes application
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }

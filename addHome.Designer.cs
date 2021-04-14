@@ -35,12 +35,13 @@ namespace Database_Application_Chris
             // 
             // addCustomer
             // 
+            this.addCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addCustomer.BackColor = System.Drawing.Color.Gold;
             this.addCustomer.FlatAppearance.BorderSize = 0;
             this.addCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addCustomer.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.addCustomer.Location = new System.Drawing.Point(138, 250);
+            this.addCustomer.Location = new System.Drawing.Point(156, 250);
             this.addCustomer.Name = "addCustomer";
             this.addCustomer.Size = new System.Drawing.Size(326, 131);
             this.addCustomer.TabIndex = 0;
@@ -50,12 +51,13 @@ namespace Database_Application_Chris
             // 
             // addVehicle
             // 
+            this.addVehicle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addVehicle.BackColor = System.Drawing.Color.Gold;
             this.addVehicle.FlatAppearance.BorderSize = 0;
             this.addVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addVehicle.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.addVehicle.Location = new System.Drawing.Point(553, 250);
+            this.addVehicle.Location = new System.Drawing.Point(571, 250);
             this.addVehicle.Name = "addVehicle";
             this.addVehicle.Size = new System.Drawing.Size(326, 131);
             this.addVehicle.TabIndex = 0;
@@ -70,7 +72,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.addVehicle);
             this.Controls.Add(this.addCustomer);
             this.Name = "addHome";
-            this.Size = new System.Drawing.Size(1017, 631);
+            this.Size = new System.Drawing.Size(1059, 623);
             this.ResumeLayout(false);
 
         }

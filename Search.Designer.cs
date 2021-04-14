@@ -148,6 +148,7 @@ namespace Database_Application_Chris
             // 
             // searchTxt
             // 
+            this.searchTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchTxt.Location = new System.Drawing.Point(12, 43);
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(511, 26);
@@ -155,6 +156,7 @@ namespace Database_Application_Chris
             // 
             // searchBtn
             // 
+            this.searchBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchBtn.BackColor = System.Drawing.Color.Gold;
             this.searchBtn.FlatAppearance.BorderSize = 0;
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -170,6 +172,7 @@ namespace Database_Application_Chris
             // 
             // listViewVehicles
             // 
+            this.listViewVehicles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listViewVehicles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,

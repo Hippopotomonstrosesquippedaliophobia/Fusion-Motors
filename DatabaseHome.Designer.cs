@@ -35,12 +35,13 @@ namespace Database_Application_Chris
             // 
             // viewVehicles
             // 
+            this.viewVehicles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.viewVehicles.BackColor = System.Drawing.Color.Gold;
             this.viewVehicles.FlatAppearance.BorderSize = 0;
             this.viewVehicles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewVehicles.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.viewVehicles.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.viewVehicles.Location = new System.Drawing.Point(553, 250);
+            this.viewVehicles.Location = new System.Drawing.Point(571, 250);
             this.viewVehicles.Name = "viewVehicles";
             this.viewVehicles.Size = new System.Drawing.Size(326, 131);
             this.viewVehicles.TabIndex = 1;
@@ -50,12 +51,13 @@ namespace Database_Application_Chris
             // 
             // viewCustomers
             // 
+            this.viewCustomers.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.viewCustomers.BackColor = System.Drawing.Color.Gold;
             this.viewCustomers.FlatAppearance.BorderSize = 0;
             this.viewCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewCustomers.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.viewCustomers.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.viewCustomers.Location = new System.Drawing.Point(138, 250);
+            this.viewCustomers.Location = new System.Drawing.Point(156, 250);
             this.viewCustomers.Name = "viewCustomers";
             this.viewCustomers.Size = new System.Drawing.Size(326, 131);
             this.viewCustomers.TabIndex = 2;
@@ -70,7 +72,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.viewVehicles);
             this.Controls.Add(this.viewCustomers);
             this.Name = "DatabaseHome";
-            this.Size = new System.Drawing.Size(1017, 631);
+            this.Size = new System.Drawing.Size(1059, 623);
             this.ResumeLayout(false);
 
         }

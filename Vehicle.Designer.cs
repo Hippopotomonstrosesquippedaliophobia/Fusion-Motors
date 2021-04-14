@@ -47,9 +47,10 @@ namespace Database_Application_Chris
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Gold;
             this.panel1.Controls.Add(this.engineNumLbl);
-            this.panel1.Location = new System.Drawing.Point(389, 0);
+            this.panel1.Location = new System.Drawing.Point(468, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(592, 62);
             this.panel1.TabIndex = 6;
@@ -70,11 +71,12 @@ namespace Database_Application_Chris
             // 
             // addCustomerBtn
             // 
+            this.addCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addCustomerBtn.BackColor = System.Drawing.Color.Gold;
             this.addCustomerBtn.FlatAppearance.BorderSize = 0;
             this.addCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addCustomerBtn.Location = new System.Drawing.Point(678, 542);
+            this.addCustomerBtn.Location = new System.Drawing.Point(757, 542);
             this.addCustomerBtn.Name = "addCustomerBtn";
             this.addCustomerBtn.Size = new System.Drawing.Size(217, 44);
             this.addCustomerBtn.TabIndex = 17;
@@ -115,9 +117,10 @@ namespace Database_Application_Chris
             // 
             // interestedCustomersListBox
             // 
+            this.interestedCustomersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.interestedCustomersListBox.FormattingEnabled = true;
             this.interestedCustomersListBox.ItemHeight = 20;
-            this.interestedCustomersListBox.Location = new System.Drawing.Point(678, 153);
+            this.interestedCustomersListBox.Location = new System.Drawing.Point(757, 153);
             this.interestedCustomersListBox.Name = "interestedCustomersListBox";
             this.interestedCustomersListBox.Size = new System.Drawing.Size(277, 344);
             this.interestedCustomersListBox.TabIndex = 13;
@@ -125,10 +128,11 @@ namespace Database_Application_Chris
             // 
             // addCustomer
             // 
+            this.addCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addCustomer.BackColor = System.Drawing.Color.LightGray;
             this.addCustomer.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.addCustomer.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addCustomer.Location = new System.Drawing.Point(678, 513);
+            this.addCustomer.Location = new System.Drawing.Point(757, 513);
             this.addCustomer.Name = "addCustomer";
             this.addCustomer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addCustomer.Size = new System.Drawing.Size(277, 23);
@@ -138,10 +142,11 @@ namespace Database_Application_Chris
             // 
             // chassisNumLbl
             // 
+            this.chassisNumLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chassisNumLbl.BackColor = System.Drawing.Color.LightGray;
             this.chassisNumLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chassisNumLbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chassisNumLbl.Location = new System.Drawing.Point(419, 85);
+            this.chassisNumLbl.Location = new System.Drawing.Point(498, 85);
             this.chassisNumLbl.Name = "chassisNumLbl";
             this.chassisNumLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chassisNumLbl.Size = new System.Drawing.Size(536, 23);
@@ -152,10 +157,11 @@ namespace Database_Application_Chris
             // 
             // colourLbl
             // 
+            this.colourLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.colourLbl.BackColor = System.Drawing.Color.LightGray;
             this.colourLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.colourLbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.colourLbl.Location = new System.Drawing.Point(419, 114);
+            this.colourLbl.Location = new System.Drawing.Point(498, 114);
             this.colourLbl.Name = "colourLbl";
             this.colourLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.colourLbl.Size = new System.Drawing.Size(536, 23);
@@ -181,11 +187,12 @@ namespace Database_Application_Chris
             // 
             // deleteCustomerBtn
             // 
+            this.deleteCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
             this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteCustomerBtn.Location = new System.Drawing.Point(900, 542);
+            this.deleteCustomerBtn.Location = new System.Drawing.Point(979, 542);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(54, 44);
             this.deleteCustomerBtn.TabIndex = 17;
@@ -209,7 +216,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.colourLbl);
             this.Controls.Add(this.chassisNumLbl);
             this.Name = "Vehicle";
-            this.Size = new System.Drawing.Size(980, 623);
+            this.Size = new System.Drawing.Size(1059, 623);
             this.Click += new System.EventHandler(this.Vehicle_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -52,15 +52,17 @@ namespace Database_Application_Chris
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Gold;
             this.panel1.Controls.Add(this.nameLbl);
-            this.panel1.Location = new System.Drawing.Point(424, 0);
+            this.panel1.Location = new System.Drawing.Point(467, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(592, 62);
             this.panel1.TabIndex = 0;
             // 
             // nameLbl
             // 
+            this.nameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLbl.BackColor = System.Drawing.Color.Gold;
             this.nameLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameLbl.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -76,10 +78,11 @@ namespace Database_Application_Chris
             // 
             // addressLbl
             // 
+            this.addressLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addressLbl.BackColor = System.Drawing.Color.LightGray;
             this.addressLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.addressLbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addressLbl.Location = new System.Drawing.Point(454, 85);
+            this.addressLbl.Location = new System.Drawing.Point(497, 85);
             this.addressLbl.Name = "addressLbl";
             this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addressLbl.Size = new System.Drawing.Size(536, 23);
@@ -91,10 +94,11 @@ namespace Database_Application_Chris
             // 
             // num1Lbl
             // 
+            this.num1Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.num1Lbl.BackColor = System.Drawing.Color.LightGray;
             this.num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.num1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num1Lbl.Location = new System.Drawing.Point(713, 114);
+            this.num1Lbl.Location = new System.Drawing.Point(756, 114);
             this.num1Lbl.Name = "num1Lbl";
             this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.num1Lbl.Size = new System.Drawing.Size(277, 23);
@@ -106,10 +110,11 @@ namespace Database_Application_Chris
             // 
             // num2Lbl
             // 
+            this.num2Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.num2Lbl.BackColor = System.Drawing.Color.LightGray;
             this.num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.num2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num2Lbl.Location = new System.Drawing.Point(713, 143);
+            this.num2Lbl.Location = new System.Drawing.Point(756, 143);
             this.num2Lbl.Name = "num2Lbl";
             this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.num2Lbl.Size = new System.Drawing.Size(277, 23);
@@ -121,10 +126,11 @@ namespace Database_Application_Chris
             // 
             // email2Lbl
             // 
+            this.email2Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.email2Lbl.BackColor = System.Drawing.Color.LightGray;
             this.email2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.email2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.email2Lbl.Location = new System.Drawing.Point(713, 201);
+            this.email2Lbl.Location = new System.Drawing.Point(756, 201);
             this.email2Lbl.Name = "email2Lbl";
             this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email2Lbl.Size = new System.Drawing.Size(277, 23);
@@ -136,10 +142,11 @@ namespace Database_Application_Chris
             // 
             // email1Lbl
             // 
+            this.email1Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.email1Lbl.BackColor = System.Drawing.Color.LightGray;
             this.email1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.email1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.email1Lbl.Location = new System.Drawing.Point(713, 172);
+            this.email1Lbl.Location = new System.Drawing.Point(756, 172);
             this.email1Lbl.Name = "email1Lbl";
             this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email1Lbl.Size = new System.Drawing.Size(277, 23);
@@ -151,9 +158,10 @@ namespace Database_Application_Chris
             // 
             // interestedVehiclesListBox
             // 
+            this.interestedVehiclesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.interestedVehiclesListBox.FormattingEnabled = true;
             this.interestedVehiclesListBox.ItemHeight = 20;
-            this.interestedVehiclesListBox.Location = new System.Drawing.Point(713, 230);
+            this.interestedVehiclesListBox.Location = new System.Drawing.Point(756, 230);
             this.interestedVehiclesListBox.Name = "interestedVehiclesListBox";
             this.interestedVehiclesListBox.Size = new System.Drawing.Size(277, 244);
             this.interestedVehiclesListBox.TabIndex = 2;
@@ -216,10 +224,11 @@ namespace Database_Application_Chris
             // 
             // addVehicle
             // 
+            this.addVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addVehicle.BackColor = System.Drawing.Color.LightGray;
             this.addVehicle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addVehicle.Location = new System.Drawing.Point(713, 497);
+            this.addVehicle.Location = new System.Drawing.Point(756, 497);
             this.addVehicle.Name = "addVehicle";
             this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addVehicle.Size = new System.Drawing.Size(277, 23);
@@ -229,11 +238,12 @@ namespace Database_Application_Chris
             // 
             // addVehicleBtn
             // 
+            this.addVehicleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addVehicleBtn.BackColor = System.Drawing.Color.Gold;
             this.addVehicleBtn.FlatAppearance.BorderSize = 0;
             this.addVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addVehicleBtn.Location = new System.Drawing.Point(713, 542);
+            this.addVehicleBtn.Location = new System.Drawing.Point(756, 542);
             this.addVehicleBtn.Name = "addVehicleBtn";
             this.addVehicleBtn.Size = new System.Drawing.Size(217, 44);
             this.addVehicleBtn.TabIndex = 5;
@@ -261,11 +271,12 @@ namespace Database_Application_Chris
             // 
             // removeVehicleBtn
             // 
+            this.removeVehicleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeVehicleBtn.BackColor = System.Drawing.Color.Gold;
             this.removeVehicleBtn.FlatAppearance.BorderSize = 0;
             this.removeVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.removeVehicleBtn.Location = new System.Drawing.Point(936, 542);
+            this.removeVehicleBtn.Location = new System.Drawing.Point(979, 542);
             this.removeVehicleBtn.Name = "removeVehicleBtn";
             this.removeVehicleBtn.Size = new System.Drawing.Size(54, 44);
             this.removeVehicleBtn.TabIndex = 5;
@@ -296,7 +307,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.addressLbl);
             this.Controls.Add(this.panel1);
             this.Name = "Customer";
-            this.Size = new System.Drawing.Size(1016, 631);
+            this.Size = new System.Drawing.Size(1059, 623);
             this.Load += new System.EventHandler(this.Customer_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Customer_MouseClick);
             this.panel1.ResumeLayout(false);

@@ -45,15 +45,17 @@ namespace Database_Application_Chris
             // 
             // Result1
             // 
+            this.Result1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Result1.BackColor = System.Drawing.Color.White;
-            this.Result1.Location = new System.Drawing.Point(76, 62);
+            this.Result1.Location = new System.Drawing.Point(111, 62);
             this.Result1.Name = "Result1";
             this.Result1.Size = new System.Drawing.Size(244, 122);
             this.Result1.TabIndex = 0;
             // 
             // Result2
             // 
-            this.Result2.Location = new System.Drawing.Point(373, 62);
+            this.Result2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result2.Location = new System.Drawing.Point(408, 62);
             this.Result2.Name = "Result2";
             this.Result2.Size = new System.Drawing.Size(244, 122);
             this.Result2.TabIndex = 1;
@@ -61,7 +63,8 @@ namespace Database_Application_Chris
             // 
             // Result3
             // 
-            this.Result3.Location = new System.Drawing.Point(670, 62);
+            this.Result3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result3.Location = new System.Drawing.Point(705, 62);
             this.Result3.Name = "Result3";
             this.Result3.Size = new System.Drawing.Size(244, 122);
             this.Result3.TabIndex = 2;
@@ -69,7 +72,8 @@ namespace Database_Application_Chris
             // 
             // Result4
             // 
-            this.Result4.Location = new System.Drawing.Point(76, 233);
+            this.Result4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result4.Location = new System.Drawing.Point(111, 233);
             this.Result4.Name = "Result4";
             this.Result4.Size = new System.Drawing.Size(244, 122);
             this.Result4.TabIndex = 3;
@@ -77,7 +81,8 @@ namespace Database_Application_Chris
             // 
             // Result5
             // 
-            this.Result5.Location = new System.Drawing.Point(373, 233);
+            this.Result5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result5.Location = new System.Drawing.Point(408, 233);
             this.Result5.Name = "Result5";
             this.Result5.Size = new System.Drawing.Size(244, 122);
             this.Result5.TabIndex = 2;
@@ -85,7 +90,8 @@ namespace Database_Application_Chris
             // 
             // Result6
             // 
-            this.Result6.Location = new System.Drawing.Point(670, 233);
+            this.Result6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result6.Location = new System.Drawing.Point(705, 233);
             this.Result6.Name = "Result6";
             this.Result6.Size = new System.Drawing.Size(244, 122);
             this.Result6.TabIndex = 2;
@@ -93,7 +99,8 @@ namespace Database_Application_Chris
             // 
             // Result7
             // 
-            this.Result7.Location = new System.Drawing.Point(76, 401);
+            this.Result7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result7.Location = new System.Drawing.Point(111, 401);
             this.Result7.Name = "Result7";
             this.Result7.Size = new System.Drawing.Size(244, 122);
             this.Result7.TabIndex = 2;
@@ -101,7 +108,8 @@ namespace Database_Application_Chris
             // 
             // Result8
             // 
-            this.Result8.Location = new System.Drawing.Point(373, 401);
+            this.Result8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result8.Location = new System.Drawing.Point(408, 401);
             this.Result8.Name = "Result8";
             this.Result8.Size = new System.Drawing.Size(244, 122);
             this.Result8.TabIndex = 2;
@@ -109,7 +117,8 @@ namespace Database_Application_Chris
             // 
             // Result9
             // 
-            this.Result9.Location = new System.Drawing.Point(670, 401);
+            this.Result9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result9.Location = new System.Drawing.Point(705, 401);
             this.Result9.Name = "Result9";
             this.Result9.Size = new System.Drawing.Size(244, 122);
             this.Result9.TabIndex = 2;
@@ -117,10 +126,11 @@ namespace Database_Application_Chris
             // 
             // backBtn
             // 
+            this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Gold;
             this.backBtn.FlatAppearance.BorderSize = 0;
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backBtn.Location = new System.Drawing.Point(373, 550);
+            this.backBtn.Location = new System.Drawing.Point(408, 550);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(117, 49);
             this.backBtn.TabIndex = 4;
@@ -130,10 +140,11 @@ namespace Database_Application_Chris
             // 
             // fwdBtn
             // 
+            this.fwdBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.fwdBtn.BackColor = System.Drawing.Color.Gold;
             this.fwdBtn.FlatAppearance.BorderSize = 0;
             this.fwdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fwdBtn.Location = new System.Drawing.Point(500, 550);
+            this.fwdBtn.Location = new System.Drawing.Point(535, 550);
             this.fwdBtn.Name = "fwdBtn";
             this.fwdBtn.Size = new System.Drawing.Size(117, 49);
             this.fwdBtn.TabIndex = 4;
@@ -143,9 +154,10 @@ namespace Database_Application_Chris
             // 
             // numResultsLbl
             // 
+            this.numResultsLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numResultsLbl.AutoSize = true;
             this.numResultsLbl.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numResultsLbl.Location = new System.Drawing.Point(661, 566);
+            this.numResultsLbl.Location = new System.Drawing.Point(696, 566);
             this.numResultsLbl.Name = "numResultsLbl";
             this.numResultsLbl.Size = new System.Drawing.Size(16, 21);
             this.numResultsLbl.TabIndex = 6;
@@ -169,7 +181,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.Result2);
             this.Controls.Add(this.Result1);
             this.Name = "SearchResultsControl";
-            this.Size = new System.Drawing.Size(980, 623);
+            this.Size = new System.Drawing.Size(1059, 623);
             this.Load += new System.EventHandler(this.SearchResultsControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -42,8 +42,8 @@ namespace Database_Application_Chris
             this.homeBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.titleBar = new System.Windows.Forms.Panel();
-            this.minimize = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.minimize = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.PictureBox();
@@ -139,7 +139,7 @@ namespace Database_Application_Chris
             this.DatabaseBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DatabaseBtn.Location = new System.Drawing.Point(25, 235);
             this.DatabaseBtn.Name = "DatabaseBtn";
-            this.DatabaseBtn.Size = new System.Drawing.Size(259, 68);
+            this.DatabaseBtn.Size = new System.Drawing.Size(295, 68);
             this.DatabaseBtn.TabIndex = 2;
             this.DatabaseBtn.Text = "     Database ";
             this.DatabaseBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -211,30 +211,14 @@ namespace Database_Application_Chris
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.Gold;
-            this.titleBar.Controls.Add(this.minimize);
             this.titleBar.Controls.Add(this.closeBtn);
+            this.titleBar.Controls.Add(this.minimize);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.titleBar.Location = new System.Drawing.Point(320, 0);
             this.titleBar.Name = "titleBar";
-            this.titleBar.Size = new System.Drawing.Size(980, 30);
+            this.titleBar.Size = new System.Drawing.Size(1059, 30);
             this.titleBar.TabIndex = 1;
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDown);
-            // 
-            // minimize
-            // 
-            this.minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimize.BackColor = System.Drawing.Color.Gold;
-            this.minimize.FlatAppearance.BorderSize = 0;
-            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimize.Location = new System.Drawing.Point(919, 0);
-            this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(31, 30);
-            this.minimize.TabIndex = 10;
-            this.minimize.Text = "−";
-            this.minimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.minimize.UseVisualStyleBackColor = false;
-            this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
             // closeBtn
             // 
@@ -243,22 +227,38 @@ namespace Database_Application_Chris
             this.closeBtn.FlatAppearance.BorderSize = 0;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(950, 0);
+            this.closeBtn.Location = new System.Drawing.Point(1028, 0);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(31, 30);
-            this.closeBtn.TabIndex = 9;
+            this.closeBtn.TabIndex = 10;
             this.closeBtn.Text = "✖";
-            this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.closeBtn.UseVisualStyleBackColor = false;
-            this.closeBtn.Click += new System.EventHandler(this.close_Click);
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // minimize
+            // 
+            this.minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimize.BackColor = System.Drawing.Color.Gold;
+            this.minimize.FlatAppearance.BorderSize = 0;
+            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.minimize.Location = new System.Drawing.Point(998, 0);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(31, 30);
+            this.minimize.TabIndex = 10;
+            this.minimize.Text = "−";
+            this.minimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.minimize.UseVisualStyleBackColor = false;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
             // Title
             // 
             this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Title.Location = new System.Drawing.Point(574, 40);
+            this.Title.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Title.Location = new System.Drawing.Point(574, 53);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(142, 27);
+            this.Title.Size = new System.Drawing.Size(182, 37);
             this.Title.TabIndex = 2;
             this.Title.Text = "Homepage";
             // 
@@ -268,7 +268,7 @@ namespace Database_Application_Chris
             this.panel5.Controls.Add(this.logo);
             this.panel5.Location = new System.Drawing.Point(369, 29);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(181, 116);
+            this.panel5.Size = new System.Drawing.Size(181, 142);
             this.panel5.TabIndex = 3;
             // 
             // logo
@@ -287,7 +287,7 @@ namespace Database_Application_Chris
             this.UC.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.UC.Location = new System.Drawing.Point(320, 177);
             this.UC.Name = "UC";
-            this.UC.Size = new System.Drawing.Size(980, 623);
+            this.UC.Size = new System.Drawing.Size(1059, 623);
             this.UC.TabIndex = 4;
             // 
             // main
@@ -295,7 +295,7 @@ namespace Database_Application_Chris
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1300, 800);
+            this.ClientSize = new System.Drawing.Size(1379, 800);
             this.Controls.Add(this.UC);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Title);
