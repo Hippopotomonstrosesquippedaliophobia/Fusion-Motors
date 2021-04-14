@@ -251,6 +251,14 @@ namespace Database_Application_Chris
             var recs = main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNo);
             return recs;
         }
-         
+
+        private void searchTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Start Search
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchBtn.PerformClick();
+            }
+        }
     }
 }

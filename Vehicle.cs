@@ -18,7 +18,7 @@ namespace Database_Application_Chris
         public Vehicle()
         {
             InitializeComponent();
-
+            SetTabIndex();
             addThisVehicle.Visible = false;
             addThisVehicle.Enabled = false;
 
@@ -29,6 +29,7 @@ namespace Database_Application_Chris
         public Vehicle(bool addVehicle)
         {
             InitializeComponent();
+            SetTabIndex();
 
             // Switched to add mode
             if (addVehicle)
@@ -50,6 +51,18 @@ namespace Database_Application_Chris
          * Button Functions
          */
 
+        public void SetTabIndex()
+        {
+            int index = 0;
+            panel1.TabIndex = ++index;
+            engineNumLbl.TabIndex = ++index;
+            chassisNumLbl.TabIndex = ++index;
+            colourLbl.TabIndex = ++index;
+            addCustomer.TabIndex = ++index;
+            addCustomerBtn.TabIndex = ++index;
+            deleteCustomerBtn.TabIndex = ++index;
+            addThisVehicle.TabIndex = ++index;
+        }
         private void addThisVehicle_Click(object sender, EventArgs e)
         {
             //Get info from fields

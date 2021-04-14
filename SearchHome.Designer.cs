@@ -48,6 +48,7 @@ namespace Database_Application_Chris
             this.searchTxt.Text = "Search by first and last name (Eg. James Bond)...";
             this.searchTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.searchTxt.Enter += new System.EventHandler(this.searchTxt_Enter);
+            this.searchTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTxt_KeyDown);
             this.searchTxt.Leave += new System.EventHandler(this.searchTxt_Leave);
             // 
             // SearchPageLabel

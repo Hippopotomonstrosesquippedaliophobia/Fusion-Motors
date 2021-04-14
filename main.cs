@@ -620,5 +620,6 @@ namespace Database_Application_Chris
             //Closes application
             System.Windows.Forms.Application.Exit();
         }
+         
     }
 }

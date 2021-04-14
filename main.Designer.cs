@@ -225,11 +225,12 @@ namespace Database_Application_Chris
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.BackColor = System.Drawing.Color.Gold;
             this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(1028, 0);
+            this.closeBtn.Location = new System.Drawing.Point(1024, 0);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(31, 30);
+            this.closeBtn.Size = new System.Drawing.Size(35, 30);
             this.closeBtn.TabIndex = 10;
             this.closeBtn.Text = "✖";
             this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -243,9 +244,9 @@ namespace Database_Application_Chris
             this.minimize.FlatAppearance.BorderSize = 0;
             this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimize.Location = new System.Drawing.Point(998, 0);
+            this.minimize.Location = new System.Drawing.Point(989, 0);
             this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(31, 30);
+            this.minimize.Size = new System.Drawing.Size(35, 30);
             this.minimize.TabIndex = 10;
             this.minimize.Text = "−";
             this.minimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;

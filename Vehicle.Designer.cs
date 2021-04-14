@@ -60,7 +60,7 @@ namespace Database_Application_Chris
             this.engineNumLbl.BackColor = System.Drawing.Color.Gold;
             this.engineNumLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.engineNumLbl.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.engineNumLbl.Location = new System.Drawing.Point(0, 12);
+            this.engineNumLbl.Location = new System.Drawing.Point(29, 12);
             this.engineNumLbl.Name = "engineNumLbl";
             this.engineNumLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.engineNumLbl.Size = new System.Drawing.Size(536, 34);
