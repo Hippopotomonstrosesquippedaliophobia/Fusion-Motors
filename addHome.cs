@@ -41,7 +41,7 @@ namespace Database_Application_Chris
                     Email1 = "",
                     Email2 = "",
                 },
-                //InterestedVehicles = {"", ""},
+                InterestedVehicles = new List<string> { "" },
                 InProgressFlag = false,
                 CallBackFlag = false
             };
@@ -59,7 +59,27 @@ namespace Database_Application_Chris
 
         private void addVehicle_Click(object sender, EventArgs e)
         {
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
 
+            // Blank Customer Model
+            VehicleModel vehicle = new VehicleModel
+            {
+                EngineNum = "",
+                ChassisNum = "",
+                Colour = "",
+                InterestedCustomers = new List<string> { "" }
+            };
+
+            //Open Add Home
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+            {
+                Vehicle uc = new Vehicle(true);
+                uc.vehicleResult = vehicle;
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
         }
     }
 }

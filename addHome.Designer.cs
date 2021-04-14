@@ -40,7 +40,7 @@ namespace Database_Application_Chris
             this.addCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addCustomer.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.addCustomer.Location = new System.Drawing.Point(151, 208);
+            this.addCustomer.Location = new System.Drawing.Point(138, 250);
             this.addCustomer.Name = "addCustomer";
             this.addCustomer.Size = new System.Drawing.Size(326, 131);
             this.addCustomer.TabIndex = 0;
@@ -55,7 +55,7 @@ namespace Database_Application_Chris
             this.addVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addVehicle.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.addVehicle.Location = new System.Drawing.Point(566, 208);
+            this.addVehicle.Location = new System.Drawing.Point(553, 250);
             this.addVehicle.Name = "addVehicle";
             this.addVehicle.Size = new System.Drawing.Size(326, 131);
             this.addVehicle.TabIndex = 0;

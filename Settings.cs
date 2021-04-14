@@ -65,14 +65,17 @@ namespace Database_Application_Chris
                     //}
                 } 
             }
-            //else
-            //{
-            //    using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
-            //    {
-            //        sw.Write(@"MongoPath: C:\Program Files\MongoDB\Server\4.4\bin");
-            //    }
-            //}
-             
+            else
+            {
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    sw.Write(@"MongoPath: ");
+                    //C:\Program Files\MongoDB\Server\4.4\bin
+                }
+
+                MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         public void SetPath(string path, int type)

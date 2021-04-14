@@ -52,6 +52,17 @@ namespace Database_Application_Chris
 
             return collection.Find(filter).ToList();
         }
+
+        public List<T> LoadCustomerById<T>(string table, Guid id)
+        {
+            var collection = db.GetCollection<T>(table);
+
+            // Checks for engine no despite capitalization
+            var filter = Builders<T>.Filter.Eq("Id", id);
+
+            return collection.Find(filter).ToList();
+        }
+
         public List<T> LoadVehicleByEngine<T>(string table, string engineNo)
         {
             var collection = db.GetCollection<T>(table);

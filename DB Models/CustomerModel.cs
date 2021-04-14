@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
+using System.Collections.Generic;
 
 namespace Database_Application_Chris
 {
@@ -13,7 +14,7 @@ namespace Database_Application_Chris
         public AddressModel PrimaryAddress { get; set; }
         public ContactModel ContactNums { get; set; }
         public EmailModel Emails { get; set; }
-        public string InterestedVehicles { get; set; }
+        public List<string> InterestedVehicles { get; set; }
         public bool InProgressFlag { get; set; }
         public bool CallBackFlag { get; set; }
     }

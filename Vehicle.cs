@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,10 +13,162 @@ namespace Database_Application_Chris
     {
         public VehicleModel vehicleResult;
         public bool engineNumEdited = false;
+        public bool addVehicle = false;
 
         public Vehicle()
         {
             InitializeComponent();
+
+            addThisVehicle.Visible = false;
+            addThisVehicle.Enabled = false;
+
+            deleteCustomerBtn.Visible = true;
+            deleteCustomerBtn.Enabled = true;
+        }
+        
+        public Vehicle(bool addVehicle)
+        {
+            InitializeComponent();
+
+            // Switched to add mode
+            if (addVehicle)
+            {
+                vehicleResult = new VehicleModel();
+
+                addThisVehicle.Visible = true;
+                addThisVehicle.Enabled = true;
+
+                deleteVehicleBtn.Visible = false;
+                deleteVehicleBtn.Enabled = false;
+
+                updateVehicleBtn.Visible = false;
+                updateVehicleBtn.Enabled = false;
+            }
+        }
+
+        /*
+         * Button Functions
+         */
+
+        private void addThisVehicle_Click(object sender, EventArgs e)
+        {
+            //Get info from fields
+            UpdateVehicleList();
+
+            DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Vehicle?", "Add Vehicle Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult3 == DialogResult.Yes)
+            {
+                //Try to update
+                try
+                {
+                    main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult);
+                    MessageBox.Show("Successfully added the vehicles with engine number: " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult3 == DialogResult.No)
+            {
+                return;
+            }
+
+            RefreshInformation();
+        }
+
+        private void updateVehicleBtn_Click(object sender, EventArgs e)
+        {
+            //Get info from fields
+            UpdateVehicleList();
+
+            if (engineNumEdited)
+            {
+                DialogResult dialogResult = MessageBox.Show("You are editing the vehicle's engine number, is this correct?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Do something - Does nothing here but allows function to continue
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return; // Stops function
+                }
+            }
+
+            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this vehicle?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult2 == DialogResult.Yes)
+            {
+                //Try to update
+                try
+                {
+                    main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult);
+
+                    engineNumEdited = false; // resets this variable for future
+
+                    MessageBox.Show("Successfully updated the vehicle with Engine No: " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult2 == DialogResult.No)
+            {
+                return;
+            }
+
+            RefreshInformation();
+            DisableUpdateBtn();
+        }
+
+        private void deleteVehicleBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + vehicleResult.EngineNum + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Try to delete
+                try
+                {
+                    main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id);
+                    MessageBox.Show("Successfully deleted " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception err)
+                {
+                    System.Windows.Forms.MessageBox.Show(err.Message);
+                }
+
+                //RETURN TO SEARCH
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        // List Box Stuff
+        private void deleteCustomerBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this person from interested customers list: " + interestedCustomersListBox.SelectedItem + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                interestedCustomersListBox.Items.Remove(interestedCustomersListBox.SelectedItem);
+                EnableUpdateBtn();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void addCustomerBtn_Click(object sender, EventArgs e)
+        {
+            if (addCustomer.Text.Length != 0)
+            {
+                // Add vehicles to listbox 
+                interestedCustomersListBox.Items.Add(addCustomer.Text);
+                addCustomer.Text = ""; // Clear field
+                EnableUpdateBtn();
+            }
         }
 
         /*
@@ -26,7 +179,18 @@ namespace Database_Application_Chris
         {
             engineNumLbl.Text = vehicleResult.EngineNum;
             chassisNumLbl.Text = vehicleResult.ChassisNum;
-            colourLbl.Text = vehicleResult.Colour;  
+            colourLbl.Text = vehicleResult.Colour;
+
+            // Add vehicles to listbox
+            interestedCustomersListBox.Items.Clear();
+
+            foreach (var vehicle in vehicleResult.InterestedCustomers)
+            {
+                if (vehicleResult.InterestedCustomers[0] != "") // This is from add page setting this to ""
+                {
+                    interestedCustomersListBox.Items.Add(vehicle);
+                }
+            }
 
             DisableUpdateBtn();
         }
@@ -36,6 +200,7 @@ namespace Database_Application_Chris
             vehicleResult.EngineNum = engineNumLbl.Text.Trim();
             vehicleResult.ChassisNum = chassisNumLbl.Text.Trim();
             vehicleResult.Colour = colourLbl.Text.Trim();
+            vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
         }
 
         /*
@@ -136,73 +301,6 @@ namespace Database_Application_Chris
                 MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void updateVehicleBtn_Click(object sender, EventArgs e)
-        {
-            //Get info from fields
-            UpdateVehicleList();
-
-            if (engineNumEdited)
-            {
-                DialogResult dialogResult = MessageBox.Show("You are editing the vehicle's engine number, is this correct?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    //Do something - Does nothing here but allows function to continue
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    return; // Stops function
-                }
-            }
-
-            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this vehicle?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult2 == DialogResult.Yes)
-            {
-                //Try to update
-                try
-                {
-                    main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult);
-
-                    engineNumEdited = false; // resets this variable for future
-                    
-                    MessageBox.Show("Successfully updated the vehicle with Engine No: " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (dialogResult2 == DialogResult.No)
-            {
-                return;
-            }
-            
-            RefreshInformation();
-            DisableUpdateBtn();
-        }
-
-        private void deleteVehicleBtn_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + vehicleResult.EngineNum + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //Try to delete
-                try
-                {
-                    main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id);
-                    MessageBox.Show("Successfully deleted " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception err)
-                {
-                    System.Windows.Forms.MessageBox.Show(err.Message);
-                }
-
-                //RETURN TO SEARCH
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                return;
-            }
-        }
+   
     }
 }

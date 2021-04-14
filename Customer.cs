@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -13,8 +14,7 @@ namespace Database_Application_Chris
     {
         public CustomerModel customerResult;
         public string name;
-        public bool nameEdited = false;
-        public bool addCustomer = false;
+        public bool nameEdited = false; 
 
         public Customer()
         {
@@ -34,10 +34,8 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addCustomer)
             {
-                customerResult = new CustomerModel();
-                //EmptyCustomerList();
+                customerResult = new CustomerModel(); 
 
-                addCustomer = true;
                 addThisCustomer.Visible = true;
                 addThisCustomer.Enabled = true;
 
@@ -80,6 +78,18 @@ namespace Database_Application_Chris
             BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
             email1Lbl.Text = customerResult.Emails.Email1;
             email2Lbl.Text = customerResult.Emails.Email2;
+
+            // Add vehicles to listbox
+            interestedVehiclesListBox.Items.Clear();
+            
+            foreach (var vehicle in customerResult.InterestedVehicles)
+            {
+                if (customerResult.InterestedVehicles[0] != "") // This is from add page setting this to ""
+                {
+                    interestedVehiclesListBox.Items.Add(vehicle);
+                }
+            }
+
             inProgressCheckbox.Checked = customerResult.InProgressFlag;
             callBackCheckbox.Checked = customerResult.CallBackFlag;
 
@@ -121,6 +131,7 @@ namespace Database_Application_Chris
             customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
             customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+            customerResult.InterestedVehicles = interestedVehiclesListBox.Items.Cast<string>().ToList();
             customerResult.InProgressFlag = inProgressCheckbox.Checked;
             customerResult.CallBackFlag = callBackCheckbox.Checked;
         }
@@ -222,8 +233,6 @@ namespace Database_Application_Chris
             }
 
             RefreshInformation();
-            DisableUpdateBtn();
-
         }
 
 
@@ -467,6 +476,29 @@ namespace Database_Application_Chris
             this.ActiveControl = panel1;
         }
 
- 
+        private void addVehicleInterest_Click(object sender, EventArgs e)
+        {
+            if (addVehicle.Text.Length != 0)
+            {
+                // Add vehicles to listbox 
+                interestedVehiclesListBox.Items.Add(addVehicle.Text);
+                addVehicle.Text = ""; // Clear field
+                EnableUpdateBtn();
+            }
+        }
+
+        private void removeVehicle_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItem + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                interestedVehiclesListBox.Items.Remove(interestedVehiclesListBox.SelectedItem);
+                EnableUpdateBtn();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace Database_Application_Chris
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nameLbl = new System.Windows.Forms.TextBox();
             this.addressLbl = new System.Windows.Forms.TextBox();
@@ -42,8 +43,10 @@ namespace Database_Application_Chris
             this.updateCustomerBtn = new System.Windows.Forms.Button();
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
             this.addVehicle = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.addVehicleBtn = new System.Windows.Forms.Button();
             this.addThisCustomer = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.removeVehicleBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +71,7 @@ namespace Database_Application_Chris
             this.nameLbl.TabIndex = 1;
             this.nameLbl.Text = "James Bond";
             this.nameLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.nameLbl, "Customer\'s name ");
             this.nameLbl.Leave += new System.EventHandler(this.nameLbl_Leave);
             // 
             // addressLbl
@@ -82,6 +86,7 @@ namespace Database_Application_Chris
             this.addressLbl.TabIndex = 1;
             this.addressLbl.Text = "Lot # 555 Test Hill, St. James, Barbados";
             this.addressLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.addressLbl, "Address");
             this.addressLbl.Leave += new System.EventHandler(this.addressLbl_Leave);
             // 
             // num1Lbl
@@ -96,6 +101,7 @@ namespace Database_Application_Chris
             this.num1Lbl.TabIndex = 1;
             this.num1Lbl.Text = "555-5555";
             this.num1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.num1Lbl, "Primary number");
             this.num1Lbl.Leave += new System.EventHandler(this.num1Lbl_Leave);
             // 
             // num2Lbl
@@ -110,6 +116,7 @@ namespace Database_Application_Chris
             this.num2Lbl.TabIndex = 1;
             this.num2Lbl.Text = "555-5555";
             this.num2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.num2Lbl, "Secondary number");
             this.num2Lbl.Leave += new System.EventHandler(this.num2Lbl_Leave);
             // 
             // email2Lbl
@@ -124,6 +131,7 @@ namespace Database_Application_Chris
             this.email2Lbl.TabIndex = 1;
             this.email2Lbl.Text = "testeremail@outlook.com";
             this.email2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.email2Lbl, "Secondary email");
             this.email2Lbl.Leave += new System.EventHandler(this.email2Lbl_Leave);
             // 
             // email1Lbl
@@ -138,6 +146,7 @@ namespace Database_Application_Chris
             this.email1Lbl.TabIndex = 1;
             this.email1Lbl.Text = "testeremail@outlook.com";
             this.email1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.email1Lbl, "Primary email");
             this.email1Lbl.Leave += new System.EventHandler(this.email1Lbl_Leave);
             // 
             // interestedVehiclesListBox
@@ -148,6 +157,7 @@ namespace Database_Application_Chris
             this.interestedVehiclesListBox.Name = "interestedVehiclesListBox";
             this.interestedVehiclesListBox.Size = new System.Drawing.Size(277, 244);
             this.interestedVehiclesListBox.TabIndex = 2;
+            this.toolTip.SetToolTip(this.interestedVehiclesListBox, "List of vehicle\'s this customer is interested in");
             this.interestedVehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.interestedVehiclesListBox_SelectedIndexChanged);
             // 
             // inProgressCheckbox
@@ -158,6 +168,7 @@ namespace Database_Application_Chris
             this.inProgressCheckbox.Size = new System.Drawing.Size(146, 24);
             this.inProgressCheckbox.TabIndex = 4;
             this.inProgressCheckbox.Text = "Currently Seeking";
+            this.toolTip.SetToolTip(this.inProgressCheckbox, "Indicate if the customer is currently doing business");
             this.inProgressCheckbox.UseVisualStyleBackColor = true;
             this.inProgressCheckbox.CheckedChanged += new System.EventHandler(this.inProgressCheckbox_CheckedChanged);
             // 
@@ -169,6 +180,7 @@ namespace Database_Application_Chris
             this.callBackCheckbox.Size = new System.Drawing.Size(91, 24);
             this.callBackCheckbox.TabIndex = 4;
             this.callBackCheckbox.Text = "Call back";
+            this.toolTip.SetToolTip(this.callBackCheckbox, "Indicate if the customer is to be called back");
             this.callBackCheckbox.UseVisualStyleBackColor = true;
             this.callBackCheckbox.CheckedChanged += new System.EventHandler(this.callBackCheckbox_CheckedChanged);
             // 
@@ -178,6 +190,7 @@ namespace Database_Application_Chris
             this.updateCustomerBtn.Enabled = false;
             this.updateCustomerBtn.FlatAppearance.BorderSize = 0;
             this.updateCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.updateCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.updateCustomerBtn.Location = new System.Drawing.Point(235, 542);
             this.updateCustomerBtn.Name = "updateCustomerBtn";
             this.updateCustomerBtn.Size = new System.Drawing.Size(148, 44);
@@ -192,6 +205,7 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
             this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteCustomerBtn.Location = new System.Drawing.Point(72, 542);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(148, 44);
@@ -211,19 +225,22 @@ namespace Database_Application_Chris
             this.addVehicle.Size = new System.Drawing.Size(277, 23);
             this.addVehicle.TabIndex = 1;
             this.addVehicle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.addVehicle, "Vehicle\'s engine number");
             // 
-            // button1
+            // addVehicleBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(713, 542);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(277, 44);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "+ Add Vehicle";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
+            this.addVehicleBtn.BackColor = System.Drawing.Color.Gold;
+            this.addVehicleBtn.FlatAppearance.BorderSize = 0;
+            this.addVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addVehicleBtn.Location = new System.Drawing.Point(713, 542);
+            this.addVehicleBtn.Name = "addVehicleBtn";
+            this.addVehicleBtn.Size = new System.Drawing.Size(217, 44);
+            this.addVehicleBtn.TabIndex = 5;
+            this.addVehicleBtn.Text = "+  ";
+            this.toolTip.SetToolTip(this.addVehicleBtn, "Add a vehicle which the customer is interested in");
+            this.addVehicleBtn.UseVisualStyleBackColor = false;
+            this.addVehicleBtn.Click += new System.EventHandler(this.addVehicleInterest_Click);
             // 
             // addThisCustomer
             // 
@@ -231,14 +248,31 @@ namespace Database_Application_Chris
             this.addThisCustomer.Enabled = false;
             this.addThisCustomer.FlatAppearance.BorderSize = 0;
             this.addThisCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addThisCustomer.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addThisCustomer.Location = new System.Drawing.Point(72, 542);
             this.addThisCustomer.Name = "addThisCustomer";
             this.addThisCustomer.Size = new System.Drawing.Size(311, 44);
             this.addThisCustomer.TabIndex = 5;
             this.addThisCustomer.Text = "+ Add Customer";
+            this.toolTip.SetToolTip(this.addThisCustomer, "Add this customer to the database");
             this.addThisCustomer.UseVisualStyleBackColor = false;
             this.addThisCustomer.Visible = false;
             this.addThisCustomer.Click += new System.EventHandler(this.addThisCustomer_Click);
+            // 
+            // removeVehicleBtn
+            // 
+            this.removeVehicleBtn.BackColor = System.Drawing.Color.Gold;
+            this.removeVehicleBtn.FlatAppearance.BorderSize = 0;
+            this.removeVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.removeVehicleBtn.Location = new System.Drawing.Point(936, 542);
+            this.removeVehicleBtn.Name = "removeVehicleBtn";
+            this.removeVehicleBtn.Size = new System.Drawing.Size(54, 44);
+            this.removeVehicleBtn.TabIndex = 5;
+            this.removeVehicleBtn.Text = "🗑️";
+            this.toolTip.SetToolTip(this.removeVehicleBtn, "Delete a vehicle from the interested list");
+            this.removeVehicleBtn.UseVisualStyleBackColor = false;
+            this.removeVehicleBtn.Click += new System.EventHandler(this.removeVehicle_Click);
             // 
             // Customer
             // 
@@ -247,7 +281,8 @@ namespace Database_Application_Chris
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Controls.Add(this.addThisCustomer);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.removeVehicleBtn);
+            this.Controls.Add(this.addVehicleBtn);
             this.Controls.Add(this.deleteCustomerBtn);
             this.Controls.Add(this.updateCustomerBtn);
             this.Controls.Add(this.callBackCheckbox);
@@ -286,7 +321,9 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button updateCustomerBtn;
         private System.Windows.Forms.Button deleteCustomerBtn;
         private System.Windows.Forms.TextBox addVehicle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addVehicleBtn;
         private System.Windows.Forms.Button addThisCustomer;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button removeVehicleBtn;
     }
 }

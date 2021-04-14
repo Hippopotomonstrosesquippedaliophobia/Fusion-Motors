@@ -328,6 +328,26 @@ namespace Database_Application_Chris
             main.Instance.PanelContainer.Controls["addHome"].BringToFront();
         }
 
+        private void DatabaseBtn_Click(object sender, EventArgs e)
+        {
+            Title.Text = "Full Database";
+            sidePanel.Height = DatabaseBtn.Height;
+            sidePanel.Top = DatabaseBtn.Top;             
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
+
+            //Open Add Home
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("DatabaseHome"))
+            {
+                DatabaseHome uc = new DatabaseHome();
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+
+            main.Instance.PanelContainer.Controls["DatabaseHome"].BringToFront();
+        }
+
         /* =============================================
          *  MONGO CONTROLS
          * =============================================
@@ -343,6 +363,16 @@ namespace Database_Application_Chris
                 // MAKE USER ENTER PATH
                 using (var fbd = new FolderBrowserDialog())
                 {
+                    // tries to set selected Path to a default, if not..proceed as normal
+                    try 
+                    { 
+                        fbd.SelectedPath = @"C:\Program Files\MongoDB\Server\4.4\bin";
+                    }
+                    catch
+                    {
+
+                    }
+
                     DialogResult result = fbd.ShowDialog();
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
@@ -499,16 +529,16 @@ namespace Database_Application_Chris
          */
 
         //Closes application
-        private void closeBtn_Click(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
             //Closes application
             System.Windows.Forms.Application.Exit();
         }
 
-        private void minimizeBtn_Click(object sender, EventArgs e)
+        private void minimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
+        } 
 
         //Occurs when form is closed
         private void main_FormClosing(object sender, FormClosingEventArgs e)
@@ -584,5 +614,6 @@ namespace Database_Application_Chris
                 return cp;
             }
         }
+
     }
 }
