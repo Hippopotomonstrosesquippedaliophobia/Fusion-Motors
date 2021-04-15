@@ -11,7 +11,7 @@ namespace Database_Application_Chris
         //public int version = 1; // Large update
         //public int versionIteration = 0; // Incremental change
 
-        public string database = "FusionMotors";
+        ///public string database = "FusionMotors";
         public static string mongoBinPath; //@"C:\Program Files\MongoDB\Server\4.4\bin"; // @ stops escape
         public static string storeDBLocation = @"Database"; //@"C:\Program Files\MongoDB\Server\4.4\bin"; // @ stops escape
 

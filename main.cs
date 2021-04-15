@@ -461,16 +461,19 @@ namespace Database_Application_Chris
 
         private async System.Threading.Tasks.Task IsOnlineAsync()
         {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            string database = config.AppSettings.Settings["database"].Value.ToString();
+
             try
             {
                 await db.GetConnectionAsync();
                 mongoStatusLbl.Text = "Mongo: Connected";
-                mongoDBLbl.Text = settings.database;
+                mongoDBLbl.Text = database;
             }
             catch (Exception err)
             {
                 mongoStatusLbl.Text = "Mongo: Not Connected";
-                mongoDBLbl.Text = settings.database;
+                mongoDBLbl.Text = database;
 
                 if (!alertDisconnect)
                 {
@@ -483,7 +486,10 @@ namespace Database_Application_Chris
 
         private void MongoConnect()
         {
-            db = new MongoCRUD(settings.database);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            string database = config.AppSettings.Settings["database"].Value.ToString();
+
+            db = new MongoCRUD(database);
 
             //If program has reached here, update connection label
             IsOnlineAsync();
