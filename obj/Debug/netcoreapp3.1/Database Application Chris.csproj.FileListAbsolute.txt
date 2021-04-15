@@ -36,3 +36,6 @@ C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\D
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.Vehicle.resources
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.SearchForm.resources
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.DatabaseHome.resources
+C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.Login.resources
+C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database_Application_Chris.SettingsPage.resources
+C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database Application Chris.csprojAssemblyReference.cache

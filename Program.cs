@@ -17,7 +17,7 @@ namespace Database_Application_Chris
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            Application.Run(new Login());
         }
     }
 }

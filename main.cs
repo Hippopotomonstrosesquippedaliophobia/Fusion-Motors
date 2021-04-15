@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -68,6 +69,15 @@ namespace Database_Application_Chris
             hc = new HomeControl();
             clock = new System.Timers.Timer();
 
+            //// Disables horizontal scroll on side panel  
+            panel1.AutoScroll = false;
+            panel1.HorizontalScroll.Enabled = false;
+            panel1.HorizontalScroll.Visible = false;
+
+            panel1.VerticalScroll.Enabled = true;
+            panel1.VerticalScroll.Visible = false;
+            panel1.AutoScroll = true;
+
             // Start the clock
             InitializeClock();
 
@@ -83,7 +93,11 @@ namespace Database_Application_Chris
 
         private void SetVersion()
         {
-            versionLbl.Text = "v" + settings.version.ToString() + "." + settings.versionIteration.ToString();
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            string version = config.AppSettings.Settings["version"].Value.ToString();
+            string versionIteration = config.AppSettings.Settings["versionIteration"].Value.ToString();
+
+            versionLbl.Text = "v" + version + "." + versionIteration;
         }
 
         // Sets up the clock
@@ -327,6 +341,26 @@ namespace Database_Application_Chris
             }
             main.Instance.PanelContainer.Controls["addHome"].BringToFront();
         }
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+            Title.Text = "Edit Settings";
+            sidePanel.Height = settingsBtn.Height;
+            sidePanel.Top = settingsBtn.Top;
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
+
+            //Open Add Home
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("SettingsPage"))
+            {
+                SettingsPage uc = new SettingsPage();
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+            main.Instance.PanelContainer.Controls["SettingsPage"].BringToFront();
+        }
+
 
         private void DatabaseBtn_Click(object sender, EventArgs e)
         {
@@ -620,6 +654,6 @@ namespace Database_Application_Chris
             //Closes application
             System.Windows.Forms.Application.Exit();
         }
-         
+
     }
 }

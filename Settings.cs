@@ -8,8 +8,8 @@ namespace Database_Application_Chris
     public class Settings
     {
         //Version information about the application
-        public int version = 1; // Large update
-        public int versionIteration = 0; // Incremental change
+        //public int version = 1; // Large update
+        //public int versionIteration = 0; // Incremental change
 
         public string database = "FusionMotors";
         public static string mongoBinPath; //@"C:\Program Files\MongoDB\Server\4.4\bin"; // @ stops escape
