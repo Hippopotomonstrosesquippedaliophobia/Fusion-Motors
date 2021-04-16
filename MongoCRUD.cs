@@ -26,6 +26,18 @@ namespace Database_Application_Chris
             collection.InsertOne(record);
         }
 
+        public List<string> GetCollections()
+        {
+            List<string> collections = new List<string>();
+
+            foreach (BsonDocument collection in db.ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
+            {
+                collections.Add(collection["name"].AsString);
+            }
+
+            return collections;
+        }
+
         public List<T> LoadRecords<T>(string table)
         {
             var collection = db.GetCollection<T>(table);

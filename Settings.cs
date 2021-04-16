@@ -101,19 +101,20 @@ namespace Database_Application_Chris
 
         public static readonly IDictionary<string, string> commands = new Dictionary<string, string>()
         { 
-            //{"mongoServiceStart", "mongod"},
-            //{"mongoServiceStart", "net start MongoDB"},
             {"mongoServiceStart", "mongod.exe --dbpath \"" + AppDomain.CurrentDomain.BaseDirectory + @"\Database" + "\""},
-            //{"mongoServiceEnd", "net stop MongoDB"}
             {"mongoServiceEnd", "taskkill /F /IM mongod.exe"},
-            {"makeDirDB", @"mkdir Database"}
+            {"makeDirDB", @"mkdir Database"},
+            {"importMongoCustomers", @"mongoimport --db FusionMotors --collection Customers --file "},
+            {"importMongoVehicles", @"mongoimport --db FusionMotors --collection Vehicles --file "}
         };
 
         public readonly IDictionary<string, string> commandsInfo = new Dictionary<string, string>()
         { 
             {"mongoServiceStart", "Starts the mongo database background service, allowing you to connect"},
             {"mongoServiceEnd", "Stops the mongo database background service to free up resources"},
-            {"makeDirDB", "Creating directory for MongoDB"}
+            {"makeDirDB", "Creating directory for MongoDB"},
+            {"importMongoCustomers", "Imports provided file into mongo database"},
+            {"importMongoVehicles", "Imports provided file into mongo database"}
         };
 
        

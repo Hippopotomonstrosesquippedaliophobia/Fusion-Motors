@@ -143,7 +143,7 @@ namespace Database_Application_Chris
         }
 
         // Used to execute hidden command prompt controls
-        private void RunCmd(string command, string info)
+        public void RunCmd(string command, string info)
         {
             bool commandSecurityBypass = false;
 
@@ -181,7 +181,7 @@ namespace Database_Application_Chris
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    // Do nothing?
+                    MessageBox.Show("Action aborted", "Command Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             // Command can run without prompt
@@ -344,9 +344,9 @@ namespace Database_Application_Chris
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
-            Title.Text = "Edit Settings";
-            sidePanel.Height = settingsBtn.Height;
-            sidePanel.Top = settingsBtn.Top;
+            Title.Text = "Settings";
+            sidePanel.Height = homeBtn.Height;
+            sidePanel.Top = homeBtn.Top;
 
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();

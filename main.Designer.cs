@@ -39,7 +39,7 @@ namespace Database_Application_Chris
             this.searchBtn = new System.Windows.Forms.Button();
             this.DatabaseBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
-            this.settingsBtn = new System.Windows.Forms.Button();
+            this.aboutBtn = new System.Windows.Forms.Button();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.titleBar = new System.Windows.Forms.Panel();
             this.minimize = new System.Windows.Forms.Button();
@@ -52,6 +52,8 @@ namespace Database_Application_Chris
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.settingsBtn = new System.Windows.Forms.Button();
+            this.notificationBtn = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.titleBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -192,23 +194,22 @@ namespace Database_Application_Chris
             this.AddBtn.UseVisualStyleBackColor = true;
             this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
-            // settingsBtn
+            // aboutBtn
             // 
-            this.settingsBtn.FlatAppearance.BorderSize = 0;
-            this.settingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settingsBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.settingsBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.settingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Image")));
-            this.settingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.settingsBtn.Location = new System.Drawing.Point(3, 299);
-            this.settingsBtn.Name = "settingsBtn";
-            this.settingsBtn.Size = new System.Drawing.Size(288, 68);
-            this.settingsBtn.TabIndex = 2;
-            this.settingsBtn.Text = "     Settings";
-            this.settingsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.settingsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.settingsBtn.UseVisualStyleBackColor = true;
-            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+            this.aboutBtn.FlatAppearance.BorderSize = 0;
+            this.aboutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aboutBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.aboutBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.aboutBtn.Image = ((System.Drawing.Image)(resources.GetObject("aboutBtn.Image")));
+            this.aboutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aboutBtn.Location = new System.Drawing.Point(3, 299);
+            this.aboutBtn.Name = "aboutBtn";
+            this.aboutBtn.Size = new System.Drawing.Size(288, 68);
+            this.aboutBtn.TabIndex = 2;
+            this.aboutBtn.Text = "     About";
+            this.aboutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aboutBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.aboutBtn.UseVisualStyleBackColor = true;
             // 
             // sidePanel
             // 
@@ -267,7 +268,7 @@ namespace Database_Application_Chris
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Title.Location = new System.Drawing.Point(574, 53);
+            this.Title.Location = new System.Drawing.Point(574, 71);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(182, 37);
             this.Title.TabIndex = 2;
@@ -285,10 +286,10 @@ namespace Database_Application_Chris
             // logo
             // 
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(11, 0);
+            this.logo.Location = new System.Drawing.Point(27, 1);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(166, 118);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo.Size = new System.Drawing.Size(139, 118);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
@@ -307,7 +308,7 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Controls.Add(this.searchBtn);
             this.flowLayoutPanel1.Controls.Add(this.DatabaseBtn);
             this.flowLayoutPanel1.Controls.Add(this.AddBtn);
-            this.flowLayoutPanel1.Controls.Add(this.settingsBtn);
+            this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(29, 77);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(291, 608);
@@ -339,12 +340,37 @@ namespace Database_Application_Chris
             this.panel4.Size = new System.Drawing.Size(320, 78);
             this.panel4.TabIndex = 0;
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.FlatAppearance.BorderSize = 0;
+            this.settingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Image")));
+            this.settingsBtn.Location = new System.Drawing.Point(1293, 65);
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.Size = new System.Drawing.Size(51, 51);
+            this.settingsBtn.TabIndex = 6;
+            this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+            // 
+            // notificationBtn
+            // 
+            this.notificationBtn.FlatAppearance.BorderSize = 0;
+            this.notificationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.notificationBtn.Image = ((System.Drawing.Image)(resources.GetObject("notificationBtn.Image")));
+            this.notificationBtn.Location = new System.Drawing.Point(1236, 65);
+            this.notificationBtn.Name = "notificationBtn";
+            this.notificationBtn.Size = new System.Drawing.Size(51, 51);
+            this.notificationBtn.TabIndex = 6;
+            this.notificationBtn.UseVisualStyleBackColor = true;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1379, 800);
+            this.Controls.Add(this.notificationBtn);
+            this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -393,11 +419,14 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button mongoReconnect;
         private System.Windows.Forms.Label versionLbl;
         private System.Windows.Forms.Button closeBtn;
-        private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button notificationBtn;
+        private System.Windows.Forms.Button settingsBtn;
     }
 }
