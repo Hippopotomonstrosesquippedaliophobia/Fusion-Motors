@@ -269,6 +269,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Label titleLbl;
+        public System.Windows.Forms.Label titleLbl;
     }
 }

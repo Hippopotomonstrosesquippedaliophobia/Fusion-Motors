@@ -26,16 +26,28 @@ namespace Database_Application_Chris
         const int CS_DBLCLKS = 0x8;
 
         bool isVehicleSearch = false;
+        bool selectForList = false;
+
+        CustomerModel selectForListCModel = new CustomerModel();
+        VehicleModel selectForListVModel = new VehicleModel();
 
         public List<CustomerModel> listCustomers;
         public List<VehicleModel> listVehicles;
 
         public IDictionary<long, Guid> matchList = new Dictionary<long, Guid>();
 
-        public SearchForm()
+        public SearchForm(bool selection, VehicleModel model)
         {
             InitializeComponent();
             listCustomers = new List<CustomerModel>();
+
+            // Tells if this is going to open the customer or send back the information to open customer page
+            selectForList = selection;
+
+            if (selection)
+            {
+                selectForListVModel = model;
+            }
 
             titleLbl.Text = "Customers";
             searchBtn.Text = "Find a Customer";
@@ -47,10 +59,18 @@ namespace Database_Application_Chris
             listView.Visible = true;
         }
         
-        public SearchForm(bool vehicle)
+        public SearchForm(bool vehicle, bool selection, CustomerModel model)
         {
             InitializeComponent();
             listVehicles = new List<VehicleModel>();
+
+            // Tells if this is going to open the customer or send back the information to open customer page
+            selectForList = selection;
+
+            if (selection)
+            {
+                selectForListCModel = model;
+            }
 
             if (vehicle)
             {
@@ -287,7 +307,6 @@ namespace Database_Application_Chris
                     Guid id = matchList[selectedIndex];
 
                     // OPEN CUSTOMER
-
                     //Refresh of controls
                     main.Instance.PanelContainer.Controls.Clear();
 
@@ -298,6 +317,7 @@ namespace Database_Application_Chris
                         uc.Dock = DockStyle.Fill;
 
                         CustomerModel cust = new CustomerModel();
+
                         try
                         {
                             List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
@@ -321,7 +341,7 @@ namespace Database_Application_Chris
                         //Refresh form
                         uc.RefreshInformation();
                         main.Instance.PanelContainer.Controls.Add(uc);
-                    }
+                    } 
 
                     main.Instance.PanelContainer.Controls["Customer"].BringToFront();
                 }
@@ -339,44 +359,87 @@ namespace Database_Application_Chris
                     Guid id = matchList[selectedIndex];
 
                     // OPEN Vehicle
-
-                    //Refresh of controls
-                    main.Instance.PanelContainer.Controls.Clear();
-
-                    //Open Customer
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+                    if (!selectForList)
                     {
-                        Vehicle uc = new Vehicle();
-                        uc.Dock = DockStyle.Fill;
+                        //Refresh of controls
+                        main.Instance.PanelContainer.Controls.Clear();
 
-                        VehicleModel vehic = new VehicleModel();
+                        //Open Customer
+                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+                        { 
+                            Vehicle uc = new Vehicle();
+                            uc.Dock = DockStyle.Fill;
 
-                        try
-                        {
-                            List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", listViewVehicles.SelectedItems[0].SubItems[1].Text));
+                            VehicleModel vehic = new VehicleModel();
 
-                            if (tempList.Count == 0)
+                            try
                             {
-                                throw new Exception("No record found");
+                                var engineNumber = listViewVehicles.SelectedItems[0].SubItems[1].Text;
+                                List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNumber));
+
+                                if (tempList.Count == 0)
+                                {
+                                    throw new Exception("No record found");
+                                }
+                                else
+                                {
+                                    vehic = tempList[0];
+                                }
                             }
-                            else
+                            catch (Exception err)
                             {
-                                vehic = tempList[0];
+                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+
+                            uc.vehicleResult = vehic; // Reset page variable with new information
+
+                            //Refresh form
+                            uc.RefreshInformation();
+                            main.Instance.PanelContainer.Controls.Add(uc);
+
+                            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
                         }
-                        catch (Exception err)
+                    }
+                    else // Selected to pass thru for list from Customer
+                    {
+                        //Refresh of controls
+                        main.Instance.PanelContainer.Controls.Clear();
+                        //selectForListCModel
+                        //Open Customer
+                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
                         {
-                            //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Customer uc = new Customer();
+                            uc.Dock = DockStyle.Fill; 
+
+                            try
+                            {
+                                var engineNumber = listViewVehicles.SelectedItems[0].SubItems[1].Text;
+                                List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNumber));
+
+                                if (tempList.Count == 0)
+                                {
+                                    throw new Exception("No record found");
+                                }
+                                else
+                                {
+                                    selectForListCModel.InterestedVehicles.Add(tempList[0].EngineNum); 
+                                }
+                            }
+                            catch (Exception err)
+                            {
+                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            uc.customerResult = selectForListCModel; // Reset page variable with new information
+
+                            //Refresh form
+                            uc.RefreshInformation();
+                            main.Instance.PanelContainer.Controls.Add(uc);
+
+                            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
                         }
-
-                        uc.vehicleResult = vehic; // Reset page variable with new information
-
-                        //Refresh form
-                        uc.RefreshInformation();
-                        main.Instance.PanelContainer.Controls.Add(uc);
                     }
 
-                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
                 }
                 catch (Exception err)
                 {

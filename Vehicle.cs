@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,22 +17,27 @@ namespace Database_Application_Chris
         public VehicleModel vehicleResult;
         public bool engineNumEdited = false;
         public bool addVehicle = false;
+        public int errorsInForm = 0;
 
         public Vehicle()
         {
             InitializeComponent();
-            SetTabIndex();
+            FixDate();
+
             addThisVehicle.Visible = false;
             addThisVehicle.Enabled = false;
 
-            deleteCustomerBtn.Visible = true;
-            deleteCustomerBtn.Enabled = true;
+            deleteVehicleBtn.Visible = true;
+            deleteVehicleBtn.Enabled = true;
+
+            updateVehicleBtn.Visible = true;
+            updateVehicleBtn.Enabled = true;
         }
         
         public Vehicle(bool addVehicle)
         {
             InitializeComponent();
-            SetTabIndex();
+            FixDate();
 
             // Switched to add mode
             if (addVehicle)
@@ -52,85 +59,98 @@ namespace Database_Application_Chris
          * Button Functions
          */
 
-        public void SetTabIndex()
+        public void FixDate()
         {
-            int index = 0;
-            panel1.TabIndex = ++index;
-            engineNumLbl.TabIndex = ++index;
-            chassisNumLbl.TabIndex = ++index;
-            colourLbl.TabIndex = ++index;
-            addCustomer.TabIndex = ++index;
-            addCustomerBtn.TabIndex = ++index;
-            deleteCustomerBtn.TabIndex = ++index;
-            addThisVehicle.TabIndex = ++index;
+            //Format date time picker to just year
+            yearLbl.Format = DateTimePickerFormat.Custom;
+            yearLbl.CustomFormat = "yyyy";
+            yearLbl.ShowUpDown = true; 
         }
 
         private async void addThisVehicle_Click(object sender, EventArgs e)
         {
-            //Get info from fields
-            UpdateVehicleList();
+            ValidationProcess(null); // Check all fields
 
-            DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Vehicle?", "Add Vehicle Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult3 == DialogResult.Yes)
+            if (errorsInForm == 0)
             {
-                //Try to update
-                try
-                {
-                    await Task.Run(() => main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult));
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (dialogResult3 == DialogResult.No)
-            {
-                return;
-            }
+                //Get info from fields
+                UpdateVehicleList();
 
-            RefreshInformation();
+                DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Vehicle?", "Add Vehicle Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult3 == DialogResult.Yes)
+                {
+                    //Try to update
+                    try
+                    {
+                        await Task.Run(() => main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult));
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (dialogResult3 == DialogResult.No)
+                {
+                    return;
+                }
+
+                RefreshInformation();
+            }
+            else
+            {
+                MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private async void updateVehicleBtn_Click(object sender, EventArgs e)
         {
-            //Get info from fields
-            UpdateVehicleList();
+            ValidationProcess(null); // Check all fields
 
-            if (engineNumEdited)
+            if (errorsInForm == 0)
             {
-                DialogResult dialogResult = MessageBox.Show("You are editing the vehicle's engine number, is this correct?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    //Do something - Does nothing here but allows function to continue
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    return; // Stops function
-                }
-            }
+                //Get info from fields
+                UpdateVehicleList();
 
-            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this vehicle?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult2 == DialogResult.Yes)
+                if (engineNumEdited)
+                {
+                    DialogResult dialogResult = MessageBox.Show("You are editing the vehicle's engine number, is this correct?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        //Do something - Does nothing here but allows function to continue
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return; // Stops function
+                    }
+                }
+
+                DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this vehicle?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult2 == DialogResult.Yes)
+                {
+                    //Try to update
+                    try
+                    {
+                        await Task.Run(() => main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult));
+
+                        engineNumEdited = false; // resets this variable for future
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (dialogResult2 == DialogResult.No)
+                {
+                    return;
+                }
+
+                RefreshInformation();
+                //DisableUpdateBtn();
+            }
+            else
             {
-                //Try to update
-                try
-                {
-                    await Task.Run(() => main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult));
-
-                    engineNumEdited = false; // resets this variable for future
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (dialogResult2 == DialogResult.No)
-            {
-                return;
-            }
-
-            RefreshInformation();
-            DisableUpdateBtn();
         }
 
         private async void deleteVehicleBtn_Click(object sender, EventArgs e)
@@ -163,7 +183,7 @@ namespace Database_Application_Chris
             if (dialogResult == DialogResult.Yes)
             {
                 interestedCustomersListBox.Items.Remove(interestedCustomersListBox.SelectedItem);
-                EnableUpdateBtn();
+                //EnableUpdateBtn();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -173,13 +193,13 @@ namespace Database_Application_Chris
 
         private void addCustomerBtn_Click(object sender, EventArgs e)
         {
-            if (addCustomer.Text.Length != 0)
-            {
-                // Add vehicles to listbox 
-                interestedCustomersListBox.Items.Add(addCustomer.Text);
-                addCustomer.Text = ""; // Clear field
-                EnableUpdateBtn();
-            }
+            //if (addCustomer.Text.Length != 0)
+            //{
+            //    // Add vehicles to listbox 
+            //    interestedCustomersListBox.Items.Add(addCustomer.Text);
+            //    addCustomer.Text = ""; // Clear field
+            //    //EnableUpdateBtn();
+            //}
         }
 
         /*
@@ -188,9 +208,18 @@ namespace Database_Application_Chris
 
         public void RefreshInformation()
         {
+            ownerLbl.Text = vehicleResult.Owner;
+
             engineNumLbl.Text = vehicleResult.EngineNum;
             chassisNumLbl.Text = vehicleResult.ChassisNum;
             colourLbl.Text = vehicleResult.Colour;
+
+            makeLbl.Text = vehicleResult.Make;
+            modelLbl.Text = vehicleResult.Model;
+            yearLbl.Text = DateTime.ParseExact(vehicleResult.Year.ToString(), "yyyy", null).ToString(); 
+
+            valuationLbl.Text = vehicleResult.Valuation.ToString();
+            askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
 
             // Add vehicles to listbox
             interestedCustomersListBox.Items.Clear();
@@ -203,14 +232,39 @@ namespace Database_Application_Chris
                 }
             }
 
-            DisableUpdateBtn();
+            //DisableUpdateBtn();
         }
 
         private void UpdateVehicleList()
         {
+            vehicleResult.Owner = ownerLbl.Text.Trim();
+
             vehicleResult.EngineNum = engineNumLbl.Text.Trim();
             vehicleResult.ChassisNum = chassisNumLbl.Text.Trim();
             vehicleResult.Colour = colourLbl.Text.Trim();
+
+            int year = 2021;
+            double valuation = 0;
+            double askingprice = 0;
+
+            try
+            {
+                year = Int32.Parse(yearLbl.Text.Trim());
+                valuation = double.Parse(valuationLbl.Text, CultureInfo.InvariantCulture);
+                askingprice = double.Parse(askingPriceLbl.Text, CultureInfo.InvariantCulture);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error converting values from textboxes into numbers \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            vehicleResult.Make = makeLbl.Text.Trim();
+            vehicleResult.Model = modelLbl.Text.Trim();
+            vehicleResult.Year = year;
+
+            vehicleResult.Valuation = valuation;
+            vehicleResult.AskingPrice = askingprice;
+
             vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
         }
 
@@ -269,6 +323,33 @@ namespace Database_Application_Chris
 
             List<string> err = new List<string>();
 
+            int counter = 0;
+
+            if (field == null)
+            {
+                // Means check all relevant fields
+                err.AddRange(validate.CheckEngineNum(engineNumLbl.Text.Trim()));
+                err.AddRange(validate.CheckChassisNum(chassisNumLbl.Text.Trim()));
+                err.AddRange(validate.CheckColour(colourLbl.Text.Trim()));
+
+                err.AddRange(validate.CheckMake(makeLbl.Text.Trim()));
+                err.AddRange(validate.CheckModel(modelLbl.Text.Trim()));
+
+                err.AddRange(validate.CheckPrices(valuationLbl.Text.Trim())); 
+                err.AddRange(validate.CheckPrices(askingPriceLbl.Text.Trim())); 
+
+                if (err.Count != 0)
+                {
+                    errorsInForm = err.Count;
+                }
+                else if (err.Count == 0)
+                {
+                    errorsInForm = 0;
+                }
+
+                return;
+            }
+
             switch (field.Name)
             {
                 case "engineNumLbl":
@@ -295,12 +376,12 @@ namespace Database_Application_Chris
             if (err.Count == 0) // No Errors returned
             {
                 field.ForeColor = Color.Black;
-                EnableUpdateBtn();
+                //EnableUpdateBtn();
             }
             else if (err.Count > 0)
             {
                 field.ForeColor = Color.Red;
-                DisableUpdateBtn(); // Only enable updates if all checks are correct
+                //DisableUpdateBtn(); // Only enable updates if all checks are correct
 
                 string compileErrors = "";
 
@@ -312,6 +393,28 @@ namespace Database_Application_Chris
                 MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-   
+
+        private void chassisNumLbl_ForeColorChanged(object sender, EventArgs e)
+        {
+            L1.ForeColor = chassisNumLbl.ForeColor;
+        }
+
+        private void valuationLbl_Leave(object sender, EventArgs e)
+        {
+            string valuation = valuationLbl.Text.Trim();
+            Regex rg = new Regex(@"^[0-9\.]$");
+             
+            string newValuation = Regex.Replace(valuation, @"[^0-9\.]+", String.Empty);
+            valuationLbl.Text = newValuation;
+        }
+
+        private void askingPriceLbl_Leave(object sender, EventArgs e)
+        {
+            string askingprice = askingPriceLbl.Text.Trim();
+            Regex rg = new Regex(@"^[0-9\.]$");
+
+            string newAskingPrice = Regex.Replace(askingprice, @"[^0-9\.]+", String.Empty);
+            askingPriceLbl.Text = newAskingPrice;
+        }
     }
 }

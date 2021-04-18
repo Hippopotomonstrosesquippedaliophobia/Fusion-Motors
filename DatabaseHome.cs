@@ -17,14 +17,14 @@ namespace Database_Application_Chris
 
         private void viewVehicles_Click(object sender, EventArgs e)
         {
-            SearchForm search = new SearchForm(true);
+            SearchForm search = new SearchForm(true, false, null);
             search.Text = "Fusion Motors: Vehicles";
             search.Show();
         }
 
         private void viewCustomers_Click(object sender, EventArgs e)
         {
-            SearchForm search = new SearchForm();
+            SearchForm search = new SearchForm(false, null);
             search.Text = "Fusion Motors: Customers";
             search.Show();
         }

@@ -148,7 +148,7 @@ namespace Database_Application_Chris
 
             string[] splitEngineNum = engineNum.Split(' ');
 
-            if (engineNum == "")
+            if (engineNum.Length == 0)
             {
                 err.Add("Engine Number cannot be blank!");
             }
@@ -167,7 +167,7 @@ namespace Database_Application_Chris
 
             string[] splitChassisNum = chassisNum.Split(' '); 
 
-            if (chassisNum == "")
+            if (chassisNum.Length == 0)
             {
                 err.Add("Chassis Number cannot be blank!");
             }
@@ -185,7 +185,7 @@ namespace Database_Application_Chris
         {
             List<string> err = new List<string>();
 
-            if (colour == "")
+            if (colour.Length == 0)
             {
                 err.Add("Colour cannot be blank!");
             }
@@ -193,5 +193,49 @@ namespace Database_Application_Chris
             return err;
         }
 
+        public List<string> CheckPrices(string price)
+        {
+            List<string> err = new List<string>();
+             
+            if (price.Length == 0)
+            {
+                err.Add("Vehicles should have both an asking price and valuation price!");
+            }
+            else
+            {
+                string[] checkForExtraDots = price.Split('.');
+
+                if (checkForExtraDots.Length > 2)
+                {
+                    err.Add("Price contains too many periods.\nFormat is [10000.00]");
+                }
+            }
+
+            return err;
+        }
+
+        public List<string> CheckMake(string make)
+        {
+            List<string> err = new List<string>();
+
+            if (make.Length == 0)
+            {
+                err.Add("Vehicles should have a make!");
+            } 
+
+            return err;
+        }
+
+        public List<string> CheckModel(string model)
+        {
+            List<string> err = new List<string>();
+
+            if (model.Length == 0)
+            {
+                err.Add("Vehicles should have a model!");
+            }
+
+            return err;
+        }
     }
 }

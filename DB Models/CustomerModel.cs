@@ -17,5 +17,7 @@ namespace Database_Application_Chris
         public List<string> InterestedVehicles { get; set; }
         public bool InProgressFlag { get; set; }
         public bool CallBackFlag { get; set; }
+
+        public string Notes { get; set; }
     }
 }
