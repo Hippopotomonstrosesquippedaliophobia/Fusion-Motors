@@ -36,6 +36,8 @@ namespace Database_Application_Chris
         {
             InitializeComponent();
             listCustomers = new List<CustomerModel>();
+
+            titleLbl.Text = "Customers";
             searchBtn.Text = "Find a Customer";
 
             listViewVehicles.Enabled = false;
@@ -52,6 +54,7 @@ namespace Database_Application_Chris
 
             if (vehicle)
             {
+                titleLbl.Text = "Vehicles";
                 isVehicleSearch = true;
                 searchBtn.Text = "Find a Vehicle";
 

@@ -627,17 +627,14 @@ namespace Database_Application_Chris
                 int i = 0;
 
                 main.Instance.Invoke((MethodInvoker)delegate {
-                    // Running on the UI thread
-
-                    comboBox1.Items.Clear();
+                    // Running on the UI thread 
                     contextMenuStrip.DropShadowEnabled = true;
                     contextMenuStrip.Items.Clear();
-                    comboBox1.Text = "New";
+                    notify.Text = "New";
 
 
                     foreach (var cus in callBackList)
-                    {
-                        comboBox1.Items.Add(callBackList[i].FirstName);
+                    { 
                         contextMenuStrip.Items.Add(callBackList[i].FirstName + " " + callBackList[i].LastName);
                         i++;
                     }

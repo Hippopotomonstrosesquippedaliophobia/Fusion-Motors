@@ -55,7 +55,7 @@ namespace Database_Application_Chris
             this.settingsBtn = new System.Windows.Forms.Button();
             this.notificationBtn = new System.Windows.Forms.Button();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.notify = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.titleBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -355,13 +355,14 @@ namespace Database_Application_Chris
             this.contextMenuStrip.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
-            // comboBox1
+            // notify
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1061, 95);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 28);
-            this.comboBox1.TabIndex = 8;
+            this.notify.Location = new System.Drawing.Point(1165, 83);
+            this.notify.Name = "notify";
+            this.notify.Size = new System.Drawing.Size(65, 25);
+            this.notify.TabIndex = 9;
+            this.notify.Text = "No New";
+            this.notify.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // main
             // 
@@ -369,7 +370,7 @@ namespace Database_Application_Chris
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1379, 800);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.notify);
             this.Controls.Add(this.notificationBtn);
             this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.panel4);
@@ -429,6 +430,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button notificationBtn;
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label notify;
     }
 }

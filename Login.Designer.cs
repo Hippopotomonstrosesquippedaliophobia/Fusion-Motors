@@ -74,7 +74,7 @@ namespace Database_Application_Chris
             this.sidePanel.Controls.Add(this.pictureBox1);
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(355, 605);
+            this.sidePanel.Size = new System.Drawing.Size(355, 611);
             this.sidePanel.TabIndex = 1;
             // 
             // label5

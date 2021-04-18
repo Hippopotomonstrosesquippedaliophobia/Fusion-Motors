@@ -107,10 +107,10 @@ namespace Database_Application_Chris
         
         public List<CustomerModel> LoadCustomersToCallback<CustomerModel>(string table)
         {
-            var collection = db.GetCollection<T>(table);
+            var collection = db.GetCollection<CustomerModel>(table);
 
             // Checks for engine no despite capitalization
-            var filter = Builders<T>.Filter.Eq("Id", id);
+            var filter = Builders<CustomerModel>.Filter.Eq("CallBackFlag", true);
 
             try
             {

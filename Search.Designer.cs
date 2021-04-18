@@ -47,12 +47,14 @@ namespace Database_Application_Chris
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.titleLbl = new System.Windows.Forms.Label();
             this.titleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.Gold;
+            this.titleBar.Controls.Add(this.titleLbl);
             this.titleBar.Controls.Add(this.minimizeBtn);
             this.titleBar.Controls.Add(this.closeBtn);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -210,6 +212,15 @@ namespace Database_Application_Chris
             this.columnHeader4.Text = "Colour of Vehicle";
             this.columnHeader4.Width = 200;
             // 
+            // titleLbl
+            // 
+            this.titleLbl.AutoSize = true;
+            this.titleLbl.Location = new System.Drawing.Point(10, 5);
+            this.titleLbl.Name = "titleLbl";
+            this.titleLbl.Size = new System.Drawing.Size(85, 20);
+            this.titleLbl.TabIndex = 9;
+            this.titleLbl.Text = "Customers";
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -230,6 +241,7 @@ namespace Database_Application_Chris
             this.Text = "Fusion Motors: Search Database";
             this.Shown += new System.EventHandler(this.SearchForm_Shown);
             this.titleBar.ResumeLayout(false);
+            this.titleBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,5 +269,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label titleLbl;
     }
 }
