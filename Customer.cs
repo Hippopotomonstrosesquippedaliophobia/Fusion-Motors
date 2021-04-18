@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -141,7 +142,7 @@ namespace Database_Application_Chris
          * Button Functions
          */
 
-        private void deleteCustomerBtn_Click(object sender, EventArgs e)
+        private async void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + customerResult.FirstName + " " + customerResult.LastName + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
@@ -149,8 +150,7 @@ namespace Database_Application_Chris
                 //Try to delete
                 try
                 {
-                    main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id);
-                    MessageBox.Show("Successfully deleted " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() => main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id));
                 }
                 catch (Exception err)
                 {
@@ -165,7 +165,7 @@ namespace Database_Application_Chris
             }
         }
 
-        private void updateCustomerBtn_Click(object sender, EventArgs e)
+        private async void updateCustomerBtn_Click(object sender, EventArgs e)
         {
             bool confirmedName = false;
 
@@ -192,8 +192,7 @@ namespace Database_Application_Chris
                 //Try to update
                 try
                 {
-                    main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult);
-                    MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
                 }
                 catch (Exception err)
                 {
@@ -209,7 +208,7 @@ namespace Database_Application_Chris
             DisableUpdateBtn();
         }
 
-        private void addThisCustomer_Click(object sender, EventArgs e)
+        private async void addThisCustomer_Click(object sender, EventArgs e)
         {
             UpdateCustomerList();
 
@@ -219,8 +218,7 @@ namespace Database_Application_Chris
                 //Try to update
                 try
                 {
-                    main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult);
-                    MessageBox.Show("Successfully updated " + customerResult.FirstName + " " + customerResult.LastName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() => main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult));
                 }
                 catch (Exception err)
                 {

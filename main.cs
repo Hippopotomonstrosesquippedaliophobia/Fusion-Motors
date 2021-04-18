@@ -6,14 +6,17 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
 {
     public partial class main : Form
     {
-        public MongoCRUD db;
+        public MongoCRUD db = null;
         HomeControl hc;
         static main _obj;
 
@@ -22,6 +25,8 @@ namespace Database_Application_Chris
         public double elapsedMilliseconds = 0;  
         public System.Timers.Timer clock;
         public bool alertDisconnect = false;
+        public string mongoStatusLblTxt = "Mongo: Not Connected";
+        public string mongoDBLblTxt = "No Database";
 
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -56,6 +61,9 @@ namespace Database_Application_Chris
 
         // Access to read settings across application
         private Settings settings = new Settings();
+
+        // Call back peeps 
+        List<CustomerModel> callBackList = new List<CustomerModel>(); 
 
         public main()
         {
@@ -125,19 +133,19 @@ namespace Database_Application_Chris
             }));
         }
 
-        private void main_Load(object sender, EventArgs e)
+        private async void main_Load(object sender, EventArgs e)
         {
             // Try to Start Mongo Database
             try
             {
                 RunCmd(Settings.commands["makeDirDB"], settings.commandsInfo["makeDirDB"]);
                 StartMongod();
-                MongoConnect();
+                await Task.Run(() => MongoConnect());
             }
             catch (Exception err)
             {
-                mongoStatusLbl.Text = "Mongo: Not Connected";
-                mongoDBLbl.Text = "No Database";  
+                mongoStatusLbl.Text = mongoStatusLblTxt;
+                mongoDBLbl.Text = mongoDBLblTxt;  
                 Message(err.Message, "Mongo Connection Warning", 2);
             }
         }
@@ -300,7 +308,8 @@ namespace Database_Application_Chris
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            GoToHomepage();
+            GoToHomepage(); 
+            LoadCustomersToCall();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
@@ -459,28 +468,16 @@ namespace Database_Application_Chris
 
         }
 
-        private async System.Threading.Tasks.Task IsOnlineAsync()
+        private async Task IsOnlineAsync()
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
             string database = config.AppSettings.Settings["database"].Value.ToString();
 
-            try
-            {
-                await db.GetConnectionAsync();
-                mongoStatusLbl.Text = "Mongo: Connected";
-                mongoDBLbl.Text = database;
-            }
-            catch (Exception err)
-            {
-                mongoStatusLbl.Text = "Mongo: Not Connected";
-                mongoDBLbl.Text = database;
-
-                if (!alertDisconnect)
-                {
-                    alertDisconnect = true;
-                    MessageBox.Show("Disconnected from MongoDB\n", "Mongo Connection Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
+            if (db != null)
+            { 
+                await Task.Run(() => db.GetConnection()); 
+                mongoStatusLbl.Text = mongoStatusLblTxt;
+                mongoDBLbl.Text = mongoDBLblTxt;
             }
         }
 
@@ -494,6 +491,8 @@ namespace Database_Application_Chris
             //If program has reached here, update connection label
             IsOnlineAsync();
 
+
+            LoadCustomersToCall();
 
             //ADD CUSTOMER RECORD
             //CustomerModel customer = new CustomerModel
@@ -594,14 +593,14 @@ namespace Database_Application_Chris
             }
         }
 
-        private void mongoReconnect_Click(object sender, EventArgs e)
+        private async void mongoReconnect_Click(object sender, EventArgs e)
         {
             elapsedMilliseconds = 0; // Reset this just in case
 
             try
             {
                 StartMongod();
-                MongoConnect();
+                await Task.Run(() => MongoConnect());
             }
             catch (Exception err)
             {
@@ -616,6 +615,34 @@ namespace Database_Application_Chris
         private void main_Shown(object sender, EventArgs e)
         {
             SetMongoPath();
+        }
+
+        private async void LoadCustomersToCall()
+        {
+            if (db != null)
+                callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerModel>("Customers"));
+
+            if (callBackList != null)
+            {
+                int i = 0;
+
+                main.Instance.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+
+                    comboBox1.Items.Clear();
+                    contextMenuStrip.DropShadowEnabled = true;
+                    contextMenuStrip.Items.Clear();
+                    comboBox1.Text = "New";
+
+
+                    foreach (var cus in callBackList)
+                    {
+                        comboBox1.Items.Add(callBackList[i].FirstName);
+                        contextMenuStrip.Items.Add(callBackList[i].FirstName + " " + callBackList[i].LastName);
+                        i++;
+                    }
+                });
+            }
         }
 
         public void Message(string msg, string title, int type)
@@ -661,5 +688,37 @@ namespace Database_Application_Chris
             System.Windows.Forms.Application.Exit();
         }
 
+        private void aboutBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void notificationBtn_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip.Show(notificationBtn, -contextMenuStrip.Width + notificationBtn.Width, notificationBtn.Height);
+        }
+
+        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            int index = contextMenuStrip.Items.IndexOf(e.ClickedItem);
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
+
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+            {
+                Customer uc = new Customer();
+                //Send data of Customer form 
+                uc.customerResult = callBackList[index];
+
+                //Refresh form
+                uc.RefreshInformation();
+
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+
+            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+        }     
     }
 }

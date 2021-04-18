@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -66,7 +67,7 @@ namespace Database_Application_Chris
          * Button Functions
          */
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        private async void searchBtn_Click(object sender, EventArgs e)
         {
             string searchQuery = searchTxt.Text.Trim(); 
 
@@ -90,11 +91,11 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listCustomers = main.Instance.db.LoadRecords<CustomerModel>("Customers");
+                        listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
                     }
                     else
                     {
-                        listCustomers = main.Instance.db.LoadCustomerByName<CustomerModel>("Customers", names[0], lastname);
+                        listCustomers = await Task.Run(() => main.Instance.db.LoadCustomerByName<CustomerModel>("Customers", names[0], lastname));
                     }
                 }
                 catch (Exception err)
@@ -111,13 +112,13 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listVehicles = main.Instance.db.LoadRecords<VehicleModel>("Vehicles");
+                        listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
                     }
                     else
                     {
                         string[] safeSearch = searchQuery.Split(' ');
 
-                        listVehicles = main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", safeSearch[0]);
+                        listVehicles = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", safeSearch[0]));
                     } 
                 }
                 catch (Exception err)
@@ -141,60 +142,73 @@ namespace Database_Application_Chris
                 int counter = 0;
                 int ID = 1;
 
-                foreach (var record in list)
+                if (list != null)
                 {
-                    var row = new string[] {
+                    foreach (var record in list)
+                    {
+                        var row = new string[] {
                                                 ID.ToString(),
                                                 listVehicles[counter].EngineNum,
                                                 listVehicles[counter].ChassisNum,
                                                 listVehicles[counter].Colour
                                             };
 
-                    var item = new ListViewItem(row);
+                        var item = new ListViewItem(row);
 
-                    item.Tag = record;
-                    listViewVehicles.Items.Add(item);
+                        item.Tag = record;
+                        listViewVehicles.Items.Add(item);
 
-                    // Set List Equivalent to this id
-                    matchList.Add(ID, listVehicles[counter].Id);
+                        // Set List Equivalent to this id
+                        matchList.Add(ID, listVehicles[counter].Id);
 
-                    counter++;
-                    ID++;
+                        counter++;
+                        ID++;
+                    }
+
+                    // Update with number of records found
+                    countLbl.Text = list.Count() + " Vehicle(s) found";
                 }
-
-                // Update with number of records found
-                countLbl.Text = list.Count() + " Vehicle(s) found";
+                else
+                {
+                    countLbl.Text = 0 + " Vehicle(s) found";
+                }
             }
             else 
             {
                 int counter = 0;
                 int ID = 1;
 
-                foreach (var record in list)
+                if (list != null)
                 {
-                    var row = new string[] {    
+                    foreach (var record in list)
+                    {
+                        var row = new string[] {
                                                 ID.ToString(),
                                                 listCustomers[counter].FirstName, listCustomers[counter].LastName,
                                                 BeautifulPhoneText(listCustomers[counter].ContactNums.ContactNum1.ToString()),
-                                                listCustomers[counter].PrimaryAddress.StreetAddress + ", " 
-                                                    + listCustomers[counter].PrimaryAddress.Parish + ", " 
-                                                    + listCustomers[counter].PrimaryAddress.Country 
+                                                listCustomers[counter].PrimaryAddress.StreetAddress + ", "
+                                                    + listCustomers[counter].PrimaryAddress.Parish + ", "
+                                                    + listCustomers[counter].PrimaryAddress.Country
                                             };
 
-                    var item = new ListViewItem(row);
+                        var item = new ListViewItem(row);
 
-                    item.Tag = record;
-                    listView.Items.Add(item);
+                        item.Tag = record;
+                        listView.Items.Add(item);
 
-                    // Set List Equivalent to this id
-                    matchList.Add(ID, listCustomers[counter].Id);
+                        // Set List Equivalent to this id
+                        matchList.Add(ID, listCustomers[counter].Id);
 
-                    counter++;
-                    ID++;
+                        counter++;
+                        ID++;
+                    }
+
+                    // Update with number of records found
+                    countLbl.Text = list.Count() + " Customer(s) found";
+                }else
+                {
+                    countLbl.Text = 0 + " Customer(s) found";
                 }
-
-                // Update with number of records found
-                countLbl.Text = list.Count() + " Customer(s) found";
             }            
         }
 
@@ -239,25 +253,25 @@ namespace Database_Application_Chris
          *  Useful functions
          */
         // Loads records after form shown
-        private void SearchForm_Shown(object sender, EventArgs e)
+        private async void SearchForm_Shown(object sender, EventArgs e)
         {
             if (isVehicleSearch)
             {
                 // Load records
                 listCustomers = null;
-                listVehicles = main.Instance.db.LoadRecords<VehicleModel>("Vehicles");
+                listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
                 UpdateListView<VehicleModel>(listVehicles);
             }
             else
             {
                 // Load Records
                 listVehicles = null;
-                listCustomers = main.Instance.db.LoadRecords<CustomerModel>("Customers");
+                listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
                 UpdateListView<CustomerModel>(listCustomers);
             }
         }
 
-        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        private async void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             long selectedIndex = 1;
 
@@ -283,7 +297,7 @@ namespace Database_Application_Chris
                         CustomerModel cust = new CustomerModel();
                         try
                         {
-                            List<CustomerModel> tempList = main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id);
+                            List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
 
                             if (tempList.Count == 0)
                             {
@@ -336,7 +350,7 @@ namespace Database_Application_Chris
 
                         try
                         {
-                            List<VehicleModel> tempList = main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", listViewVehicles.SelectedItems[0].SubItems[1].Text);
+                            List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", listViewVehicles.SelectedItems[0].SubItems[1].Text));
 
                             if (tempList.Count == 0)
                             {

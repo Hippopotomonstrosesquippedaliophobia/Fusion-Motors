@@ -29,6 +29,7 @@ namespace Database_Application_Chris
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.panel3 = new System.Windows.Forms.Panel();
             this.mongoStatusLbl = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@ namespace Database_Application_Chris
             this.searchBtn = new System.Windows.Forms.Button();
             this.DatabaseBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
-            this.aboutBtn = new System.Windows.Forms.Button();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.titleBar = new System.Windows.Forms.Panel();
             this.minimize = new System.Windows.Forms.Button();
@@ -54,6 +54,8 @@ namespace Database_Application_Chris
             this.panel4 = new System.Windows.Forms.Panel();
             this.settingsBtn = new System.Windows.Forms.Button();
             this.notificationBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             this.titleBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -92,9 +94,9 @@ namespace Database_Application_Chris
             this.mongoDBLbl.ForeColor = System.Drawing.Color.LightGray;
             this.mongoDBLbl.Location = new System.Drawing.Point(27, 36);
             this.mongoDBLbl.Name = "mongoDBLbl";
-            this.mongoDBLbl.Size = new System.Drawing.Size(134, 18);
+            this.mongoDBLbl.Size = new System.Drawing.Size(102, 18);
             this.mongoDBLbl.TabIndex = 3;
-            this.mongoDBLbl.Text = "DB: Fusion Motors";
+            this.mongoDBLbl.Text = "FusionMotors";
             // 
             // versionLbl
             // 
@@ -194,23 +196,6 @@ namespace Database_Application_Chris
             this.AddBtn.UseVisualStyleBackColor = true;
             this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
-            // aboutBtn
-            // 
-            this.aboutBtn.FlatAppearance.BorderSize = 0;
-            this.aboutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aboutBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.aboutBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.aboutBtn.Image = ((System.Drawing.Image)(resources.GetObject("aboutBtn.Image")));
-            this.aboutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.aboutBtn.Location = new System.Drawing.Point(3, 299);
-            this.aboutBtn.Name = "aboutBtn";
-            this.aboutBtn.Size = new System.Drawing.Size(288, 68);
-            this.aboutBtn.TabIndex = 2;
-            this.aboutBtn.Text = "     About";
-            this.aboutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.aboutBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.aboutBtn.UseVisualStyleBackColor = true;
-            // 
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.Color.Gold;
@@ -308,7 +293,6 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Controls.Add(this.searchBtn);
             this.flowLayoutPanel1.Controls.Add(this.DatabaseBtn);
             this.flowLayoutPanel1.Controls.Add(this.AddBtn);
-            this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(29, 77);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(291, 608);
@@ -362,6 +346,22 @@ namespace Database_Application_Chris
             this.notificationBtn.Size = new System.Drawing.Size(51, 51);
             this.notificationBtn.TabIndex = 6;
             this.notificationBtn.UseVisualStyleBackColor = true;
+            this.notificationBtn.Click += new System.EventHandler(this.notificationBtn_Click);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(1061, 95);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(151, 28);
+            this.comboBox1.TabIndex = 8;
             // 
             // main
             // 
@@ -369,6 +369,7 @@ namespace Database_Application_Chris
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1379, 800);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.notificationBtn);
             this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.panel4);
@@ -414,12 +415,11 @@ namespace Database_Application_Chris
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel UC;
         private System.Windows.Forms.Button homeBtn;
-        private System.Windows.Forms.Label mongoStatusLbl;
-        private System.Windows.Forms.Label mongoDBLbl;
+        public System.Windows.Forms.Label mongoStatusLbl;
+        public System.Windows.Forms.Label mongoDBLbl;
         private System.Windows.Forms.Button mongoReconnect;
         private System.Windows.Forms.Label versionLbl;
         private System.Windows.Forms.Button closeBtn;
-        private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -428,5 +428,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button notificationBtn;
         private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

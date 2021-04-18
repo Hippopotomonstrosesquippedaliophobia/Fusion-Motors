@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -83,7 +84,7 @@ namespace Database_Application_Chris
             radioSelection();
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        private async void searchBtn_Click(object sender, EventArgs e)
         {
             string searchQuery = searchTxt.Text;            
 
@@ -105,7 +106,7 @@ namespace Database_Application_Chris
             // Search for customer
             if (customersRadio.Checked == true)
             {
-                List<CustomerModel> listResults;
+                List<CustomerModel> listResults = new List<CustomerModel>();
 
                 string[] names = { "", "" };
                 string lastname = "";
@@ -121,13 +122,16 @@ namespace Database_Application_Chris
                     lastname = names[1];
                 }
 
-                listResults = searchCustomers(names[0], lastname);
+                listResults = await Task.Run(() => searchCustomers(names[0], lastname));
 
-                int totalResults = 0; 
+                int totalResults = 0;
 
-                foreach (var rec in listResults)
+                if (listResults != null)
                 {
-                    totalResults++; //Counts records returned
+                    foreach (var rec in listResults)
+                    {
+                        totalResults++; //Counts records returned
+                    }
                 }
 
                 // Nothing found
@@ -180,14 +184,17 @@ namespace Database_Application_Chris
             //Search for vehicle
             else if (vehiclesRadio.Checked == true)
             {
-                List<VehicleModel> listResults;
-                listResults = searchVehicles(searchQuery);
+                List<VehicleModel> listResults = new List<VehicleModel>();
+                listResults = await Task.Run(() => searchVehicles(searchQuery));
 
                 int totalResults = 0;
 
-                foreach (var rec in listResults)
+                if (listResults != null)
                 {
-                    totalResults++; //Counts records returned
+                    foreach (var rec in listResults)
+                    {
+                        totalResults++; //Counts records returned
+                    }
                 }
 
                 // Nothing found
@@ -209,6 +216,7 @@ namespace Database_Application_Chris
                         Vehicle uc = new Vehicle();
                         //Send data of Customer form 
                         uc.vehicleResult = listResults[0];
+
                         //Refresh form
                         uc.RefreshInformation();
 

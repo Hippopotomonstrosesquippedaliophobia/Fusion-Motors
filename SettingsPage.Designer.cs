@@ -52,12 +52,14 @@ namespace Database_Application_Chris
             this.file1TextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.exportTablesBtn = new System.Windows.Forms.Button();
+            this.openLocation = new System.Windows.Forms.Button();
+            this.clearExportLocation = new System.Windows.Forms.Button();
             this.exportPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.exportLocationTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tableComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.ImportPanel.SuspendLayout();
@@ -137,6 +139,7 @@ namespace Database_Application_Chris
             this.ImportPanel.Name = "ImportPanel";
             this.ImportPanel.Size = new System.Drawing.Size(753, 597);
             this.ImportPanel.TabIndex = 1;
+            this.ImportPanel.Enter += new System.EventHandler(this.ImportPanel_Enter);
             // 
             // pagePanel
             // 
@@ -317,27 +320,61 @@ namespace Database_Application_Chris
             this.label1.TabIndex = 0;
             this.label1.Text = "Import a table into the database";
             // 
-            // button1
+            // exportTablesBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(512, 499);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 61);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Export";
-            this.toolTip.SetToolTip(this.button1, "Import these tables into the database");
-            this.button1.UseVisualStyleBackColor = false;
+            this.exportTablesBtn.BackColor = System.Drawing.Color.Gold;
+            this.exportTablesBtn.FlatAppearance.BorderSize = 0;
+            this.exportTablesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportTablesBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.exportTablesBtn.Location = new System.Drawing.Point(512, 499);
+            this.exportTablesBtn.Name = "exportTablesBtn";
+            this.exportTablesBtn.Size = new System.Drawing.Size(179, 61);
+            this.exportTablesBtn.TabIndex = 2;
+            this.exportTablesBtn.Text = "Export";
+            this.toolTip.SetToolTip(this.exportTablesBtn, "Import these tables into the database");
+            this.exportTablesBtn.UseVisualStyleBackColor = false;
+            this.exportTablesBtn.Click += new System.EventHandler(this.exportTablesBtn_Click);
+            // 
+            // openLocation
+            // 
+            this.openLocation.BackColor = System.Drawing.Color.Gold;
+            this.openLocation.FlatAppearance.BorderSize = 0;
+            this.openLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openLocation.Location = new System.Drawing.Point(512, 239);
+            this.openLocation.Name = "openLocation";
+            this.openLocation.Size = new System.Drawing.Size(101, 32);
+            this.openLocation.TabIndex = 6;
+            this.openLocation.Text = "Select ";
+            this.toolTip.SetToolTip(this.openLocation, "Select a folder to export to");
+            this.openLocation.UseVisualStyleBackColor = false;
+            this.openLocation.Click += new System.EventHandler(this.openLocation_Click);
+            // 
+            // clearExportLocation
+            // 
+            this.clearExportLocation.BackColor = System.Drawing.Color.White;
+            this.clearExportLocation.Enabled = false;
+            this.clearExportLocation.FlatAppearance.BorderSize = 0;
+            this.clearExportLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearExportLocation.ForeColor = System.Drawing.Color.Red;
+            this.clearExportLocation.Location = new System.Drawing.Point(619, 238);
+            this.clearExportLocation.Name = "clearExportLocation";
+            this.clearExportLocation.Size = new System.Drawing.Size(62, 34);
+            this.clearExportLocation.TabIndex = 7;
+            this.clearExportLocation.Text = "Clear";
+            this.toolTip.SetToolTip(this.clearExportLocation, "Clear the selected file");
+            this.clearExportLocation.UseVisualStyleBackColor = false;
+            this.clearExportLocation.Visible = false;
+            this.clearExportLocation.Click += new System.EventHandler(this.clearExportLocation_Click);
             // 
             // exportPanel
             // 
-            this.exportPanel.Controls.Add(this.textBox1);
+            this.exportPanel.Controls.Add(this.clearExportLocation);
+            this.exportPanel.Controls.Add(this.openLocation);
+            this.exportPanel.Controls.Add(this.exportLocationTxt);
             this.exportPanel.Controls.Add(this.label5);
             this.exportPanel.Controls.Add(this.label3);
-            this.exportPanel.Controls.Add(this.comboBox1);
-            this.exportPanel.Controls.Add(this.button1);
+            this.exportPanel.Controls.Add(this.tableComboBox);
+            this.exportPanel.Controls.Add(this.exportTablesBtn);
             this.exportPanel.Controls.Add(this.label13);
             this.exportPanel.Enabled = false;
             this.exportPanel.Location = new System.Drawing.Point(325, 25);
@@ -345,13 +382,15 @@ namespace Database_Application_Chris
             this.exportPanel.Size = new System.Drawing.Size(734, 597);
             this.exportPanel.TabIndex = 8;
             this.exportPanel.Visible = false;
+            this.exportPanel.EnabledChanged += new System.EventHandler(this.exportPanel_EnabledChanged);
             // 
-            // textBox1
+            // exportLocationTxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(33, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(473, 26);
-            this.textBox1.TabIndex = 5;
+            this.exportLocationTxt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.exportLocationTxt.Location = new System.Drawing.Point(33, 239);
+            this.exportLocationTxt.Name = "exportLocationTxt";
+            this.exportLocationTxt.Size = new System.Drawing.Size(473, 32);
+            this.exportLocationTxt.TabIndex = 5;
             // 
             // label5
             // 
@@ -371,13 +410,14 @@ namespace Database_Application_Chris
             this.label3.TabIndex = 4;
             this.label3.Text = "Select a table:";
             // 
-            // comboBox1
+            // tableComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(33, 136);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(473, 28);
-            this.comboBox1.TabIndex = 3;
+            this.tableComboBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableComboBox.FormattingEnabled = true;
+            this.tableComboBox.Location = new System.Drawing.Point(33, 136);
+            this.tableComboBox.Name = "tableComboBox";
+            this.tableComboBox.Size = new System.Drawing.Size(473, 31);
+            this.tableComboBox.TabIndex = 3;
             // 
             // label13
             // 
@@ -436,11 +476,13 @@ namespace Database_Application_Chris
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Panel pagePanel;
         private System.Windows.Forms.Panel exportPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button exportTablesBtn;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox exportLocationTxt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox tableComboBox;
+        private System.Windows.Forms.Button clearExportLocation;
+        private System.Windows.Forms.Button openLocation;
     }
 }

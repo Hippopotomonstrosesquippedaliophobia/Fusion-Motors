@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -20,32 +22,23 @@ namespace Database_Application_Chris
             pagePanel.Top = importBtn.Top;
         }
 
-        private void DatabaseCollections()
+        private List<string> DatabaseCollections()
         {
+            List<string> listList = new List<string>();
 
-            string list = "";
             try
             {
-                List<string> listList = main.Instance.db.GetCollections();
-
-                foreach (var item in listList)
-                {
-                    if (list == "")
-                    {
-                        list = item;
-                    }
-                    else
-                    {
-                        list += " | " + item;
-                    }
+                if (main.Instance.db != null)
+                { 
+                    listList = main.Instance.db.GetCollections();
                 }
-
-                listTables.Text = list;
             }
             catch (Exception err)
-            {
+            { 
 
             }
+
+            return listList;
         }
 
         private void SelectFile(int which)
@@ -397,9 +390,134 @@ namespace Database_Application_Chris
 
         private void SettingsPage_Load(object sender, EventArgs e)
         {
-            DatabaseCollections();
+            ListTables();   
         }
 
+        private async void ListTables()
+        {
+            List<string> listList = new List<string>();
+
+            listTables.Text = "-";
+            
+            try
+            {
+                listList = await Task.Run(() => DatabaseCollections());
+
+                string list = "";
+
+                if (listList != null)
+                {
+                    foreach (var item in listList)
+                    {
+                        if (list == "")
+                        {
+                            list = item;
+                        }
+                        else
+                        {
+                            list += " | " + item;
+                        }
+                    }
+
+                    listTables.Text = list;
+                }else
+                {
+                    listTables.Text = "-";
+                }
+            }
+            catch (Exception err)
+            {
+
+            }
+        }
+
+        private async void exportPanel_EnabledChanged(object sender, EventArgs e)
+        {
+            List<string> listList = await Task.Run(() => DatabaseCollections());
+
+            // Clear first
+            tableComboBox.Items.Clear();
+            tableComboBox.Items.Add(""); // Blank option
+
+            if (listList != null)
+            {
+                foreach (var item in listList)
+                {
+                    tableComboBox.Items.Add(item);
+                }
+            } 
+        }
+
+        private void ImportPanel_Enter(object sender, EventArgs e)
+        {
+            if (listTables.Text == "-")
+            {
+                ListTables();
+            }
+
+        }
+
+        private void clearExportLocation_Click(object sender, EventArgs e)
+        {
+            exportLocationTxt.Text = "";
+            clearExportLocation.Enabled = false;
+            clearExportLocation.Visible = false;
+        }
+
+        private void openLocation_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    exportLocationTxt.Text = fbd.SelectedPath;
+                    clearExportLocation.Enabled = true;
+                    clearExportLocation.Visible = true;
+                }
+            }
+        }
+
+        private async void exportTablesBtn_Click(object sender, EventArgs e)
+        {
+            if (tableComboBox.Text.Length != 0)
+            {
+                if (exportLocationTxt.Text.Length != 0)
+                {
+                    Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                    string database = config.AppSettings.Settings["database"].Value.ToString();
+
+                    string fileName = tableComboBox.Text + ".json";
+
+                    try
+                    {
+                        List<string> list = await Task.Run(() => main.Instance.db.GetCollections()); // If this doesnt cause errors, then proceed
+
+                        if (list != null) // Something returned
+                        {
+                            main.Instance.RunCmd("mongoexport --collection=" + tableComboBox.Text + " --db=" + database + " --out=" + exportLocationTxt.Text + @"\" + fileName, "Exports table to file in specified location");
+                            MessageBox.Show("Successfully Exported!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        }else
+                        {
+                            MessageBox.Show("Cannot export", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                    }
+                    catch (Exception err)
+                    {
+
+                    }
+                }
+            else
+                {
+                    MessageBox.Show("Please select a location to export the file to", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a table to export", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
         private void selectFile2Btn_Click(object sender, EventArgs e)
         {
             SelectFile(2);

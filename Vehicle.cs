@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -63,7 +64,8 @@ namespace Database_Application_Chris
             deleteCustomerBtn.TabIndex = ++index;
             addThisVehicle.TabIndex = ++index;
         }
-        private void addThisVehicle_Click(object sender, EventArgs e)
+
+        private async void addThisVehicle_Click(object sender, EventArgs e)
         {
             //Get info from fields
             UpdateVehicleList();
@@ -74,8 +76,7 @@ namespace Database_Application_Chris
                 //Try to update
                 try
                 {
-                    main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult);
-                    MessageBox.Show("Successfully added the vehicles with engine number: " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() => main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult));
                 }
                 catch (Exception err)
                 {
@@ -90,7 +91,7 @@ namespace Database_Application_Chris
             RefreshInformation();
         }
 
-        private void updateVehicleBtn_Click(object sender, EventArgs e)
+        private async void updateVehicleBtn_Click(object sender, EventArgs e)
         {
             //Get info from fields
             UpdateVehicleList();
@@ -114,11 +115,9 @@ namespace Database_Application_Chris
                 //Try to update
                 try
                 {
-                    main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult);
+                    await Task.Run(() => main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult));
 
                     engineNumEdited = false; // resets this variable for future
-
-                    MessageBox.Show("Successfully updated the vehicle with Engine No: " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception err)
                 {
@@ -134,7 +133,7 @@ namespace Database_Application_Chris
             DisableUpdateBtn();
         }
 
-        private void deleteVehicleBtn_Click(object sender, EventArgs e)
+        private async void deleteVehicleBtn_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + vehicleResult.EngineNum + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
@@ -142,8 +141,7 @@ namespace Database_Application_Chris
                 //Try to delete
                 try
                 {
-                    main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id);
-                    MessageBox.Show("Successfully deleted " + vehicleResult.EngineNum, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() => main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id));
                 }
                 catch (Exception err)
                 {
