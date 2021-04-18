@@ -47,6 +47,13 @@ namespace Database_Application_Chris
             this.addThisCustomer = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.removeVehicleBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,9 +62,9 @@ namespace Database_Application_Chris
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Gold;
             this.panel1.Controls.Add(this.nameLbl);
-            this.panel1.Location = new System.Drawing.Point(467, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 18);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(592, 62);
+            this.panel1.Size = new System.Drawing.Size(716, 62);
             this.panel1.TabIndex = 0;
             // 
             // nameLbl
@@ -65,105 +72,101 @@ namespace Database_Application_Chris
             this.nameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLbl.BackColor = System.Drawing.Color.Gold;
             this.nameLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameLbl.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.nameLbl.Location = new System.Drawing.Point(30, 13);
+            this.nameLbl.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nameLbl.Location = new System.Drawing.Point(30, 17);
             this.nameLbl.Name = "nameLbl";
             this.nameLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nameLbl.Size = new System.Drawing.Size(536, 34);
+            this.nameLbl.Size = new System.Drawing.Size(660, 29);
             this.nameLbl.TabIndex = 1;
             this.nameLbl.Text = "James Bond";
-            this.nameLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nameLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip.SetToolTip(this.nameLbl, "Customer\'s name ");
             this.nameLbl.Leave += new System.EventHandler(this.nameLbl_Leave);
             // 
             // addressLbl
             // 
             this.addressLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressLbl.BackColor = System.Drawing.Color.LightGray;
-            this.addressLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.addressLbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addressLbl.Location = new System.Drawing.Point(497, 85);
+            this.addressLbl.BackColor = System.Drawing.Color.White;
+            this.addressLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addressLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addressLbl.Location = new System.Drawing.Point(72, 143);
             this.addressLbl.Name = "addressLbl";
             this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.addressLbl.Size = new System.Drawing.Size(536, 23);
+            this.addressLbl.Size = new System.Drawing.Size(643, 26);
             this.addressLbl.TabIndex = 1;
             this.addressLbl.Text = "Lot # 555 Test Hill, St. James, Barbados";
-            this.addressLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.addressLbl, "Address");
             this.addressLbl.Leave += new System.EventHandler(this.addressLbl_Leave);
             // 
             // num1Lbl
             // 
             this.num1Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.num1Lbl.BackColor = System.Drawing.Color.LightGray;
-            this.num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.num1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num1Lbl.Location = new System.Drawing.Point(756, 114);
+            this.num1Lbl.BackColor = System.Drawing.Color.White;
+            this.num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.num1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.num1Lbl.Location = new System.Drawing.Point(72, 225);
             this.num1Lbl.Name = "num1Lbl";
             this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.num1Lbl.Size = new System.Drawing.Size(277, 23);
+            this.num1Lbl.Size = new System.Drawing.Size(306, 26);
             this.num1Lbl.TabIndex = 1;
             this.num1Lbl.Text = "555-5555";
-            this.num1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.num1Lbl, "Primary number");
             this.num1Lbl.Leave += new System.EventHandler(this.num1Lbl_Leave);
             // 
             // num2Lbl
             // 
             this.num2Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.num2Lbl.BackColor = System.Drawing.Color.LightGray;
-            this.num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.num2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.num2Lbl.Location = new System.Drawing.Point(756, 143);
+            this.num2Lbl.BackColor = System.Drawing.Color.White;
+            this.num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.num2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.num2Lbl.Location = new System.Drawing.Point(409, 225);
             this.num2Lbl.Name = "num2Lbl";
             this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.num2Lbl.Size = new System.Drawing.Size(277, 23);
+            this.num2Lbl.Size = new System.Drawing.Size(306, 26);
             this.num2Lbl.TabIndex = 1;
             this.num2Lbl.Text = "555-5555";
-            this.num2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.num2Lbl, "Secondary number");
             this.num2Lbl.Leave += new System.EventHandler(this.num2Lbl_Leave);
             // 
             // email2Lbl
             // 
             this.email2Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.email2Lbl.BackColor = System.Drawing.Color.LightGray;
-            this.email2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email2Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.email2Lbl.Location = new System.Drawing.Point(756, 201);
+            this.email2Lbl.BackColor = System.Drawing.Color.White;
+            this.email2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.email2Lbl.Location = new System.Drawing.Point(409, 307);
             this.email2Lbl.Name = "email2Lbl";
             this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.email2Lbl.Size = new System.Drawing.Size(277, 23);
+            this.email2Lbl.Size = new System.Drawing.Size(306, 26);
             this.email2Lbl.TabIndex = 1;
             this.email2Lbl.Text = "testeremail@outlook.com";
-            this.email2Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.email2Lbl, "Secondary email");
             this.email2Lbl.Leave += new System.EventHandler(this.email2Lbl_Leave);
             // 
             // email1Lbl
             // 
             this.email1Lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.email1Lbl.BackColor = System.Drawing.Color.LightGray;
-            this.email1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.email1Lbl.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.email1Lbl.Location = new System.Drawing.Point(756, 172);
+            this.email1Lbl.BackColor = System.Drawing.Color.White;
+            this.email1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.email1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.email1Lbl.Location = new System.Drawing.Point(72, 307);
             this.email1Lbl.Name = "email1Lbl";
             this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.email1Lbl.Size = new System.Drawing.Size(277, 23);
+            this.email1Lbl.Size = new System.Drawing.Size(306, 26);
             this.email1Lbl.TabIndex = 1;
             this.email1Lbl.Text = "testeremail@outlook.com";
-            this.email1Lbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.email1Lbl, "Primary email");
             this.email1Lbl.Leave += new System.EventHandler(this.email1Lbl_Leave);
             // 
             // interestedVehiclesListBox
             // 
             this.interestedVehiclesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.interestedVehiclesListBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.interestedVehiclesListBox.FormattingEnabled = true;
-            this.interestedVehiclesListBox.ItemHeight = 20;
-            this.interestedVehiclesListBox.Location = new System.Drawing.Point(756, 230);
+            this.interestedVehiclesListBox.ItemHeight = 21;
+            this.interestedVehiclesListBox.Location = new System.Drawing.Point(756, 143);
             this.interestedVehiclesListBox.Name = "interestedVehiclesListBox";
-            this.interestedVehiclesListBox.Size = new System.Drawing.Size(277, 244);
+            this.interestedVehiclesListBox.Size = new System.Drawing.Size(277, 319);
             this.interestedVehiclesListBox.TabIndex = 2;
             this.toolTip.SetToolTip(this.interestedVehiclesListBox, "List of vehicle\'s this customer is interested in");
             this.interestedVehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.interestedVehiclesListBox_SelectedIndexChanged);
@@ -171,9 +174,11 @@ namespace Database_Application_Chris
             // inProgressCheckbox
             // 
             this.inProgressCheckbox.AutoSize = true;
-            this.inProgressCheckbox.Location = new System.Drawing.Point(72, 86);
+            this.inProgressCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.inProgressCheckbox.Location = new System.Drawing.Point(860, 24);
             this.inProgressCheckbox.Name = "inProgressCheckbox";
-            this.inProgressCheckbox.Size = new System.Drawing.Size(146, 24);
+            this.inProgressCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.inProgressCheckbox.Size = new System.Drawing.Size(173, 25);
             this.inProgressCheckbox.TabIndex = 4;
             this.inProgressCheckbox.Text = "Currently Seeking";
             this.toolTip.SetToolTip(this.inProgressCheckbox, "Indicate if the customer is currently doing business");
@@ -183,9 +188,11 @@ namespace Database_Application_Chris
             // callBackCheckbox
             // 
             this.callBackCheckbox.AutoSize = true;
-            this.callBackCheckbox.Location = new System.Drawing.Point(72, 116);
+            this.callBackCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.callBackCheckbox.Location = new System.Drawing.Point(920, 54);
             this.callBackCheckbox.Name = "callBackCheckbox";
-            this.callBackCheckbox.Size = new System.Drawing.Size(91, 24);
+            this.callBackCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.callBackCheckbox.Size = new System.Drawing.Size(113, 25);
             this.callBackCheckbox.TabIndex = 4;
             this.callBackCheckbox.Text = "Call back";
             this.toolTip.SetToolTip(this.callBackCheckbox, "Indicate if the customer is to be called back");
@@ -225,13 +232,13 @@ namespace Database_Application_Chris
             // addVehicle
             // 
             this.addVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addVehicle.BackColor = System.Drawing.Color.LightGray;
-            this.addVehicle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addVehicle.Location = new System.Drawing.Point(756, 497);
+            this.addVehicle.BackColor = System.Drawing.Color.White;
+            this.addVehicle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addVehicle.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addVehicle.Location = new System.Drawing.Point(756, 490);
             this.addVehicle.Name = "addVehicle";
             this.addVehicle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.addVehicle.Size = new System.Drawing.Size(277, 23);
+            this.addVehicle.Size = new System.Drawing.Size(277, 26);
             this.addVehicle.TabIndex = 1;
             this.addVehicle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.addVehicle, "Vehicle\'s engine number");
@@ -285,12 +292,87 @@ namespace Database_Application_Chris
             this.removeVehicleBtn.UseVisualStyleBackColor = false;
             this.removeVehicleBtn.Click += new System.EventHandler(this.removeVehicle_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(72, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Address:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(72, 205);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(174, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Primary Contact Number:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(409, 205);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Secondary Contact Number:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(72, 287);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Primary Email Address:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(409, 287);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(171, 17);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Secondary Email Address:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(72, 369);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(155, 17);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Additional Comments:";
+            // 
+            // additionalCommentsLbl
+            // 
+            this.additionalCommentsLbl.Location = new System.Drawing.Point(72, 389);
+            this.additionalCommentsLbl.Multiline = true;
+            this.additionalCommentsLbl.Name = "additionalCommentsLbl";
+            this.additionalCommentsLbl.Size = new System.Drawing.Size(643, 127);
+            this.additionalCommentsLbl.TabIndex = 7;
+            // 
             // Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Controls.Add(this.additionalCommentsLbl);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.addThisCustomer);
             this.Controls.Add(this.removeVehicleBtn);
             this.Controls.Add(this.addVehicleBtn);
@@ -336,5 +418,12 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button addThisCustomer;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Button removeVehicleBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox additionalCommentsLbl;
     }
 }
