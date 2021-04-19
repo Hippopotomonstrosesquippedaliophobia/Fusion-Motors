@@ -16,6 +16,7 @@ namespace Database_Application_Chris
         public CustomerModel customerResult;
         public string name;
         public bool nameEdited = false; 
+        public bool addCustomer = false; 
         public int errorsInForm = 0; 
 
         public Customer()
@@ -49,6 +50,17 @@ namespace Database_Application_Chris
                 
                 updateCustomerBtn.Visible = false;
                 updateCustomerBtn.Enabled = false;
+            }
+            else
+            {
+                addThisCustomer.Visible = false;
+                addThisCustomer.Enabled = false;
+
+                deleteCustomerBtn.Visible = true;
+                deleteCustomerBtn.Enabled = true;
+
+                updateCustomerBtn.Visible = true;
+                updateCustomerBtn.Enabled = true;
             }
         }
 
@@ -242,6 +254,16 @@ namespace Database_Application_Chris
                     try
                     {
                         await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
+
+                        int i = 0;
+                        foreach (var iv in customerResult.InterestedVehicles)
+                        {                            
+                            main.Instance.db.UpdateVehicleInterestedList<VehicleModel>("Vehicles", customerResult.InterestedVehicles[i], customerResult.Id);
+                            i++;
+                        }
+                        //var lol = main.Instance.db.CheckVehicleInterestedList<VehicleModel>("Vehicles", customerResult.Id);
+                        //MessageBox.Show(customerResult.Id.ToString() + ": " +lol.ToString());
+                        //main.Instance.db.VehiclesListInterest<VehicleModel>("Vehicles", customerResult.Id);
                     }
                     catch (Exception err)
                     {
@@ -269,6 +291,8 @@ namespace Database_Application_Chris
             if (errorsInForm == 0)
             {
                 UpdateCustomerList();
+
+
                 DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this customer?", "Add Customer Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult3 == DialogResult.Yes)
                 {
@@ -570,6 +594,7 @@ namespace Database_Application_Chris
         {
             UpdateListToSend();
             SearchForm search = new SearchForm(true, true, customerResult);
+            search.sentFromAddPage = addCustomer;
             search.Text = "Fusion Motors: Select a Vehicle";
             search.titleLbl.Text = "Select a vehicle to add to list";
             search.Show();

@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -174,6 +175,7 @@ namespace Database_Application_Chris
 
             try
             {
+                //List<CustomerModel> listcust = UpdateVehicleInterestedList<CustomerModel>(table, engineNo); 
                 return collection.Find(filter).ToList();
             }
             catch (Exception err)
@@ -182,6 +184,54 @@ namespace Database_Application_Chris
             }
         }
 
+        // RECENT ADD - NOT SURE **************************************************************************************
+        public void UpdateVehicleInterestedList<T>(string table, string engineNumber, Guid id)
+        {
+            var collection = db.GetCollection<VehicleModel>(table);
+
+            var filter = Builders<VehicleModel>.Filter.Where(x => x.EngineNum == engineNumber);
+            var update = Builders<VehicleModel>.Update.Push("InterestedCustomers", Convert.ToString(id));
+
+            collection.FindOneAndUpdate<T>(filter, update);
+        }
+
+        public void VehiclesListInterest<T>(string table, Guid id)
+        {
+            var collection = db.GetCollection<VehicleModel>("Vehicles");
+
+            var collection2 = db.GetCollection<CustomerModel>("Customers");
+
+            try
+            {
+                List<CustomerModel> customers = collection2.Find(new BsonDocument()).ToList();
+
+                int index = 0;
+
+                foreach (var cus in customers)
+                {
+                    int index2 = 0;
+
+                    foreach (var item in customers[index2].InterestedVehicles)
+                    {
+                        var filter = Builders<VehicleModel>.Filter.And(
+                            Builders<VehicleModel>.Filter.Where(x => x.EngineNum == customers[index2].InterestedVehicles[index2]));
+                            //&&
+                            //Builders<VehicleModel>.Filter.AnyNe<VehicleModel>(x => x.EngineNum, engineNumber); 
+                            
+                        index2++;
+                    }
+                    index++;
+                }
+            }
+            catch (Exception err)
+            { 
+            }
+            //var filter = Builders<VehicleModel>.Filter.Where(x => x.EngineNum == engineNumber);
+            //var update = Builders<VehicleModel>.Update.Push("InterestedCustomers", Convert.ToString(id));
+
+            //collection.FindOneAndUpdate<T>(filter, update);
+        }
+        //RECENT ADD - NOT SURE ***************************************************************************************
 
         public void UpsertRecord<T>(string table, Guid id, T record)
         {

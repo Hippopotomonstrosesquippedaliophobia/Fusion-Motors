@@ -51,6 +51,7 @@ namespace Database_Application_Chris
             {
                 Customer uc = new Customer(true);
                 uc.customerResult = customer;
+                uc.addCustomer = true;
                 uc.Dock = DockStyle.Fill;
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
@@ -76,6 +77,7 @@ namespace Database_Application_Chris
             {
                 Vehicle uc = new Vehicle(true);
                 uc.vehicleResult = vehicle;
+                uc.addVehicle = true;
                 uc.Dock = DockStyle.Fill;
                 main.Instance.PanelContainer.Controls.Add(uc);
             }

@@ -27,6 +27,7 @@ namespace Database_Application_Chris
 
         bool isVehicleSearch = false;
         bool selectForList = false;
+        public bool sentFromAddPage = false;
 
         CustomerModel selectForListCModel = new CustomerModel();
         VehicleModel selectForListVModel = new VehicleModel();
@@ -298,7 +299,7 @@ namespace Database_Application_Chris
         {
             long selectedIndex = 1;
 
-            if (!isVehicleSearch)
+            if (!isVehicleSearch) // Customer 
             {
                 try
                 {
@@ -306,51 +307,93 @@ namespace Database_Application_Chris
 
                     Guid id = matchList[selectedIndex];
 
-                    // OPEN CUSTOMER
-                    //Refresh of controls
-                    main.Instance.PanelContainer.Controls.Clear();
-
-                    //Open Customer
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                    // OPEN Vehicle
+                    if (!selectForList)
                     {
-                        Customer uc = new Customer();
-                        uc.Dock = DockStyle.Fill;
+                        // OPEN CUSTOMER
+                        //Refresh of controls
+                        main.Instance.PanelContainer.Controls.Clear();
 
-                        CustomerModel cust = new CustomerModel();
-
-                        try
+                        //Open Customer
+                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
                         {
-                            List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
+                            Customer uc = new Customer();
+                            uc.Dock = DockStyle.Fill;
 
-                            if (tempList.Count == 0)
+                            CustomerModel cust = new CustomerModel();
+
+                            try
                             {
-                                throw new Exception("No record found");
+                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
+
+                                if (tempList.Count == 0)
+                                {
+                                    throw new Exception("No record found");
+                                }
+                                else
+                                {
+                                    cust = tempList[0];
+                                }
                             }
-                            else
+                            catch (Exception err)
                             {
-                                cust = tempList[0];
+                                MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+
+                            uc.customerResult = cust; // Reset page variable with new information
+
+                            //Refresh form
+                            uc.RefreshInformation();
+                            main.Instance.PanelContainer.Controls.Add(uc);
                         }
-                        catch (Exception err)
+
+                        main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+                    }
+                    else // Selected to pass thru for list from Customer
+                    { 
+                        //Refresh of controls
+                        main.Instance.PanelContainer.Controls.Clear();
+                        //selectForListCModel
+                        //Open Customer
+                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
                         {
-                            MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Vehicle uc = new Vehicle(sentFromAddPage);
+                            uc.Dock = DockStyle.Fill;
+
+                            try
+                            { 
+                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
+
+                                if (tempList.Count == 0)
+                                {
+                                    throw new Exception("No record found");
+                                }
+                                else
+                                {
+                                    selectForListVModel.InterestedCustomers.Add(tempList[0].Id.ToString());
+                                }
+                            }
+                            catch (Exception err)
+                            {
+                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            uc.vehicleResult = selectForListVModel; // Reset page variable with new information
+
+                            //Refresh form
+                            uc.RefreshInformation();
+                            main.Instance.PanelContainer.Controls.Add(uc);
+
+                            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
                         }
-
-                        uc.customerResult = cust; // Reset page variable with new information
-
-                        //Refresh form
-                        uc.RefreshInformation();
-                        main.Instance.PanelContainer.Controls.Add(uc);
-                    } 
-
-                    main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+                    }
                 }
                 catch (Exception err)
                 {
                     //MessageBox.Show(err.Message, "Index Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            else // Vehicle Search
             {
                 try
                 {
@@ -408,7 +451,7 @@ namespace Database_Application_Chris
                         //Open Customer
                         if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
                         {
-                            Customer uc = new Customer();
+                            Customer uc = new Customer(sentFromAddPage);
                             uc.Dock = DockStyle.Fill; 
 
                             try

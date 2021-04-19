@@ -42,7 +42,7 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addVehicle)
             {
-                vehicleResult = new VehicleModel();
+                vehicleResult = new VehicleModel(); 
 
                 addThisVehicle.Visible = true;
                 addThisVehicle.Enabled = true;
@@ -52,6 +52,16 @@ namespace Database_Application_Chris
 
                 updateVehicleBtn.Visible = false;
                 updateVehicleBtn.Enabled = false;
+            }else
+            {
+                addThisVehicle.Visible = false;
+                addThisVehicle.Enabled = false;
+
+                deleteVehicleBtn.Visible = true;
+                deleteVehicleBtn.Enabled = true;
+
+                updateVehicleBtn.Visible = true;
+                updateVehicleBtn.Enabled = true;
             }
         }
 
@@ -192,7 +202,13 @@ namespace Database_Application_Chris
         }
 
         private void addCustomerBtn_Click(object sender, EventArgs e)
-        {
+        { 
+            UpdateListToSend();
+            SearchForm search = new SearchForm(true, vehicleResult);
+            search.sentFromAddPage = addVehicle;
+            search.Text = "Fusion Motors: Select a Customer";
+            search.titleLbl.Text = "Select a customer to add to list";
+            search.Show();
             //if (addCustomer.Text.Length != 0)
             //{
             //    // Add vehicles to listbox 
@@ -268,9 +284,42 @@ namespace Database_Application_Chris
             vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
         }
 
+        private void UpdateListToSend()
+        {
+            vehicleResult.Owner = ownerLbl.Text.Trim();
+
+            vehicleResult.EngineNum = engineNumLbl.Text.Trim();
+            vehicleResult.ChassisNum = chassisNumLbl.Text.Trim();
+            vehicleResult.Colour = colourLbl.Text.Trim();
+
+            int year = 2021;
+            double valuation = 0;
+            double askingprice = 0;
+
+            try
+            {
+                year = Int32.Parse(yearLbl.Text.Trim());
+                valuation = double.Parse(valuationLbl.Text, CultureInfo.InvariantCulture);
+                askingprice = double.Parse(askingPriceLbl.Text, CultureInfo.InvariantCulture);
+            }
+            catch (Exception err)
+            {
+                //MessageBox.Show("Error converting values from textboxes into numbers \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            vehicleResult.Make = makeLbl.Text.Trim();
+            vehicleResult.Model = modelLbl.Text.Trim();
+            vehicleResult.Year = year;
+
+            vehicleResult.Valuation = valuation;
+            vehicleResult.AskingPrice = askingprice;
+
+            vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
+        }
+
         /*
-         * Field Functions
-         */
+        * Field Functions
+        */
 
         private void Vehicle_Click(object sender, EventArgs e)
         {
