@@ -19,6 +19,8 @@ namespace Database_Application_Chris
         public bool addVehicle = false;
         public int errorsInForm = 0;
 
+        public BindingList<CustomerModel> customers = new BindingList<CustomerModel>();
+
         public Vehicle()
         {
             InitializeComponent();
@@ -104,7 +106,27 @@ namespace Database_Application_Chris
                     return;
                 }
 
-                RefreshInformation();
+                //Open view version of the Customer page
+
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
+
+                // If only one returned, go directly to Customer page 
+
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+                    {
+                        Vehicle uc = new Vehicle();
+                        //Send data of Customer form 
+                        uc.vehicleResult = vehicleResult;
+
+                        //Refresh form
+                        uc.RefreshInformation();
+
+                        uc.Dock = DockStyle.Fill;
+                        main.Instance.PanelContainer.Controls.Add(uc);
+                    }
+
+                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
             }
             else
             {
@@ -171,6 +193,15 @@ namespace Database_Application_Chris
                 //Try to delete
                 try
                 {
+                    // update removed vehicles first
+                    int i = 0;
+                    foreach (var rem in vehicleResult.InterestedCustomers)
+                    {
+                        Guid newGuid = Guid.Parse(vehicleResult.InterestedCustomers[i]);
+                        main.Instance.db.RemoveCustomersListInterest<CustomerModel>("Customers", vehicleResult.EngineNum, newGuid);
+                        i++;
+                    }
+                     
                     await Task.Run(() => main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id));
                 }
                 catch (Exception err)
@@ -184,6 +215,9 @@ namespace Database_Application_Chris
             {
                 return;
             }
+
+            //Send back Home
+            main.Instance.GoToHomepage();
         }
 
         // List Box Stuff
@@ -222,7 +256,7 @@ namespace Database_Application_Chris
          * Data Update Functions
          */
 
-        public void RefreshInformation()
+        public async void RefreshInformation()
         {
             ownerLbl.Text = vehicleResult.Owner;
 
@@ -237,16 +271,33 @@ namespace Database_Application_Chris
             valuationLbl.Text = vehicleResult.Valuation.ToString();
             askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
 
-            // Add vehicles to listbox
-            interestedCustomersListBox.Items.Clear();
+            // Add vehicles to listbox 
 
-            foreach (var vehicle in vehicleResult.InterestedCustomers)
+            customers = new BindingList<CustomerModel>();
+            int index = 0;
+
+            foreach (var cust in vehicleResult.InterestedCustomers)
             {
                 if (vehicleResult.InterestedCustomers[0] != "") // This is from add page setting this to ""
                 {
-                    interestedCustomersListBox.Items.Add(vehicle);
+                    try
+                    {
+                        Guid newGuid = Guid.Parse(cust);
+                        List<CustomerModel> temp = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", newGuid));
+                        customers.Add(temp[0]); 
+                        index++;
+
+                    } 
+                    catch (Exception err)
+                    {
+
+                    }
                 }
             }
+
+            // Attach the list of customers to the ListBox:
+            interestedCustomersListBox.DataSource = customers;
+            interestedCustomersListBox.DisplayMember = "FirstName";
 
             //DisableUpdateBtn();
         }
@@ -281,7 +332,16 @@ namespace Database_Application_Chris
             vehicleResult.Valuation = valuation;
             vehicleResult.AskingPrice = askingprice;
 
-            vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
+            //vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
+
+            int x = 0;
+            vehicleResult.InterestedCustomers.Clear();
+
+            foreach (var id in customers)
+            {
+                vehicleResult.InterestedCustomers.Add(customers[x].Id.ToString());
+                x++;
+            }
         }
 
         private void UpdateListToSend()
@@ -314,7 +374,7 @@ namespace Database_Application_Chris
             vehicleResult.Valuation = valuation;
             vehicleResult.AskingPrice = askingprice;
 
-            vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
+            //vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
         }
 
         /*
@@ -464,6 +524,28 @@ namespace Database_Application_Chris
 
             string newAskingPrice = Regex.Replace(askingprice, @"[^0-9\.]+", String.Empty);
             askingPriceLbl.Text = newAskingPrice;
+        }
+
+        private void interestedCustomersListBox_DoubleClick(object sender, EventArgs e)
+        { 
+            int selectedIndex = interestedCustomersListBox.SelectedIndex;
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear(); 
+
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+            {
+                Customer uc = new Customer();
+                //Send data of Customer form 
+                uc.customerResult = customers[selectedIndex];
+                //Refresh form
+                uc.RefreshInformation();
+
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+
+            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
         }
     }
 }

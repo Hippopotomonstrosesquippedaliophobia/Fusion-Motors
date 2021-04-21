@@ -17,7 +17,10 @@ namespace Database_Application_Chris
         public string name;
         public bool nameEdited = false; 
         public bool addCustomer = false; 
-        public int errorsInForm = 0; 
+        public int errorsInForm = 0;
+
+        List<string> RemovedInterestedVehicles = new List<string>();
+        public BindingList<VehicleModel> vehicles = new BindingList<VehicleModel>();
 
         public Customer()
         {
@@ -66,14 +69,14 @@ namespace Database_Application_Chris
 
         private void Customer_Load(object sender, EventArgs e)
         {
-            RefreshInformation();
+            //RefreshInformation();
         }
 
         /*
          * Data Update Functions
          */
 
-        public void RefreshInformation()
+        public async void RefreshInformation()
         {
             nameLbl.Text = customerResult.FirstName + " "+ customerResult.LastName;
             name = nameLbl.Text;
@@ -97,15 +100,34 @@ namespace Database_Application_Chris
             email2Lbl.Text = customerResult.Emails.Email2;
 
             // Add vehicles to listbox
-            interestedVehiclesListBox.Items.Clear();
-            
-            foreach (var vehicle in customerResult.InterestedVehicles)
+            interestedVehiclesListBox.DataSource = null;
+
+            //List<VehicleModel> vehicles = new List<VehicleModel>();
+            int index = 0;
+            vehicles = new BindingList<VehicleModel>();
+
+            foreach (var vehic in customerResult.InterestedVehicles)
             {
                 if (customerResult.InterestedVehicles[0] != "") // This is from add page setting this to ""
                 {
-                    interestedVehiclesListBox.Items.Add(vehicle);
+                    try
+                    { 
+                        List<VehicleModel> temp = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", customerResult.InterestedVehicles[index]));
+                        vehicles.Add(temp[0]); 
+                        index++;
+
+                    }
+                    catch (Exception err)
+                    {
+
+                    }
                 }
             }
+            //MessageBox.Show(vehicles.Count.ToString());
+
+            // Attach the list of customers to the ListBox:
+            interestedVehiclesListBox.DataSource = vehicles;
+            interestedVehiclesListBox.DisplayMember = "Model";
 
             inProgressCheckbox.Checked = customerResult.InProgressFlag;
             callBackCheckbox.Checked = customerResult.CallBackFlag;
@@ -149,7 +171,16 @@ namespace Database_Application_Chris
             customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
             customerResult.Emails.Email2 = email2Lbl.Text.Trim();
-            customerResult.InterestedVehicles = interestedVehiclesListBox.Items.Cast<string>().ToList();
+
+            int x = 0;
+            customerResult.InterestedVehicles.Clear();
+
+            foreach (var engineNum in vehicles)
+            {
+                customerResult.InterestedVehicles.Add(vehicles[x].EngineNum);
+                x++;
+            }
+
             customerResult.InProgressFlag = inProgressCheckbox.Checked;
             customerResult.CallBackFlag = callBackCheckbox.Checked;
             customerResult.Notes = additionalCommentsLbl.Text;
@@ -189,7 +220,19 @@ namespace Database_Application_Chris
             customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
             customerResult.Emails.Email2 = email2Lbl.Text.Trim();
-            customerResult.InterestedVehicles = interestedVehiclesListBox.Items.Cast<string>().ToList();
+
+            //int x = 0;
+            //customerResult.InterestedVehicles.Clear();
+            //List<string> interest = new List<string>();
+
+            //for (int i = 0; i < vehicles.Count; i++)
+            //{
+            //    interest.Add(vehicles[i].EngineNum);
+            //}
+             
+            //customerResult.InterestedVehicles = interest;
+                
+
             customerResult.InProgressFlag = inProgressCheckbox.Checked;
             customerResult.CallBackFlag = callBackCheckbox.Checked;
             customerResult.Notes = additionalCommentsLbl.Text;
@@ -207,6 +250,15 @@ namespace Database_Application_Chris
                 //Try to delete
                 try
                 {
+                    // update removed vehicles first
+                    int i = 0;
+                    foreach (var rem in customerResult.InterestedVehicles)
+                    {
+                        main.Instance.db.RemoveVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[i], customerResult.Id);
+                        i++;
+                    }
+
+                    // Remove vehicle
                     await Task.Run(() => main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id));
                 }
                 catch (Exception err)
@@ -220,6 +272,9 @@ namespace Database_Application_Chris
             {
                 return;
             }
+
+            //Send back Home
+            main.Instance.GoToHomepage(); 
         }
 
         private async void updateCustomerBtn_Click(object sender, EventArgs e)
@@ -253,17 +308,24 @@ namespace Database_Application_Chris
                     //Try to update
                     try
                     {
-                        await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
+                        // update removed vehicles first
+                        int z = 0;
+                        foreach (var rem in RemovedInterestedVehicles)
+                        {
+                            main.Instance.db.RemoveVehiclesListInterest<VehicleModel>("Vehicles", RemovedInterestedVehicles[z], customerResult.Id);
+                            z++;
+                        }
 
-                        int i = 0;
+                        // Later Update the vehicles which were added 
+                        int x = 0;
                         foreach (var iv in customerResult.InterestedVehicles)
                         {                            
-                            main.Instance.db.UpdateVehicleInterestedList<VehicleModel>("Vehicles", customerResult.InterestedVehicles[i], customerResult.Id);
-                            i++;
+                            main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
+                            x++;
                         }
-                        //var lol = main.Instance.db.CheckVehicleInterestedList<VehicleModel>("Vehicles", customerResult.Id);
-                        //MessageBox.Show(customerResult.Id.ToString() + ": " +lol.ToString());
-                        //main.Instance.db.VehiclesListInterest<VehicleModel>("Vehicles", customerResult.Id);
+
+                        await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
+
                     }
                     catch (Exception err)
                     {
@@ -300,6 +362,14 @@ namespace Database_Application_Chris
                     try
                     {
                         await Task.Run(() => main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult));
+
+                        // Update the vehicles which were added 
+                        int x = 0;
+                        foreach (var iv in customerResult.InterestedVehicles)
+                        {
+                            main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
+                            x++;
+                        }
                     }
                     catch (Exception err)
                     {
@@ -310,8 +380,25 @@ namespace Database_Application_Chris
                 {
                     return;
                 }
+                 
+                //Open view version of the Customer page
 
-                RefreshInformation();
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
+
+                if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                {
+                    Customer uc = new Customer();
+                    //Send data of Customer form 
+                    uc.customerResult = customerResult;
+                    //Refresh form
+                    uc.RefreshInformation();
+
+                    uc.Dock = DockStyle.Fill;
+                    main.Instance.PanelContainer.Controls.Add(uc);
+                }
+
+                main.Instance.PanelContainer.Controls["Customer"].BringToFront();
             }
             else
             {
@@ -613,8 +700,14 @@ namespace Database_Application_Chris
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItem + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                interestedVehiclesListBox.Items.Remove(interestedVehiclesListBox.SelectedItem);
-                //EnableUpdateBtn();
+                // Get List of removed vehicles for update reasons
+                int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+
+                RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
+
+                vehicles.RemoveAt(selectedIndex); 
+                interestedVehiclesListBox.DataSource = vehicles;
+                UpdateCustomerList();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -649,6 +742,28 @@ namespace Database_Application_Chris
         private void email2Lbl_ForeColorChanged(object sender, EventArgs e)
         {
             label5.ForeColor = email2Lbl.ForeColor;
+        }
+
+        private void interestedVehiclesListBox_DoubleClick(object sender, EventArgs e)
+        { 
+            int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
+
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+            {
+                Vehicle uc = new Vehicle();
+                //Send data of Customer form 
+                uc.vehicleResult = vehicles[selectedIndex];
+                //Refresh form
+                uc.RefreshInformation();
+
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+
+            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
         }
     }
 }

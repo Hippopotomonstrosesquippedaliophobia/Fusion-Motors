@@ -99,7 +99,22 @@ namespace Database_Application_Chris
 
             try
             {
-                return collection.Find(new BsonDocument()).ToList();
+                if (typeof(T) == typeof(CustomerModel))
+                { 
+                    return collection.Find(new BsonDocument())
+                        .Sort(Builders<T>.Sort.Ascending("FirstName").Ascending("LastName"))
+                        .ToList();
+                }
+                else if (typeof(T) == typeof(VehicleModel))
+                {
+                    return collection.Find(new BsonDocument())
+                        .Sort(Builders<T>.Sort.Ascending("EngineNum"))
+                        .ToList();
+                }
+                else
+                {
+                    return collection.Find(new BsonDocument()).ToList();
+                }
             } catch (Exception err)
             {
                 return null;
@@ -115,7 +130,9 @@ namespace Database_Application_Chris
 
             try
             {
-                return collection.Find(filter).ToList();
+                return collection.Find(filter)
+                        .Sort(Builders<CustomerModel>.Sort.Ascending("FirstName").Ascending("LastName"))
+                        .ToList();
             }
             catch (Exception err)
             {
@@ -129,19 +146,22 @@ namespace Database_Application_Chris
                 var collection = db.GetCollection<T>(table);
 
                 //Starts with assumption only first name is provided
-                var filter = Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "$/i"));
-                    // If last name provided, then uses this variant of filter
-                    if (!firstName.Equals("") && !lastName.Equals(""))
-                    {
-                        filter = Builders<T>.Filter.And(
-                                                        Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "$/i")),
-                                                        Builders<T>.Filter.Regex("LastName", new BsonRegularExpression("/^" + lastName + "$/i"))
-                                                    );
+                var filter = Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i"));
 
-                    }
+                // If last name provided, then uses this variant of filter
+                if (!firstName.Equals("") && !lastName.Equals(""))
+                {
+                    filter = Builders<T>.Filter.And(
+                                                    Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i")),
+                                                    Builders<T>.Filter.Regex("LastName", new BsonRegularExpression("/^" + lastName + "/i"))
+                                                );
+
+                }
             try
             {
-                return collection.Find(filter).ToList();
+                return collection.Find(filter)
+                        .Sort(Builders<T>.Sort.Ascending("FirstName").Ascending("LastName"))
+                        .ToList();
             }
             catch (Exception err)
             {
@@ -184,54 +204,63 @@ namespace Database_Application_Chris
             }
         }
 
-        // RECENT ADD - NOT SURE **************************************************************************************
-        public void UpdateVehicleInterestedList<T>(string table, string engineNumber, Guid id)
+        // Updates Linked lists between customers and vehicle interest list *************************************** 
+
+        public void UpdateVehiclesListInterest<T>(string table, string vehicleId, Guid id)
         {
-            var collection = db.GetCollection<VehicleModel>(table);
-
-            var filter = Builders<VehicleModel>.Filter.Where(x => x.EngineNum == engineNumber);
-            var update = Builders<VehicleModel>.Update.Push("InterestedCustomers", Convert.ToString(id));
-
-            collection.FindOneAndUpdate<T>(filter, update);
-        }
-
-        public void VehiclesListInterest<T>(string table, Guid id)
-        {
-            var collection = db.GetCollection<VehicleModel>("Vehicles");
-
-            var collection2 = db.GetCollection<CustomerModel>("Customers");
+            var collection = db.GetCollection<VehicleModel>("Vehicles"); 
 
             try
             {
-                List<CustomerModel> customers = collection2.Find(new BsonDocument()).ToList();
+                var filter = Builders<VehicleModel>.Filter.Eq("EngineNum", vehicleId);
 
-                int index = 0;
+                List<string> idValue = new List<string>();
+                idValue.Add(id.ToString());
 
-                foreach (var cus in customers)
-                {
-                    int index2 = 0;
-
-                    foreach (var item in customers[index2].InterestedVehicles)
-                    {
-                        var filter = Builders<VehicleModel>.Filter.And(
-                            Builders<VehicleModel>.Filter.Where(x => x.EngineNum == customers[index2].InterestedVehicles[index2]));
-                            //&&
-                            //Builders<VehicleModel>.Filter.AnyNe<VehicleModel>(x => x.EngineNum, engineNumber); 
-                            
-                        index2++;
-                    }
-                    index++;
-                }
+                var update = Builders<VehicleModel>.Update.AddToSetEach(c => c.InterestedCustomers, idValue); 
+                collection.UpdateOne(filter, update, new UpdateOptions { IsUpsert = true });
             }
             catch (Exception err)
-            { 
+            {
+                MessageBox.Show(err.Message, "Upsert Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
-            //var filter = Builders<VehicleModel>.Filter.Where(x => x.EngineNum == engineNumber);
-            //var update = Builders<VehicleModel>.Update.Push("InterestedCustomers", Convert.ToString(id));
-
-            //collection.FindOneAndUpdate<T>(filter, update);
         }
-        //RECENT ADD - NOT SURE ***************************************************************************************
+
+        public void RemoveVehiclesListInterest<T>(string table, string vehicleId, Guid id)
+        {
+            var collection = db.GetCollection<VehicleModel>("Vehicles");
+
+            try
+            { 
+                var filter = Builders<VehicleModel>.Filter.Eq("EngineNum", vehicleId.Trim()); 
+
+                var update = Builders<VehicleModel>.Update.Pull(c => c.InterestedCustomers, id.ToString()); 
+                collection.UpdateOne(filter, update);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Upsert Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        public void RemoveCustomersListInterest<T>(string table, string vehicleId, Guid id)
+        {
+            var collection = db.GetCollection<CustomerModel>("Customers");
+
+            try
+            {
+                var filter = Builders<CustomerModel>.Filter.Eq("Id", id);
+                 
+
+                var update = Builders<CustomerModel>.Update.Pull(c => c.InterestedVehicles, vehicleId);
+                collection.UpdateOne(filter, update);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Upsert Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+        // Updates Linked lists between customers and vehicle interest list *************************************** 
 
         public void UpsertRecord<T>(string table, Guid id, T record)
         {

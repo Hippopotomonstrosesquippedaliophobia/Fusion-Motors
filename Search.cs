@@ -173,7 +173,11 @@ namespace Database_Application_Chris
                         var row = new string[] {
                                                 ID.ToString(),
                                                 listVehicles[counter].EngineNum,
-                                                listVehicles[counter].ChassisNum,
+                                                listVehicles[counter].Make,
+                                                listVehicles[counter].Model,
+                                                listVehicles[counter].Year.ToString(),
+                                                "$ " + listVehicles[counter].Valuation.ToString(),
+                                                "$ " + listVehicles[counter].AskingPrice.ToString(), 
                                                 listVehicles[counter].Colour
                                             };
 

@@ -286,7 +286,7 @@ namespace Database_Application_Chris
         }
 
         // Sends user to homepage
-        private void GoToHomepage()
+        public void GoToHomepage()
         {
             Title.Text = "Homepage";
             sidePanel.Height = homeBtn.Height;

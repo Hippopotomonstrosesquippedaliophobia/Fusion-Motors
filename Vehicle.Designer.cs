@@ -87,6 +87,7 @@ namespace Database_Application_Chris
             // 
             this.addCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addCustomerBtn.BackColor = System.Drawing.Color.Gold;
+            this.addCustomerBtn.Enabled = false;
             this.addCustomerBtn.FlatAppearance.BorderSize = 0;
             this.addCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -97,6 +98,7 @@ namespace Database_Application_Chris
             this.addCustomerBtn.Text = "+";
             this.toolTip.SetToolTip(this.addCustomerBtn, "Add an interested customer");
             this.addCustomerBtn.UseVisualStyleBackColor = false;
+            this.addCustomerBtn.Visible = false;
             this.addCustomerBtn.Click += new System.EventHandler(this.addCustomerBtn_Click);
             // 
             // deleteVehicleBtn
@@ -140,6 +142,7 @@ namespace Database_Application_Chris
             this.interestedCustomersListBox.Size = new System.Drawing.Size(277, 382);
             this.interestedCustomersListBox.TabIndex = 13;
             this.toolTip.SetToolTip(this.interestedCustomersListBox, "List of interested customers");
+            this.interestedCustomersListBox.DoubleClick += new System.EventHandler(this.interestedCustomersListBox_DoubleClick);
             // 
             // chassisNumLbl
             // 
@@ -188,6 +191,7 @@ namespace Database_Application_Chris
             // 
             this.deleteCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
+            this.deleteCustomerBtn.Enabled = false;
             this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -198,6 +202,7 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.Text = "🗑️";
             this.toolTip.SetToolTip(this.deleteCustomerBtn, "Remove a customer from the vehicle\'s interested patrons list");
             this.deleteCustomerBtn.UseVisualStyleBackColor = false;
+            this.deleteCustomerBtn.Visible = false;
             this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
             // 
             // L1

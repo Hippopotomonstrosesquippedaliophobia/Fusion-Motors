@@ -410,12 +410,12 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button minimize;
-        private System.Windows.Forms.Panel sidePanel;
-        private System.Windows.Forms.Label Title;
+        public System.Windows.Forms.Panel sidePanel;
+        public System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel UC;
-        private System.Windows.Forms.Button homeBtn;
+        public System.Windows.Forms.Button homeBtn;
         public System.Windows.Forms.Label mongoStatusLbl;
         public System.Windows.Forms.Label mongoDBLbl;
         private System.Windows.Forms.Button mongoReconnect;

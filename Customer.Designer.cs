@@ -175,6 +175,7 @@ namespace Database_Application_Chris
             this.interestedVehiclesListBox.TabIndex = 2;
             this.toolTip.SetToolTip(this.interestedVehiclesListBox, "List of vehicle\'s this customer is interested in");
             this.interestedVehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.interestedVehiclesListBox_SelectedIndexChanged);
+            this.interestedVehiclesListBox.DoubleClick += new System.EventHandler(this.interestedVehiclesListBox_DoubleClick);
             // 
             // inProgressCheckbox
             // 

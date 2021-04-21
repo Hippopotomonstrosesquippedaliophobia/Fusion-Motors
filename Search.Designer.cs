@@ -31,6 +31,7 @@ namespace Database_Application_Chris
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchForm));
             this.titleBar = new System.Windows.Forms.Panel();
+            this.titleLbl = new System.Windows.Forms.Label();
             this.minimizeBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
@@ -45,9 +46,12 @@ namespace Database_Application_Chris
             this.listViewVehicles = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.titleLbl = new System.Windows.Forms.Label();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
             this.titleBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +67,15 @@ namespace Database_Application_Chris
             this.titleBar.Size = new System.Drawing.Size(923, 30);
             this.titleBar.TabIndex = 0;
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDown);
+            // 
+            // titleLbl
+            // 
+            this.titleLbl.AutoSize = true;
+            this.titleLbl.Location = new System.Drawing.Point(10, 5);
+            this.titleLbl.Name = "titleLbl";
+            this.titleLbl.Size = new System.Drawing.Size(85, 20);
+            this.titleLbl.TabIndex = 9;
+            this.titleLbl.Text = "Customers";
             // 
             // minimizeBtn
             // 
@@ -179,7 +192,11 @@ namespace Database_Application_Chris
             this.listViewVehicles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
             this.columnHeader4});
             this.listViewVehicles.FullRowSelect = true;
             this.listViewVehicles.GridLines = true;
@@ -200,26 +217,37 @@ namespace Database_Application_Chris
             // columnHeader2
             // 
             this.columnHeader2.Text = "Engine Number";
-            this.columnHeader2.Width = 200;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Chassis Number";
-            this.columnHeader3.Width = 200;
+            this.columnHeader2.Width = 180;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Colour of Vehicle";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Text = "Colour";
+            this.columnHeader4.Width = 92;
             // 
-            // titleLbl
+            // columnHeader5
             // 
-            this.titleLbl.AutoSize = true;
-            this.titleLbl.Location = new System.Drawing.Point(10, 5);
-            this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(85, 20);
-            this.titleLbl.TabIndex = 9;
-            this.titleLbl.Text = "Customers";
+            this.columnHeader5.Text = "Make";
+            this.columnHeader5.Width = 130;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Model";
+            this.columnHeader6.Width = 130;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Year";
+            this.columnHeader7.Width = 70;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Value";
+            this.columnHeader8.Width = 130;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Asking Price";
+            this.columnHeader9.Width = 130;
             // 
             // SearchForm
             // 
@@ -267,8 +295,12 @@ namespace Database_Application_Chris
         private System.Windows.Forms.ListView listViewVehicles;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         public System.Windows.Forms.Label titleLbl;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
