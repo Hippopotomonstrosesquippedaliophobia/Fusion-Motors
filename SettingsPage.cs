@@ -228,6 +228,7 @@ namespace Database_Application_Chris
             exportPanel.Visible = true;
 
             ImportPanel.Enabled = false;
+            ImportPanel.Visible = false;
         }
 
         private void aboutBtn_Click(object sender, EventArgs e)

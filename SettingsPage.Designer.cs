@@ -34,8 +34,15 @@ namespace Database_Application_Chris
             this.importBtn = new System.Windows.Forms.Button();
             this.exportBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
-            this.ImportPanel = new System.Windows.Forms.Panel();
             this.pagePanel = new System.Windows.Forms.Panel();
+            this.ImportPanel = new System.Windows.Forms.Panel();
+            this.file1TextBox = new System.Windows.Forms.TextBox();
+            this.selectFile1 = new System.Windows.Forms.Button();
+            this.file2TextBox = new System.Windows.Forms.TextBox();
+            this.selectFile2 = new System.Windows.Forms.Button();
+            this.importTablesBtn = new System.Windows.Forms.Button();
+            this.clear1 = new System.Windows.Forms.Button();
+            this.clear2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.listTables = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,27 +50,22 @@ namespace Database_Application_Chris
             this.file1Txt = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.importTablesBtn = new System.Windows.Forms.Button();
-            this.selectFile2 = new System.Windows.Forms.Button();
-            this.file2TextBox = new System.Windows.Forms.TextBox();
-            this.clear1 = new System.Windows.Forms.Button();
-            this.clear2 = new System.Windows.Forms.Button();
-            this.selectFile1 = new System.Windows.Forms.Button();
-            this.file1TextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.exportTablesBtn = new System.Windows.Forms.Button();
             this.openLocation = new System.Windows.Forms.Button();
             this.clearExportLocation = new System.Windows.Forms.Button();
             this.exportPanel = new System.Windows.Forms.Panel();
+            this.tableComboBox = new System.Windows.Forms.ComboBox();
             this.exportLocationTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tableComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.ImportPanel.SuspendLayout();
             this.exportPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -75,7 +77,7 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(306, 598);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 598);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // importBtn
@@ -83,7 +85,7 @@ namespace Database_Application_Chris
             this.importBtn.FlatAppearance.BorderSize = 0;
             this.importBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.importBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importBtn.Location = new System.Drawing.Point(77, 3);
+            this.importBtn.Location = new System.Drawing.Point(66, 3);
             this.importBtn.Name = "importBtn";
             this.importBtn.Size = new System.Drawing.Size(226, 68);
             this.importBtn.TabIndex = 0;
@@ -96,7 +98,7 @@ namespace Database_Application_Chris
             this.exportBtn.FlatAppearance.BorderSize = 0;
             this.exportBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exportBtn.Location = new System.Drawing.Point(77, 77);
+            this.exportBtn.Location = new System.Drawing.Point(66, 77);
             this.exportBtn.Name = "exportBtn";
             this.exportBtn.Size = new System.Drawing.Size(226, 68);
             this.exportBtn.TabIndex = 0;
@@ -109,13 +111,21 @@ namespace Database_Application_Chris
             this.aboutBtn.FlatAppearance.BorderSize = 0;
             this.aboutBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.aboutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aboutBtn.Location = new System.Drawing.Point(77, 151);
+            this.aboutBtn.Location = new System.Drawing.Point(66, 151);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Size = new System.Drawing.Size(226, 68);
             this.aboutBtn.TabIndex = 0;
             this.aboutBtn.Text = "About";
             this.aboutBtn.UseVisualStyleBackColor = true;
             this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
+            // 
+            // pagePanel
+            // 
+            this.pagePanel.BackColor = System.Drawing.Color.Gold;
+            this.pagePanel.Location = new System.Drawing.Point(4, 3);
+            this.pagePanel.Name = "pagePanel";
+            this.pagePanel.Size = new System.Drawing.Size(10, 68);
+            this.pagePanel.TabIndex = 7;
             // 
             // ImportPanel
             // 
@@ -126,7 +136,6 @@ namespace Database_Application_Chris
             this.ImportPanel.Controls.Add(this.importTablesBtn);
             this.ImportPanel.Controls.Add(this.clear1);
             this.ImportPanel.Controls.Add(this.clear2);
-            this.ImportPanel.Controls.Add(this.pagePanel);
             this.ImportPanel.Controls.Add(this.label8);
             this.ImportPanel.Controls.Add(this.listTables);
             this.ImportPanel.Controls.Add(this.label6);
@@ -135,19 +144,106 @@ namespace Database_Application_Chris
             this.ImportPanel.Controls.Add(this.label4);
             this.ImportPanel.Controls.Add(this.label2);
             this.ImportPanel.Controls.Add(this.label1);
-            this.ImportPanel.Location = new System.Drawing.Point(306, 25);
+            this.ImportPanel.Location = new System.Drawing.Point(309, 25);
             this.ImportPanel.Name = "ImportPanel";
-            this.ImportPanel.Size = new System.Drawing.Size(753, 597);
+            this.ImportPanel.Size = new System.Drawing.Size(750, 597);
             this.ImportPanel.TabIndex = 1;
             this.ImportPanel.Enter += new System.EventHandler(this.ImportPanel_Enter);
             // 
-            // pagePanel
+            // file1TextBox
             // 
-            this.pagePanel.BackColor = System.Drawing.Color.Gold;
-            this.pagePanel.Location = new System.Drawing.Point(3, 27);
-            this.pagePanel.Name = "pagePanel";
-            this.pagePanel.Size = new System.Drawing.Size(10, 68);
-            this.pagePanel.TabIndex = 7;
+            this.file1TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.file1TextBox.Location = new System.Drawing.Point(52, 174);
+            this.file1TextBox.Name = "file1TextBox";
+            this.file1TextBox.Size = new System.Drawing.Size(441, 32);
+            this.file1TextBox.TabIndex = 1;
+            // 
+            // selectFile1
+            // 
+            this.selectFile1.BackColor = System.Drawing.Color.Gold;
+            this.selectFile1.FlatAppearance.BorderSize = 0;
+            this.selectFile1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectFile1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.selectFile1.Location = new System.Drawing.Point(499, 172);
+            this.selectFile1.Name = "selectFile1";
+            this.selectFile1.Size = new System.Drawing.Size(133, 34);
+            this.selectFile1.TabIndex = 2;
+            this.selectFile1.Text = "Select File";
+            this.toolTip.SetToolTip(this.selectFile1, "Select a table to import");
+            this.selectFile1.UseVisualStyleBackColor = false;
+            this.selectFile1.Click += new System.EventHandler(this.selectFile1Btn_Click);
+            // 
+            // file2TextBox
+            // 
+            this.file2TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.file2TextBox.Location = new System.Drawing.Point(52, 290);
+            this.file2TextBox.Name = "file2TextBox";
+            this.file2TextBox.Size = new System.Drawing.Size(441, 32);
+            this.file2TextBox.TabIndex = 1;
+            // 
+            // selectFile2
+            // 
+            this.selectFile2.BackColor = System.Drawing.Color.Gold;
+            this.selectFile2.FlatAppearance.BorderSize = 0;
+            this.selectFile2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectFile2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.selectFile2.Location = new System.Drawing.Point(499, 288);
+            this.selectFile2.Name = "selectFile2";
+            this.selectFile2.Size = new System.Drawing.Size(133, 34);
+            this.selectFile2.TabIndex = 2;
+            this.selectFile2.Text = "Select File";
+            this.toolTip.SetToolTip(this.selectFile2, "Select a table to import");
+            this.selectFile2.UseVisualStyleBackColor = false;
+            this.selectFile2.Click += new System.EventHandler(this.selectFile2Btn_Click);
+            // 
+            // importTablesBtn
+            // 
+            this.importTablesBtn.BackColor = System.Drawing.Color.Gold;
+            this.importTablesBtn.FlatAppearance.BorderSize = 0;
+            this.importTablesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importTablesBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.importTablesBtn.Location = new System.Drawing.Point(531, 499);
+            this.importTablesBtn.Name = "importTablesBtn";
+            this.importTablesBtn.Size = new System.Drawing.Size(179, 61);
+            this.importTablesBtn.TabIndex = 2;
+            this.importTablesBtn.Text = "Import";
+            this.toolTip.SetToolTip(this.importTablesBtn, "Import these tables into the database");
+            this.importTablesBtn.UseVisualStyleBackColor = false;
+            this.importTablesBtn.Click += new System.EventHandler(this.importTablesBtn_Click);
+            // 
+            // clear1
+            // 
+            this.clear1.BackColor = System.Drawing.Color.White;
+            this.clear1.Enabled = false;
+            this.clear1.FlatAppearance.BorderSize = 0;
+            this.clear1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear1.ForeColor = System.Drawing.Color.Red;
+            this.clear1.Location = new System.Drawing.Point(638, 172);
+            this.clear1.Name = "clear1";
+            this.clear1.Size = new System.Drawing.Size(62, 34);
+            this.clear1.TabIndex = 2;
+            this.clear1.Text = "Clear";
+            this.toolTip.SetToolTip(this.clear1, "Clear the selected file");
+            this.clear1.UseVisualStyleBackColor = false;
+            this.clear1.Visible = false;
+            this.clear1.Click += new System.EventHandler(this.clear1_Click);
+            // 
+            // clear2
+            // 
+            this.clear2.BackColor = System.Drawing.Color.White;
+            this.clear2.Enabled = false;
+            this.clear2.FlatAppearance.BorderSize = 0;
+            this.clear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear2.ForeColor = System.Drawing.Color.Red;
+            this.clear2.Location = new System.Drawing.Point(638, 288);
+            this.clear2.Name = "clear2";
+            this.clear2.Size = new System.Drawing.Size(62, 34);
+            this.clear2.TabIndex = 2;
+            this.clear2.Text = "Clear";
+            this.toolTip.SetToolTip(this.clear2, "Clear the selected file");
+            this.clear2.UseVisualStyleBackColor = false;
+            this.clear2.Visible = false;
+            this.clear2.Click += new System.EventHandler(this.clear2_Click);
             // 
             // label8
             // 
@@ -214,101 +310,6 @@ namespace Database_Application_Chris
             this.label2.Size = new System.Drawing.Size(36, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "File:";
-            // 
-            // importTablesBtn
-            // 
-            this.importTablesBtn.BackColor = System.Drawing.Color.Gold;
-            this.importTablesBtn.FlatAppearance.BorderSize = 0;
-            this.importTablesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importTablesBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.importTablesBtn.Location = new System.Drawing.Point(531, 499);
-            this.importTablesBtn.Name = "importTablesBtn";
-            this.importTablesBtn.Size = new System.Drawing.Size(179, 61);
-            this.importTablesBtn.TabIndex = 2;
-            this.importTablesBtn.Text = "Import";
-            this.toolTip.SetToolTip(this.importTablesBtn, "Import these tables into the database");
-            this.importTablesBtn.UseVisualStyleBackColor = false;
-            this.importTablesBtn.Click += new System.EventHandler(this.importTablesBtn_Click);
-            // 
-            // selectFile2
-            // 
-            this.selectFile2.BackColor = System.Drawing.Color.Gold;
-            this.selectFile2.FlatAppearance.BorderSize = 0;
-            this.selectFile2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectFile2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectFile2.Location = new System.Drawing.Point(499, 288);
-            this.selectFile2.Name = "selectFile2";
-            this.selectFile2.Size = new System.Drawing.Size(133, 34);
-            this.selectFile2.TabIndex = 2;
-            this.selectFile2.Text = "Select File";
-            this.toolTip.SetToolTip(this.selectFile2, "Select a table to import");
-            this.selectFile2.UseVisualStyleBackColor = false;
-            this.selectFile2.Click += new System.EventHandler(this.selectFile2Btn_Click);
-            // 
-            // file2TextBox
-            // 
-            this.file2TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.file2TextBox.Location = new System.Drawing.Point(52, 290);
-            this.file2TextBox.Name = "file2TextBox";
-            this.file2TextBox.Size = new System.Drawing.Size(441, 32);
-            this.file2TextBox.TabIndex = 1;
-            // 
-            // clear1
-            // 
-            this.clear1.BackColor = System.Drawing.Color.White;
-            this.clear1.Enabled = false;
-            this.clear1.FlatAppearance.BorderSize = 0;
-            this.clear1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear1.ForeColor = System.Drawing.Color.Red;
-            this.clear1.Location = new System.Drawing.Point(638, 172);
-            this.clear1.Name = "clear1";
-            this.clear1.Size = new System.Drawing.Size(62, 34);
-            this.clear1.TabIndex = 2;
-            this.clear1.Text = "Clear";
-            this.toolTip.SetToolTip(this.clear1, "Clear the selected file");
-            this.clear1.UseVisualStyleBackColor = false;
-            this.clear1.Visible = false;
-            this.clear1.Click += new System.EventHandler(this.clear1_Click);
-            // 
-            // clear2
-            // 
-            this.clear2.BackColor = System.Drawing.Color.White;
-            this.clear2.Enabled = false;
-            this.clear2.FlatAppearance.BorderSize = 0;
-            this.clear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear2.ForeColor = System.Drawing.Color.Red;
-            this.clear2.Location = new System.Drawing.Point(638, 288);
-            this.clear2.Name = "clear2";
-            this.clear2.Size = new System.Drawing.Size(62, 34);
-            this.clear2.TabIndex = 2;
-            this.clear2.Text = "Clear";
-            this.toolTip.SetToolTip(this.clear2, "Clear the selected file");
-            this.clear2.UseVisualStyleBackColor = false;
-            this.clear2.Visible = false;
-            this.clear2.Click += new System.EventHandler(this.clear2_Click);
-            // 
-            // selectFile1
-            // 
-            this.selectFile1.BackColor = System.Drawing.Color.Gold;
-            this.selectFile1.FlatAppearance.BorderSize = 0;
-            this.selectFile1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectFile1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectFile1.Location = new System.Drawing.Point(499, 172);
-            this.selectFile1.Name = "selectFile1";
-            this.selectFile1.Size = new System.Drawing.Size(133, 34);
-            this.selectFile1.TabIndex = 2;
-            this.selectFile1.Text = "Select File";
-            this.toolTip.SetToolTip(this.selectFile1, "Select a table to import");
-            this.selectFile1.UseVisualStyleBackColor = false;
-            this.selectFile1.Click += new System.EventHandler(this.selectFile1Btn_Click);
-            // 
-            // file1TextBox
-            // 
-            this.file1TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.file1TextBox.Location = new System.Drawing.Point(52, 174);
-            this.file1TextBox.Name = "file1TextBox";
-            this.file1TextBox.Size = new System.Drawing.Size(441, 32);
-            this.file1TextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -384,6 +385,15 @@ namespace Database_Application_Chris
             this.exportPanel.Visible = false;
             this.exportPanel.EnabledChanged += new System.EventHandler(this.exportPanel_EnabledChanged);
             // 
+            // tableComboBox
+            // 
+            this.tableComboBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableComboBox.FormattingEnabled = true;
+            this.tableComboBox.Location = new System.Drawing.Point(33, 136);
+            this.tableComboBox.Name = "tableComboBox";
+            this.tableComboBox.Size = new System.Drawing.Size(473, 31);
+            this.tableComboBox.TabIndex = 3;
+            // 
             // exportLocationTxt
             // 
             this.exportLocationTxt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -410,15 +420,6 @@ namespace Database_Application_Chris
             this.label3.TabIndex = 4;
             this.label3.Text = "Select a table:";
             // 
-            // tableComboBox
-            // 
-            this.tableComboBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableComboBox.FormattingEnabled = true;
-            this.tableComboBox.Location = new System.Drawing.Point(33, 136);
-            this.tableComboBox.Name = "tableComboBox";
-            this.tableComboBox.Size = new System.Drawing.Size(473, 31);
-            this.tableComboBox.TabIndex = 3;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -429,10 +430,19 @@ namespace Database_Application_Chris
             this.label13.TabIndex = 0;
             this.label13.Text = "Export a table from the database";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pagePanel);
+            this.panel1.Location = new System.Drawing.Point(294, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 597);
+            this.panel1.TabIndex = 9;
+            // 
             // SettingsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.ImportPanel);
             this.Controls.Add(this.exportPanel);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -445,6 +455,7 @@ namespace Database_Application_Chris
             this.ImportPanel.PerformLayout();
             this.exportPanel.ResumeLayout(false);
             this.exportPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -484,5 +495,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.ComboBox tableComboBox;
         private System.Windows.Forms.Button clearExportLocation;
         private System.Windows.Forms.Button openLocation;
+        private System.Windows.Forms.Panel panel1;
     }
 }

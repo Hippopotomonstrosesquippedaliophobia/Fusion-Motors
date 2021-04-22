@@ -31,9 +31,9 @@ namespace Database_Application_Chris
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchForm));
             this.titleBar = new System.Windows.Forms.Panel();
-            this.titleLbl = new System.Windows.Forms.Label();
             this.minimizeBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.titleLbl = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
             this.ID = new System.Windows.Forms.ColumnHeader();
             this.FNameCol = new System.Windows.Forms.ColumnHeader();
@@ -68,15 +68,6 @@ namespace Database_Application_Chris
             this.titleBar.TabIndex = 0;
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDown);
             // 
-            // titleLbl
-            // 
-            this.titleLbl.AutoSize = true;
-            this.titleLbl.Location = new System.Drawing.Point(10, 5);
-            this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(85, 20);
-            this.titleLbl.TabIndex = 9;
-            this.titleLbl.Text = "Customers";
-            // 
             // minimizeBtn
             // 
             this.minimizeBtn.BackColor = System.Drawing.Color.Gold;
@@ -107,6 +98,15 @@ namespace Database_Application_Chris
             this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // titleLbl
+            // 
+            this.titleLbl.AutoSize = true;
+            this.titleLbl.Location = new System.Drawing.Point(10, 5);
+            this.titleLbl.Name = "titleLbl";
+            this.titleLbl.Size = new System.Drawing.Size(85, 20);
+            this.titleLbl.TabIndex = 9;
+            this.titleLbl.Text = "Customers";
             // 
             // listView
             // 

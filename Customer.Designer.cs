@@ -227,7 +227,6 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteCustomerBtn.Image = global::Database_Application_Chris.Properties.Resources.bin_small;
             this.deleteCustomerBtn.Location = new System.Drawing.Point(72, 542);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(148, 44);

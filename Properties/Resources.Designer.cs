@@ -193,26 +193,6 @@ namespace Database_Application_Chris.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notification_bell_alert1 {
-            get {
-                object obj = ResourceManager.GetObject("notification_bell_alert1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap notification_bell1 {
-            get {
-                object obj = ResourceManager.GetObject("notification_bell1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap refresh_small {
             get {
                 object obj = ResourceManager.GetObject("refresh_small", resourceCulture);

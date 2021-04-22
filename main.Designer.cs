@@ -32,10 +32,10 @@ namespace Database_Application_Chris
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.mongoReconnect = new System.Windows.Forms.Button();
             this.mongoStatusLbl = new System.Windows.Forms.Label();
             this.mongoDBLbl = new System.Windows.Forms.Label();
             this.versionLbl = new System.Windows.Forms.Label();
-            this.mongoReconnect = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
             this.DatabaseBtn = new System.Windows.Forms.Button();
@@ -75,6 +75,21 @@ namespace Database_Application_Chris
             this.panel3.Size = new System.Drawing.Size(318, 88);
             this.panel3.TabIndex = 6;
             // 
+            // mongoReconnect
+            // 
+            this.mongoReconnect.FlatAppearance.BorderSize = 0;
+            this.mongoReconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mongoReconnect.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.mongoReconnect.ForeColor = System.Drawing.Color.White;
+            this.mongoReconnect.Image = global::Database_Application_Chris.Properties.Resources.refresh_small;
+            this.mongoReconnect.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.mongoReconnect.Location = new System.Drawing.Point(237, 16);
+            this.mongoReconnect.Name = "mongoReconnect";
+            this.mongoReconnect.Size = new System.Drawing.Size(43, 42);
+            this.mongoReconnect.TabIndex = 4;
+            this.mongoReconnect.UseVisualStyleBackColor = true;
+            this.mongoReconnect.Click += new System.EventHandler(this.mongoReconnect_Click);
+            // 
             // mongoStatusLbl
             // 
             this.mongoStatusLbl.AutoSize = true;
@@ -107,21 +122,6 @@ namespace Database_Application_Chris
             this.versionLbl.Size = new System.Drawing.Size(10, 15);
             this.versionLbl.TabIndex = 5;
             this.versionLbl.Text = "-";
-            // 
-            // mongoReconnect
-            // 
-            this.mongoReconnect.FlatAppearance.BorderSize = 0;
-            this.mongoReconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mongoReconnect.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mongoReconnect.ForeColor = System.Drawing.Color.White;
-            this.mongoReconnect.Image = global::Database_Application_Chris.Properties.Resources.refresh_small;
-            this.mongoReconnect.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.mongoReconnect.Location = new System.Drawing.Point(237, 16);
-            this.mongoReconnect.Name = "mongoReconnect";
-            this.mongoReconnect.Size = new System.Drawing.Size(43, 42);
-            this.mongoReconnect.TabIndex = 4;
-            this.mongoReconnect.UseVisualStyleBackColor = true;
-            this.mongoReconnect.Click += new System.EventHandler(this.mongoReconnect_Click);
             // 
             // homeBtn
             // 
