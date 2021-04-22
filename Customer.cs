@@ -14,7 +14,7 @@ namespace Database_Application_Chris
     public partial class Customer : UserControl
     {
         public CustomerModel customerResult;
-        public string name;
+        public string name = "";
         public bool nameEdited = false; 
         public bool addCustomer = false; 
         public int errorsInForm = 0;

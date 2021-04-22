@@ -55,7 +55,6 @@ namespace Database_Application_Chris
             this.settingsBtn = new System.Windows.Forms.Button();
             this.notificationBtn = new System.Windows.Forms.Button();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.notify = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.titleBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -67,10 +66,10 @@ namespace Database_Application_Chris
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.mongoReconnect);
             this.panel3.Controls.Add(this.mongoStatusLbl);
             this.panel3.Controls.Add(this.mongoDBLbl);
             this.panel3.Controls.Add(this.versionLbl);
-            this.panel3.Controls.Add(this.mongoReconnect);
             this.panel3.Location = new System.Drawing.Point(2, 16);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(318, 88);
@@ -115,12 +114,12 @@ namespace Database_Application_Chris
             this.mongoReconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mongoReconnect.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mongoReconnect.ForeColor = System.Drawing.Color.White;
+            this.mongoReconnect.Image = global::Database_Application_Chris.Properties.Resources.refresh_small;
             this.mongoReconnect.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.mongoReconnect.Location = new System.Drawing.Point(238, 23);
+            this.mongoReconnect.Location = new System.Drawing.Point(237, 16);
             this.mongoReconnect.Name = "mongoReconnect";
-            this.mongoReconnect.Size = new System.Drawing.Size(48, 38);
+            this.mongoReconnect.Size = new System.Drawing.Size(43, 42);
             this.mongoReconnect.TabIndex = 4;
-            this.mongoReconnect.Text = "↻";
             this.mongoReconnect.UseVisualStyleBackColor = true;
             this.mongoReconnect.Click += new System.EventHandler(this.mongoReconnect_Click);
             // 
@@ -130,7 +129,7 @@ namespace Database_Application_Chris
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.homeBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.homeBtn.Image = ((System.Drawing.Image)(resources.GetObject("homeBtn.Image")));
+            this.homeBtn.Image = global::Database_Application_Chris.Properties.Resources.home;
             this.homeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.homeBtn.Location = new System.Drawing.Point(3, 3);
             this.homeBtn.Name = "homeBtn";
@@ -148,7 +147,7 @@ namespace Database_Application_Chris
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.searchBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.searchBtn.Image = ((System.Drawing.Image)(resources.GetObject("searchBtn.Image")));
+            this.searchBtn.Image = global::Database_Application_Chris.Properties.Resources.search;
             this.searchBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchBtn.Location = new System.Drawing.Point(3, 77);
             this.searchBtn.Name = "searchBtn";
@@ -166,7 +165,7 @@ namespace Database_Application_Chris
             this.DatabaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DatabaseBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DatabaseBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.DatabaseBtn.Image = ((System.Drawing.Image)(resources.GetObject("DatabaseBtn.Image")));
+            this.DatabaseBtn.Image = global::Database_Application_Chris.Properties.Resources.db;
             this.DatabaseBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DatabaseBtn.Location = new System.Drawing.Point(3, 151);
             this.DatabaseBtn.Name = "DatabaseBtn";
@@ -184,7 +183,7 @@ namespace Database_Application_Chris
             this.AddBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AddBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.AddBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddBtn.Image")));
+            this.AddBtn.Image = global::Database_Application_Chris.Properties.Resources.add_small;
             this.AddBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.AddBtn.Location = new System.Drawing.Point(3, 225);
             this.AddBtn.Name = "AddBtn";
@@ -223,12 +222,11 @@ namespace Database_Application_Chris
             this.minimize.FlatAppearance.BorderSize = 0;
             this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimize.Location = new System.Drawing.Point(1309, 0);
+            this.minimize.Location = new System.Drawing.Point(1299, 0);
             this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(35, 30);
+            this.minimize.Size = new System.Drawing.Size(40, 30);
             this.minimize.TabIndex = 10;
             this.minimize.Text = "−";
-            this.minimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.minimize.UseVisualStyleBackColor = false;
             this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
@@ -240,12 +238,11 @@ namespace Database_Application_Chris
             this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(1344, 0);
+            this.closeBtn.Location = new System.Drawing.Point(1339, 0);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(35, 30);
+            this.closeBtn.Size = new System.Drawing.Size(40, 30);
             this.closeBtn.TabIndex = 10;
             this.closeBtn.Text = "✖";
-            this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
@@ -270,7 +267,7 @@ namespace Database_Application_Chris
             // 
             // logo
             // 
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Image = global::Database_Application_Chris.Properties.Resources.fusion_Motors_blk_png;
             this.logo.Location = new System.Drawing.Point(27, 1);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(139, 118);
@@ -328,10 +325,10 @@ namespace Database_Application_Chris
             // 
             this.settingsBtn.FlatAppearance.BorderSize = 0;
             this.settingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Image")));
-            this.settingsBtn.Location = new System.Drawing.Point(1293, 65);
+            this.settingsBtn.Image = global::Database_Application_Chris.Properties.Resources.settings_small;
+            this.settingsBtn.Location = new System.Drawing.Point(1293, 75);
             this.settingsBtn.Name = "settingsBtn";
-            this.settingsBtn.Size = new System.Drawing.Size(51, 51);
+            this.settingsBtn.Size = new System.Drawing.Size(43, 43);
             this.settingsBtn.TabIndex = 6;
             this.settingsBtn.UseVisualStyleBackColor = true;
             this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
@@ -340,10 +337,10 @@ namespace Database_Application_Chris
             // 
             this.notificationBtn.FlatAppearance.BorderSize = 0;
             this.notificationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.notificationBtn.Image = ((System.Drawing.Image)(resources.GetObject("notificationBtn.Image")));
-            this.notificationBtn.Location = new System.Drawing.Point(1236, 65);
+            this.notificationBtn.Image = global::Database_Application_Chris.Properties.Resources.notification_bell;
+            this.notificationBtn.Location = new System.Drawing.Point(1244, 75);
             this.notificationBtn.Name = "notificationBtn";
-            this.notificationBtn.Size = new System.Drawing.Size(51, 51);
+            this.notificationBtn.Size = new System.Drawing.Size(43, 43);
             this.notificationBtn.TabIndex = 6;
             this.notificationBtn.UseVisualStyleBackColor = true;
             this.notificationBtn.Click += new System.EventHandler(this.notificationBtn_Click);
@@ -355,32 +352,22 @@ namespace Database_Application_Chris
             this.contextMenuStrip.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
-            // notify
-            // 
-            this.notify.Location = new System.Drawing.Point(1165, 83);
-            this.notify.Name = "notify";
-            this.notify.Size = new System.Drawing.Size(65, 25);
-            this.notify.TabIndex = 9;
-            this.notify.Text = "No New";
-            this.notify.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1379, 800);
-            this.Controls.Add(this.notify);
+            this.Controls.Add(this.UC);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.notificationBtn);
             this.Controls.Add(this.settingsBtn);
+            this.Controls.Add(this.titleBar);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.UC);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Title);
-            this.Controls.Add(this.titleBar);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -430,6 +417,5 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button notificationBtn;
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.Label notify;
     }
 }

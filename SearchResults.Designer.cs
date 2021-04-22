@@ -130,11 +130,11 @@ namespace Database_Application_Chris
             this.backBtn.BackColor = System.Drawing.Color.Gold;
             this.backBtn.FlatAppearance.BorderSize = 0;
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backBtn.Image = global::Database_Application_Chris.Properties.Resources.left_small;
             this.backBtn.Location = new System.Drawing.Point(408, 550);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(117, 49);
             this.backBtn.TabIndex = 4;
-            this.backBtn.Text = "<";
             this.backBtn.UseVisualStyleBackColor = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
@@ -144,11 +144,11 @@ namespace Database_Application_Chris
             this.fwdBtn.BackColor = System.Drawing.Color.Gold;
             this.fwdBtn.FlatAppearance.BorderSize = 0;
             this.fwdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fwdBtn.Image = global::Database_Application_Chris.Properties.Resources.right_small;
             this.fwdBtn.Location = new System.Drawing.Point(535, 550);
             this.fwdBtn.Name = "fwdBtn";
             this.fwdBtn.Size = new System.Drawing.Size(117, 49);
             this.fwdBtn.TabIndex = 4;
-            this.fwdBtn.Text = ">";
             this.fwdBtn.UseVisualStyleBackColor = false;
             this.fwdBtn.Click += new System.EventHandler(this.fwdBtn_Click);
             // 
@@ -168,18 +168,18 @@ namespace Database_Application_Chris
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.numResultsLbl);
             this.Controls.Add(this.fwdBtn);
             this.Controls.Add(this.backBtn);
-            this.Controls.Add(this.Result9);
-            this.Controls.Add(this.Result8);
-            this.Controls.Add(this.Result7);
-            this.Controls.Add(this.Result6);
-            this.Controls.Add(this.Result5);
-            this.Controls.Add(this.Result4);
-            this.Controls.Add(this.Result3);
-            this.Controls.Add(this.Result2);
             this.Controls.Add(this.Result1);
+            this.Controls.Add(this.Result2);
+            this.Controls.Add(this.Result3);
+            this.Controls.Add(this.Result4);
+            this.Controls.Add(this.Result5);
+            this.Controls.Add(this.Result6);
+            this.Controls.Add(this.Result7);
+            this.Controls.Add(this.Result8);
+            this.Controls.Add(this.Result9);
+            this.Controls.Add(this.numResultsLbl);
             this.Name = "SearchResultsControl";
             this.Size = new System.Drawing.Size(1059, 623);
             this.Load += new System.EventHandler(this.SearchResultsControl_Load);

@@ -119,6 +119,13 @@ namespace Database_Application_Chris
             // 
             // ImportPanel
             // 
+            this.ImportPanel.Controls.Add(this.file1TextBox);
+            this.ImportPanel.Controls.Add(this.selectFile1);
+            this.ImportPanel.Controls.Add(this.file2TextBox);
+            this.ImportPanel.Controls.Add(this.selectFile2);
+            this.ImportPanel.Controls.Add(this.importTablesBtn);
+            this.ImportPanel.Controls.Add(this.clear1);
+            this.ImportPanel.Controls.Add(this.clear2);
             this.ImportPanel.Controls.Add(this.pagePanel);
             this.ImportPanel.Controls.Add(this.label8);
             this.ImportPanel.Controls.Add(this.listTables);
@@ -127,13 +134,6 @@ namespace Database_Application_Chris
             this.ImportPanel.Controls.Add(this.file1Txt);
             this.ImportPanel.Controls.Add(this.label4);
             this.ImportPanel.Controls.Add(this.label2);
-            this.ImportPanel.Controls.Add(this.importTablesBtn);
-            this.ImportPanel.Controls.Add(this.selectFile2);
-            this.ImportPanel.Controls.Add(this.file2TextBox);
-            this.ImportPanel.Controls.Add(this.clear1);
-            this.ImportPanel.Controls.Add(this.clear2);
-            this.ImportPanel.Controls.Add(this.selectFile1);
-            this.ImportPanel.Controls.Add(this.file1TextBox);
             this.ImportPanel.Controls.Add(this.label1);
             this.ImportPanel.Location = new System.Drawing.Point(306, 25);
             this.ImportPanel.Name = "ImportPanel";
@@ -368,13 +368,13 @@ namespace Database_Application_Chris
             // 
             // exportPanel
             // 
-            this.exportPanel.Controls.Add(this.clearExportLocation);
-            this.exportPanel.Controls.Add(this.openLocation);
+            this.exportPanel.Controls.Add(this.tableComboBox);
             this.exportPanel.Controls.Add(this.exportLocationTxt);
+            this.exportPanel.Controls.Add(this.openLocation);
+            this.exportPanel.Controls.Add(this.clearExportLocation);
+            this.exportPanel.Controls.Add(this.exportTablesBtn);
             this.exportPanel.Controls.Add(this.label5);
             this.exportPanel.Controls.Add(this.label3);
-            this.exportPanel.Controls.Add(this.tableComboBox);
-            this.exportPanel.Controls.Add(this.exportTablesBtn);
             this.exportPanel.Controls.Add(this.label13);
             this.exportPanel.Enabled = false;
             this.exportPanel.Location = new System.Drawing.Point(325, 25);
@@ -433,9 +433,9 @@ namespace Database_Application_Chris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ImportPanel);
             this.Controls.Add(this.exportPanel);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.ImportPanel);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "SettingsPage";
             this.Size = new System.Drawing.Size(1059, 623);

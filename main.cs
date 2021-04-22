@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq.Expressions;
+using System.Media;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,19 @@ namespace Database_Application_Chris
 
         // Function running every x seconds 
         public double milliseconds = 2000; //2 seconds - 32 seconds wait in total due to mongo 30 sec timeout
+        public double millisecondsNotify = 10000; //10 seconds - 10 seconds to make button shake
+
         public double elapsedMilliseconds = 0;  
+        public double elapsedMilliseconds2 = 0;  
+
         public System.Timers.Timer clock;
         public bool alertDisconnect = false;
+
         public string mongoStatusLblTxt = "Mongo: Not Connected";
         public string mongoDBLblTxt = "No Database";
+
+        private int playOnce = 1;
+
 
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -124,11 +133,32 @@ namespace Database_Application_Chris
             {
                 hc.SetHomeClockTxt(DateTime.Now.ToString("hh:mm:ss tt"));
                 elapsedMilliseconds += clock.Interval;
+                elapsedMilliseconds2 += clock.Interval;
 
                 if (elapsedMilliseconds >= milliseconds)
                 {
                     elapsedMilliseconds = 0; //Reset checker varaiable
                     IsOnlineAsync();
+                }
+
+                if (elapsedMilliseconds2 >= millisecondsNotify)
+                {
+                    var originalLocation = notificationBtn.Location;
+                    var rnd = new Random(1337);
+                    const int shake_amplitude = 3;
+
+                    if (contextMenuStrip.Items.Count != 0)
+                    {
+                        for (int i = 0; i < 20; i++)
+                        {
+                            notificationBtn.Location = new Point(originalLocation.X + rnd.Next(-shake_amplitude, shake_amplitude), originalLocation.Y + rnd.Next(-shake_amplitude, shake_amplitude));
+                            System.Threading.Thread.Sleep(5);
+                            notificationBtn.Location = originalLocation;
+                        }
+                    }
+                    
+
+                    elapsedMilliseconds2 = 0; //Reset checker varaiable 
                 }
             }));
         }
@@ -622,7 +652,7 @@ namespace Database_Application_Chris
             if (db != null)
                 callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerModel>("Customers"));
 
-            if (callBackList != null)
+            if (callBackList.Count > 0)
             {
                 int i = 0;
 
@@ -630,7 +660,17 @@ namespace Database_Application_Chris
                     // Running on the UI thread 
                     contextMenuStrip.DropShadowEnabled = true;
                     contextMenuStrip.Items.Clear();
-                    notify.Text = "New";
+
+                    //Play sound to alert of callback
+                    if (playOnce > 0)
+                    {
+                        SoundPlayer splayer = new SoundPlayer(@"sound\notification_bell_sound.wav");
+                        splayer.Play();
+                        playOnce--;
+                    }
+
+                    // Change icon for notification bell
+                    notificationBtn.Image = Properties.Resources.notification_bell_alert;
 
 
                     foreach (var cus in callBackList)
@@ -639,6 +679,14 @@ namespace Database_Application_Chris
                         i++;
                     }
                 });
+            }else if (callBackList.Count == 0)
+            {
+                // Clear list and change notification icon to reflect change
+                contextMenuStrip.Items.Clear();
+                notificationBtn.Image = Properties.Resources.notification_bell;
+
+                //Reset notification sound play
+                playOnce = 1;
             }
         }
 

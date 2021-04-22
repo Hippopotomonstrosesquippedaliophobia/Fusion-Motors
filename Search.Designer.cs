@@ -46,21 +46,21 @@ namespace Database_Application_Chris
             this.listViewVehicles = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.titleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.Gold;
-            this.titleBar.Controls.Add(this.titleLbl);
             this.titleBar.Controls.Add(this.minimizeBtn);
             this.titleBar.Controls.Add(this.closeBtn);
+            this.titleBar.Controls.Add(this.titleLbl);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.titleBar.Location = new System.Drawing.Point(0, 0);
             this.titleBar.Name = "titleBar";
@@ -83,9 +83,9 @@ namespace Database_Application_Chris
             this.minimizeBtn.FlatAppearance.BorderSize = 0;
             this.minimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimizeBtn.Location = new System.Drawing.Point(854, 0);
+            this.minimizeBtn.Location = new System.Drawing.Point(842, 0);
             this.minimizeBtn.Name = "minimizeBtn";
-            this.minimizeBtn.Size = new System.Drawing.Size(35, 30);
+            this.minimizeBtn.Size = new System.Drawing.Size(40, 30);
             this.minimizeBtn.TabIndex = 8;
             this.minimizeBtn.Text = "−";
             this.minimizeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -99,9 +99,9 @@ namespace Database_Application_Chris
             this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(889, 0);
+            this.closeBtn.Location = new System.Drawing.Point(883, 0);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(35, 30);
+            this.closeBtn.Size = new System.Drawing.Size(40, 30);
             this.closeBtn.TabIndex = 7;
             this.closeBtn.Text = "✖";
             this.closeBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -219,11 +219,6 @@ namespace Database_Application_Chris
             this.columnHeader2.Text = "Engine Number";
             this.columnHeader2.Width = 180;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Colour";
-            this.columnHeader4.Width = 92;
-            // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Make";
@@ -249,14 +244,19 @@ namespace Database_Application_Chris
             this.columnHeader9.Text = "Asking Price";
             this.columnHeader9.Width = 130;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Colour";
+            this.columnHeader4.Width = 92;
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(923, 601);
-            this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.searchTxt);
+            this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.countLbl);
             this.Controls.Add(this.listViewVehicles);
             this.Controls.Add(this.listView);

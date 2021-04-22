@@ -39,11 +39,11 @@ namespace Database_Application_Chris
             // searchTxt
             // 
             this.searchTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.searchTxt.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchTxt.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.searchTxt.ForeColor = System.Drawing.Color.DarkGray;
             this.searchTxt.Location = new System.Drawing.Point(151, 321);
             this.searchTxt.Name = "searchTxt";
-            this.searchTxt.Size = new System.Drawing.Size(723, 28);
+            this.searchTxt.Size = new System.Drawing.Size(723, 30);
             this.searchTxt.TabIndex = 0;
             this.searchTxt.Text = "Search by first and last name (Eg. James Bond)...";
             this.searchTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -67,9 +67,10 @@ namespace Database_Application_Chris
             // 
             this.customersRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customersRadio.AutoSize = true;
+            this.customersRadio.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.customersRadio.Location = new System.Drawing.Point(404, 378);
             this.customersRadio.Name = "customersRadio";
-            this.customersRadio.Size = new System.Drawing.Size(99, 24);
+            this.customersRadio.Size = new System.Drawing.Size(118, 25);
             this.customersRadio.TabIndex = 3;
             this.customersRadio.TabStop = true;
             this.customersRadio.Text = "Customers";
@@ -80,9 +81,10 @@ namespace Database_Application_Chris
             // 
             this.vehiclesRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.vehiclesRadio.AutoSize = true;
+            this.vehiclesRadio.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.vehiclesRadio.Location = new System.Drawing.Point(563, 378);
             this.vehiclesRadio.Name = "vehiclesRadio";
-            this.vehiclesRadio.Size = new System.Drawing.Size(83, 24);
+            this.vehiclesRadio.Size = new System.Drawing.Size(100, 25);
             this.vehiclesRadio.TabIndex = 3;
             this.vehiclesRadio.TabStop = true;
             this.vehiclesRadio.Text = "Vehicles";
@@ -98,11 +100,11 @@ namespace Database_Application_Chris
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.Image = global::Database_Application_Chris.Properties.Resources.search_smaller;
             this.searchBtn.Location = new System.Drawing.Point(880, 321);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(28, 28);
+            this.searchBtn.Size = new System.Drawing.Size(30, 30);
             this.searchBtn.TabIndex = 4;
-            this.searchBtn.Text = "🔍";
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
@@ -110,11 +112,11 @@ namespace Database_Application_Chris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.searchBtn);
-            this.Controls.Add(this.vehiclesRadio);
-            this.Controls.Add(this.customersRadio);
-            this.Controls.Add(this.SearchPageLabel);
             this.Controls.Add(this.searchTxt);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.customersRadio);
+            this.Controls.Add(this.vehiclesRadio);
+            this.Controls.Add(this.SearchPageLabel);
             this.Name = "SearchHomeControl";
             this.Size = new System.Drawing.Size(1059, 623);
             this.ResumeLayout(false);

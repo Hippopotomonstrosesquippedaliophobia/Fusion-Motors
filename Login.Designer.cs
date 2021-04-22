@@ -127,7 +127,7 @@ namespace Database_Application_Chris
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::Database_Application_Chris.Properties.Resources.fusion_Motors_blk_png;
             this.pictureBox1.Location = new System.Drawing.Point(97, 47);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(176, 164);
@@ -169,10 +169,10 @@ namespace Database_Application_Chris
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(23, 10);
+            this.pictureBox2.Image = global::Database_Application_Chris.Properties.Resources.username;
+            this.pictureBox2.Location = new System.Drawing.Point(23, 12);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 30);
+            this.pictureBox2.Size = new System.Drawing.Size(32, 28);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
@@ -203,7 +203,7 @@ namespace Database_Application_Chris
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = global::Database_Application_Chris.Properties.Resources._lock;
             this.pictureBox3.Location = new System.Drawing.Point(23, 10);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(34, 30);
@@ -262,9 +262,9 @@ namespace Database_Application_Chris
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.close.ForeColor = System.Drawing.Color.Black;
-            this.close.Location = new System.Drawing.Point(889, 0);
+            this.close.Location = new System.Drawing.Point(879, 0);
             this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(30, 30);
+            this.close.Size = new System.Drawing.Size(40, 30);
             this.close.TabIndex = 8;
             this.close.Text = "✖";
             this.close.UseVisualStyleBackColor = false;
@@ -277,9 +277,9 @@ namespace Database_Application_Chris
             this.minimize.FlatAppearance.BorderSize = 0;
             this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimize.Location = new System.Drawing.Point(853, 0);
+            this.minimize.Location = new System.Drawing.Point(839, 0);
             this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(35, 30);
+            this.minimize.Size = new System.Drawing.Size(40, 30);
             this.minimize.TabIndex = 7;
             this.minimize.Text = "−";
             this.minimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;

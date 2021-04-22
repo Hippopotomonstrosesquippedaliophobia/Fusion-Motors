@@ -69,8 +69,8 @@ namespace Database_Application_Chris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.viewVehicles);
             this.Controls.Add(this.viewCustomers);
+            this.Controls.Add(this.viewVehicles);
             this.Name = "DatabaseHome";
             this.Size = new System.Drawing.Size(1059, 623);
             this.ResumeLayout(false);
