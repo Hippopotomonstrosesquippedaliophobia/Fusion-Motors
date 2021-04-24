@@ -217,6 +217,9 @@ namespace Database_Application_Chris
 
             exportPanel.Enabled = false;
             exportPanel.Visible = false;
+
+            aboutPanel.Enabled = false;
+            aboutPanel.Visible = false;
         }
 
         private void exportBtn_Click(object sender, EventArgs e)
@@ -229,12 +232,34 @@ namespace Database_Application_Chris
 
             ImportPanel.Enabled = false;
             ImportPanel.Visible = false;
+
+            aboutPanel.Enabled = false;
+            aboutPanel.Visible = false;
         }
 
         private void aboutBtn_Click(object sender, EventArgs e)
         {
             pagePanel.Height = aboutBtn.Height;
             pagePanel.Top = aboutBtn.Top;
+
+            aboutPanel.Enabled = true;
+            aboutPanel.Visible = true;
+
+            exportPanel.Enabled = false;
+            exportPanel.Visible = false;
+
+            ImportPanel.Enabled = false;
+            ImportPanel.Visible = false;
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+
+            // Key exists so continue
+            string version = ConfigurationManager.AppSettings["version"];
+            string versionIteration = ConfigurationManager.AppSettings["versionIteration"];
+            string lastUpdate = ConfigurationManager.AppSettings["lastUpdate"];
+
+            versionLbl.Text = "v" + version + "." + versionIteration;
+            lastUpDate.Text = lastUpdate;  
         }
 
         private void importTablesBtn_Click(object sender, EventArgs e)
