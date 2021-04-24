@@ -29,24 +29,28 @@ namespace Database_Application_Chris
             { 
                 path = config.AppSettings.Settings["mongoPath"].Value.ToString();
             }
-
-            if (Directory.Exists(path))
-            {
-                mongoBinPath = path; 
-
-                try
-                {
-                    SetPath(mongoBinPath, 0);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "");
-                }
-            }
             else
             {
-                MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Directory.Exists(path))
+                {
+                    mongoBinPath = path;
+
+                    try
+                    {
+                        SetPath(mongoBinPath, 0);
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
+            
             //if (File.Exists(path))
             //{
             //    using (StreamReader sr = new StreamReader(path))
@@ -115,8 +119,22 @@ namespace Database_Application_Chris
             //}
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            config.AppSettings.Settings.Add("mongoPath", path);
-            config.Save(ConfigurationSaveMode.Minimal);
+
+            // Key exists so continue
+            string patherino = ConfigurationManager.AppSettings["mongoPath"];
+
+            if (!String.IsNullOrEmpty(patherino))
+            {
+                if (Directory.Exists(path))
+                {
+
+                }
+            }else
+            {
+                config.AppSettings.Settings.Add("mongoPath", path);
+                config.Save(ConfigurationSaveMode.Minimal);
+            }
+                         
 
             if (type == 1)
             {

@@ -429,23 +429,19 @@ namespace Database_Application_Chris
         // Get mongo path
         public string GetPath()
         {
-            string path = Settings.mongoBinPath;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
-            if (path is null || path == "")
+            // Key exists so continue
+            string path = ConfigurationManager.AppSettings["mongoPath"];
+
+            if (!String.IsNullOrEmpty(path))
             {
-                // MAKE USER ENTER PATH
+                path = 0 + config.AppSettings.Settings["mongoPath"].Value.ToString();
+            }
+            else
+            {
                 using (var fbd = new FolderBrowserDialog())
                 {
-                    // tries to set selected Path to a default, if not..proceed as normal
-                    try 
-                    { 
-                        fbd.SelectedPath = @"C:\Program Files\MongoDB\Server\4.4\bin";
-                    }
-                    catch
-                    {
-
-                    }
-
                     DialogResult result = fbd.ShowDialog();
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
@@ -459,10 +455,39 @@ namespace Database_Application_Chris
                     }
                 }
             }
-            else
-            {
-                path = 0 + path;
-            }
+
+            //if (path is null || path == "")
+            //{
+            //    // MAKE USER ENTER PATH
+            //    using (var fbd = new FolderBrowserDialog())
+            //    {
+            //        // tries to set selected Path to a default, if not..proceed as normal
+            //        try 
+            //        { 
+            //            fbd.SelectedPath = @"C:\Program Files\MongoDB\Server\4.4\bin";
+            //        }
+            //        catch
+            //        {
+
+            //        }
+
+            //        DialogResult result = fbd.ShowDialog();
+
+            //        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            //        {
+            //            path = fbd.SelectedPath;
+            //        }
+            //        else if (result == DialogResult.Cancel)
+            //        {
+            //            //Closes application - Cannot run without path
+            //            System.Windows.Forms.Application.Exit();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    path = 0 + path;
+            //}
 
             return path;
         }
