@@ -26,6 +26,8 @@ namespace Database_Application_Chris
         {
             InitializeComponent();
 
+            EnableInterests();
+
             addThisCustomer.Visible = false;
             addThisCustomer.Enabled = false;
 
@@ -43,7 +45,9 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addCustomer)
             {
-                customerResult = new CustomerModel(); 
+                customerResult = new CustomerModel();
+
+                DisableInterests();
 
                 addThisCustomer.Visible = true;
                 addThisCustomer.Enabled = true;
@@ -53,9 +57,13 @@ namespace Database_Application_Chris
                 
                 updateCustomerBtn.Visible = false;
                 updateCustomerBtn.Enabled = false;
+
+                // Clear list
+                //customerResult.InterestedVehicles = null;
             }
             else
             {
+                EnableInterests();
                 addThisCustomer.Visible = false;
                 addThisCustomer.Enabled = false;
 
@@ -67,6 +75,23 @@ namespace Database_Application_Chris
             }
         }
 
+        private void DisableInterests()
+        {
+            addVehicleBtn.Enabled = false;
+            removeVehicleBtn.Enabled = false;
+
+            addVehicleBtn.Visible = false;
+            removeVehicleBtn.Visible = false;
+        }
+        
+        private void EnableInterests()
+        {
+            addVehicleBtn.Enabled = true;
+            removeVehicleBtn.Enabled = true;
+
+            addVehicleBtn.Visible = true;
+            removeVehicleBtn.Visible = true;
+        }
         private void Customer_Load(object sender, EventArgs e)
         {
             //RefreshInformation();
@@ -95,9 +120,25 @@ namespace Database_Application_Chris
             }
 
             BeautifulPhoneText(customerResult.ContactNums.ContactNum1.ToString(), num1Lbl);
-            BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
+
+            if (customerResult.ContactNums.ContactNum1 != 0)
+            {
+                BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
+            }
+            else
+            {
+                num2Lbl.Text = "";
+            }
+
             email1Lbl.Text = customerResult.Emails.Email1;
-            email2Lbl.Text = customerResult.Emails.Email2;
+
+            if (customerResult.Emails.Email2 != null)
+            {
+                email2Lbl.Text = customerResult.Emails.Email2;
+            }else
+            {
+                email2Lbl.Text = "";
+            }
 
             // Add vehicles to listbox
             interestedVehiclesListBox.DataSource = null;
@@ -168,9 +209,24 @@ namespace Database_Application_Chris
             }
 
             customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
-            customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
+
+            if (num2Lbl.Text.Trim().Length != 0)
+            {
+                customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
+            }else
+            {
+                customerResult.ContactNums.ContactNum2 = 0;
+            }
+
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
-            customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+
+            if (email2Lbl.Text.Trim().Length != 0)
+            {
+                customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+            }else
+            {
+                customerResult.Emails.Email2 = null;
+            }
 
             int x = 0;
             customerResult.InterestedVehicles.Clear();
@@ -217,9 +273,26 @@ namespace Database_Application_Chris
             }
 
             customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
-            customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
+
+            if (num2Lbl.Text.Trim().Length != 0)
+            {
+                customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
+            }
+            else
+            {
+                customerResult.ContactNums.ContactNum2 = 0;
+            }
+
             customerResult.Emails.Email1 = email1Lbl.Text.Trim();
-            customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+
+            if (email2Lbl.Text.Trim().Length != 0)
+            {
+                customerResult.Emails.Email2 = email2Lbl.Text.Trim();
+            }
+            else
+            {
+                customerResult.Emails.Email2 = null;
+            }
 
             //int x = 0;
             //customerResult.InterestedVehicles.Clear();
@@ -229,9 +302,9 @@ namespace Database_Application_Chris
             //{
             //    interest.Add(vehicles[i].EngineNum);
             //}
-             
+
             //customerResult.InterestedVehicles = interest;
-                
+
 
             customerResult.InProgressFlag = inProgressCheckbox.Checked;
             customerResult.CallBackFlag = callBackCheckbox.Checked;
@@ -447,8 +520,15 @@ namespace Database_Application_Chris
          
         private void num2Lbl_Leave(object sender, EventArgs e)
         {
-            ValidationProcess(num2Lbl);
-            FormatNum(num2Lbl);
+            if (num2Lbl.Text.Trim().Length != 0)
+            {
+                ValidationProcess(num2Lbl);
+                FormatNum(num2Lbl);
+            }else
+            {
+                label3.ForeColor = Color.Black;
+                num2Lbl.ForeColor = Color.Black;
+            }
         }
 
         private void email1Lbl_Leave(object sender, EventArgs e)
@@ -457,8 +537,16 @@ namespace Database_Application_Chris
         }
 
         private void email2Lbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(email2Lbl); 
+        {
+            if (email2Lbl.Text.Trim().Length != 0)
+            {
+                ValidationProcess(email2Lbl);
+            }
+            else
+            {
+                label5.ForeColor = Color.Black;
+                email2Lbl.ForeColor = Color.Black;
+            }
         }
 
         private void interestedVehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -520,7 +608,8 @@ namespace Database_Application_Chris
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error converting telephone number to integer \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error converting telephone number to integer! \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error converting telephone number to integer!", "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return returnVal;
@@ -594,9 +683,21 @@ namespace Database_Application_Chris
                 err.AddRange(validate.CheckName(nameLbl.Text.Trim()));
                 err.AddRange(validate.CheckAddress(addressLbl.Text.Trim()));
                 err.AddRange(validate.CheckNum(num1Lbl.Text.Trim()));
-                err.AddRange(validate.CheckNum(num2Lbl.Text.Trim()));
+
+                //If empty allow it, as not all customers have both
+                if (num2Lbl.Text.Trim().Length != 0)
+                {
+                    err.AddRange(validate.CheckNum(num2Lbl.Text.Trim()));
+                }
+
                 err.AddRange(validate.CheckEmail(email1Lbl.Text.Trim()));
-                err.AddRange(validate.CheckEmail(email2Lbl.Text.Trim()));
+
+                //If empty allow it, as not all customers have both
+                if (email2Lbl.Text.Trim().Length != 0)
+                {
+                    err.AddRange(validate.CheckEmail(email2Lbl.Text.Trim()));
+                }
+
                 if (err.Count != 0)
                 { 
                     errorsInForm = err.Count;
@@ -626,7 +727,7 @@ namespace Database_Application_Chris
                     counter += err.Count;
                     OutputErrors(field, err);
                     break;
-                case "num2Lbl":
+                case "num2Lbl": 
                     err = validate.CheckNum(num2Lbl.Text.Trim());
                     counter += err.Count;
                     OutputErrors(field, err);
@@ -697,21 +798,26 @@ namespace Database_Application_Chris
 
         private void removeVehicle_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItem + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                // Get List of removed vehicles for update reasons
-                int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+            // Get List of removed vehicles for update reasons
+            int selectedIndex = interestedVehiclesListBox.SelectedIndex;
 
-                RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
-
-                vehicles.RemoveAt(selectedIndex); 
-                interestedVehiclesListBox.DataSource = vehicles;
-                UpdateCustomerList();
-            }
-            else if (dialogResult == DialogResult.No)
+            if (interestedVehiclesListBox.Items.Count != 0)
             {
-                return;
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItem + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+
+                    RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
+
+                    vehicles.RemoveAt(selectedIndex); 
+                    interestedVehiclesListBox.DataSource = vehicles;
+                    UpdateCustomerList();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
             }
         }
 

@@ -78,7 +78,6 @@ namespace Database_Application_Chris
             this.nameLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.nameLbl.Size = new System.Drawing.Size(660, 29);
             this.nameLbl.TabIndex = 1;
-            this.nameLbl.Text = "James Bond";
             this.nameLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip.SetToolTip(this.nameLbl, "Customer\'s name ");
             this.nameLbl.Leave += new System.EventHandler(this.nameLbl_Leave);
@@ -94,7 +93,6 @@ namespace Database_Application_Chris
             this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.addressLbl.Size = new System.Drawing.Size(643, 26);
             this.addressLbl.TabIndex = 1;
-            this.addressLbl.Text = "Lot # 555 Test Hill, St. James, Barbados";
             this.toolTip.SetToolTip(this.addressLbl, "Address");
             this.addressLbl.ForeColorChanged += new System.EventHandler(this.addressLbl_ForeColorChanged);
             this.addressLbl.Leave += new System.EventHandler(this.addressLbl_Leave);
@@ -110,7 +108,6 @@ namespace Database_Application_Chris
             this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.num1Lbl.Size = new System.Drawing.Size(306, 26);
             this.num1Lbl.TabIndex = 1;
-            this.num1Lbl.Text = "555-5555";
             this.toolTip.SetToolTip(this.num1Lbl, "Primary number");
             this.num1Lbl.ForeColorChanged += new System.EventHandler(this.num1Lbl_ForeColorChanged);
             this.num1Lbl.Leave += new System.EventHandler(this.num1Lbl_Leave);
@@ -126,7 +123,6 @@ namespace Database_Application_Chris
             this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.num2Lbl.Size = new System.Drawing.Size(306, 26);
             this.num2Lbl.TabIndex = 1;
-            this.num2Lbl.Text = "555-5555";
             this.toolTip.SetToolTip(this.num2Lbl, "Secondary number");
             this.num2Lbl.ForeColorChanged += new System.EventHandler(this.num2Lbl_ForeColorChanged);
             this.num2Lbl.Leave += new System.EventHandler(this.num2Lbl_Leave);
@@ -142,7 +138,6 @@ namespace Database_Application_Chris
             this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email2Lbl.Size = new System.Drawing.Size(306, 26);
             this.email2Lbl.TabIndex = 1;
-            this.email2Lbl.Text = "testeremail@outlook.com";
             this.toolTip.SetToolTip(this.email2Lbl, "Secondary email");
             this.email2Lbl.ForeColorChanged += new System.EventHandler(this.email2Lbl_ForeColorChanged);
             this.email2Lbl.Leave += new System.EventHandler(this.email2Lbl_Leave);
@@ -158,7 +153,6 @@ namespace Database_Application_Chris
             this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.email1Lbl.Size = new System.Drawing.Size(306, 26);
             this.email1Lbl.TabIndex = 1;
-            this.email1Lbl.Text = "testeremail@outlook.com";
             this.toolTip.SetToolTip(this.email1Lbl, "Primary email");
             this.email1Lbl.ForeColorChanged += new System.EventHandler(this.email1Lbl_ForeColorChanged);
             this.email1Lbl.Leave += new System.EventHandler(this.email1Lbl_Leave);

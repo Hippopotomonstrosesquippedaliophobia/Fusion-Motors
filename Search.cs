@@ -29,8 +29,8 @@ namespace Database_Application_Chris
         bool selectForList = false;
         public bool sentFromAddPage = false;
 
-        CustomerModel selectForListCModel = new CustomerModel();
-        VehicleModel selectForListVModel = new VehicleModel();
+        public CustomerModel selectForListCModel = new CustomerModel();
+        public VehicleModel selectForListVModel = new VehicleModel();
 
         public List<CustomerModel> listCustomers;
         public List<VehicleModel> listVehicles;
@@ -351,7 +351,7 @@ namespace Database_Application_Chris
                             main.Instance.PanelContainer.Controls.Add(uc);
                         }
 
-                        main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+                        main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
                     }
                     else // Selected to pass thru for list from Customer
                     { 
@@ -448,9 +448,10 @@ namespace Database_Application_Chris
                         }
                     }
                     else // Selected to pass thru for list from Customer
-                    {
+                    { 
                         //Refresh of controls
                         main.Instance.PanelContainer.Controls.Clear();
+                         
                         //selectForListCModel
                         //Open Customer
                         if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
@@ -469,18 +470,42 @@ namespace Database_Application_Chris
                                 }
                                 else
                                 {
-                                    selectForListCModel.InterestedVehicles.Add(tempList[0].EngineNum); 
-                                }
+                                    bool alreadyAdded = false;
+                                    int i = 0;
+
+                                    uc.customerResult = selectForListCModel;
+
+                                    foreach (var veh in uc.customerResult.InterestedVehicles)
+                                    {
+                                        if (tempList[0].EngineNum == uc.customerResult.InterestedVehicles[i])
+                                        {
+                                            alreadyAdded = true;
+                                        }
+                                        i++;
+                                    }
+
+                                    if (!alreadyAdded)
+                                    {
+                                        uc.customerResult.InterestedVehicles.Add(tempList[0].EngineNum);
+                                    }else
+                                    {
+                                        //await Task.Run(() => MessageBox.Show("Already added this vehicle", "Vehicle Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error));
+                                    }
+
+                                    //selectForListCModel.InterestedVehicles.Add(tempList[0].EngineNum);
+                                } 
                             }
                             catch (Exception err)
                             {
                                 //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
-                            uc.customerResult = selectForListCModel; // Reset page variable with new information
+                           // uc.customerResult = selectForListCModel; // Reset page variable with new information
+                            
 
                             //Refresh form
                             uc.RefreshInformation();
+
                             main.Instance.PanelContainer.Controls.Add(uc);
 
                             main.Instance.PanelContainer.Controls["Customer"].BringToFront();

@@ -254,7 +254,7 @@ namespace Database_Application_Chris
                        
                         if (dialogResult == DialogResult.Yes)
                         {
-                            main.Instance.RunCmd(Settings.commands["importMongoCustomers"] + file1TextBox.Text + " --jsonArray", settings.commandsInfo["importMongoCustomers"]);
+                            main.Instance.RunCmd(Settings.commands["importMongoCustomers"] + file1TextBox.Text + "\" ", settings.commandsInfo["importMongoCustomers"]);
                         }
                         else
                         {
@@ -267,7 +267,7 @@ namespace Database_Application_Chris
 
                         if (dialogResult == DialogResult.Yes)
                         {
-                            main.Instance.RunCmd(Settings.commands["importMongoVehicles"] + file1TextBox.Text + " --jsonArray", settings.commandsInfo["importMongoVehicles"]);
+                            main.Instance.RunCmd(Settings.commands["importMongoVehicles"] + file1TextBox.Text + "\" ", settings.commandsInfo["importMongoVehicles"]);
                         }
                         else
                         {
@@ -306,7 +306,7 @@ namespace Database_Application_Chris
 
                         if (dialogResult == DialogResult.Yes)
                         {
-                            main.Instance.RunCmd(Settings.commands["importMongoCustomers"] + file2TextBox.Text + " --jsonArray", settings.commandsInfo["importMongoCustomers"]);
+                            main.Instance.RunCmd(Settings.commands["importMongoCustomers"] + file2TextBox.Text + "\" ", settings.commandsInfo["importMongoCustomers"]);
                         }
                         else
                         {
@@ -319,7 +319,7 @@ namespace Database_Application_Chris
 
                         if (dialogResult == DialogResult.Yes)
                         {
-                            main.Instance.RunCmd(Settings.commands["importMongoVehicles"] + file2TextBox.Text + " --jsonArray", settings.commandsInfo["importMongoVehicles"]);
+                            main.Instance.RunCmd(Settings.commands["importMongoVehicles"] + file2TextBox.Text + "\" ", settings.commandsInfo["importMongoVehicles"]);
                         }
                         else
                         {
@@ -497,7 +497,7 @@ namespace Database_Application_Chris
 
                         if (list != null) // Something returned
                         {
-                            main.Instance.RunCmd("mongoexport --collection=" + tableComboBox.Text + " --db=" + database + " --out=" + exportLocationTxt.Text + @"\" + fileName, "Exports table to file in specified location");
+                            main.Instance.RunCmd("mongoexport --collection=" + tableComboBox.Text + " --db=" + database + " --out=\"" + exportLocationTxt.Text + @"\" + fileName + "\"", "Exports table to file in specified location");
                             MessageBox.Show("Successfully Exported!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                         }else
                         {

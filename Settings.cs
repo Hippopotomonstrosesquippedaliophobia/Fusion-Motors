@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 
@@ -17,74 +18,105 @@ namespace Database_Application_Chris
 
         public Settings()
         {
-            string path = @"Mongo.txt"; 
+            string path = "";
 
-            if (File.Exists(path))
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+
+            // Key exists so continue
+            string s = ConfigurationManager.AppSettings["mongoPath"];
+
+            if (!String.IsNullOrEmpty(s))
+            { 
+                path = config.AppSettings.Settings["mongoPath"].Value.ToString();
+            }
+
+            if (Directory.Exists(path))
             {
-                using (StreamReader sr = new StreamReader(path))
-                { 
-                    //while (!sr.EndOfStream)
-                    //{
-                        var line = sr.ReadLine();
+                mongoBinPath = path; 
 
-                        if (line.StartsWith("MongoPath"))
-                        {
-                            string temp = line;
-                            string[] pathReconstruction = temp.Split("=");
-
-                            //Check if theres a path provided
-                            if (pathReconstruction.Length > 1)
-                            {
-                                temp = pathReconstruction[1].Trim();
-                            }else
-                            {
-                                temp = "";
-                            }
-
-                            if (Directory.Exists(temp))
-                            {
-                                mongoBinPath = temp;
-
-                                //Allow Stream Write to access file - Can Only access first line
-                                sr.Close();
-
-                                try
-                                {
-                                    SetPath(mongoBinPath, 0);
-                                }
-                                catch (Exception err)
-                                {
-                                    MessageBox.Show(err.Message, "");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }          
-                        }
-                    //}
-                } 
+                try
+                {
+                    SetPath(mongoBinPath, 0);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "");
+                }
             }
             else
             {
-                using (StreamWriter sw = new StreamWriter(path))
-                {
-                    sw.Write(@"MongoPath: ");
-                    //C:\Program Files\MongoDB\Server\4.4\bin
-                }
-
                 MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //if (File.Exists(path))
+            //{
+            //    using (StreamReader sr = new StreamReader(path))
+            //    { 
+            //        //while (!sr.EndOfStream)
+            //        //{
+            //            var line = sr.ReadLine();
+
+            //            if (line.StartsWith("MongoPath"))
+            //            {
+            //                string temp = line;
+            //                string[] pathReconstruction = temp.Split("=");
+
+            //                //Check if theres a path provided
+            //                if (pathReconstruction.Length > 1)
+            //                {
+            //                    temp = pathReconstruction[1].Trim();
+            //                }else
+            //                {
+            //                    temp = "";
+            //                }
+
+            //                if (Directory.Exists(temp))
+            //                {
+            //                    mongoBinPath = temp;
+
+            //                    //Allow Stream Write to access file - Can Only access first line
+            //                    sr.Close();
+
+            //                    try
+            //                    {
+            //                        SetPath(mongoBinPath, 0);
+            //                    }
+            //                    catch (Exception err)
+            //                    {
+            //                        MessageBox.Show(err.Message, "");
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //                }          
+            //            }
+            //        //}
+            //    } 
+            //}
+            //else
+            //{
+            //    using (StreamWriter sw = new StreamWriter(path))
+            //    {
+            //        sw.Write(@"MongoPath: ");
+            //        //C:\Program Files\MongoDB\Server\4.4\bin
+            //    }
+
+            //    MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
         }
 
         public void SetPath(string path, int type)
         {
-            using (StreamWriter sw = (File.Exists("Mongo.txt")) ? File.CreateText("Mongo.txt") : File.CreateText("Mongo.txt"))
-            {
-                sw.Write(@"MongoPath = " + path);
-                sw.Close();
-            }
+            //using (StreamWriter sw = (File.Exists("Mongo.txt")) ? File.CreateText("Mongo.txt") : File.CreateText("Mongo.txt"))
+            //{
+            //    sw.Write(@"MongoPath = " + path);
+            //    sw.Close();
+            //}
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            config.AppSettings.Settings.Add("mongoPath", path);
+            config.Save(ConfigurationSaveMode.Minimal);
 
             if (type == 1)
             {
@@ -104,8 +136,8 @@ namespace Database_Application_Chris
             {"mongoServiceStart", "mongod.exe --dbpath \"" + AppDomain.CurrentDomain.BaseDirectory + @"\Database" + "\""},
             {"mongoServiceEnd", "taskkill /F /IM mongod.exe"},
             {"makeDirDB", @"mkdir Database"},
-            {"importMongoCustomers", @"mongoimport --db FusionMotors --collection Customers --file "},
-            {"importMongoVehicles", @"mongoimport --db FusionMotors --collection Vehicles --file "}
+            {"importMongoCustomers", "mongoimport --upsert --db FusionMotors --collection Customers --drop --file \""},
+            {"importMongoVehicles", "mongoimport --upsert --db FusionMotors --collection Vehicles --drop --file \""}
         };
 
         public readonly IDictionary<string, string> commandsInfo = new Dictionary<string, string>()
