@@ -86,7 +86,7 @@ namespace Database_Application_Chris
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(946, 47);
+            this.panel1.Size = new System.Drawing.Size(1018, 47);
             this.panel1.TabIndex = 6;
             // 
             // engineNumLbl
@@ -94,13 +94,12 @@ namespace Database_Application_Chris
             this.engineNumLbl.BackColor = System.Drawing.Color.Gold;
             this.engineNumLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.engineNumLbl.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.engineNumLbl.Location = new System.Drawing.Point(30, 12);
+            this.engineNumLbl.Location = new System.Drawing.Point(55, 12);
             this.engineNumLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.engineNumLbl.Name = "engineNumLbl";
             this.engineNumLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.engineNumLbl.Size = new System.Drawing.Size(866, 23);
+            this.engineNumLbl.Size = new System.Drawing.Size(558, 23);
             this.engineNumLbl.TabIndex = 1;
-            this.engineNumLbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip.SetToolTip(this.engineNumLbl, "Engine Number");
             this.engineNumLbl.Leave += new System.EventHandler(this.engineNumLbl_Leave);
             // 
@@ -112,7 +111,7 @@ namespace Database_Application_Chris
             this.addCustomerBtn.FlatAppearance.BorderSize = 0;
             this.addCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addCustomerBtn.Location = new System.Drawing.Point(667, 26);
+            this.addCustomerBtn.Location = new System.Drawing.Point(739, 26);
             this.addCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addCustomerBtn.Name = "addCustomerBtn";
             this.addCustomerBtn.Size = new System.Drawing.Size(190, 33);
@@ -164,7 +163,7 @@ namespace Database_Application_Chris
             this.interestedCustomersListBox.Location = new System.Drawing.Point(24, 0);
             this.interestedCustomersListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.interestedCustomersListBox.Name = "interestedCustomersListBox";
-            this.interestedCustomersListBox.Size = new System.Drawing.Size(243, 351);
+            this.interestedCustomersListBox.Size = new System.Drawing.Size(243, 375);
             this.interestedCustomersListBox.TabIndex = 13;
             this.toolTip.SetToolTip(this.interestedCustomersListBox, "List of interested customers");
             this.interestedCustomersListBox.DoubleClick += new System.EventHandler(this.interestedCustomersListBox_DoubleClick);
@@ -191,7 +190,7 @@ namespace Database_Application_Chris
             this.colourLbl.BackColor = System.Drawing.Color.White;
             this.colourLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.colourLbl.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.colourLbl.Location = new System.Drawing.Point(426, 48);
+            this.colourLbl.Location = new System.Drawing.Point(433, 48);
             this.colourLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colourLbl.Name = "colourLbl";
             this.colourLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -224,7 +223,7 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteCustomerBtn.Image = global::Database_Application_Chris.Properties.Resources.bin_small;
-            this.deleteCustomerBtn.Location = new System.Drawing.Point(863, 26);
+            this.deleteCustomerBtn.Location = new System.Drawing.Point(935, 26);
             this.deleteCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(47, 33);
@@ -248,7 +247,7 @@ namespace Database_Application_Chris
             // 
             this.L8.AutoSize = true;
             this.L8.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.L8.Location = new System.Drawing.Point(426, 30);
+            this.L8.Location = new System.Drawing.Point(433, 30);
             this.L8.Name = "L8";
             this.L8.Size = new System.Drawing.Size(54, 16);
             this.L8.TabIndex = 20;
@@ -391,7 +390,7 @@ namespace Database_Application_Chris
             this.ownerLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ownerLbl.Name = "ownerLbl";
             this.ownerLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ownerLbl.Size = new System.Drawing.Size(197, 24);
+            this.ownerLbl.Size = new System.Drawing.Size(224, 24);
             this.ownerLbl.TabIndex = 12;
             // 
             // L2
@@ -494,9 +493,9 @@ namespace Database_Application_Chris
             this.FormButtonsSection.Controls.Add(this.deleteCustomerBtn);
             this.FormButtonsSection.Controls.Add(this.addCustomerBtn);
             this.FormButtonsSection.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FormButtonsSection.Location = new System.Drawing.Point(0, 460);
+            this.FormButtonsSection.Location = new System.Drawing.Point(0, 484);
             this.FormButtonsSection.Name = "FormButtonsSection";
-            this.FormButtonsSection.Size = new System.Drawing.Size(946, 110);
+            this.FormButtonsSection.Size = new System.Drawing.Size(1018, 110);
             this.FormButtonsSection.TabIndex = 26;
             // 
             // InterestedCustomersPanel
@@ -504,9 +503,9 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel.Controls.Add(this.panel6);
             this.InterestedCustomersPanel.Controls.Add(this.label3);
             this.InterestedCustomersPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.InterestedCustomersPanel.Location = new System.Drawing.Point(646, 47);
+            this.InterestedCustomersPanel.Location = new System.Drawing.Point(718, 47);
             this.InterestedCustomersPanel.Name = "InterestedCustomersPanel";
-            this.InterestedCustomersPanel.Size = new System.Drawing.Size(300, 413);
+            this.InterestedCustomersPanel.Size = new System.Drawing.Size(300, 437);
             this.InterestedCustomersPanel.TabIndex = 27;
             // 
             // panel6
@@ -516,7 +515,7 @@ namespace Database_Application_Chris
             this.panel6.Controls.Add(this.interestedCustomersListBox);
             this.panel6.Location = new System.Drawing.Point(2, 40);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(267, 351);
+            this.panel6.Size = new System.Drawing.Size(267, 375);
             this.panel6.TabIndex = 21;
             // 
             // panel7
@@ -526,9 +525,10 @@ namespace Database_Application_Chris
             this.panel7.Controls.Add(this.panel4);
             this.panel7.Controls.Add(this.panel3);
             this.panel7.Controls.Add(this.panel2);
-            this.panel7.Location = new System.Drawing.Point(2, 47);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 47);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(644, 412);
+            this.panel7.Size = new System.Drawing.Size(718, 437);
             this.panel7.TabIndex = 28;
             // 
             // Vehicle
@@ -541,7 +541,7 @@ namespace Database_Application_Chris
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Vehicle";
-            this.Size = new System.Drawing.Size(946, 570);
+            this.Size = new System.Drawing.Size(1018, 594);
             this.Click += new System.EventHandler(this.Vehicle_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
