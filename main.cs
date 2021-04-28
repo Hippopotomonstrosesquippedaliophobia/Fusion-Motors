@@ -51,7 +51,7 @@ namespace Database_Application_Chris
         const int CS_DBLCLKS = 0x8;
 
         // Windows snapping 
-        private const int SnapDist = 100;
+        private const int SnapDist = 1;
 
         // Maximize window 
         private Point old_loc = new Point(0, 0);
@@ -92,7 +92,7 @@ namespace Database_Application_Chris
         {
             _obj = this;
             hc = new HomeControl();
-            clock = new System.Timers.Timer();
+            clock = new System.Timers.Timer(); 
 
             //// Disables horizontal scroll on side panel  
             panel1.AutoScroll = false;
@@ -746,6 +746,11 @@ namespace Database_Application_Chris
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+
+            if (e.Button == MouseButtons.Left && e.Clicks == 2)
+            {
+                MaxWindow();
+            }
         }
 
         // Minimize behaviour for window
@@ -832,29 +837,36 @@ namespace Database_Application_Chris
                 this.Size = new Size(x, y);
             }
         }
-         
+
 
 
         private bool DoSnap(int pos, int edge)
         {
             int delta = pos - edge;
-            return delta > 0 && delta <= SnapDist;
-        }
+            return delta <= SnapDist;
+        } 
 
         protected override void OnResizeEnd(EventArgs e)
         {
             base.OnResizeEnd(e);
             Screen scn = Screen.FromPoint(this.Location);
+
             if (DoSnap(this.Left, scn.WorkingArea.Left)) this.Left = scn.WorkingArea.Left;
-            if (DoSnap(this.Top, scn.WorkingArea.Top)) this.Top = scn.WorkingArea.Top;
+            if (DoSnap(this.Top, scn.WorkingArea.Top))
+            {
+                MaxWindow();
+            }
+            else 
+            {
+                if (maximized)
+                {
+                    old_loc.Y = MousePosition.Y;
+                    MaxWindow();
+                } 
+            }
             if (DoSnap(scn.WorkingArea.Right, this.Right)) this.Left = scn.WorkingArea.Right - this.Width;
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom)) this.Top = scn.WorkingArea.Bottom - this.Height;
         }
-
-        private void titleBar_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show("");
-            MaxWindow();
-        } 
+         
     }
 }

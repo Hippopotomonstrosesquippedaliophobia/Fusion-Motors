@@ -84,9 +84,8 @@ namespace Database_Application_Chris
             this.titleBar.Location = new System.Drawing.Point(0, 0);
             this.titleBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.titleBar.Name = "titleBar";
-            this.titleBar.Size = new System.Drawing.Size(1208, 22);
+            this.titleBar.Size = new System.Drawing.Size(1303, 22);
             this.titleBar.TabIndex = 1;
-            this.titleBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDoubleClick);
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBar_MouseDown);
             // 
             // maximize
@@ -96,7 +95,7 @@ namespace Database_Application_Chris
             this.maximize.FlatAppearance.BorderSize = 0;
             this.maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.maximize.Font = new System.Drawing.Font("Webdings", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.maximize.Location = new System.Drawing.Point(1135, 0);
+            this.maximize.Location = new System.Drawing.Point(1233, 0);
             this.maximize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.maximize.Name = "maximize";
             this.maximize.Size = new System.Drawing.Size(35, 22);
@@ -113,7 +112,7 @@ namespace Database_Application_Chris
             this.minimize.FlatAppearance.BorderSize = 0;
             this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimize.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.minimize.Location = new System.Drawing.Point(1103, 0);
+            this.minimize.Location = new System.Drawing.Point(1198, 0);
             this.minimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.minimize.Name = "minimize";
             this.minimize.Size = new System.Drawing.Size(35, 22);
@@ -130,7 +129,7 @@ namespace Database_Application_Chris
             this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(1173, 0);
+            this.closeBtn.Location = new System.Drawing.Point(1268, 0);
             this.closeBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(35, 22);
@@ -178,7 +177,7 @@ namespace Database_Application_Chris
             this.UC.Location = new System.Drawing.Point(0, 0);
             this.UC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UC.Name = "UC";
-            this.UC.Size = new System.Drawing.Size(923, 558);
+            this.UC.Size = new System.Drawing.Size(1018, 594);
             this.UC.TabIndex = 4;
             // 
             // settingsBtn
@@ -187,7 +186,7 @@ namespace Database_Application_Chris
             this.settingsBtn.FlatAppearance.BorderSize = 0;
             this.settingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settingsBtn.Image = global::Database_Application_Chris.Properties.Resources.settings_small;
-            this.settingsBtn.Location = new System.Drawing.Point(837, 33);
+            this.settingsBtn.Location = new System.Drawing.Point(932, 33);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(38, 32);
@@ -201,7 +200,7 @@ namespace Database_Application_Chris
             this.notificationBtn.FlatAppearance.BorderSize = 0;
             this.notificationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.notificationBtn.Image = global::Database_Application_Chris.Properties.Resources.notification_bell;
-            this.notificationBtn.Location = new System.Drawing.Point(794, 33);
+            this.notificationBtn.Location = new System.Drawing.Point(889, 33);
             this.notificationBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.notificationBtn.Name = "notificationBtn";
             this.notificationBtn.Size = new System.Drawing.Size(38, 32);
@@ -221,7 +220,7 @@ namespace Database_Application_Chris
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 577);
+            this.panel1.Location = new System.Drawing.Point(0, 643);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(285, 89);
@@ -298,7 +297,7 @@ namespace Database_Application_Chris
             this.panel7.Controls.Add(this.panel2);
             this.panel7.Location = new System.Drawing.Point(0, 18);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(283, 544);
+            this.panel7.Size = new System.Drawing.Size(283, 610);
             this.panel7.TabIndex = 6;
             // 
             // flowLayoutPanel1
@@ -312,7 +311,7 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(255, 544);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(255, 610);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // homeBtn
@@ -400,7 +399,7 @@ namespace Database_Application_Chris
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(21, 544);
+            this.panel2.Size = new System.Drawing.Size(21, 610);
             this.panel2.TabIndex = 0;
             // 
             // sidePanel
@@ -422,7 +421,7 @@ namespace Database_Application_Chris
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(285, 666);
+            this.panel6.Size = new System.Drawing.Size(285, 732);
             this.panel6.TabIndex = 7;
             // 
             // panel4
@@ -431,12 +430,11 @@ namespace Database_Application_Chris
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 22);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(285, 666);
+            this.panel4.Size = new System.Drawing.Size(285, 732);
             this.panel4.TabIndex = 8;
             // 
             // TopBar
             // 
-            this.TopBar.AutoSize = true;
             this.TopBar.Controls.Add(this.Title);
             this.TopBar.Controls.Add(this.panel5);
             this.TopBar.Controls.Add(this.settingsBtn);
@@ -444,16 +442,16 @@ namespace Database_Application_Chris
             this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopBar.Location = new System.Drawing.Point(285, 22);
             this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(923, 108);
+            this.TopBar.Size = new System.Drawing.Size(1018, 138);
             this.TopBar.TabIndex = 9;
             // 
             // UserControlArea
             // 
             this.UserControlArea.Controls.Add(this.UC);
             this.UserControlArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserControlArea.Location = new System.Drawing.Point(285, 130);
+            this.UserControlArea.Location = new System.Drawing.Point(285, 160);
             this.UserControlArea.Name = "UserControlArea";
-            this.UserControlArea.Size = new System.Drawing.Size(923, 558);
+            this.UserControlArea.Size = new System.Drawing.Size(1018, 594);
             this.UserControlArea.TabIndex = 10;
             // 
             // main
@@ -461,7 +459,7 @@ namespace Database_Application_Chris
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1208, 688);
+            this.ClientSize = new System.Drawing.Size(1303, 754);
             this.Controls.Add(this.UserControlArea);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.panel4);
@@ -496,7 +494,6 @@ namespace Database_Application_Chris
             this.UserControlArea.ResumeLayout(false);
             this.UserControlArea.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

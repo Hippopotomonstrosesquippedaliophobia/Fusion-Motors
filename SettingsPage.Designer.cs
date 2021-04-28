@@ -63,28 +63,31 @@ namespace Database_Application_Chris
             this.label13 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.aboutPanel = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lastUpDate = new System.Windows.Forms.Label();
             this.versionLbl = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lastUpDate = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.ImportPanel.SuspendLayout();
             this.exportPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.aboutPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.flowLayoutPanel1.Controls.Add(this.importBtn);
             this.flowLayoutPanel1.Controls.Add(this.exportBtn);
             this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 25);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 598);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 623);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // importBtn
@@ -129,7 +132,7 @@ namespace Database_Application_Chris
             // pagePanel
             // 
             this.pagePanel.BackColor = System.Drawing.Color.Gold;
-            this.pagePanel.Location = new System.Drawing.Point(4, 3);
+            this.pagePanel.Location = new System.Drawing.Point(2, 3);
             this.pagePanel.Name = "pagePanel";
             this.pagePanel.Size = new System.Drawing.Size(10, 68);
             this.pagePanel.TabIndex = 7;
@@ -151,9 +154,10 @@ namespace Database_Application_Chris
             this.ImportPanel.Controls.Add(this.label4);
             this.ImportPanel.Controls.Add(this.label2);
             this.ImportPanel.Controls.Add(this.label1);
-            this.ImportPanel.Location = new System.Drawing.Point(309, 25);
+            this.ImportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImportPanel.Location = new System.Drawing.Point(0, 0);
             this.ImportPanel.Name = "ImportPanel";
-            this.ImportPanel.Size = new System.Drawing.Size(750, 597);
+            this.ImportPanel.Size = new System.Drawing.Size(751, 623);
             this.ImportPanel.TabIndex = 1;
             this.ImportPanel.Enter += new System.EventHandler(this.ImportPanel_Enter);
             // 
@@ -162,7 +166,7 @@ namespace Database_Application_Chris
             this.file1TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.file1TextBox.Location = new System.Drawing.Point(52, 174);
             this.file1TextBox.Name = "file1TextBox";
-            this.file1TextBox.Size = new System.Drawing.Size(441, 32);
+            this.file1TextBox.Size = new System.Drawing.Size(441, 27);
             this.file1TextBox.TabIndex = 1;
             // 
             // selectFile1
@@ -173,7 +177,7 @@ namespace Database_Application_Chris
             this.selectFile1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.selectFile1.Location = new System.Drawing.Point(499, 172);
             this.selectFile1.Name = "selectFile1";
-            this.selectFile1.Size = new System.Drawing.Size(133, 34);
+            this.selectFile1.Size = new System.Drawing.Size(94, 34);
             this.selectFile1.TabIndex = 2;
             this.selectFile1.Text = "Select File";
             this.toolTip.SetToolTip(this.selectFile1, "Select a table to import");
@@ -185,7 +189,7 @@ namespace Database_Application_Chris
             this.file2TextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.file2TextBox.Location = new System.Drawing.Point(52, 290);
             this.file2TextBox.Name = "file2TextBox";
-            this.file2TextBox.Size = new System.Drawing.Size(441, 32);
+            this.file2TextBox.Size = new System.Drawing.Size(441, 27);
             this.file2TextBox.TabIndex = 1;
             // 
             // selectFile2
@@ -196,7 +200,7 @@ namespace Database_Application_Chris
             this.selectFile2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.selectFile2.Location = new System.Drawing.Point(499, 288);
             this.selectFile2.Name = "selectFile2";
-            this.selectFile2.Size = new System.Drawing.Size(133, 34);
+            this.selectFile2.Size = new System.Drawing.Size(94, 34);
             this.selectFile2.TabIndex = 2;
             this.selectFile2.Text = "Select File";
             this.toolTip.SetToolTip(this.selectFile2, "Select a table to import");
@@ -205,11 +209,12 @@ namespace Database_Application_Chris
             // 
             // importTablesBtn
             // 
+            this.importTablesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.importTablesBtn.BackColor = System.Drawing.Color.Gold;
             this.importTablesBtn.FlatAppearance.BorderSize = 0;
             this.importTablesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.importTablesBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.importTablesBtn.Location = new System.Drawing.Point(531, 499);
+            this.importTablesBtn.Location = new System.Drawing.Point(525, 512);
             this.importTablesBtn.Name = "importTablesBtn";
             this.importTablesBtn.Size = new System.Drawing.Size(179, 61);
             this.importTablesBtn.TabIndex = 2;
@@ -225,9 +230,9 @@ namespace Database_Application_Chris
             this.clear1.FlatAppearance.BorderSize = 0;
             this.clear1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clear1.ForeColor = System.Drawing.Color.Red;
-            this.clear1.Location = new System.Drawing.Point(638, 172);
+            this.clear1.Location = new System.Drawing.Point(599, 172);
             this.clear1.Name = "clear1";
-            this.clear1.Size = new System.Drawing.Size(62, 34);
+            this.clear1.Size = new System.Drawing.Size(54, 34);
             this.clear1.TabIndex = 2;
             this.clear1.Text = "Clear";
             this.toolTip.SetToolTip(this.clear1, "Clear the selected file");
@@ -242,9 +247,9 @@ namespace Database_Application_Chris
             this.clear2.FlatAppearance.BorderSize = 0;
             this.clear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clear2.ForeColor = System.Drawing.Color.Red;
-            this.clear2.Location = new System.Drawing.Point(638, 288);
+            this.clear2.Location = new System.Drawing.Point(599, 288);
             this.clear2.Name = "clear2";
-            this.clear2.Size = new System.Drawing.Size(62, 34);
+            this.clear2.Size = new System.Drawing.Size(54, 34);
             this.clear2.TabIndex = 2;
             this.clear2.Text = "Clear";
             this.toolTip.SetToolTip(this.clear2, "Clear the selected file");
@@ -258,7 +263,7 @@ namespace Database_Application_Chris
             this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(52, 357);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(591, 20);
+            this.label8.Size = new System.Drawing.Size(478, 17);
             this.label8.TabIndex = 6;
             this.label8.Text = "Note: Only files by the name \"Customers.json\" and \"Vehicles.json\" will be allowed" +
     "";
@@ -269,7 +274,7 @@ namespace Database_Application_Chris
             this.listTables.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.listTables.Location = new System.Drawing.Point(249, 88);
             this.listTables.Name = "listTables";
-            this.listTables.Size = new System.Drawing.Size(14, 20);
+            this.listTables.Size = new System.Drawing.Size(12, 17);
             this.listTables.TabIndex = 5;
             this.listTables.Text = "-";
             // 
@@ -278,7 +283,7 @@ namespace Database_Application_Chris
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(52, 88);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(191, 20);
+            this.label6.Size = new System.Drawing.Size(156, 17);
             this.label6.TabIndex = 4;
             this.label6.Text = "Current database tables:";
             // 
@@ -293,7 +298,7 @@ namespace Database_Application_Chris
             // 
             // file1Txt
             // 
-            this.file1Txt.Location = new System.Drawing.Point(94, 144);
+            this.file1Txt.Location = new System.Drawing.Point(-645, 338);
             this.file1Txt.Name = "file1Txt";
             this.file1Txt.Size = new System.Drawing.Size(399, 20);
             this.file1Txt.TabIndex = 3;
@@ -305,7 +310,7 @@ namespace Database_Application_Chris
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(52, 260);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 20);
+            this.label4.Size = new System.Drawing.Size(31, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "File:";
             // 
@@ -314,7 +319,7 @@ namespace Database_Application_Chris
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(52, 144);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 20);
+            this.label2.Size = new System.Drawing.Size(31, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "File:";
             // 
@@ -324,17 +329,18 @@ namespace Database_Application_Chris
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(52, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(336, 23);
+            this.label1.Size = new System.Drawing.Size(271, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Import a table into the database";
             // 
             // exportTablesBtn
             // 
+            this.exportTablesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exportTablesBtn.BackColor = System.Drawing.Color.Gold;
             this.exportTablesBtn.FlatAppearance.BorderSize = 0;
             this.exportTablesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exportTablesBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.exportTablesBtn.Location = new System.Drawing.Point(512, 499);
+            this.exportTablesBtn.Location = new System.Drawing.Point(525, 512);
             this.exportTablesBtn.Name = "exportTablesBtn";
             this.exportTablesBtn.Size = new System.Drawing.Size(179, 61);
             this.exportTablesBtn.TabIndex = 2;
@@ -348,9 +354,9 @@ namespace Database_Application_Chris
             this.openLocation.BackColor = System.Drawing.Color.Gold;
             this.openLocation.FlatAppearance.BorderSize = 0;
             this.openLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.openLocation.Location = new System.Drawing.Point(512, 239);
+            this.openLocation.Location = new System.Drawing.Point(531, 229);
             this.openLocation.Name = "openLocation";
-            this.openLocation.Size = new System.Drawing.Size(101, 32);
+            this.openLocation.Size = new System.Drawing.Size(82, 28);
             this.openLocation.TabIndex = 6;
             this.openLocation.Text = "Select ";
             this.toolTip.SetToolTip(this.openLocation, "Select a folder to export to");
@@ -364,9 +370,9 @@ namespace Database_Application_Chris
             this.clearExportLocation.FlatAppearance.BorderSize = 0;
             this.clearExportLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearExportLocation.ForeColor = System.Drawing.Color.Red;
-            this.clearExportLocation.Location = new System.Drawing.Point(619, 238);
+            this.clearExportLocation.Location = new System.Drawing.Point(619, 229);
             this.clearExportLocation.Name = "clearExportLocation";
-            this.clearExportLocation.Size = new System.Drawing.Size(62, 34);
+            this.clearExportLocation.Size = new System.Drawing.Size(52, 28);
             this.clearExportLocation.TabIndex = 7;
             this.clearExportLocation.Text = "Clear";
             this.toolTip.SetToolTip(this.clearExportLocation, "Clear the selected file");
@@ -384,10 +390,11 @@ namespace Database_Application_Chris
             this.exportPanel.Controls.Add(this.label5);
             this.exportPanel.Controls.Add(this.label3);
             this.exportPanel.Controls.Add(this.label13);
+            this.exportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.exportPanel.Enabled = false;
-            this.exportPanel.Location = new System.Drawing.Point(325, 25);
+            this.exportPanel.Location = new System.Drawing.Point(0, 0);
             this.exportPanel.Name = "exportPanel";
-            this.exportPanel.Size = new System.Drawing.Size(734, 597);
+            this.exportPanel.Size = new System.Drawing.Size(751, 623);
             this.exportPanel.TabIndex = 8;
             this.exportPanel.Visible = false;
             this.exportPanel.EnabledChanged += new System.EventHandler(this.exportPanel_EnabledChanged);
@@ -396,34 +403,34 @@ namespace Database_Application_Chris
             // 
             this.tableComboBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tableComboBox.FormattingEnabled = true;
-            this.tableComboBox.Location = new System.Drawing.Point(33, 136);
+            this.tableComboBox.Location = new System.Drawing.Point(52, 132);
             this.tableComboBox.Name = "tableComboBox";
-            this.tableComboBox.Size = new System.Drawing.Size(473, 31);
+            this.tableComboBox.Size = new System.Drawing.Size(473, 29);
             this.tableComboBox.TabIndex = 3;
             // 
             // exportLocationTxt
             // 
             this.exportLocationTxt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.exportLocationTxt.Location = new System.Drawing.Point(33, 239);
+            this.exportLocationTxt.Location = new System.Drawing.Point(52, 230);
             this.exportLocationTxt.Name = "exportLocationTxt";
-            this.exportLocationTxt.Size = new System.Drawing.Size(473, 32);
+            this.exportLocationTxt.Size = new System.Drawing.Size(473, 27);
             this.exportLocationTxt.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 199);
+            this.label5.Location = new System.Drawing.Point(52, 202);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(196, 20);
+            this.label5.Size = new System.Drawing.Size(163, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Select an export location:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 101);
+            this.label3.Location = new System.Drawing.Point(52, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 20);
+            this.label3.Size = new System.Drawing.Size(96, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Select a table:";
             // 
@@ -431,18 +438,20 @@ namespace Database_Application_Chris
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(33, 27);
+            this.label13.Location = new System.Drawing.Point(52, 27);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(342, 23);
+            this.label13.Size = new System.Drawing.Size(273, 21);
             this.label13.TabIndex = 0;
             this.label13.Text = "Export a table from the database";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pagePanel);
-            this.panel1.Location = new System.Drawing.Point(294, 25);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(295, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(25, 597);
+            this.panel1.Size = new System.Drawing.Size(13, 623);
             this.panel1.TabIndex = 9;
             // 
             // aboutPanel
@@ -452,35 +461,27 @@ namespace Database_Application_Chris
             this.aboutPanel.Controls.Add(this.label11);
             this.aboutPanel.Controls.Add(this.label9);
             this.aboutPanel.Controls.Add(this.label7);
-            this.aboutPanel.Location = new System.Drawing.Point(309, 25);
+            this.aboutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aboutPanel.Location = new System.Drawing.Point(0, 0);
             this.aboutPanel.Name = "aboutPanel";
-            this.aboutPanel.Size = new System.Drawing.Size(750, 597);
+            this.aboutPanel.Size = new System.Drawing.Size(751, 623);
             this.aboutPanel.TabIndex = 10;
             // 
-            // label7
+            // lastUpDate
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(318, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "This application was built for Fusion Motors ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 77);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(154, 20);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Application version:";
+            this.lastUpDate.AutoSize = true;
+            this.lastUpDate.Location = new System.Drawing.Point(212, 110);
+            this.lastUpDate.Name = "lastUpDate";
+            this.lastUpDate.Size = new System.Drawing.Size(98, 17);
+            this.lastUpDate.TabIndex = 0;
+            this.lastUpDate.Text = "24th April, 2021";
             // 
             // versionLbl
             // 
             this.versionLbl.AutoSize = true;
             this.versionLbl.Location = new System.Drawing.Point(212, 77);
             this.versionLbl.Name = "versionLbl";
-            this.versionLbl.Size = new System.Drawing.Size(39, 20);
+            this.versionLbl.Size = new System.Drawing.Size(33, 17);
             this.versionLbl.TabIndex = 0;
             this.versionLbl.Text = "v1.0";
             // 
@@ -489,28 +490,46 @@ namespace Database_Application_Chris
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(52, 110);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 20);
+            this.label11.Size = new System.Drawing.Size(82, 17);
             this.label11.TabIndex = 0;
             this.label11.Text = "Last update:";
             // 
-            // lastUpDate
+            // label9
             // 
-            this.lastUpDate.AutoSize = true;
-            this.lastUpDate.Location = new System.Drawing.Point(212, 110);
-            this.lastUpDate.Name = "lastUpDate";
-            this.lastUpDate.Size = new System.Drawing.Size(115, 20);
-            this.lastUpDate.TabIndex = 0;
-            this.lastUpDate.Text = "24th April, 2021";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(52, 77);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(127, 17);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Application version:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(52, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(260, 17);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "This application was built for Fusion Motors ";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ImportPanel);
+            this.panel2.Controls.Add(this.exportPanel);
+            this.panel2.Controls.Add(this.aboutPanel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(308, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(751, 623);
+            this.panel2.TabIndex = 11;
             // 
             // SettingsPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ImportPanel);
-            this.Controls.Add(this.exportPanel);
-            this.Controls.Add(this.aboutPanel);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "SettingsPage";
             this.Size = new System.Drawing.Size(1059, 623);
@@ -523,6 +542,7 @@ namespace Database_Application_Chris
             this.panel1.ResumeLayout(false);
             this.aboutPanel.ResumeLayout(false);
             this.aboutPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -569,5 +589,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel2;
     }
 }

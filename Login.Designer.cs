@@ -54,6 +54,8 @@ namespace Database_Application_Chris
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.usernamePanel.SuspendLayout();
@@ -61,16 +63,15 @@ namespace Database_Application_Chris
             this.passwordPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.titleBar.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.Color.Gold;
-            this.sidePanel.Controls.Add(this.label5);
-            this.sidePanel.Controls.Add(this.label4);
-            this.sidePanel.Controls.Add(this.label3);
-            this.sidePanel.Controls.Add(this.label2);
-            this.sidePanel.Controls.Add(this.label1);
+            this.sidePanel.Controls.Add(this.panel2);
+            this.sidePanel.Controls.Add(this.panel1);
             this.sidePanel.Controls.Add(this.pictureBox1);
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
@@ -80,7 +81,7 @@ namespace Database_Application_Chris
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(217, 535);
+            this.label5.Location = new System.Drawing.Point(214, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 17);
             this.label5.TabIndex = 12;
@@ -89,7 +90,7 @@ namespace Database_Application_Chris
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 515);
+            this.label4.Location = new System.Drawing.Point(203, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 12;
@@ -97,9 +98,10 @@ namespace Database_Application_Chris
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(248, 338);
+            this.label3.Location = new System.Drawing.Point(248, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 20);
             this.label3.TabIndex = 11;
@@ -107,9 +109,10 @@ namespace Database_Application_Chris
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(122, 302);
+            this.label2.Location = new System.Drawing.Point(122, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(184, 20);
             this.label2.TabIndex = 11;
@@ -117,9 +120,10 @@ namespace Database_Application_Chris
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(175, 267);
+            this.label1.Location = new System.Drawing.Point(175, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 20);
             this.label1.TabIndex = 10;
@@ -338,13 +342,33 @@ namespace Database_Application_Chris
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.linkLabel1.LinkColor = System.Drawing.Color.DarkGoldenrod;
-            this.linkLabel1.Location = new System.Drawing.Point(621, 550);
+            this.linkLabel1.Location = new System.Drawing.Point(584, 552);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(122, 16);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "debronni@gmail.com";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.DarkGoldenrod;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(0, 246);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(354, 132);
+            this.panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 505);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(355, 106);
+            this.panel2.TabIndex = 14;
             // 
             // Login
             // 
@@ -370,7 +394,6 @@ namespace Database_Application_Chris
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.sidePanel.ResumeLayout(false);
-            this.sidePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.usernamePanel.ResumeLayout(false);
             this.usernamePanel.PerformLayout();
@@ -379,6 +402,10 @@ namespace Database_Application_Chris
             this.passwordPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.titleBar.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,5 +436,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button viewPasswordBtn;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
