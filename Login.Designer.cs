@@ -82,7 +82,7 @@ namespace Database_Application_Chris
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(217, 535);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 20);
+            this.label5.Size = new System.Drawing.Size(89, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "D e b r o n n i  ";
             // 
@@ -91,7 +91,7 @@ namespace Database_Application_Chris
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(206, 515);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 20);
+            this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Developed By";
             // 
@@ -99,9 +99,9 @@ namespace Database_Application_Chris
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(247, 333);
+            this.label3.Location = new System.Drawing.Point(248, 338);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 21);
+            this.label3.Size = new System.Drawing.Size(58, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "System";
             // 
@@ -109,9 +109,9 @@ namespace Database_Application_Chris
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(100, 297);
+            this.label2.Location = new System.Drawing.Point(122, 302);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 21);
+            this.label2.Size = new System.Drawing.Size(184, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "Fusion Motors Database";
             // 
@@ -119,9 +119,9 @@ namespace Database_Application_Chris
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(161, 262);
+            this.label1.Location = new System.Drawing.Point(175, 267);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 21);
+            this.label1.Size = new System.Drawing.Size(131, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Welcome to the ";
             // 
@@ -142,7 +142,7 @@ namespace Database_Application_Chris
             this.label6.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.label6.Location = new System.Drawing.Point(427, 174);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(334, 37);
+            this.label6.Size = new System.Drawing.Size(266, 28);
             this.label6.TabIndex = 2;
             this.label6.Text = "Login to your Account";
             // 
@@ -151,9 +151,9 @@ namespace Database_Application_Chris
             this.usernamePanel.BackColor = System.Drawing.Color.White;
             this.usernamePanel.Controls.Add(this.usernameTxt);
             this.usernamePanel.Controls.Add(this.pictureBox2);
-            this.usernamePanel.Location = new System.Drawing.Point(357, 244);
+            this.usernamePanel.Location = new System.Drawing.Point(355, 244);
             this.usernamePanel.Name = "usernamePanel";
-            this.usernamePanel.Size = new System.Drawing.Size(562, 52);
+            this.usernamePanel.Size = new System.Drawing.Size(564, 52);
             this.usernamePanel.TabIndex = 3;
             // 
             // usernameTxt
@@ -162,7 +162,7 @@ namespace Database_Application_Chris
             this.usernameTxt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.usernameTxt.Location = new System.Drawing.Point(70, 14);
             this.usernameTxt.Name = "usernameTxt";
-            this.usernameTxt.Size = new System.Drawing.Size(480, 25);
+            this.usernameTxt.Size = new System.Drawing.Size(480, 20);
             this.usernameTxt.TabIndex = 1;
             this.usernameTxt.Enter += new System.EventHandler(this.usernameTxt_Enter);
             this.usernameTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.username_KeyDown);
@@ -183,9 +183,9 @@ namespace Database_Application_Chris
             this.passwordPanel.Controls.Add(this.passwordTxt);
             this.passwordPanel.Controls.Add(this.pictureBox3);
             this.passwordPanel.Controls.Add(this.viewPasswordBtn);
-            this.passwordPanel.Location = new System.Drawing.Point(357, 302);
+            this.passwordPanel.Location = new System.Drawing.Point(355, 302);
             this.passwordPanel.Name = "passwordPanel";
-            this.passwordPanel.Size = new System.Drawing.Size(562, 52);
+            this.passwordPanel.Size = new System.Drawing.Size(564, 52);
             this.passwordPanel.TabIndex = 4;
             // 
             // passwordTxt
@@ -195,7 +195,7 @@ namespace Database_Application_Chris
             this.passwordTxt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.passwordTxt.Location = new System.Drawing.Point(70, 14);
             this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(439, 25);
+            this.passwordTxt.Size = new System.Drawing.Size(439, 20);
             this.passwordTxt.TabIndex = 2;
             this.passwordTxt.UseSystemPasswordChar = true;
             this.passwordTxt.Enter += new System.EventHandler(this.passwordTxt_Enter);
@@ -305,7 +305,7 @@ namespace Database_Application_Chris
             this.label7.ForeColor = System.Drawing.Color.Gray;
             this.label7.Location = new System.Drawing.Point(427, 515);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 17);
+            this.label7.Size = new System.Drawing.Size(50, 16);
             this.label7.TabIndex = 12;
             this.label7.Text = "Support";
             // 
@@ -317,7 +317,7 @@ namespace Database_Application_Chris
             this.label8.ForeColor = System.Drawing.Color.Gray;
             this.label8.Location = new System.Drawing.Point(427, 535);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(386, 17);
+            this.label8.Size = new System.Drawing.Size(322, 16);
             this.label8.TabIndex = 12;
             this.label8.Text = "To report any issues or any questions about this application";
             // 
@@ -329,7 +329,7 @@ namespace Database_Application_Chris
             this.label9.ForeColor = System.Drawing.Color.Gray;
             this.label9.Location = new System.Drawing.Point(427, 552);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(195, 17);
+            this.label9.Size = new System.Drawing.Size(159, 16);
             this.label9.TabIndex = 12;
             this.label9.Text = "submit an email message to:";
             // 
@@ -340,7 +340,7 @@ namespace Database_Application_Chris
             this.linkLabel1.LinkColor = System.Drawing.Color.DarkGoldenrod;
             this.linkLabel1.Location = new System.Drawing.Point(621, 550);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(157, 19);
+            this.linkLabel1.Size = new System.Drawing.Size(122, 16);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "debronni@gmail.com";
@@ -348,7 +348,7 @@ namespace Database_Application_Chris
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 606);
             this.Controls.Add(this.usernamePanel);

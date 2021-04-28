@@ -50,6 +50,14 @@ namespace Database_Application_Chris
         const int WS_MINIMIZEBOX = 0x20000;
         const int CS_DBLCLKS = 0x8;
 
+        // Windows snapping 
+        private const int SnapDist = 100;
+
+        // Maximize window 
+        private Point old_loc = new Point(0, 0);
+        private Size old_size = new Size(1207, 688);
+        private bool maximized = false;
+
         public static main Instance 
         {
             get
@@ -789,6 +797,64 @@ namespace Database_Application_Chris
             }
 
             main.Instance.PanelContainer.Controls["Customer"].BringToFront();
-        }     
+        }
+
+        //Maximize window
+        private void maximize_Click(object sender, EventArgs e)
+        {
+            MaxWindow();
+        }
+
+        private void MaxWindow()
+        {
+            // If window maximized, then do this
+            if (maximized)
+            {
+                //this.WindowState = FormWindowState.Normal;
+                maximized = false;
+                maximize.Text = "1";
+                this.Location = old_loc;
+                this.Size = old_size;
+            }
+            else // maximize it
+            {
+                // store original dimensions
+                old_size = new Size(this.Width, this.Height);
+                old_loc = new Point(this.Location.X, this.Location.Y);
+
+                // Maximize
+                maximized = true;
+                maximize.Text = "2";
+                int x = SystemInformation.WorkingArea.Width;
+                int y = SystemInformation.WorkingArea.Height;
+                this.WindowState = FormWindowState.Normal;
+                this.Location = new Point(0, 0);
+                this.Size = new Size(x, y);
+            }
+        }
+         
+
+
+        private bool DoSnap(int pos, int edge)
+        {
+            int delta = pos - edge;
+            return delta > 0 && delta <= SnapDist;
+        }
+
+        protected override void OnResizeEnd(EventArgs e)
+        {
+            base.OnResizeEnd(e);
+            Screen scn = Screen.FromPoint(this.Location);
+            if (DoSnap(this.Left, scn.WorkingArea.Left)) this.Left = scn.WorkingArea.Left;
+            if (DoSnap(this.Top, scn.WorkingArea.Top)) this.Top = scn.WorkingArea.Top;
+            if (DoSnap(scn.WorkingArea.Right, this.Right)) this.Left = scn.WorkingArea.Right - this.Width;
+            if (DoSnap(scn.WorkingArea.Bottom, this.Bottom)) this.Top = scn.WorkingArea.Bottom - this.Height;
+        }
+
+        private void titleBar_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("");
+            MaxWindow();
+        } 
     }
 }
