@@ -49,91 +49,93 @@ namespace Database_Application_Chris
             // 
             // Result1
             // 
-            this.Result1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Result1.AutoSize = true;
             this.Result1.BackColor = System.Drawing.Color.White;
-            this.Result1.Location = new System.Drawing.Point(160, 106);
+            this.Result1.Location = new System.Drawing.Point(108, 35);
             this.Result1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result1.Name = "Result1";
-            this.Result1.Size = new System.Drawing.Size(214, 92);
+            this.Result1.Size = new System.Drawing.Size(248, 134);
             this.Result1.TabIndex = 0;
             // 
             // Result2
             // 
-            this.Result2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result2.Location = new System.Drawing.Point(420, 106);
+            this.Result2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Result2.Location = new System.Drawing.Point(385, 35);
             this.Result2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result2.Name = "Result2";
-            this.Result2.Size = new System.Drawing.Size(214, 92);
+            this.Result2.Size = new System.Drawing.Size(248, 134);
             this.Result2.TabIndex = 1;
             this.Result2.Visible = false;
             // 
             // Result3
             // 
-            this.Result3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result3.Location = new System.Drawing.Point(680, 106);
+            this.Result3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Result3.Location = new System.Drawing.Point(662, 35);
             this.Result3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result3.Name = "Result3";
-            this.Result3.Size = new System.Drawing.Size(214, 92);
+            this.Result3.Size = new System.Drawing.Size(248, 134);
             this.Result3.TabIndex = 2;
             this.Result3.Visible = false;
             // 
             // Result4
             // 
-            this.Result4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result4.Location = new System.Drawing.Point(160, 235);
+            this.Result4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Result4.AutoSize = true;
+            this.Result4.Location = new System.Drawing.Point(108, 192);
             this.Result4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result4.Name = "Result4";
-            this.Result4.Size = new System.Drawing.Size(214, 92);
+            this.Result4.Size = new System.Drawing.Size(248, 134);
             this.Result4.TabIndex = 3;
             this.Result4.Visible = false;
             // 
             // Result5
             // 
             this.Result5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result5.Location = new System.Drawing.Point(420, 235);
+            this.Result5.Location = new System.Drawing.Point(385, 192);
             this.Result5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result5.Name = "Result5";
-            this.Result5.Size = new System.Drawing.Size(214, 92);
+            this.Result5.Size = new System.Drawing.Size(248, 134);
             this.Result5.TabIndex = 2;
             this.Result5.Visible = false;
             // 
             // Result6
             // 
-            this.Result6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result6.Location = new System.Drawing.Point(680, 235);
+            this.Result6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Result6.Location = new System.Drawing.Point(662, 192);
             this.Result6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result6.Name = "Result6";
-            this.Result6.Size = new System.Drawing.Size(214, 92);
+            this.Result6.Size = new System.Drawing.Size(248, 134);
             this.Result6.TabIndex = 2;
             this.Result6.Visible = false;
             // 
             // Result7
             // 
-            this.Result7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result7.Location = new System.Drawing.Point(160, 361);
+            this.Result7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Result7.AutoSize = true;
+            this.Result7.Location = new System.Drawing.Point(108, 345);
             this.Result7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result7.Name = "Result7";
-            this.Result7.Size = new System.Drawing.Size(214, 92);
+            this.Result7.Size = new System.Drawing.Size(248, 134);
             this.Result7.TabIndex = 2;
             this.Result7.Visible = false;
             // 
             // Result8
             // 
-            this.Result8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result8.Location = new System.Drawing.Point(420, 361);
+            this.Result8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Result8.Location = new System.Drawing.Point(385, 345);
             this.Result8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result8.Name = "Result8";
-            this.Result8.Size = new System.Drawing.Size(214, 92);
+            this.Result8.Size = new System.Drawing.Size(248, 134);
             this.Result8.TabIndex = 2;
             this.Result8.Visible = false;
             // 
             // Result9
             // 
-            this.Result9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Result9.Location = new System.Drawing.Point(680, 361);
+            this.Result9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Result9.Location = new System.Drawing.Point(662, 345);
             this.Result9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Result9.Name = "Result9";
-            this.Result9.Size = new System.Drawing.Size(214, 92);
+            this.Result9.Size = new System.Drawing.Size(248, 134);
             this.Result9.TabIndex = 2;
             this.Result9.Visible = false;
             // 
@@ -205,6 +207,7 @@ namespace Database_Application_Chris
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1018, 510);
             this.panel2.TabIndex = 8;
+            this.panel2.SizeChanged += new System.EventHandler(this.panel2_SizeChanged);
             // 
             // SearchResultsControl
             // 
@@ -220,6 +223,7 @@ namespace Database_Application_Chris
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }

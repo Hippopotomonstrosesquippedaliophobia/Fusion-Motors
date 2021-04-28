@@ -13,6 +13,46 @@ namespace Database_Application_Chris
         public List<CustomerModel> searchResults;
         public List<Panel> panels;
         private int skip, limit, panelID, recID, lastRecID, totalResults, pageAt, numPages, numOnPage;
+        private Size small = new Size(248, 134);
+        private Size large = new Size(280, 166);
+
+        private void panel2_SizeChanged(object sender, EventArgs e)
+        {
+            if (main.Instance.maximized)
+            {
+                ScaleUp();
+            }
+            else
+            {
+                ScaleDown();
+            }
+        }
+
+        private void ScaleUp()
+        {
+            Result1.Size = large;
+            Result2.Size = large;
+            Result3.Size = large;
+            Result4.Size = large;
+            Result5.Size = large;
+            Result6.Size = large;
+            Result7.Size = large;
+            Result8.Size = large;
+            Result9.Size = large;
+        }
+
+        private void ScaleDown()
+        {
+            Result1.Size = small;
+            Result2.Size = small;
+            Result3.Size = small;
+            Result4.Size = small;
+            Result5.Size = small;
+            Result6.Size = small;
+            Result7.Size = small;
+            Result8.Size = small;
+            Result9.Size = small;
+        }
 
         public SearchResultsControl()
         {

@@ -15,7 +15,37 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_4FA52F74067342CC89A2B11D8EF11DB7"
+        "MsmKey" = "8:_310AD22FE5B440318EB3C0C294EA5C21"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_312B066B31C3461799E26FF4DE5556FA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6F6A4EA5F2ED4EC8BF377EE57983F924"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6FD82C961A6B44CA800973AF43F80778"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_72E4CD72CA4445189695C3A71860F47F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_958B400DEDF747E3BE1C8E1562F405A7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -27,13 +57,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D6A9CB7E5917464D9A71C0607BBE697F"
+        "MsmKey" = "8:_BC5BF923B351455AB72C9257DDE5A8B6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D767D0DDCD3F4BCD8DB189693537C64E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DB78A6CC6552417C94498D3EBA5E6615"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_DCE9C484D99A4173A0AD67A57487BD81"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E488D6F6F3C3481A9214118881F32F05"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -55,6 +103,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -71,6 +127,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -102,6 +174,126 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_310AD22FE5B440318EB3C0C294EA5C21"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongotop.exe"
+            "TargetName" = "8:mongotop.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_312B066B31C3461799E26FF4DE5556FA"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongorestore.exe"
+            "TargetName" = "8:mongorestore.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F6A4EA5F2ED4EC8BF377EE57983F924"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\bsondump.exe"
+            "TargetName" = "8:bsondump.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FD82C961A6B44CA800973AF43F80778"
+            {
+            "SourcePath" = "8:..\\Includes\\fusion Motors.ico"
+            "TargetName" = "8:fusion Motors.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_72E4CD72CA4445189695C3A71860F47F"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongostat.exe"
+            "TargetName" = "8:mongostat.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_958B400DEDF747E3BE1C8E1562F405A7"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongoexport.exe"
+            "TargetName" = "8:mongoexport.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B122446349941BB966CE12EF151EAD9"
             {
             "SourcePath" = "8:..\\Includes\\Fusion Motors.dll.config"
@@ -122,12 +314,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6A9CB7E5917464D9A71C0607BBE697F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC5BF923B351455AB72C9257DDE5A8B6"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\Desktop\\working folder\\fusion Motors.ico"
-            "TargetName" = "8:fusion Motors.ico"
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongoimport.exe"
+            "TargetName" = "8:mongoimport.exe"
             "Tag" = "8:"
-            "Folder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D767D0DDCD3F4BCD8DB189693537C64E"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongofiles.exe"
+            "TargetName" = "8:mongofiles.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DB78A6CC6552417C94498D3EBA5E6615"
+            {
+            "SourcePath" = "8:..\\Includes\\MongoTools\\mongodump.exe"
+            "TargetName" = "8:mongodump.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0A0EEC13CF1F4C96A61CA2371E837EBB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -189,6 +421,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_0A0EEC13CF1F4C96A61CA2371E837EBB"
+                    {
+                    "Name" = "8:MongoTools"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B1F1574369DC495482D1E536454E23E3"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_5849FA4602E244BCA83C3289406A3C04"
                     {
                     "Name" = "8:Database"
@@ -252,7 +495,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fusion Motors"
         "ProductCode" = "8:{FA2FE369-FA76-41DB-B638-D0AC96B54CA1}"
-        "PackageCode" = "8:{CF8F14CF-0159-4199-8D81-44E47A3AA493}"
+        "PackageCode" = "8:{CA365E28-7DC9-4EB2-BC2B-9B752EF27C3B}"
         "UpgradeCode" = "8:{EEC6108B-E231-402B-8AC1-956E9BF74CB6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -372,7 +615,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_727EEBEB3B924A4DA327E7519A94049D"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0A0BD318F3134908A64161D65ECE379C"
             {
             "Name" = "8:Fusion Motors"
             "Arguments" = "8:"
@@ -380,24 +623,24 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_4FA52F74067342CC89A2B11D8EF11DB7"
-            "Folder" = "8:_FA0CA6B839D94716B3C37E2FA50D197D"
-            "WorkingFolder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"
-            "Icon" = "8:_D6A9CB7E5917464D9A71C0607BBE697F"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CA877103171945B2821EB3333726AB11"
-            {
-            "Name" = "8:Fusion Motors"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_4FA52F74067342CC89A2B11D8EF11DB7"
+            "Target" = "8:_E488D6F6F3C3481A9214118881F32F05"
             "Folder" = "8:_2AF4A9FD257E4795A1A11C9C78D3593A"
             "WorkingFolder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"
-            "Icon" = "8:_D6A9CB7E5917464D9A71C0607BBE697F"
+            "Icon" = "8:_6FD82C961A6B44CA800973AF43F80778"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F79B255C44AB429AAF2D1E33242024EB"
+            {
+            "Name" = "8:Fusion Motors"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E488D6F6F3C3481A9214118881F32F05"
+            "Folder" = "8:_FA0CA6B839D94716B3C37E2FA50D197D"
+            "WorkingFolder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"
+            "Icon" = "8:_6FD82C961A6B44CA800973AF43F80778"
             "Feature" = "8:"
             }
         }
@@ -799,7 +1042,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4FA52F74067342CC89A2B11D8EF11DB7"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E488D6F6F3C3481A9214118881F32F05"
             {
             "SourcePath" = "8:..\\obj\\Release\\netcoreapp3.1\\apphost.exe"
             "TargetName" = "8:"
@@ -819,7 +1062,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}"
             "ShowKeyOutput" = "11:TRUE"

@@ -56,7 +56,7 @@ namespace Database_Application_Chris
         // Maximize window 
         private Point old_loc = new Point(0, 0);
         private Size old_size = new Size(1207, 688);
-        private bool maximized = false;
+        public bool maximized = false;
 
         public static main Instance 
         {
