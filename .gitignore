@@ -1,2 +1,2 @@
-bin/Debug/netcoreapp3.1/Database/
-bin/Debug/netcoreapp3.1/Mongo.txt
+bin/Debug/netcoreapp3.1/Database/ 
+bin/Release/netcoreapp3.1/Database/

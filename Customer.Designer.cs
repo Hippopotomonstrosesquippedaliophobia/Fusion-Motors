@@ -398,7 +398,6 @@ namespace Database_Application_Chris
             // 
             // viewErrors
             // 
-            this.viewErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewErrors.BackColor = System.Drawing.Color.Red;
             this.viewErrors.Enabled = false;
             this.viewErrors.FlatAppearance.BorderSize = 0;

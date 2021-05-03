@@ -297,7 +297,7 @@ namespace Database_Application_Chris
             this.panel7.Controls.Add(this.panel2);
             this.panel7.Location = new System.Drawing.Point(0, 18);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(283, 610);
+            this.panel7.Size = new System.Drawing.Size(285, 610);
             this.panel7.TabIndex = 6;
             // 
             // flowLayoutPanel1
@@ -311,7 +311,7 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Location = new System.Drawing.Point(14, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(255, 610);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(271, 610);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // homeBtn

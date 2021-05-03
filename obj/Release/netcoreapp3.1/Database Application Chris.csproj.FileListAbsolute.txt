@@ -38,4 +38,3 @@ C:\Users\Bronj\source\repos\Database Application Chris\obj\Release\netcoreapp3.1
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Release\netcoreapp3.1\Fusion Motors.dll
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Release\netcoreapp3.1\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Release\netcoreapp3.1\Database Application Chris.genruntimeconfig.cache
-C:\Users\Bronj\source\repos\Database Application Chris\obj\Release\netcoreapp3.1\Database Application Chris.csprojAssemblyReference.cache

@@ -524,7 +524,11 @@ namespace Database_Application_Chris
         private void num1Lbl_Leave(object sender, EventArgs e)
         {
             ValidationProcess(num1Lbl);
-            FormatNum(num1Lbl);
+
+            if (num1Lbl.Text.Trim().Length != 0)
+            {
+                FormatNum(num1Lbl);
+            }
         }
          
         private void num2Lbl_Leave(object sender, EventArgs e)
