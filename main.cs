@@ -118,11 +118,9 @@ namespace Database_Application_Chris
 
         private void SetVersion()
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            string version = config.AppSettings.Settings["version"].Value.ToString();
-            string versionIteration = config.AppSettings.Settings["versionIteration"].Value.ToString();
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-            versionLbl.Text = "v" + version + "." + versionIteration;
+            versionLbl.Text = "v" + version;
         }
 
         // Sets up the clock
@@ -680,7 +678,7 @@ namespace Database_Application_Chris
             SetMongoPath();
         }
 
-        private async void LoadCustomersToCall()
+        public async void LoadCustomersToCall()
         {
             if (db != null)
                 callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerModel>("Customers"));

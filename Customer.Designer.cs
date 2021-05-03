@@ -55,6 +55,7 @@ namespace Database_Application_Chris
             this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.viewErrors = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -383,6 +384,7 @@ namespace Database_Application_Chris
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.viewErrors);
             this.panel2.Controls.Add(this.addVehicleBtn);
             this.panel2.Controls.Add(this.removeVehicleBtn);
             this.panel2.Controls.Add(this.addThisCustomer);
@@ -393,6 +395,25 @@ namespace Database_Application_Chris
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1018, 74);
             this.panel2.TabIndex = 8;
+            // 
+            // viewErrors
+            // 
+            this.viewErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewErrors.BackColor = System.Drawing.Color.Red;
+            this.viewErrors.Enabled = false;
+            this.viewErrors.FlatAppearance.BorderSize = 0;
+            this.viewErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.viewErrors.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.viewErrors.ForeColor = System.Drawing.Color.White;
+            this.viewErrors.Location = new System.Drawing.Point(358, 14);
+            this.viewErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.viewErrors.Name = "viewErrors";
+            this.viewErrors.Size = new System.Drawing.Size(130, 33);
+            this.viewErrors.TabIndex = 5;
+            this.viewErrors.Text = "View Errors";
+            this.viewErrors.UseVisualStyleBackColor = false;
+            this.viewErrors.Visible = false;
+            this.viewErrors.Click += new System.EventHandler(this.viewErrors_Click);
             // 
             // panel3
             // 
@@ -482,5 +503,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox nameLbl;
+        private System.Windows.Forms.Button viewErrors;
     }
 }

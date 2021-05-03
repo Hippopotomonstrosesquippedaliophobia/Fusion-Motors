@@ -18,6 +18,7 @@ namespace Database_Application_Chris
         public int Year { get; set; }
         public double Valuation { get; set; }
         public double AskingPrice { get; set; }
-        public List<string> InterestedCustomers { get; set; } 
+        public List<string> InterestedCustomers { get; set; }
+        public string Notes { get; set; }
     }
 }

@@ -10,7 +10,7 @@
     <Compile Update="Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="customerPanel.cs">
+    <Compile Update="CustomerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="DatabaseHome.cs">
@@ -22,7 +22,7 @@
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="main.cs">
+    <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Search.cs">

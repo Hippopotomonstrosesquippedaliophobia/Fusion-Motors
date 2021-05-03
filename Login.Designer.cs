@@ -31,8 +31,11 @@ namespace Database_Application_Chris
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.sidePanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.versionLbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,17 +57,15 @@ namespace Database_Application_Chris
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.usernamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.passwordPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.titleBar.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -77,6 +78,27 @@ namespace Database_Application_Chris
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(355, 611);
             this.sidePanel.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.versionLbl);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 505);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(355, 106);
+            this.panel2.TabIndex = 14;
+            // 
+            // versionLbl
+            // 
+            this.versionLbl.AutoSize = true;
+            this.versionLbl.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.versionLbl.Location = new System.Drawing.Point(12, 75);
+            this.versionLbl.Name = "versionLbl";
+            this.versionLbl.Size = new System.Drawing.Size(11, 16);
+            this.versionLbl.TabIndex = 13;
+            this.versionLbl.Text = "-";
             // 
             // label5
             // 
@@ -95,6 +117,16 @@ namespace Database_Application_Chris
             this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Developed By";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(0, 246);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(354, 132);
+            this.panel1.TabIndex = 13;
             // 
             // label3
             // 
@@ -350,26 +382,6 @@ namespace Database_Application_Chris
             this.linkLabel1.Text = "debronni@gmail.com";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.DarkGoldenrod;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 246);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(354, 132);
-            this.panel1.TabIndex = 13;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 505);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 106);
-            this.panel2.TabIndex = 14;
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -394,6 +406,10 @@ namespace Database_Application_Chris
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.sidePanel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.usernamePanel.ResumeLayout(false);
             this.usernamePanel.PerformLayout();
@@ -402,10 +418,6 @@ namespace Database_Application_Chris
             this.passwordPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.titleBar.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +450,6 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button viewPasswordBtn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label versionLbl;
     }
 }

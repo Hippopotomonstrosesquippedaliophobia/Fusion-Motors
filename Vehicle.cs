@@ -19,6 +19,8 @@ namespace Database_Application_Chris
         public bool addVehicle = false;
         public int errorsInForm = 0;
 
+        private List<string> allErrors = new List<string>();
+
         public BindingList<CustomerModel> customers = new BindingList<CustomerModel>();
 
         public Vehicle()
@@ -223,7 +225,9 @@ namespace Database_Application_Chris
         // List Box Stuff
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this person from interested customers list: " + interestedCustomersListBox.SelectedItem + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var clicked =  interestedCustomersListBox.SelectedIndex;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this person from interested customers list: " + customers[clicked].FirstName + " " + customers[clicked].LastName + " ? ", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 interestedCustomersListBox.Items.Remove(interestedCustomersListBox.SelectedItem);
@@ -270,6 +274,7 @@ namespace Database_Application_Chris
 
             valuationLbl.Text = vehicleResult.Valuation.ToString();
             askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
+            additionalCommentsLbl.Text = vehicleResult.Notes;
 
             // Add vehicles to listbox 
 
@@ -342,6 +347,8 @@ namespace Database_Application_Chris
                 vehicleResult.InterestedCustomers.Add(customers[x].Id.ToString());
                 x++;
             }
+
+            vehicleResult.Notes = additionalCommentsLbl.Text;
         }
 
         private void UpdateListToSend()
@@ -426,6 +433,11 @@ namespace Database_Application_Chris
             updateVehicleBtn.Visible = false;
         }
 
+        private void ChangeFieldColourValidate(TextBox field, int checker)
+        {
+            field.ForeColor = Color.Red;
+        }
+
         private void ValidationProcess(TextBox field)
         {
             validation validate = new validation();
@@ -436,23 +448,72 @@ namespace Database_Application_Chris
 
             if (field == null)
             {
+                int lastCheck = 0;
+                int checker = 0;
+
                 // Means check all relevant fields
                 err.AddRange(validate.CheckEngineNum(engineNumLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(engineNumLbl, checker);
+                    lastCheck = checker;
+                }
+
                 err.AddRange(validate.CheckChassisNum(chassisNumLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(chassisNumLbl, checker);
+                    lastCheck = checker;
+                }
                 err.AddRange(validate.CheckColour(colourLbl.Text.Trim()));
-
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(colourLbl, checker);
+                    lastCheck = checker;
+                }
                 err.AddRange(validate.CheckMake(makeLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(makeLbl, checker);
+                    lastCheck = checker;
+                }
                 err.AddRange(validate.CheckModel(modelLbl.Text.Trim()));
-
-                err.AddRange(validate.CheckPrices(valuationLbl.Text.Trim())); 
-                err.AddRange(validate.CheckPrices(askingPriceLbl.Text.Trim())); 
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(modelLbl, checker);
+                    lastCheck = checker;
+                }
+                err.AddRange(validate.CheckPrices(valuationLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(valuationLbl, checker);
+                    lastCheck = checker;
+                }
+                err.AddRange(validate.CheckPrices(askingPriceLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(askingPriceLbl, checker);
+                    lastCheck = checker;
+                }
 
                 if (err.Count != 0)
                 {
+                    allErrors.Clear();
+                    allErrors.AddRange(err);
                     errorsInForm = err.Count;
                 }
                 else if (err.Count == 0)
                 {
+                    allErrors.Clear();
+                    viewErrors.Enabled = false;
+                    viewErrors.Visible = false;
                     errorsInForm = 0;
                 }
 
@@ -478,6 +539,17 @@ namespace Database_Application_Chris
                     OutputErrors(field, err);
                     break;
             }
+
+            if (allErrors.Count == 0)
+            {
+                viewErrors.Enabled = false;
+                viewErrors.Visible = false;
+            }
+            else
+            {
+                viewErrors.Enabled = true;
+                viewErrors.Visible = true;
+            }
         }
 
         private void OutputErrors(TextBox field, List<string> err)
@@ -499,7 +571,12 @@ namespace Database_Application_Chris
                     compileErrors += "\n" + item;
                 }
 
-                MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (allErrors.Count == 0)
+                {
+                    allErrors.Add("Error List:");
+                }
+
+                //MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -515,6 +592,11 @@ namespace Database_Application_Chris
              
             string newValuation = Regex.Replace(valuation, @"[^0-9\.]+", String.Empty);
             valuationLbl.Text = newValuation;
+
+            if (valuationLbl.Text.Length > 0)
+            {
+                valuationLbl.ForeColor = Color.Black;
+            }
         }
 
         private void askingPriceLbl_Leave(object sender, EventArgs e)
@@ -524,6 +606,11 @@ namespace Database_Application_Chris
 
             string newAskingPrice = Regex.Replace(askingprice, @"[^0-9\.]+", String.Empty);
             askingPriceLbl.Text = newAskingPrice;
+
+            if (askingPriceLbl.Text.Length > 0)
+            {
+                askingPriceLbl.ForeColor = Color.Black;
+            }
         }
 
         private void interestedCustomersListBox_DoubleClick(object sender, EventArgs e)
@@ -546,6 +633,60 @@ namespace Database_Application_Chris
             }
 
             main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+        }
+
+        private void viewErrors_Click(object sender, EventArgs e)
+        {
+            string errs = "";
+            int i = 0;
+
+            ValidationProcess(null);
+
+            foreach (var error in allErrors)
+            {
+                if (i == 0)
+                {
+                    errs = allErrors[i];
+                }
+                else
+                {
+                    errs += "\n" + allErrors[i];
+                }
+                i++;
+            }
+
+            if (allErrors.Count != 0)
+            {
+                MessageBox.Show(errs, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("All errors cleared!", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void makeLbl_Leave(object sender, EventArgs e)
+        {
+            if (makeLbl.Text.Length > 0)
+            {
+                makeLbl.ForeColor = Color.Black;
+            }
+        }
+
+        private void modelLbl_Leave(object sender, EventArgs e)
+        {
+            if (modelLbl.Text.Length > 0)
+            {
+                modelLbl.ForeColor = Color.Black;
+            }
+        }
+
+        private void colourLbl_Leave_1(object sender, EventArgs e)
+        {
+            if (colourLbl.Text.Length > 0)
+            {
+                colourLbl.ForeColor = Color.Black;
+            }
         }
     }
 }

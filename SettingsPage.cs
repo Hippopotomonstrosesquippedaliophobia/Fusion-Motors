@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -251,14 +252,16 @@ namespace Database_Application_Chris
             ImportPanel.Enabled = false;
             ImportPanel.Visible = false;
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
             // Key exists so continue
-            string version = ConfigurationManager.AppSettings["version"];
-            string versionIteration = ConfigurationManager.AppSettings["versionIteration"];
+            //string version = ConfigurationManager.AppSettings["version"];
+            //string versionIteration = ConfigurationManager.AppSettings["versionIteration"];
             string lastUpdate = ConfigurationManager.AppSettings["lastUpdate"];
 
-            versionLbl.Text = "v" + version + "." + versionIteration;
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            versionLbl.Text = "v" + version;
             lastUpDate.Text = lastUpdate;  
         }
 

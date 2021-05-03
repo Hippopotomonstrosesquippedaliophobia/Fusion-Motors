@@ -308,7 +308,7 @@ namespace Database_Application_Chris
             this.flowLayoutPanel1.Controls.Add(this.DatabaseBtn);
             this.flowLayoutPanel1.Controls.Add(this.AddBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(14, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(255, 610);
@@ -325,7 +325,7 @@ namespace Database_Application_Chris
             this.homeBtn.Location = new System.Drawing.Point(3, 2);
             this.homeBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.homeBtn.Name = "homeBtn";
-            this.homeBtn.Size = new System.Drawing.Size(252, 51);
+            this.homeBtn.Size = new System.Drawing.Size(268, 51);
             this.homeBtn.TabIndex = 2;
             this.homeBtn.Text = "     Home ";
             this.homeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -344,7 +344,7 @@ namespace Database_Application_Chris
             this.searchBtn.Location = new System.Drawing.Point(3, 57);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(252, 51);
+            this.searchBtn.Size = new System.Drawing.Size(266, 51);
             this.searchBtn.TabIndex = 2;
             this.searchBtn.Text = "     Search";
             this.searchBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,7 +363,7 @@ namespace Database_Application_Chris
             this.DatabaseBtn.Location = new System.Drawing.Point(3, 112);
             this.DatabaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DatabaseBtn.Name = "DatabaseBtn";
-            this.DatabaseBtn.Size = new System.Drawing.Size(252, 51);
+            this.DatabaseBtn.Size = new System.Drawing.Size(268, 51);
             this.DatabaseBtn.TabIndex = 2;
             this.DatabaseBtn.Text = "     Database ";
             this.DatabaseBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -382,7 +382,7 @@ namespace Database_Application_Chris
             this.AddBtn.Location = new System.Drawing.Point(3, 167);
             this.AddBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddBtn.Name = "AddBtn";
-            this.AddBtn.Size = new System.Drawing.Size(252, 51);
+            this.AddBtn.Size = new System.Drawing.Size(268, 51);
             this.AddBtn.TabIndex = 2;
             this.AddBtn.Text = "     Add";
             this.AddBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -399,16 +399,16 @@ namespace Database_Application_Chris
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(21, 610);
+            this.panel2.Size = new System.Drawing.Size(14, 610);
             this.panel2.TabIndex = 0;
             // 
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.Color.Gold;
-            this.sidePanel.Location = new System.Drawing.Point(2, 2);
+            this.sidePanel.Location = new System.Drawing.Point(1, 2);
             this.sidePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(16, 51);
+            this.sidePanel.Size = new System.Drawing.Size(10, 51);
             this.sidePanel.TabIndex = 2;
             // 
             // panel6

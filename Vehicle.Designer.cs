@@ -64,9 +64,12 @@ namespace Database_Application_Chris
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.FormButtonsSection = new System.Windows.Forms.Panel();
+            this.viewErrors = new System.Windows.Forms.Button();
             this.InterestedCustomersPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -163,7 +166,7 @@ namespace Database_Application_Chris
             this.interestedCustomersListBox.Location = new System.Drawing.Point(24, 0);
             this.interestedCustomersListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.interestedCustomersListBox.Name = "interestedCustomersListBox";
-            this.interestedCustomersListBox.Size = new System.Drawing.Size(243, 375);
+            this.interestedCustomersListBox.Size = new System.Drawing.Size(243, 416);
             this.interestedCustomersListBox.TabIndex = 13;
             this.toolTip.SetToolTip(this.interestedCustomersListBox, "List of interested customers");
             this.interestedCustomersListBox.DoubleClick += new System.EventHandler(this.interestedCustomersListBox_DoubleClick);
@@ -197,6 +200,7 @@ namespace Database_Application_Chris
             this.colourLbl.Size = new System.Drawing.Size(124, 24);
             this.colourLbl.TabIndex = 12;
             this.toolTip.SetToolTip(this.colourLbl, "Colour of car");
+            this.colourLbl.Leave += new System.EventHandler(this.colourLbl_Leave_1);
             // 
             // addThisVehicle
             // 
@@ -275,6 +279,7 @@ namespace Database_Application_Chris
             this.makeLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.makeLbl.Size = new System.Drawing.Size(190, 24);
             this.makeLbl.TabIndex = 12;
+            this.makeLbl.Leave += new System.EventHandler(this.makeLbl_Leave);
             // 
             // L3
             // 
@@ -298,6 +303,7 @@ namespace Database_Application_Chris
             this.modelLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.modelLbl.Size = new System.Drawing.Size(190, 24);
             this.modelLbl.TabIndex = 12;
+            this.modelLbl.Leave += new System.EventHandler(this.modelLbl_Leave);
             // 
             // L4
             // 
@@ -467,7 +473,7 @@ namespace Database_Application_Chris
             this.panel4.Controls.Add(this.L7);
             this.panel4.Controls.Add(this.colourLbl);
             this.panel4.Controls.Add(this.valuationLbl);
-            this.panel4.Location = new System.Drawing.Point(39, 224);
+            this.panel4.Location = new System.Drawing.Point(39, 204);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(574, 84);
             this.panel4.TabIndex = 24;
@@ -487,16 +493,36 @@ namespace Database_Application_Chris
             // 
             // FormButtonsSection
             // 
+            this.FormButtonsSection.Controls.Add(this.viewErrors);
             this.FormButtonsSection.Controls.Add(this.addThisVehicle);
             this.FormButtonsSection.Controls.Add(this.updateVehicleBtn);
             this.FormButtonsSection.Controls.Add(this.deleteVehicleBtn);
             this.FormButtonsSection.Controls.Add(this.deleteCustomerBtn);
             this.FormButtonsSection.Controls.Add(this.addCustomerBtn);
             this.FormButtonsSection.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FormButtonsSection.Location = new System.Drawing.Point(0, 484);
+            this.FormButtonsSection.Location = new System.Drawing.Point(0, 503);
             this.FormButtonsSection.Name = "FormButtonsSection";
-            this.FormButtonsSection.Size = new System.Drawing.Size(1018, 110);
+            this.FormButtonsSection.Size = new System.Drawing.Size(1018, 91);
             this.FormButtonsSection.TabIndex = 26;
+            // 
+            // viewErrors
+            // 
+            this.viewErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewErrors.BackColor = System.Drawing.Color.Red;
+            this.viewErrors.Enabled = false;
+            this.viewErrors.FlatAppearance.BorderSize = 0;
+            this.viewErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.viewErrors.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.viewErrors.ForeColor = System.Drawing.Color.White;
+            this.viewErrors.Location = new System.Drawing.Point(350, 26);
+            this.viewErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.viewErrors.Name = "viewErrors";
+            this.viewErrors.Size = new System.Drawing.Size(130, 33);
+            this.viewErrors.TabIndex = 20;
+            this.viewErrors.Text = "View Errors";
+            this.viewErrors.UseVisualStyleBackColor = false;
+            this.viewErrors.Visible = false;
+            this.viewErrors.Click += new System.EventHandler(this.viewErrors_Click);
             // 
             // InterestedCustomersPanel
             // 
@@ -505,7 +531,7 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.InterestedCustomersPanel.Location = new System.Drawing.Point(718, 47);
             this.InterestedCustomersPanel.Name = "InterestedCustomersPanel";
-            this.InterestedCustomersPanel.Size = new System.Drawing.Size(300, 437);
+            this.InterestedCustomersPanel.Size = new System.Drawing.Size(300, 456);
             this.InterestedCustomersPanel.TabIndex = 27;
             // 
             // panel6
@@ -515,12 +541,14 @@ namespace Database_Application_Chris
             this.panel6.Controls.Add(this.interestedCustomersListBox);
             this.panel6.Location = new System.Drawing.Point(2, 40);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(267, 375);
+            this.panel6.Size = new System.Drawing.Size(267, 416);
             this.panel6.TabIndex = 21;
             // 
             // panel7
             // 
             this.panel7.AutoSize = true;
+            this.panel7.Controls.Add(this.additionalCommentsLbl);
+            this.panel7.Controls.Add(this.label6);
             this.panel7.Controls.Add(this.panel5);
             this.panel7.Controls.Add(this.panel4);
             this.panel7.Controls.Add(this.panel3);
@@ -528,8 +556,30 @@ namespace Database_Application_Chris
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 47);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(718, 437);
+            this.panel7.Size = new System.Drawing.Size(718, 456);
             this.panel7.TabIndex = 28;
+            // 
+            // additionalCommentsLbl
+            // 
+            this.additionalCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.additionalCommentsLbl.Location = new System.Drawing.Point(55, 320);
+            this.additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.additionalCommentsLbl.Multiline = true;
+            this.additionalCommentsLbl.Name = "additionalCommentsLbl";
+            this.additionalCommentsLbl.Size = new System.Drawing.Size(541, 136);
+            this.additionalCommentsLbl.TabIndex = 27;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(55, 302);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(126, 16);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Additional Comments:";
             // 
             // Vehicle
             // 
@@ -558,6 +608,7 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,5 +653,8 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Panel InterestedCustomersPanel;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button viewErrors;
+        private System.Windows.Forms.TextBox additionalCommentsLbl;
+        private System.Windows.Forms.Label label6;
     }
 }

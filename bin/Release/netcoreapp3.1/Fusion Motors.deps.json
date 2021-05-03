@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Fusion Motors/1.0.0": {
+      "Fusion Motors/1.2.0": {
         "dependencies": {
           "MongoDB.Driver": "2.12.1"
         },
@@ -133,7 +133,7 @@
     }
   },
   "libraries": {
-    "Fusion Motors/1.0.0": {
+    "Fusion Motors/1.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

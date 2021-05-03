@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -26,10 +29,14 @@ namespace Database_Application_Chris
 
         public bool showingPassword = false;
 
+        // Update Stuff
+        private static string pasteBin = "https://pastebin.com/raw/LiahpQJq";
+        private static string version = "0.0";
+
         public Login()
         {
             InitializeComponent();
-            this.Text = "Fusion Motors: Login"; 
+            this.Text = "Fusion Motors: Login";
         }
 
         
@@ -176,7 +183,82 @@ namespace Database_Application_Chris
 
         private void Login_Load(object sender, EventArgs e)
         {
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            versionLbl.Text = "v" + version;
 
+            //Check for updates
+            GetUpdate(); 
+        } 
+
+        // UPDATE STUFF
+        void GetUpdate()
+        {
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+
+            //string ver = config.AppSettings.Settings["version"].Value.ToString();
+            //string verIteration = config.AppSettings.Settings["versionIteration"].Value.ToString();
+
+            WebClient webClient = new WebClient();
+
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString(); 
+
+            try
+            {
+                var web = webClient.DownloadString(pasteBin);
+
+                string[] link = web.Split("Download: ");
+                string downloadLink = "";
+
+
+                if (link.Length > 1 & link.Length <= 2)
+                {
+                    downloadLink = link[1];
+                }
+                else
+                {
+                    throw new Exception("Download link not found or corrupted");
+                } 
+
+                if (!web.Contains(version)) // Version is not the same as pastebin version
+                {
+                    DialogResult dialogResult = MessageBox.Show("A new version of Fusion Motors has been found! \nDo you want to download it?", "Fusion Motors Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        GoToSite(downloadLink);
+                    }
+                    else // User doesnt wish to update - proceed to launch
+                    {
+                        return;
+                    }
+                }
+                else // Version is correct - proceeed to launch
+                {
+                    return;
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Update Check Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // opens update link
+        public void GoToSite(string url)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+
+            startInfo.CreateNoWindow = true;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            // Command to execute
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/C start " + url;
+
+            // Run process
+            process.StartInfo = startInfo;
+            process.Start();
         }
     }
 }

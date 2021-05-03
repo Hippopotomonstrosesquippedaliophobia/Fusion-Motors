@@ -19,6 +19,7 @@ namespace Database_Application_Chris
         public bool addCustomer = false; 
         public int errorsInForm = 0;
 
+        List<string> allErrors = new List<string>();
         List<string> RemovedInterestedVehicles = new List<string>();
         public BindingList<VehicleModel> vehicles = new BindingList<VehicleModel>();
 
@@ -333,6 +334,9 @@ namespace Database_Application_Chris
 
                     // Remove vehicle
                     await Task.Run(() => main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id));
+
+                    // update notification bell
+                    main.Instance.LoadCustomersToCall();
                 }
                 catch (Exception err)
                 {
@@ -399,6 +403,8 @@ namespace Database_Application_Chris
 
                         await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
 
+                        // update notification bell
+                        main.Instance.LoadCustomersToCall();
                     }
                     catch (Exception err)
                     {
@@ -443,6 +449,9 @@ namespace Database_Application_Chris
                             main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
                             x++;
                         }
+
+                        // update notification bell
+                        main.Instance.LoadCustomersToCall();
                     }
                     catch (Exception err)
                     {
@@ -669,6 +678,11 @@ namespace Database_Application_Chris
             updateCustomerBtn.Visible = false;
         }
 
+        private void ChangeFieldColourValidate(TextBox field, int checker)
+        { 
+            field.ForeColor = Color.Red; 
+        }
+
         private void ValidationProcess(TextBox field)
         {
             validation validate = new validation();
@@ -679,31 +693,78 @@ namespace Database_Application_Chris
 
             if (field == null)
             {
+                int lastCheck = 0;
+                int checker = 0;
+
                 // Means check all
                 err.AddRange(validate.CheckName(nameLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(nameLbl, checker);
+                    lastCheck = checker;
+                }
+
                 err.AddRange(validate.CheckAddress(addressLbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(addressLbl, checker);
+                    lastCheck = checker;
+                }
                 err.AddRange(validate.CheckNum(num1Lbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(num1Lbl, checker);
+                    lastCheck = checker;
+                }
 
                 //If empty allow it, as not all customers have both
                 if (num2Lbl.Text.Trim().Length != 0)
                 {
                     err.AddRange(validate.CheckNum(num2Lbl.Text.Trim()));
+                    checker = err.Count;
+                    if (checker != lastCheck)
+                    {
+                        ChangeFieldColourValidate(num2Lbl, checker);
+                        lastCheck = checker;
+                    }
                 }
 
                 err.AddRange(validate.CheckEmail(email1Lbl.Text.Trim()));
+                checker = err.Count;
+                if (checker != lastCheck)
+                {
+                    ChangeFieldColourValidate(email1Lbl, checker);
+                    lastCheck = checker;
+                }
 
                 //If empty allow it, as not all customers have both
                 if (email2Lbl.Text.Trim().Length != 0)
                 {
                     err.AddRange(validate.CheckEmail(email2Lbl.Text.Trim()));
+                    checker = err.Count;
+                    if (checker != lastCheck)
+                    {
+                        ChangeFieldColourValidate(email2Lbl, checker);
+                        lastCheck = checker;
+                    }
                 }
 
+
                 if (err.Count != 0)
-                { 
+                {
+                    allErrors.Clear();
+                    allErrors.AddRange(err);
                     errorsInForm = err.Count;
                 }
                 else if (err.Count == 0)
-                { 
+                {
+                    allErrors.Clear();
+                    viewErrors.Enabled = false;
+                    viewErrors.Visible = false;
+
                     errorsInForm = 0; 
                 }
 
@@ -748,6 +809,17 @@ namespace Database_Application_Chris
                     OutputErrors(field, err);
                     break;
             }
+
+            if (allErrors.Count == 0)
+            {
+                viewErrors.Enabled = false;
+                viewErrors.Visible = false;
+            }
+            else
+            {
+                viewErrors.Enabled = true;
+                viewErrors.Visible = true;
+            }
         }
 
         private void OutputErrors(TextBox field, List<string> err)
@@ -769,7 +841,28 @@ namespace Database_Application_Chris
                     compileErrors += "\n" + item;
                 }
 
-                MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (allErrors.Count == 0)
+                {
+                    allErrors.Add("Error List:");
+                }
+                //CompileErrors(err);
+                //MessageBox.Show(compileErrors, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CompileErrors(List<string> err)
+        {
+            int i = 0;
+
+            if (allErrors.Count != 0)
+            {
+                allErrors.Add("---");
+            }
+
+            foreach (var error in err)
+            {
+                allErrors.Add(err[i]);
+                i++;
             }
         }
 
@@ -803,7 +896,7 @@ namespace Database_Application_Chris
 
             if (interestedVehiclesListBox.Items.Count != 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItem + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + vehicles[selectedIndex].EngineNum + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
 
@@ -870,6 +963,34 @@ namespace Database_Application_Chris
             }
 
             main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
+        }
+
+        private void viewErrors_Click(object sender, EventArgs e)
+        {
+            string errs = "";
+            int i = 0;
+
+            ValidationProcess(null);
+
+            foreach (var error in allErrors)
+            {
+                if (i == 0)
+                {
+                    errs = allErrors[i];
+                }else
+                {
+                    errs += "\n" + allErrors[i];
+                }
+                i++;
+            }
+
+            if (allErrors.Count != 0)
+            {
+                MessageBox.Show(errs, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else
+            {
+                MessageBox.Show("All errors cleared!", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
