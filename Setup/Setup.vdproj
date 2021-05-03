@@ -502,15 +502,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fusion Motors"
-        "ProductCode" = "8:{659F241C-06F9-4459-BE7F-9476BF9E8698}"
-        "PackageCode" = "8:{F667AD0B-DD3A-461D-A1E8-7B9877DC4698}"
+        "ProductCode" = "8:{CFAFD4A6-D1F8-4161-B531-FB8F95ECDD8F}"
+        "PackageCode" = "8:{6B9EF3F2-A645-4230-BF5E-81B36DABDA64}"
         "UpgradeCode" = "8:{EEC6108B-E231-402B-8AC1-956E9BF74CB6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:D e b r o n n i"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1052,7 +1052,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B61226AA687F4DA4B80BDDDE94CD429B"
             {
-            "SourcePath" = "8:..\\obj\\Debug\\netcoreapp3.1\\apphost.exe"
+            "SourcePath" = "8:..\\obj\\Release\\netcoreapp3.1\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5904E3B405A6444B9CA2BC2C8E8848A1"

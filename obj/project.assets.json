@@ -454,7 +454,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.2.0",
+    "version": "1.2.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\Bronj\\source\\repos\\Database Application Chris\\Database Application Chris.csproj",
       "projectName": "Fusion Motors",
