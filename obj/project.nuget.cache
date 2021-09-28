@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DF8OLEIl0+ezYeDmzMjHAm99aolfHy51Oj3lX316HA1tk+L4HuWU1WDVRPxZ2zIuOzimqponIdl+L4i+2W5yuw==",
+  "dgSpecHash": "+1AD2EASdncxxG2HuKQD4Ul3jNeFD18Apag1+qTFMN25yKIoYLk8HeH6Ri6nf3cDmnF+O5bcvMiTqoKbwK1oBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bronj\\source\\repos\\Database Application Chris\\Database Application Chris.csproj",
+  "projectFilePath": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Database Application Chris.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bronj\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\Bronj\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",

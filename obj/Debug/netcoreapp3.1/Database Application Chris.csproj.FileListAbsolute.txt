@@ -39,3 +39,46 @@ C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\F
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database Application Chris.genruntimeconfig.cache
 C:\Users\Bronj\source\repos\Database Application Chris\obj\Debug\netcoreapp3.1\Database Application Chris.csprojAssemblyReference.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.exe
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.deps.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.runtimeconfig.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.runtimeconfig.dev.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\Fusion Motors.pdb
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\DnsClient.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\SharpCompress.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\win\native\libzstd.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy32.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy64.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\linux\native\libmongocrypt.so
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.addHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.Customer.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.customerPanel.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.DatabaseHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.HomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.Login.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.main.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.Properties.Resources.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.SearchForm.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.SearchHomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.SearchResultsControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.SettingsPage.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.Vehicle.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.csproj.GenerateResource.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.AssemblyInfoInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.AssemblyInfo.cs
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.csproj.CoreCompileInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.csproj.CopyComplete
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Fusion Motors.pdb
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.genruntimeconfig.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.csproj.AssemblyReference.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.AddVehicleImg.resources

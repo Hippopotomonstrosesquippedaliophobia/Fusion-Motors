@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -36,6 +37,8 @@ namespace Database_Application_Chris
 
             updateVehicleBtn.Visible = true;
             updateVehicleBtn.Enabled = true;
+
+            location.Text = "";
         }
         
         public Vehicle(bool addVehicle)
@@ -56,7 +59,10 @@ namespace Database_Application_Chris
 
                 updateVehicleBtn.Visible = false;
                 updateVehicleBtn.Enabled = false;
-            }else
+
+                location.Text = "-";
+            }
+            else
             {
                 addThisVehicle.Visible = false;
                 addThisVehicle.Enabled = false;
@@ -66,6 +72,8 @@ namespace Database_Application_Chris
 
                 updateVehicleBtn.Visible = true;
                 updateVehicleBtn.Enabled = true;
+
+                location.Text = "";
             }
         }
 
@@ -275,6 +283,7 @@ namespace Database_Application_Chris
             valuationLbl.Text = vehicleResult.Valuation.ToString();
             askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
             additionalCommentsLbl.Text = vehicleResult.Notes;
+            imageOfCar.Image = ByteToImage(vehicleResult.Image);
 
             // Add vehicles to listbox 
 
@@ -349,6 +358,32 @@ namespace Database_Application_Chris
             }
 
             vehicleResult.Notes = additionalCommentsLbl.Text;
+
+            if (location.Text != "-")
+            {
+                vehicleResult.Image = ImageToByte(imageOfCar.Image);
+            }
+            else
+            {
+                vehicleResult.Image = null;
+            }
+
+        }
+        
+        public static byte[] ImageToByte(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
+        }
+
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
 
         private void UpdateListToSend()
@@ -686,6 +721,40 @@ namespace Database_Application_Chris
             if (colourLbl.Text.Length > 0)
             {
                 colourLbl.ForeColor = Color.Black;
+            }
+        }
+
+        private void imageOfCar_DoubleClick(object sender, EventArgs e)
+        {
+            //AddVehicleImg vehic = new AddVehicleImg();
+            //vehic.Show();
+
+            // open file dialog   
+            OpenFileDialog open = new OpenFileDialog();
+
+            // image filters  
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // display image in picture box  
+                imageOfCar.Image = new Bitmap(open.FileName);
+
+                // image file path  
+                location.Text = open.FileName;
+                toolTip.SetToolTip(location, location.Text);
+            }
+        }
+
+        private void imageOfCar_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //Right Click event. Clear stuff
+                imageOfCar.Image = null;
+
+                location.Text = "-";
+                toolTip.SetToolTip(location, location.Text);
             }
         }
     }

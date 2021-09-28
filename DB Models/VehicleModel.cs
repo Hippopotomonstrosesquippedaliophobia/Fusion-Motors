@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+ 
 
 namespace Database_Application_Chris
 {
@@ -20,5 +21,7 @@ namespace Database_Application_Chris
         public double AskingPrice { get; set; }
         public List<string> InterestedCustomers { get; set; }
         public string Notes { get; set; }
+        public byte[] Image { get; set; }
+         
     }
 }

@@ -450,21 +450,19 @@
   },
   "packageFolders": {
     "C:\\Users\\Bronj\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.2.1.1",
+    "version": "1.3.1.1",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bronj\\source\\repos\\Database Application Chris\\Database Application Chris.csproj",
+      "projectUniqueName": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Database Application Chris.csproj",
       "projectName": "Fusion Motors",
-      "projectPath": "C:\\Users\\Bronj\\source\\repos\\Database Application Chris\\Database Application Chris.csproj",
+      "projectPath": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Database Application Chris.csproj",
       "packagesPath": "C:\\Users\\Bronj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bronj\\source\\repos\\Database Application Chris\\obj\\",
+      "outputPath": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\Bronj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -517,7 +515,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

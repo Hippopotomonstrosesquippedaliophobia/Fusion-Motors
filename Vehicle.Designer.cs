@@ -41,6 +41,8 @@ namespace Database_Application_Chris
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.addThisVehicle = new System.Windows.Forms.Button();
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
+            this.location = new System.Windows.Forms.Label();
+            this.imageOfCar = new System.Windows.Forms.PictureBox();
             this.L1 = new System.Windows.Forms.Label();
             this.L8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,6 +73,7 @@ namespace Database_Application_Chris
             this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageOfCar)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -236,6 +239,33 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.UseVisualStyleBackColor = false;
             this.deleteCustomerBtn.Visible = false;
             this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
+            // 
+            // location
+            // 
+            this.location.AutoSize = true;
+            this.location.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.location.Location = new System.Drawing.Point(472, 422);
+            this.location.MaximumSize = new System.Drawing.Size(124, 0);
+            this.location.Name = "location";
+            this.location.Size = new System.Drawing.Size(11, 16);
+            this.location.TabIndex = 29;
+            this.location.Text = "-";
+            this.toolTip.SetToolTip(this.location, "-");
+            // 
+            // imageOfCar
+            // 
+            this.imageOfCar.BackColor = System.Drawing.SystemColors.Control;
+            this.imageOfCar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageOfCar.InitialImage = global::Database_Application_Chris.Properties.Resources.missingcar;
+            this.imageOfCar.Location = new System.Drawing.Point(472, 316);
+            this.imageOfCar.Name = "imageOfCar";
+            this.imageOfCar.Size = new System.Drawing.Size(124, 103);
+            this.imageOfCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageOfCar.TabIndex = 28;
+            this.imageOfCar.TabStop = false;
+            this.toolTip.SetToolTip(this.imageOfCar, "Double click to edit, right click to clear");
+            this.imageOfCar.DoubleClick += new System.EventHandler(this.imageOfCar_DoubleClick);
+            this.imageOfCar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.imageOfCar_MouseClick);
             // 
             // L1
             // 
@@ -546,6 +576,8 @@ namespace Database_Application_Chris
             // panel7
             // 
             this.panel7.AutoSize = true;
+            this.panel7.Controls.Add(this.location);
+            this.panel7.Controls.Add(this.imageOfCar);
             this.panel7.Controls.Add(this.additionalCommentsLbl);
             this.panel7.Controls.Add(this.label6);
             this.panel7.Controls.Add(this.panel5);
@@ -567,7 +599,7 @@ namespace Database_Application_Chris
             this.additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.additionalCommentsLbl.Multiline = true;
             this.additionalCommentsLbl.Name = "additionalCommentsLbl";
-            this.additionalCommentsLbl.Size = new System.Drawing.Size(541, 136);
+            this.additionalCommentsLbl.Size = new System.Drawing.Size(396, 99);
             this.additionalCommentsLbl.TabIndex = 27;
             // 
             // label6
@@ -594,6 +626,7 @@ namespace Database_Application_Chris
             this.Click += new System.EventHandler(this.Vehicle_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageOfCar)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -655,5 +688,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button viewErrors;
         private System.Windows.Forms.TextBox additionalCommentsLbl;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label location;
+        private System.Windows.Forms.PictureBox imageOfCar;
     }
 }

@@ -173,6 +173,16 @@ namespace Database_Application_Chris.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap missingcar {
+            get {
+                object obj = ResourceManager.GetObject("missingcar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap notification_bell {
             get {
                 object obj = ResourceManager.GetObject("notification_bell", resourceCulture);
