@@ -7,7 +7,7 @@
     <Compile Update="addHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="AddVehicleImg.cs">
+    <Compile Update="ViewVehicle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Customer.cs">

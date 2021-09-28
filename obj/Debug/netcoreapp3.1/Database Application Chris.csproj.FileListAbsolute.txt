@@ -81,4 +81,4 @@ C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Fusion Motors.
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.genruntimeconfig.cache
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database Application Chris.csproj.AssemblyReference.cache
-C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.AddVehicleImg.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\netcoreapp3.1\Database_Application_Chris.ViewVehicle.resources

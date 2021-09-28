@@ -263,7 +263,7 @@ namespace Database_Application_Chris
             this.imageOfCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageOfCar.TabIndex = 28;
             this.imageOfCar.TabStop = false;
-            this.toolTip.SetToolTip(this.imageOfCar, "Double click to edit, right click to clear");
+            this.toolTip.SetToolTip(this.imageOfCar, "Double click to edit, Middle Mouse button to expand, Right click to clear");
             this.imageOfCar.DoubleClick += new System.EventHandler(this.imageOfCar_DoubleClick);
             this.imageOfCar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.imageOfCar_MouseClick);
             // 

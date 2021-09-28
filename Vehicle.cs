@@ -24,6 +24,8 @@ namespace Database_Application_Chris
 
         public BindingList<CustomerModel> customers = new BindingList<CustomerModel>();
 
+        byte[] TEMPIMG = null;
+
         public Vehicle()
         {
             InitializeComponent();
@@ -283,7 +285,10 @@ namespace Database_Application_Chris
             valuationLbl.Text = vehicleResult.Valuation.ToString();
             askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
             additionalCommentsLbl.Text = vehicleResult.Notes;
-            imageOfCar.Image = ByteToImage(vehicleResult.Image);
+
+            //imageOfCar.Image = ByteToImage(vehicleResult.Image);
+            TEMPIMG = vehicleResult.Image;
+            imageOfCar.Image = ByteToImage(TEMPIMG);
 
             // Add vehicles to listbox 
 
@@ -739,6 +744,7 @@ namespace Database_Application_Chris
             {
                 // display image in picture box  
                 imageOfCar.Image = new Bitmap(open.FileName);
+                TEMPIMG = ImageToByte(imageOfCar.Image);
 
                 // image file path  
                 location.Text = open.FileName;
@@ -752,10 +758,32 @@ namespace Database_Application_Chris
             {
                 //Right Click event. Clear stuff
                 imageOfCar.Image = null;
+                TEMPIMG = ImageToByte(imageOfCar.Image);
 
                 location.Text = "-";
                 toolTip.SetToolTip(location, location.Text);
             }
-        }
+            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            {
+                if (TEMPIMG != null)
+                {
+                    try
+                    {
+                        //byte[] temp = ImageToByte(vehicleResult.Image);
+
+                        ViewVehicle vv = new ViewVehicle(TEMPIMG);
+                        vv.Show();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "Error");
+                    }
+                }
+                else
+                {
+                    //Do nothing
+                }
+            }
+        } 
     }
 }
