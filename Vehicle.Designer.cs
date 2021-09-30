@@ -41,7 +41,6 @@ namespace Database_Application_Chris
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.addThisVehicle = new System.Windows.Forms.Button();
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
-            this.location = new System.Windows.Forms.Label();
             this.imageOfCar = new System.Windows.Forms.PictureBox();
             this.L1 = new System.Windows.Forms.Label();
             this.L8 = new System.Windows.Forms.Label();
@@ -70,8 +69,14 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.location = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageOfCar)).BeginInit();
             this.panel2.SuspendLayout();
@@ -82,6 +87,11 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -240,29 +250,17 @@ namespace Database_Application_Chris
             this.deleteCustomerBtn.Visible = false;
             this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
             // 
-            // location
-            // 
-            this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.location.AutoSize = true;
-            this.location.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.location.Location = new System.Drawing.Point(472, 422);
-            this.location.MaximumSize = new System.Drawing.Size(124, 0);
-            this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(11, 16);
-            this.location.TabIndex = 29;
-            this.location.Text = "-";
-            this.toolTip.SetToolTip(this.location, "-");
-            // 
             // imageOfCar
             // 
-            this.imageOfCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageOfCar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imageOfCar.BackColor = System.Drawing.SystemColors.Control;
             this.imageOfCar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imageOfCar.InitialImage = global::Database_Application_Chris.Properties.Resources.missingcar;
-            this.imageOfCar.Location = new System.Drawing.Point(472, 316);
+            this.imageOfCar.Location = new System.Drawing.Point(0, 22);
             this.imageOfCar.Name = "imageOfCar";
-            this.imageOfCar.Size = new System.Drawing.Size(124, 103);
+            this.imageOfCar.Size = new System.Drawing.Size(202, 120);
             this.imageOfCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageOfCar.TabIndex = 28;
             this.imageOfCar.TabStop = false;
@@ -579,10 +577,7 @@ namespace Database_Application_Chris
             // panel7
             // 
             this.panel7.AutoSize = true;
-            this.panel7.Controls.Add(this.location);
-            this.panel7.Controls.Add(this.imageOfCar);
-            this.panel7.Controls.Add(this.additionalCommentsLbl);
-            this.panel7.Controls.Add(this.label6);
+            this.panel7.Controls.Add(this.panel12);
             this.panel7.Controls.Add(this.panel5);
             this.panel7.Controls.Add(this.panel4);
             this.panel7.Controls.Add(this.panel3);
@@ -593,27 +588,99 @@ namespace Database_Application_Chris
             this.panel7.Size = new System.Drawing.Size(718, 456);
             this.panel7.TabIndex = 28;
             // 
-            // additionalCommentsLbl
+            // panel12
             // 
-            this.additionalCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.additionalCommentsLbl.Location = new System.Drawing.Point(55, 320);
-            this.additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.additionalCommentsLbl.Multiline = true;
-            this.additionalCommentsLbl.Name = "additionalCommentsLbl";
-            this.additionalCommentsLbl.Size = new System.Drawing.Size(396, 99);
-            this.additionalCommentsLbl.TabIndex = 27;
+            this.panel12.Controls.Add(this.panel13);
+            this.panel12.Controls.Add(this.panel9);
+            this.panel12.Location = new System.Drawing.Point(0, 294);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(718, 162);
+            this.panel12.TabIndex = 32;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel13.Controls.Add(this.panel15);
+            this.panel13.Controls.Add(this.panel14);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(469, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(249, 162);
+            this.panel13.TabIndex = 32;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.location);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel15.Location = new System.Drawing.Point(0, 143);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(249, 19);
+            this.panel15.TabIndex = 31;
+            // 
+            // location
+            // 
+            this.location.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.location.AutoSize = true;
+            this.location.Location = new System.Drawing.Point(4, 4);
+            this.location.MaximumSize = new System.Drawing.Size(175, 0);
+            this.location.Name = "location";
+            this.location.Size = new System.Drawing.Size(12, 15);
+            this.location.TabIndex = 30;
+            this.location.Text = "-";
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Controls.Add(this.imageOfCar);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(249, 162);
+            this.panel14.TabIndex = 29;
+            // 
+            // panel9
+            // 
+            this.panel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Controls.Add(this.label6);
+            this.panel9.Controls.Add(this.additionalCommentsLbl);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.MaximumSize = new System.Drawing.Size(600, 0);
+            this.panel9.MinimumSize = new System.Drawing.Size(469, 155);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(10);
+            this.panel9.Size = new System.Drawing.Size(469, 162);
+            this.panel9.TabIndex = 31;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(55, 302);
+            this.label6.Location = new System.Drawing.Point(55, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(126, 16);
             this.label6.TabIndex = 26;
             this.label6.Text = "Additional Comments:";
+            // 
+            // additionalCommentsLbl
+            // 
+            this.additionalCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.additionalCommentsLbl.Location = new System.Drawing.Point(55, 22);
+            this.additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.additionalCommentsLbl.MinimumSize = new System.Drawing.Size(396, 4);
+            this.additionalCommentsLbl.Multiline = true;
+            this.additionalCommentsLbl.Name = "additionalCommentsLbl";
+            this.additionalCommentsLbl.Size = new System.Drawing.Size(396, 127);
+            this.additionalCommentsLbl.TabIndex = 27;
             // 
             // Vehicle
             // 
@@ -643,7 +710,13 @@ namespace Database_Application_Chris
             this.InterestedCustomersPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -691,7 +764,12 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Button viewErrors;
         private System.Windows.Forms.TextBox additionalCommentsLbl;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label location;
         private System.Windows.Forms.PictureBox imageOfCar;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label location;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel14;
     }
 }
