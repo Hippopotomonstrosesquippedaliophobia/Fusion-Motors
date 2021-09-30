@@ -242,6 +242,8 @@ namespace Database_Application_Chris
             // 
             // location
             // 
+            this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.location.AutoSize = true;
             this.location.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.location.Location = new System.Drawing.Point(472, 422);
@@ -254,6 +256,7 @@ namespace Database_Application_Chris
             // 
             // imageOfCar
             // 
+            this.imageOfCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imageOfCar.BackColor = System.Drawing.SystemColors.Control;
             this.imageOfCar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imageOfCar.InitialImage = global::Database_Application_Chris.Properties.Resources.missingcar;

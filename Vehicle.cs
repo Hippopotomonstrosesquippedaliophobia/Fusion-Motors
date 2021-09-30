@@ -288,7 +288,19 @@ namespace Database_Application_Chris
 
             //imageOfCar.Image = ByteToImage(vehicleResult.Image);
             TEMPIMG = vehicleResult.Image;
-            imageOfCar.Image = ByteToImage(TEMPIMG);
+
+            try
+            {
+                if (TEMPIMG != null)
+                {
+                    imageOfCar.Image = ByteToImage(TEMPIMG);
+                }
+            }
+            catch (Exception err)
+            { 
+                MessageBox.Show("No image found for this vehicle in database!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                imageOfCar.Image = null;
+            }
 
             // Add vehicles to listbox 
 
@@ -366,7 +378,16 @@ namespace Database_Application_Chris
 
             if (location.Text != "-")
             {
-                vehicleResult.Image = ImageToByte(imageOfCar.Image);
+                try
+                {
+                    if (imageOfCar.Image != null)
+                    {
+                        vehicleResult.Image = ImageToByte(imageOfCar.Image);
+                    }
+                } catch (Exception err)
+                {
+                    MessageBox.Show("Error converting image to database readable format!", "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
