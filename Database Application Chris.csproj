@@ -8,7 +8,7 @@
     <AssemblyName>Fusion Motors</AssemblyName>
     <ApplicationIcon>images\fusion Motors.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>1.3.4.1</Version>
+    <Version>1.3.5.1</Version>
     <Description />
   </PropertyGroup>
 

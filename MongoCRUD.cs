@@ -15,6 +15,8 @@ namespace Database_Application_Chris
 
         public MongoCRUD (string database)
         {
+            var credential = MongoCredential.CreateCredential(database, "admin", "chriscod");
+
             // Asynchronously initialize this instance.
             var client = new MongoClient("mongodb://localhost:27017");
 
@@ -25,7 +27,7 @@ namespace Database_Application_Chris
             catch (Exception err)
             {
 
-            }      
+            }
         } 
 
         public void GetConnection()
