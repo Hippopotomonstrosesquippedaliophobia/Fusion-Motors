@@ -93,6 +93,7 @@ namespace Database_Application_Chris
             addVehicleBtn.Visible = true;
             removeVehicleBtn.Visible = true;
         }
+
         private void Customer_Load(object sender, EventArgs e)
         {
             //RefreshInformation();
@@ -145,6 +146,7 @@ namespace Database_Application_Chris
             interestedVehiclesListBox.DataSource = null;
 
             //List<VehicleModel> vehicles = new List<VehicleModel>();
+            
             int index = 0;
             vehicles = new BindingList<VehicleModel>();
 
