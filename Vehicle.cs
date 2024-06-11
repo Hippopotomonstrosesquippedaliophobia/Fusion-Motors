@@ -22,7 +22,7 @@ namespace Database_Application_Chris
 
         private List<string> allErrors = new List<string>();
 
-        public BindingList<CustomerModel> customers = new BindingList<CustomerModel>();
+        public BindingList<CustomerFrame> customers = new BindingList<CustomerFrame>();
 
         byte[] TEMPIMG = null;
 
@@ -210,7 +210,7 @@ namespace Database_Application_Chris
                     foreach (var rem in vehicleResult.InterestedCustomers)
                     {
                         Guid newGuid = Guid.Parse(vehicleResult.InterestedCustomers[i]);
-                        main.Instance.db.RemoveCustomersListInterest<CustomerModel>("Customers", vehicleResult.EngineNum, newGuid);
+                        main.Instance.db.RemoveCustomersListInterest<CustomerFrame>("Customers", vehicleResult.EngineNum, newGuid);
                         i++;
                     }
                      
@@ -304,7 +304,7 @@ namespace Database_Application_Chris
 
             // Add vehicles to listbox 
 
-            customers = new BindingList<CustomerModel>();
+            customers = new BindingList<CustomerFrame>();
             int index = 0;
 
             foreach (var cust in vehicleResult.InterestedCustomers)
@@ -314,7 +314,7 @@ namespace Database_Application_Chris
                     try
                     {
                         Guid newGuid = Guid.Parse(cust);
-                        List<CustomerModel> temp = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", newGuid));
+                        List<CustomerFrame> temp = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", newGuid));
                         customers.Add(temp[0]); 
                         index++;
 

@@ -29,10 +29,10 @@ namespace Database_Application_Chris
         bool selectForList = false;
         public bool sentFromAddPage = false;
 
-        public CustomerModel selectForListCModel = new CustomerModel();
+        public CustomerFrame selectForListCModel = new CustomerFrame();
         public VehicleModel selectForListVModel = new VehicleModel();
 
-        public List<CustomerModel> listCustomers;
+        public List<CustomerFrame> listCustomers;
         public List<VehicleModel> listVehicles;
 
         public IDictionary<long, Guid> matchList = new Dictionary<long, Guid>();
@@ -40,7 +40,7 @@ namespace Database_Application_Chris
         public SearchForm(bool selection, VehicleModel model)
         {
             InitializeComponent();
-            listCustomers = new List<CustomerModel>();
+            listCustomers = new List<CustomerFrame>();
 
             // Tells if this is going to open the customer or send back the information to open customer page
             selectForList = selection;
@@ -60,7 +60,7 @@ namespace Database_Application_Chris
             listView.Visible = true;
         }
         
-        public SearchForm(bool vehicle, bool selection, CustomerModel model)
+        public SearchForm(bool vehicle, bool selection, CustomerFrame model)
         {
             InitializeComponent();
             listVehicles = new List<VehicleModel>();
@@ -115,11 +115,11 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
+                        listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerFrame>("Customers"));
                     }
                     else
                     {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadCustomerByName<CustomerModel>("Customers", names[0], lastname));
+                        listCustomers = await Task.Run(() => main.Instance.db.LoadCustomerByName<CustomerFrame>("Customers", names[0], lastname));
                     }
                 }
                 catch (Exception err)
@@ -127,7 +127,7 @@ namespace Database_Application_Chris
                     MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                UpdateListView<CustomerModel>(listCustomers);
+                UpdateListView<CustomerFrame>(listCustomers);
             }
             // This is a search for vehicles
             if (isVehicleSearch)
@@ -294,8 +294,8 @@ namespace Database_Application_Chris
             {
                 // Load Records
                 listVehicles = null;
-                listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
-                UpdateListView<CustomerModel>(listCustomers);
+                listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerFrame>("Customers"));
+                UpdateListView<CustomerFrame>(listCustomers);
             }
         }
 
@@ -324,11 +324,11 @@ namespace Database_Application_Chris
                             Customer uc = new Customer();
                             uc.Dock = DockStyle.Fill;
 
-                            CustomerModel cust = new CustomerModel();
+                            CustomerFrame cust = new CustomerFrame();
 
                             try
                             {
-                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
+                                List<CustomerFrame> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", id));
 
                                 if (tempList.Count == 0)
                                 {
@@ -366,7 +366,7 @@ namespace Database_Application_Chris
 
                             try
                             { 
-                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
+                                List<CustomerFrame> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", id));
 
                                 if (tempList.Count == 0)
                                 {

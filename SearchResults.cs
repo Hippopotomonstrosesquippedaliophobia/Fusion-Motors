@@ -10,7 +10,7 @@ namespace Database_Application_Chris
 {
     public partial class SearchResultsControl : UserControl
     {
-        public List<CustomerModel> searchResults;
+        public List<CustomerFrame> searchResults;
         public List<Panel> panels;
         private int skip, limit, panelID, recID, lastRecID, totalResults, pageAt, numPages, numOnPage;
         private Size small = new Size(248, 134);

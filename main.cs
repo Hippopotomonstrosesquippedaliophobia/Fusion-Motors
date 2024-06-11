@@ -81,7 +81,7 @@ namespace Database_Application_Chris
         private Settings settings = new Settings();
 
         // Call back peeps 
-        List<CustomerModel> callBackList = new List<CustomerModel>(); 
+        List<CustomerFrame> callBackList = new List<CustomerFrame>(); 
 
         public main()
         {
@@ -145,7 +145,7 @@ namespace Database_Application_Chris
                 if (elapsedMilliseconds >= milliseconds)
                 {
                     elapsedMilliseconds = 0; //Reset checker varaiable
-                    IsOnlineAsync();
+                    //IsOnlineAsync();
                 }
 
                 if (elapsedMilliseconds2 >= millisecondsNotify)
@@ -173,18 +173,18 @@ namespace Database_Application_Chris
         private async void main_Load(object sender, EventArgs e)
         {
             // Try to Start Mongo Database
-            try
-            {
-                RunCmd(Settings.commands["makeDirDB"], settings.commandsInfo["makeDirDB"]);
-                StartMongod();
-                await Task.Run(() => MongoConnect());
-            }
-            catch (Exception err)
-            {
-                mongoStatusLbl.Text = mongoStatusLblTxt;
-                mongoDBLbl.Text = mongoDBLblTxt;  
-                Message(err.Message, "Mongo Connection Warning", 2);
-            }
+            //try
+            //{
+            //    RunCmd(Settings.commands["makeDirDB"], settings.commandsInfo["makeDirDB"]);
+            //    StartMongod();
+            //    await Task.Run(() => MongoConnect());
+            //}
+            //catch (Exception err)
+            //{
+            //    mongoStatusLbl.Text = mongoStatusLblTxt;
+            //    mongoDBLbl.Text = mongoDBLblTxt;  
+            //    Message(err.Message, "Mongo Connection Warning", 2);
+            //}
         }
 
         // Used to execute hidden command prompt controls
@@ -499,119 +499,119 @@ namespace Database_Application_Chris
             return path;
         }
         //
-        public void SetMongoPath()
-        {
-            string path = GetPath();
+        //public void SetMongoPath()
+        //{
+        //    string path = GetPath();
 
-            if (path[0] == '0')
-            {
-                path = path.Substring(1);
-                Settings.mongoBinPath = path; // Set the path
-                settings.SetPath(Settings.mongoBinPath, 0);
-            }
-            else
-            {
-                Settings.mongoBinPath = path; // Set the path
-                settings.SetPath(Settings.mongoBinPath, 1);
-            }
-        }
+        //    if (path[0] == '0')
+        //    {
+        //        path = path.Substring(1);
+        //        Settings.mongoBinPath = path; // Set the path
+        //        settings.SetPath(Settings.mongoBinPath, 0);
+        //    }
+        //    else
+        //    {
+        //        Settings.mongoBinPath = path; // Set the path
+        //        settings.SetPath(Settings.mongoBinPath, 1);
+        //    }
+        //}
 
-        // Starts Mongo via command prompt
-        private void StartMongod()
-        { 
-            RunCmd(Settings.commands["mongoServiceStart"], settings.commandsInfo["mongoServiceStart"], Settings.mongoBinPath);
-        }
+        //// Starts Mongo via command prompt
+        //private void StartMongod()
+        //{ 
+        //    RunCmd(Settings.commands["mongoServiceStart"], settings.commandsInfo["mongoServiceStart"], Settings.mongoBinPath);
+        //}
 
-        // Closes Mongo via command prompt
-        private void StopMongod()
-        {
-            //Chose to keep mongo running in background to avoid forceful shutdown causing dataloss
-            RunCmd(Settings.commands["mongoServiceEnd"], settings.commandsInfo["mongoServiceEnd"]);
+        //// Closes Mongo via command prompt
+        //private void StopMongod()
+        //{
+        //    //Chose to keep mongo running in background to avoid forceful shutdown causing dataloss
+        //    RunCmd(Settings.commands["mongoServiceEnd"], settings.commandsInfo["mongoServiceEnd"]);
 
-        }
+        //}
 
-        private async Task IsOnlineAsync()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            string database = config.AppSettings.Settings["database"].Value.ToString();
+        //private async Task IsOnlineAsync()
+        //{
+        //    Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+        //    string database = config.AppSettings.Settings["database"].Value.ToString();
 
-            if (db != null)
-            { 
-                await Task.Run(() => db.GetConnection()); 
-                mongoStatusLbl.Text = mongoStatusLblTxt;
-                mongoDBLbl.Text = mongoDBLblTxt;
-            }
-        }
+        //    if (db != null)
+        //    { 
+        //        await Task.Run(() => db.GetConnection()); 
+        //        mongoStatusLbl.Text = mongoStatusLblTxt;
+        //        mongoDBLbl.Text = mongoDBLblTxt;
+        //    }
+        //}
 
-        private void MongoConnect()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            string database = config.AppSettings.Settings["database"].Value.ToString();
+        //private void MongoConnect()
+        //{
+        //    Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+        //    string database = config.AppSettings.Settings["database"].Value.ToString();
 
-            db = new MongoCRUD(database);
+        //    db = new MongoCRUD(database);
 
-            //If program has reached here, update connection label
-            IsOnlineAsync();
-
-
-            LoadCustomersToCall();
-
-            //ADD CUSTOMER RECORD
-            //CustomerModel customer = new CustomerModel
-            //{
-            //    FirstName = "Petra",
-            //    LastName = "Testerino",
-            //    PrimaryAddress = new AddressModel
-            //    {
-            //        StreetAddress = "New Hill",
-            //        Parish = "St.TEST",
-            //        Country = "Barbados"
-            //    },
-            //    ContactNums = new ContactModel
-            //    {
-            //        ContactNum1 = 12464235323, //must be like this so database makes it into a long
-            //        ContactNum2 = 12464235323,
-            //    },
-            //    Emails = new EmailModel
-            //    {
-            //        Email1 = "tester@hotmail.com",
-            //        Email2 = "TEST@gmail.com",
-            //    },
-            //    //InterestedVehicles = {"", ""},
-            //    InProgressFlag = false,
-            //    CallBackFlag = true
-            //};
-
-            //db.InsertRecord("Customers", customer); 
-
-            //ADD VEHICLE RECORD
-            //VehicleModel vehicle = new VehicleModel
-            //{
-            //    EngineNum = "HR12-111111B",
-            //    ChassisNum = "ZC72S-338292",
-            //    Colour = "Black"
-            //    InterestedCustomers = { "", "" }
-            //};
-
-            //db.InsertRecord("Vehicles", vehicle);
-
-            // READ ALL
-            //var recs = db.LoadRecords<CustomerModel>("Customers");
-
-            //foreach(var rec in recs)
-            //{
-            //   Title.Text = ($"{rec.Id}: {rec.FirstName} {rec.LastName}");
-
-            //    if (rec.InterestedVehicles != null)
-            //    {
-            //        Title.Text = ($"{rec.InterestedVehicles}");
-            //    }
-            //}
+        //    //If program has reached here, update connection label
+        //    IsOnlineAsync();
 
 
-            // Search for a name
-            //var oneRec = db.LoadCustomerById<CustomerModel>("Customers", "Debronni", "Ifill"); 
-        }
+        //    LoadCustomersToCall();
+
+        //    //ADD CUSTOMER RECORD
+        //    //CustomerFrame customer = new CustomerFrame
+        //    //{
+        //    //    FirstName = "Petra",
+        //    //    LastName = "Testerino",
+        //    //    PrimaryAddress = new AddressModel
+        //    //    {
+        //    //        StreetAddress = "New Hill",
+        //    //        Parish = "St.TEST",
+        //    //        Country = "Barbados"
+        //    //    },
+        //    //    ContactNums = new ContactModel
+        //    //    {
+        //    //        ContactNum1 = 12464235323, //must be like this so database makes it into a long
+        //    //        ContactNum2 = 12464235323,
+        //    //    },
+        //    //    Emails = new EmailModel
+        //    //    {
+        //    //        Email1 = "tester@hotmail.com",
+        //    //        Email2 = "TEST@gmail.com",
+        //    //    },
+        //    //    //InterestedVehicles = {"", ""},
+        //    //    InProgressFlag = false,
+        //    //    CallBackFlag = true
+        //    //};
+
+        //    //db.InsertRecord("Customers", customer); 
+
+        //    //ADD VEHICLE RECORD
+        //    //VehicleModel vehicle = new VehicleModel
+        //    //{
+        //    //    EngineNum = "HR12-111111B",
+        //    //    ChassisNum = "ZC72S-338292",
+        //    //    Colour = "Black"
+        //    //    InterestedCustomers = { "", "" }
+        //    //};
+
+        //    //db.InsertRecord("Vehicles", vehicle);
+
+        //    // READ ALL
+        //    //var recs = db.LoadRecords<CustomerFrame>("Customers");
+
+        //    //foreach(var rec in recs)
+        //    //{
+        //    //   Title.Text = ($"{rec.Id}: {rec.FirstName} {rec.LastName}");
+
+        //    //    if (rec.InterestedVehicles != null)
+        //    //    {
+        //    //        Title.Text = ($"{rec.InterestedVehicles}");
+        //    //    }
+        //    //}
+
+
+        //    // Search for a name
+        //    //var oneRec = db.LoadCustomerById<CustomerFrame>("Customers", "Debronni", "Ifill"); 
+        //}
 
 
         /* =============================================
@@ -644,45 +644,45 @@ namespace Database_Application_Chris
         //Occurs when form is closed
         private void main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Try to Stop Mongo Database
-            try
-            {
-                StopMongod();
-            }
-            catch (Exception err)
-            {
-                Message(err.Message, "Mongo Shutdown Error", 3);
-            }
+            //// Try to Stop Mongo Database
+            //try
+            //{
+            //    StopMongod();
+            //}
+            //catch (Exception err)
+            //{
+            //    Message(err.Message, "Mongo Shutdown Error", 3);
+            //}
         }
 
-        private async void mongoReconnect_Click(object sender, EventArgs e)
-        {
-            elapsedMilliseconds = 0; // Reset this just in case
+        //private async void mongoReconnect_Click(object sender, EventArgs e)
+        //{
+        //    elapsedMilliseconds = 0; // Reset this just in case
 
-            try
-            {
-                StartMongod();
-                await Task.Run(() => MongoConnect());
-            }
-            catch (Exception err)
-            {
-                mongoStatusLbl.Text = "Mongo: Not Connected";
-                mongoDBLbl.Text = "No Database"; 
-                Message(err.Message, "Mongo Connection Error", 3);
-            }
+        //    try
+        //    {
+        //        StartMongod();
+        //        await Task.Run(() => MongoConnect());
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        mongoStatusLbl.Text = "Mongo: Not Connected";
+        //        mongoDBLbl.Text = "No Database"; 
+        //        Message(err.Message, "Mongo Connection Error", 3);
+        //    }
 
-            alertDisconnect = false; // Reset Error
-        }
+        //    alertDisconnect = false; // Reset Error
+        //}
 
         private void main_Shown(object sender, EventArgs e)
         {
-            SetMongoPath();
+            //SetMongoPath();
         }
 
         public async void LoadCustomersToCall()
         {
             if (db != null)
-                callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerModel>("Customers"));
+                callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerFrame>("Customers"));
 
             if (callBackList.Count > 0)
             {

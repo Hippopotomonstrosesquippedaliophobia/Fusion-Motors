@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -14,6 +15,8 @@ namespace Database_Application_Chris
 {
     public partial class Login : Form
     {
+        Firestore conn; // global reference to firestore database
+
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -32,6 +35,9 @@ namespace Database_Application_Chris
         // Update Stuff
         private static string pasteBin = "https://pastebin.com/raw/LiahpQJq";
         private static string version = "0.0";
+
+        // login status
+        Boolean incorrectUser, incorrectPass = false;
 
         public Login()
         {
@@ -122,36 +128,49 @@ namespace Database_Application_Chris
         {
             string username = usernameTxt.Text.Trim();
             string password = Utilities.HashPassword(passwordTxt.Text.Trim());
+             
+            GetLogin(username, password); 
+        }
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            //config.AppSettings.Settings.Add("owner", username);
-            //config.AppSettings.Settings.Add("application", password);
-            //MessageBox.Show(config.AppSettings.Settings["application"].Value.ToString());
+        public async void GetLogin(string username, string password)
+        { 
+            DocumentReference docref = conn.db.Collection("Login").Document(username);
 
-            //config.Save(ConfigurationSaveMode.Minimal);
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
 
-            string obtainedUsername = config.AppSettings.Settings["owner"].Value.ToString();
-            string obtainedHashedPassword = config.AppSettings.Settings["application"].Value.ToString();
-
-            if (username == obtainedUsername && password == obtainedHashedPassword)
+            if (snap.Exists)
             {
-                main form = new main();
-                form.Show();
-                this.Hide();
-            }
-            else
+                LoginDetails login = snap.ConvertTo<LoginDetails>();
+
+                if (login.username == username)
+                { 
+                    //Dont forget password hasher is used to store account creation password
+                    if (login.password == password)
+                    {
+                        //correct username and password
+                        main form = new main();
+                        form.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        //incorrect password
+                        MessageBox.Show("Incorrect password!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Username not found!" + login.username, "Authentication Error" + username, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } 
+
+            }else
             {
-                if (username != obtainedUsername)
-                {
-                    MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (username == obtainedUsername)
-                {
-                    MessageBox.Show("Incorrect password!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
+
+
 
         private void usernameTxt_Enter(object sender, EventArgs e)
         {
@@ -189,6 +208,9 @@ namespace Database_Application_Chris
 
             //Check for updates
             GetUpdate();
+            
+            //Load firestore
+            conn = new Firestore();
         }
 
         // UPDATE STUFF

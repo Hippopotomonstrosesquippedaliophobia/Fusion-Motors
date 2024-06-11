@@ -17,6 +17,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Exclude from GIT\fusion-motors-firebase.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Exclude from GIT\fusion-motors-firebase.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Cloud.Firestore" Version="3.7.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.25.0" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace Database_Application_Chris
             main.Instance.PanelContainer.Controls.Clear();
 
             // Blank Customer Model
-            CustomerModel customer = new CustomerModel
+            CustomerFrame customer = new CustomerFrame
             {
                 FirstName = "",
                 LastName = "",

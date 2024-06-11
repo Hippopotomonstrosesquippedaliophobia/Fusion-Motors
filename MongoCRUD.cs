@@ -101,7 +101,7 @@ namespace Database_Application_Chris
 
             try
             {
-                if (typeof(T) == typeof(CustomerModel))
+                if (typeof(T) == typeof(CustomerFrame))
                 { 
                     return collection.Find(new BsonDocument())
                         .Sort(Builders<T>.Sort.Ascending("FirstName").Ascending("LastName"))
@@ -123,17 +123,17 @@ namespace Database_Application_Chris
             }
         }
         
-        public List<CustomerModel> LoadCustomersToCallback<CustomerModel>(string table)
+        public List<CustomerFrame> LoadCustomersToCallback<CustomerFrame>(string table)
         {
-            var collection = db.GetCollection<CustomerModel>(table);
+            var collection = db.GetCollection<CustomerFrame>(table);
 
             // Checks for engine no despite capitalization
-            var filter = Builders<CustomerModel>.Filter.Eq("CallBackFlag", true);
+            var filter = Builders<CustomerFrame>.Filter.Eq("CallBackFlag", true);
 
             try
             {
                 return collection.Find(filter)
-                        .Sort(Builders<CustomerModel>.Sort.Ascending("FirstName").Ascending("LastName"))
+                        .Sort(Builders<CustomerFrame>.Sort.Ascending("FirstName").Ascending("LastName"))
                         .ToList();
             }
             catch (Exception err)
@@ -197,7 +197,7 @@ namespace Database_Application_Chris
 
             try
             {
-                //List<CustomerModel> listcust = UpdateVehicleInterestedList<CustomerModel>(table, engineNo); 
+                //List<CustomerFrame> listcust = UpdateVehicleInterestedList<CustomerFrame>(table, engineNo); 
                 return collection.Find(filter).ToList();
             }
             catch (Exception err)
@@ -247,14 +247,14 @@ namespace Database_Application_Chris
 
         public void RemoveCustomersListInterest<T>(string table, string vehicleId, Guid id)
         {
-            var collection = db.GetCollection<CustomerModel>("Customers");
+            var collection = db.GetCollection<CustomerFrame>("Customers");
 
             try
             {
-                var filter = Builders<CustomerModel>.Filter.Eq("Id", id);
+                var filter = Builders<CustomerFrame>.Filter.Eq("Id", id);
                  
 
-                var update = Builders<CustomerModel>.Update.Pull(c => c.InterestedVehicles, vehicleId);
+                var update = Builders<CustomerFrame>.Update.Pull(c => c.InterestedVehicles, vehicleId);
                 collection.UpdateOne(filter, update);
             }
             catch (Exception err)

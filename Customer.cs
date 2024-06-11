@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,12 +9,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
 namespace Database_Application_Chris
 {
     public partial class Customer : UserControl
     {
-        public CustomerModel customerResult;
+        Firestore conn; // global reference to firestore database
+
+        public CustomerFrame customerResult;
         public string name = "";
         public bool nameEdited = false; 
         public bool addCustomer = false; 
@@ -46,7 +50,7 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addCustomer)
             {
-                customerResult = new CustomerModel();
+                customerResult = new CustomerFrame();
 
                 DisableInterests();
 
@@ -97,6 +101,9 @@ namespace Database_Application_Chris
         private void Customer_Load(object sender, EventArgs e)
         {
             //RefreshInformation();
+
+            //Load firestore
+            conn = new Firestore();
         }
 
         /*
@@ -154,17 +161,17 @@ namespace Database_Application_Chris
             {
                 if (customerResult.InterestedVehicles[0] != "") // This is from add page setting this to ""
                 {
-                    try
-                    { 
-                        List<VehicleModel> temp = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", customerResult.InterestedVehicles[index]));
-                        vehicles.Add(temp[0]); 
-                        index++;
+                    //try
+                    //{ 
+                    //    List<VehicleModel> temp = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", customerResult.InterestedVehicles[index]));
+                    //    vehicles.Add(temp[0]); 
+                    //    index++;
 
-                    }
-                    catch (Exception err)
-                    {
+                    //}
+                    //catch (Exception err)
+                    //{
 
-                    }
+                    //}
                 }
             }
             //MessageBox.Show(vehicles.Count.ToString());
@@ -202,7 +209,7 @@ namespace Database_Application_Chris
 
             try
             {
-                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
+                customerResult.PrimaryAddress[0] = address[0].Trim();
                 customerResult.PrimaryAddress.Parish = address[1].Trim();
                 customerResult.PrimaryAddress.Country = address[2].Trim();
             }
@@ -335,7 +342,7 @@ namespace Database_Application_Chris
                     }
 
                     // Remove vehicle
-                    await Task.Run(() => main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id));
+                    await Task.Run(() => main.Instance.db.DeleteRecord<CustomerFrame>("Customers", customerResult.Id));
 
                     // update notification bell
                     main.Instance.LoadCustomersToCall();
@@ -403,7 +410,7 @@ namespace Database_Application_Chris
                             x++;
                         }
 
-                        await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
+                        await Task.Run(() => main.Instance.db.UpsertRecord<CustomerFrame>("Customers", customerResult.Id, customerResult));
 
                         // update notification bell
                         main.Instance.LoadCustomersToCall();
@@ -442,15 +449,10 @@ namespace Database_Application_Chris
                     //Try to update
                     try
                     {
-                        await Task.Run(() => main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult));
+                        //customerResult
 
-                        // Update the vehicles which were added 
-                        int x = 0;
-                        foreach (var iv in customerResult.InterestedVehicles)
-                        {
-                            main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
-                            x++;
-                        }
+                        //Adding customer to firebase
+                        AddCustomerFirebase();
 
                         // update notification bell
                         main.Instance.LoadCustomersToCall();
@@ -490,6 +492,24 @@ namespace Database_Application_Chris
             }
         }
 
+        async void AddCustomerFirebase()
+        {
+            //Adding customer to firebase
+            CollectionReference cll = conn.db.Collection("Customers");
+            //cll.AddAsync(customerResult);
+
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+                {"firstname","Administrator" },
+                {"lastname","Account" },
+                {"username","admin" },
+                {"password","password" },
+                {"priviledge", 0 },
+                {"datecreated", "11/06/2024" }
+            };
+
+            cll.AddAsync(dict);
+        }
 
         /*
          * Field Functions

@@ -106,7 +106,7 @@ namespace Database_Application_Chris
             // Search for customer
             if (customersRadio.Checked == true)
             {
-                List<CustomerModel> listResults = new List<CustomerModel>();
+                List<CustomerFrame> listResults = new List<CustomerFrame>();
 
                 string[] names = { "", "" };
                 string lastname = "";
@@ -248,9 +248,9 @@ namespace Database_Application_Chris
 
         }
 
-        private List<CustomerModel> searchCustomers(string firstname, string lastname)
+        private List<CustomerFrame> searchCustomers(string firstname, string lastname)
         {
-            var recs = main.Instance.db.LoadCustomerByName<CustomerModel>("Customers", firstname, lastname);
+            var recs = main.Instance.db.LoadCustomerByName<CustomerFrame>("Customers", firstname, lastname);
             return recs;
         }
 
