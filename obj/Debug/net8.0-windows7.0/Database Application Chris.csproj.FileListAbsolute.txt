@@ -1,0 +1,21 @@
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.csproj.AssemblyReference.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.addHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.Customer.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.customerPanel.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.DatabaseHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.HomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.Login.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.main.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.Properties.Resources.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.SearchForm.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.SearchHomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.SearchResultsControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.SettingsPage.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.Vehicle.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database_Application_Chris.ViewVehicle.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.csproj.GenerateResource.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.AssemblyInfoInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.AssemblyInfo.cs
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.csproj.CoreCompileInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows7.0\Database Application Chris.sourcelink.json

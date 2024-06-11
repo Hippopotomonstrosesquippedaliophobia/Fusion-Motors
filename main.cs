@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Google.Cloud.Firestore;
 
 namespace Database_Application_Chris
 {
@@ -135,7 +136,7 @@ namespace Database_Application_Chris
         // Keeps count as clock runs
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Invoke(new MethodInvoker(delegate ()
+            Invoke(new System.Windows.Forms.MethodInvoker(delegate ()
             {
                 hc.SetHomeClockTxt(DateTime.Now.ToString("hh:mm:ss tt"));
                 elapsedMilliseconds += clock.Interval;
@@ -687,7 +688,7 @@ namespace Database_Application_Chris
             {
                 int i = 0;
 
-                main.Instance.Invoke((MethodInvoker)delegate {
+                main.Instance.Invoke((System.Windows.Forms.MethodInvoker)delegate {
                     // Running on the UI thread 
                     contextMenuStrip.DropShadowEnabled = true;
                     contextMenuStrip.Items.Clear();

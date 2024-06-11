@@ -39,7 +39,7 @@ namespace Database_Application_Chris
             this.Text = "Fusion Motors: Login";
         }
 
-        
+
 
         /*
          *  Form Functions
@@ -105,7 +105,7 @@ namespace Database_Application_Chris
             // If user hits enter, run login button function
             if (e.KeyData == Keys.Enter)
             {
-                loginBtn.PerformClick(); 
+                loginBtn.PerformClick();
             }
         }
 
@@ -114,7 +114,7 @@ namespace Database_Application_Chris
             // If user hits enter, run login button function
             if (e.KeyData == Keys.Enter)
             {
-                loginBtn.PerformClick(); 
+                loginBtn.PerformClick();
             }
         }
 
@@ -144,13 +144,14 @@ namespace Database_Application_Chris
                 if (username != obtainedUsername)
                 {
                     MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else if (username == obtainedUsername)
+                }
+                else if (username == obtainedUsername)
                 {
                     MessageBox.Show("Incorrect password!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }    
+                }
             }
 
-        }         
+        }
 
         private void usernameTxt_Enter(object sender, EventArgs e)
         {
@@ -187,8 +188,8 @@ namespace Database_Application_Chris
             versionLbl.Text = "v" + version;
 
             //Check for updates
-            GetUpdate(); 
-        } 
+            GetUpdate();
+        }
 
         // UPDATE STUFF
         void GetUpdate()
@@ -200,7 +201,7 @@ namespace Database_Application_Chris
 
             WebClient webClient = new WebClient();
 
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString(); 
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             try
             {
@@ -217,7 +218,7 @@ namespace Database_Application_Chris
                 else
                 {
                     throw new Exception("Download link not found or corrupted");
-                } 
+                }
 
                 if (!web.Contains(version)) // Version is not the same as pastebin version
                 {
@@ -259,6 +260,11 @@ namespace Database_Application_Chris
             // Run process
             process.StartInfo = startInfo;
             process.Start();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { 
+            //Send user to email app and insert my email here
         }
     }
 }
