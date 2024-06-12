@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fusion Motors")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.5.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.5.1+e5a8b1b9f3169237deef90ba22ec9e8dce6db378")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.5.1+011dc56cec02311379456633943c5256538ecfdf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fusion Motors")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fusion Motors")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.3.5.1")]

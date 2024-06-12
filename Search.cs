@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,10 @@ namespace Database_Application_Chris
 {
     public partial class SearchForm : Form
     {
+
+        Firestore conn; // global reference to firestore database
+        String reference; //global document reference for firebase document search
+
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -32,15 +37,16 @@ namespace Database_Application_Chris
         public CustomerFrame selectForListCModel = new CustomerFrame();
         public VehicleModel selectForListVModel = new VehicleModel();
 
-        public List<CustomerFrame> listCustomers;
+        public Dictionary<string, object> listCustomers;
         public List<VehicleModel> listVehicles;
 
         public IDictionary<long, Guid> matchList = new Dictionary<long, Guid>();
 
         public SearchForm(bool selection, VehicleModel model)
-        {
+        { 
+
             InitializeComponent();
-            listCustomers = new List<CustomerFrame>();
+            listCustomers = new Dictionary<string, object>();
 
             // Tells if this is going to open the customer or send back the information to open customer page
             selectForList = selection;
@@ -115,11 +121,49 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerFrame>("Customers"));
+                        UpdateListViewAsync("customers");
                     }
                     else
-                    {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadCustomerByName<CustomerFrame>("Customers", names[0], lastname));
+                    {                        
+                            listView.Items.Clear();
+                            listViewVehicles.Items.Clear();
+                            matchList.Clear();
+
+                            // Query Records 
+                            Query allCustomersQuery;
+
+                            if (lastname.Length > 0) { 
+                                allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("FirstName", names[0].Trim())
+                                                                                     .WhereEqualTo("LastName", lastname.Trim());
+                            }else
+                            {
+                                allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("FirstName", names[0].Trim());
+                            }
+                            QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+                            int x = 1;
+                            foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
+                            {
+                                //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
+
+                                CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
+                                //pair.Key, pair.Value);
+                                var row = new string[] {
+                                                    x.ToString(),
+                                                    custModel.FirstName,
+                                                    custModel.LastName,
+                                                    custModel.ContactNum1,
+                                                    custModel.Address
+                                                };
+
+                                var item = new ListViewItem(row);
+                                x++;
+                                item.Tag = documentSnapshot.Id;
+                                listView.Items.Add(item);
+                            }
+
+                            // Update with number of records found
+                            countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found"; 
                     }
                 }
                 catch (Exception err)
@@ -127,7 +171,7 @@ namespace Database_Application_Chris
                     MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                UpdateListView<CustomerFrame>(listCustomers);
+                //UpdateListView<CustomerFrame>(listCustomers);
             }
             // This is a search for vehicles
             if (isVehicleSearch)
@@ -136,7 +180,7 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
+                        UpdateListViewAsync("vehicles");
                     }
                     else
                     {
@@ -149,94 +193,96 @@ namespace Database_Application_Chris
                 {
                     MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                UpdateListView<VehicleModel>(listVehicles);
+                 
             }            
         }
 
-        private void UpdateListView<T>(List<T> list)
+        private async Task UpdateListViewAsync(string type)
         {
             //Clear out list view and matchList
             listView.Items.Clear();
             listViewVehicles.Items.Clear();
             matchList.Clear();
 
-            if (isVehicleSearch)
+            if (type == "vehicles")
             {
-                int counter = 0;
-                int ID = 1;
+                //int counter = 0;
+                //int ID = 1;
 
-                if (list != null)
-                {
-                    foreach (var record in list)
-                    {
-                        var row = new string[] {
-                                                ID.ToString(),
-                                                listVehicles[counter].EngineNum,
-                                                listVehicles[counter].Make,
-                                                listVehicles[counter].Model,
-                                                listVehicles[counter].Year.ToString(),
-                                                "$ " + listVehicles[counter].Valuation.ToString(),
-                                                "$ " + listVehicles[counter].AskingPrice.ToString(), 
-                                                listVehicles[counter].Colour
-                                            };
+                //if (list != null)
+                //{
+                //    foreach (var record in listCustomers)
+                //    {
+                //        var row = new string[] {
+                //                                ID.ToString(),
+                //                                listVehicles[counter].EngineNum,
+                //                                listVehicles[counter].Make,
+                //                                listVehicles[counter].Model,
+                //                                listVehicles[counter].Year.ToString(),
+                //                                "$ " + listVehicles[counter].Valuation.ToString(),
+                //                                "$ " + listVehicles[counter].AskingPrice.ToString(), 
+                //                                listVehicles[counter].Colour
+                //                            };
 
-                        var item = new ListViewItem(row);
+                //        var item = new ListViewItem(row);
 
-                        item.Tag = record;
-                        listViewVehicles.Items.Add(item);
+                //        item.Tag = record;
+                //        listViewVehicles.Items.Add(item);
 
-                        // Set List Equivalent to this id
-                        matchList.Add(ID, listVehicles[counter].Id);
+                //        // Set List Equivalent to this id
+                //        matchList.Add(ID, listVehicles[counter].Id);
 
-                        counter++;
-                        ID++;
-                    }
+                //        counter++;
+                //        ID++;
+                //    }
 
-                    // Update with number of records found
-                    countLbl.Text = list.Count() + " Vehicle(s) found";
-                }
-                else
-                {
-                    countLbl.Text = 0 + " Vehicle(s) found";
-                }
+                //    // Update with number of records found
+                //    countLbl.Text = list.Count() + " Vehicle(s) found";
+                //}
+                //else
+                //{
+                //    countLbl.Text = 0 + " Vehicle(s) found";
+                //}
             }
             else 
             {
                 int counter = 0;
                 int ID = 1;
 
-                if (list != null)
-                {
-                    foreach (var record in list)
+
+                try { 
+                    // Load Records 
+                    Query allCustomersQuery = conn.db.Collection("Customers");
+                    QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+                    int x = 1;
+                    foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
                     {
+                        //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
+
+                        CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>(); 
+                        //pair.Key, pair.Value);
                         var row = new string[] {
-                                                ID.ToString(),
-                                                listCustomers[counter].FirstName, listCustomers[counter].LastName,
-                                                BeautifulPhoneText(listCustomers[counter].ContactNums.ContactNum1.ToString()),
-                                                listCustomers[counter].PrimaryAddress.StreetAddress + ", "
-                                                    + listCustomers[counter].PrimaryAddress.Parish + ", "
-                                                    + listCustomers[counter].PrimaryAddress.Country
-                                            };
+                                                    x.ToString(),
+                                                    custModel.FirstName,
+                                                    custModel.LastName,
+                                                    custModel.ContactNum1,
+                                                    custModel.Address
+                                                };
 
                         var item = new ListViewItem(row);
-
-                        item.Tag = record;
-                        listView.Items.Add(item);
-
-                        // Set List Equivalent to this id
-                        matchList.Add(ID, listCustomers[counter].Id);
-
-                        counter++;
-                        ID++;
-                    }
+                        x++;
+                        item.Tag = documentSnapshot.Id;
+                        listView.Items.Add(item); 
+                    } 
 
                     // Update with number of records found
-                    countLbl.Text = list.Count() + " Customer(s) found";
-                }else
+                    countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found";
+                }
+                catch (Exception ex) 
                 {
                     countLbl.Text = 0 + " Customer(s) found";
-                }
+                } 
             }            
         }
 
@@ -283,19 +329,15 @@ namespace Database_Application_Chris
         // Loads records after form shown
         private async void SearchForm_Shown(object sender, EventArgs e)
         {
+            conn = new Firestore();
+
             if (isVehicleSearch)
             {
-                // Load records
-                listCustomers = null;
-                listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
-                UpdateListView<VehicleModel>(listVehicles);
+                UpdateListViewAsync("vehicles");
             }
             else
             {
-                // Load Records
-                listVehicles = null;
-                listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerFrame>("Customers"));
-                UpdateListView<CustomerFrame>(listCustomers);
+                UpdateListViewAsync("customers");
             }
         }
 
@@ -307,90 +349,29 @@ namespace Database_Application_Chris
             {
                 try
                 {
-                    selectedIndex = Int64.Parse(listView.SelectedItems[0].SubItems[0].Text);
+                    string documentID = listView.SelectedItems[0].Tag.ToString();
 
-                    Guid id = matchList[selectedIndex];
+                     
+                    // OPEN CUSTOMER
+                    //Refresh of controls
+                    main.Instance.PanelContainer.Controls.Clear();
 
-                    // OPEN Vehicle
-                    if (!selectForList)
+                    //Open Customer
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
                     {
-                        // OPEN CUSTOMER
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
+                        Customer uc = new Customer();
+                        uc.Dock = DockStyle.Fill;
 
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
-                        {
-                            Customer uc = new Customer();
-                            uc.Dock = DockStyle.Fill;
+                        CustomerFrame cust = new CustomerFrame();
 
-                            CustomerFrame cust = new CustomerFrame();
+                        uc.reference = documentID;  // Reset page variable with new information
 
-                            try
-                            {
-                                List<CustomerFrame> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", id));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    cust = tempList[0];
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            uc.customerResult = cust; // Reset page variable with new information
-
-                            //Refresh form
-                            uc.RefreshInformation();
-                            main.Instance.PanelContainer.Controls.Add(uc);
-                        }
-
-                        main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
+                        //Refresh form
+                        uc.RefreshInformation();
+                        main.Instance.PanelContainer.Controls.Add(uc);
                     }
-                    else // Selected to pass thru for list from Customer
-                    { 
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
-                        //selectForListCModel
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
-                        {
-                            Vehicle uc = new Vehicle(sentFromAddPage);
-                            uc.Dock = DockStyle.Fill;
 
-                            try
-                            { 
-                                List<CustomerFrame> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", id));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    selectForListVModel.InterestedCustomers.Add(tempList[0].Id.ToString());
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            uc.vehicleResult = selectForListVModel; // Reset page variable with new information
-
-                            //Refresh form
-                            uc.RefreshInformation();
-                            main.Instance.PanelContainer.Controls.Add(uc);
-
-                            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
-                        }
-                    }
+                    main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
                 }
                 catch (Exception err)
                 {

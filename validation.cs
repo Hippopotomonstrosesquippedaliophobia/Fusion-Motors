@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -20,7 +21,16 @@ namespace Database_Application_Chris
             {
                 err.Add("Name cannot be blank!"); 
             }
-
+            try
+            {
+                if (splitName[0] + splitName[1] == splitName[0])
+                {
+                    err.Add("More than one name must be added!");
+                }
+            }catch (Exception ex)
+            {
+                err.Add("More than one name must be added!");
+            }
             if (splitName.Length > 2)
             {
                 int countNames = 0;
@@ -63,7 +73,7 @@ namespace Database_Application_Chris
                     if (!IsAlphabet) // Not all letters in name
                     {
                         err.Add("Please only use letters");
-                    }
+                    } 
                 }
             }
             return err;

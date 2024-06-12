@@ -26,7 +26,7 @@ namespace Database_Application_Chris
         public void RefreshInformation()
         {
             name.Text = customer.FirstName + " " + customer.LastName;
-            num.Text = customer.ContactNums[1].ToString();
+            num.Text = customer.ContactNum2.ToString();
             address.Text = customer.Address;
             //parish.Text = customer.Address.Parish;
         }

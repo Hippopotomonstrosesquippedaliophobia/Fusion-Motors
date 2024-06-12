@@ -18,7 +18,9 @@ namespace Database_Application_Chris
         [FirestoreProperty]
         public string Address { get; set; }
         [FirestoreProperty]
-        public string[] ContactNums { get; set; }
+        public string ContactNum1 { get; set; }
+        [FirestoreProperty]
+        public string ContactNum2 { get; set; }
         [FirestoreProperty]
         public string[] Emails { get; set; }
         [FirestoreProperty]

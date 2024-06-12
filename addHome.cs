@@ -25,22 +25,10 @@ namespace Database_Application_Chris
             {
                 FirstName = "",
                 LastName = "",
-                PrimaryAddress = new AddressModel
-                {
-                    StreetAddress = "",
-                    Parish = "",
-                    Country = ""
-                },
-                ContactNums = new ContactModel
-                {
-                    ContactNum1 = 12465555555, //must be like this so database makes it into a long
-                    ContactNum2 = 12465555555,
-                },
-                Emails = new EmailModel
-                {
-                    Email1 = "",
-                    Email2 = "",
-                },
+                Address = "",
+                ContactNum1 = "",
+                ContactNum2 = "",
+                Emails = { },
                 InterestedVehicles = new List<string> { "" },
                 InProgressFlag = false,
                 CallBackFlag = false

@@ -77,34 +77,5 @@ namespace Database_Application_Chris
 
             doc.SetAsync(dict); 
         }
-
-        //public async void GetLogin(string username, string password, Login loginform)
-        //{
-        //    Boolean loginStatus = false;
-
-        //    DocumentReference docRef = db.Collection("Login").Document(username);
-
-        //    DocumentSnapshot snap = await docRef.GetSnapshotAsync();
-
-        //    if (snap.Exists) 
-        //    {
-        //        Dictionary<string, object> login = snap.ToDictionary();
-
-        //        if (login[username] == username)
-        //        {
-        //            if (login[password] == password)
-        //            {
-        //                //correct username and password
-        //                MessageBox.Show("Correct username and password!");
-        //            }else
-        //            {
-        //                //incorrect password
-        //                MessageBox.Show("Incorrect Password!");
-        //            }
-        //        }
-
-        //    }
-
-        //}
     }
 }
