@@ -46,6 +46,7 @@ namespace Database_Application_Chris
             //MessageBox.Show("Added");
         }
 
+        //Not being used
         void AddCustomID()
         {
             DocumentReference doc = db.Collection("Login").Document("admin");

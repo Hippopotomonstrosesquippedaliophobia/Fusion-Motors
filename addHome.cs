@@ -51,13 +51,20 @@ namespace Database_Application_Chris
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();
 
-            // Blank Customer Model
-            VehicleModel vehicle = new VehicleModel
+            // Blank Vehicle Model
+            VehicleFrame vehicle = new VehicleFrame
             {
-                EngineNum = "",
-                ChassisNum = "",
+                EngineNumber = "",
+                ChassisNumber = "",
+                Owner = "",
+                Make = "",
+                Model = "",
+                Year = 0,
+                Valuation = 0,
+                AskingPrice = 0,
                 Colour = "",
-                InterestedCustomers = new List<string> { "" }
+                Notes = "",
+                CustomerInterest = { } 
             };
 
             //Open Add Home

@@ -7,36 +7,32 @@
       "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:search.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\mongocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:mongocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\vehicleframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:vehicleframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\search.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:search.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\customerframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:customerframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\db models\\emailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:db models\\emailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\firestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\firestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:firestore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|c:\\users\\bronj\\source\\repos\\fusion-motors\\logindetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\logindetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:logindetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\customerframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A49379E3-D36E-4234-BD3E-9B25E752FAC0}|Database Application Chris.csproj|solutionrelative:customerframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,17 +42,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Firestore.cs",
               "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Firestore.cs",
               "RelativeDocumentMoniker": "Firestore.cs",
               "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Firestore.cs",
               "RelativeToolTip": "Firestore.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAYwDEAAAAJAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAYwCsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T14:52:05.582Z",
               "IsPinned": true,
@@ -64,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "LoginDetails.cs",
               "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\LoginDetails.cs",
               "RelativeDocumentMoniker": "LoginDetails.cs",
@@ -78,13 +74,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CustomerFrame.cs",
               "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\CustomerFrame.cs",
               "RelativeDocumentMoniker": "CustomerFrame.cs",
               "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\CustomerFrame.cs",
               "RelativeToolTip": "CustomerFrame.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAATAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABkAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T16:52:29.932Z",
               "IsPinned": true,
@@ -93,15 +89,42 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MongoCRUD.cs",
-              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\MongoCRUD.cs",
-              "RelativeDocumentMoniker": "MongoCRUD.cs",
-              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\MongoCRUD.cs",
-              "RelativeToolTip": "MongoCRUD.cs",
-              "ViewState": "AQIAAIEAAAAAAAAAAAAAAJoAAAARAAAA",
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Vehicle.cs",
+              "RelativeDocumentMoniker": "Vehicle.cs",
+              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Vehicle.cs",
+              "RelativeToolTip": "Vehicle.cs",
+              "ViewState": "AQIAACkBAAAAAAAAAAAvwEwBAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T03:02:32.437Z",
+              "WhenOpened": "2024-06-14T02:55:09.409Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VehicleFrame.cs",
+              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\VehicleFrame.cs",
+              "RelativeDocumentMoniker": "VehicleFrame.cs",
+              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\VehicleFrame.cs",
+              "RelativeToolTip": "VehicleFrame.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T02:54:12.333Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Vehicle.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Vehicle.cs",
+              "RelativeDocumentMoniker": "Vehicle.cs",
+              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Vehicle.cs [Design]",
+              "RelativeToolTip": "Vehicle.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T02:55:04.037Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -111,60 +134,22 @@
               "RelativeDocumentMoniker": "Search.cs",
               "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Search.cs",
               "RelativeToolTip": "Search.cs",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAYwH8AAAAzAAAA",
+              "ViewState": "AQIAALAAAAAAAAAAAAAvwM0AAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T22:51:10.252Z",
+              "WhenOpened": "2024-06-14T01:57:09.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Search.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Search.cs",
               "RelativeDocumentMoniker": "Search.cs",
               "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Search.cs [Design]",
               "RelativeToolTip": "Search.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T01:36:33.665Z",
+              "WhenOpened": "2024-06-14T01:57:04.835Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Customer.cs",
-              "RelativeDocumentMoniker": "Customer.cs",
-              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Customer.cs",
-              "RelativeToolTip": "Customer.cs",
-              "ViewState": "AQIAAHQAAAAAAAAAAAAUwIsAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T17:00:26.868Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Customer.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Customer.cs",
-              "RelativeDocumentMoniker": "Customer.cs",
-              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\Customer.cs [Design]",
-              "RelativeToolTip": "Customer.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T22:53:45.834Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EmailModel.cs",
-              "DocumentMoniker": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\DB Models\\EmailModel.cs",
-              "RelativeDocumentMoniker": "DB Models\\EmailModel.cs",
-              "ToolTip": "C:\\Users\\Bronj\\source\\repos\\Fusion-Motors\\DB Models\\EmailModel.cs",
-              "RelativeToolTip": "DB Models\\EmailModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T02:05:39.851Z",
-              "EditorCaption": ""
             }
           ]
         }

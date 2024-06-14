@@ -86,165 +86,165 @@ namespace Database_Application_Chris
 
         private async void searchBtn_Click(object sender, EventArgs e)
         {
-            string searchQuery = searchTxt.Text;            
+            //string searchQuery = searchTxt.Text;            
 
-            // If search field is empty
-            if (searchQuery == customerTipString)
-            {
-                MessageBox.Show("Please provide a first name, or both first name and last name to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //// If search field is empty
+            //if (searchQuery == customerTipString)
+            //{
+            //    MessageBox.Show("Please provide a first name, or both first name and last name to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
-            if (searchQuery == vehicleTipString)
-            {
-                MessageBox.Show("Please provide an engine no. to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (searchQuery == vehicleTipString)
+            //{
+            //    MessageBox.Show("Please provide an engine no. to search!", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
-            //CALL SEARCH FUNCTION AND RETURN RESULTS 
+            ////CALL SEARCH FUNCTION AND RETURN RESULTS 
 
-            // Search for customer
-            if (customersRadio.Checked == true)
-            {
-                List<CustomerFrame> listResults = new List<CustomerFrame>();
+            //// Search for customer
+            //if (customersRadio.Checked == true)
+            //{
+            //    List<CustomerFrame> listResults = new List<CustomerFrame>();
 
-                string[] names = { "", "" };
-                string lastname = "";
+            //    string[] names = { "", "" };
+            //    string lastname = "";
 
-                names = searchQuery.Split(' ');
+            //    names = searchQuery.Split(' ');
 
-                if (names.Length <= 1)
-                {
-                    lastname = "";
-                }
-                if (names.Length == 2)
-                {
-                    lastname = names[1];
-                }
+            //    if (names.Length <= 1)
+            //    {
+            //        lastname = "";
+            //    }
+            //    if (names.Length == 2)
+            //    {
+            //        lastname = names[1];
+            //    }
 
-                listResults = await Task.Run(() => searchCustomers(names[0], lastname));
+            //    listResults = await Task.Run(() => searchCustomers(names[0], lastname));
 
-                int totalResults = 0;
+            //    int totalResults = 0;
 
-                if (listResults != null)
-                {
-                    foreach (var rec in listResults)
-                    {
-                        totalResults++; //Counts records returned
-                    }
-                }
+            //    if (listResults != null)
+            //    {
+            //        foreach (var rec in listResults)
+            //        {
+            //            totalResults++; //Counts records returned
+            //        }
+            //    }
 
-                // Nothing found
-                if (totalResults == 0)
-                {
-                    MessageBox.Show("No customers found by the name: " + names[0] + " " + lastname, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            //    // Nothing found
+            //    if (totalResults == 0)
+            //    {
+            //        MessageBox.Show("No customers found by the name: " + names[0] + " " + lastname, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
 
-                //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear();
+            //    //Refresh of controls
+            //    main.Instance.PanelContainer.Controls.Clear();
 
-                // If only one returned, go directly to Customer page
-                if (totalResults == 1)
-                {
+            //    // If only one returned, go directly to Customer page
+            //    if (totalResults == 1)
+            //    {
 
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
-                    {
-                        Customer uc = new Customer();
-                        //Send data of Customer form 
-                        uc.customerResult = listResults[0];
-                        //Refresh form
-                        uc.RefreshInformation();
+            //        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+            //        {
+            //            Customer uc = new Customer();
+            //            //Send data of Customer form 
+            //            uc.customerResult = listResults[0];
+            //            //Refresh form
+            //            uc.RefreshInformation();
 
-                        uc.Dock = DockStyle.Fill;
-                        main.Instance.PanelContainer.Controls.Add(uc);
-                    }
+            //            uc.Dock = DockStyle.Fill;
+            //            main.Instance.PanelContainer.Controls.Add(uc);
+            //        }
 
-                    main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+            //        main.Instance.PanelContainer.Controls["Customer"].BringToFront();
 
-                    return;
-                }
+            //        return;
+            //    }
 
-                //Else go to customer search results page 
-                if (totalResults > 1)
-                {
-                    //Open search results form
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
-                    {
-                        SearchResultsControl uc = new SearchResultsControl();
-                        //Send data of search results accross to Search Results form
-                        uc.searchResults = listResults;
-                        uc.Dock = DockStyle.Fill;
-                        main.Instance.PanelContainer.Controls.Add(uc);
-                    }
+            //    //Else go to customer search results page 
+            //    if (totalResults > 1)
+            //    {
+            //        //Open search results form
+            //        if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
+            //        {
+            //            SearchResultsControl uc = new SearchResultsControl();
+            //            //Send data of search results accross to Search Results form
+            //            uc.searchResults = listResults;
+            //            uc.Dock = DockStyle.Fill;
+            //            main.Instance.PanelContainer.Controls.Add(uc);
+            //        }
 
-                    main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
-                }
-            }
-            //Search for vehicle
-            else if (vehiclesRadio.Checked == true)
-            {
-                List<VehicleModel> listResults = new List<VehicleModel>();
-                listResults = await Task.Run(() => searchVehicles(searchQuery));
+            //        main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
+            //    }
+            //}
+            ////Search for vehicle
+            //else if (vehiclesRadio.Checked == true)
+            //{
+            //    List<VehicleModel> listResults = new List<VehicleModel>();
+            //    listResults = await Task.Run(() => searchVehicles(searchQuery));
 
-                int totalResults = 0;
+            //    int totalResults = 0;
 
-                if (listResults != null)
-                {
-                    foreach (var rec in listResults)
-                    {
-                        totalResults++; //Counts records returned
-                    }
-                }
+            //    if (listResults != null)
+            //    {
+            //        foreach (var rec in listResults)
+            //        {
+            //            totalResults++; //Counts records returned
+            //        }
+            //    }
 
-                // Nothing found
-                if (totalResults == 0)
-                {
-                    MessageBox.Show("No vehicles found with the engine number: " +searchQuery, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            //    // Nothing found
+            //    if (totalResults == 0)
+            //    {
+            //        MessageBox.Show("No vehicles found with the engine number: " +searchQuery, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
 
-                //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear();
+            //    //Refresh of controls
+            //    main.Instance.PanelContainer.Controls.Clear();
 
-                // If only one returned, go directly to Customer page
-                if (totalResults == 1)
-                {
+            //    // If only one returned, go directly to Customer page
+            //    if (totalResults == 1)
+            //    {
 
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
-                    {
-                        Vehicle uc = new Vehicle();
-                        //Send data of Customer form 
-                        uc.vehicleResult = listResults[0];
+            //        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+            //        {
+            //            Vehicle uc = new Vehicle();
+            //            //Send data of Customer form 
+            //            uc.vehicleResult = listResults[0];
 
-                        //Refresh form
-                        uc.RefreshInformation();
+            //            //Refresh form
+            //            uc.RefreshInformation();
 
-                        uc.Dock = DockStyle.Fill;
-                        main.Instance.PanelContainer.Controls.Add(uc);
-                    }
+            //            uc.Dock = DockStyle.Fill;
+            //            main.Instance.PanelContainer.Controls.Add(uc);
+            //        }
 
-                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
+            //        main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
 
-                    return;
-                }
+            //        return;
+            //    }
 
-                //Else go to customer search results page 
-                //if (totalResults > 1)
-                //{
-                //    //Open search results form
-                //    if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
-                //    {
-                //        SearchResultsControl uc = new SearchResultsControl();
-                //        //Send data of search results accross to Search Results form
-                //        uc.searchResults = listResults;
-                //        uc.Dock = DockStyle.Fill;
-                //        main.Instance.PanelContainer.Controls.Add(uc);
-                //    }
+            //    //Else go to customer search results page 
+            //    //if (totalResults > 1)
+            //    //{
+            //    //    //Open search results form
+            //    //    if (!main.Instance.PanelContainer.Controls.ContainsKey("SearchResultsControl"))
+            //    //    {
+            //    //        SearchResultsControl uc = new SearchResultsControl();
+            //    //        //Send data of search results accross to Search Results form
+            //    //        uc.searchResults = listResults;
+            //    //        uc.Dock = DockStyle.Fill;
+            //    //        main.Instance.PanelContainer.Controls.Add(uc);
+            //    //    }
 
-                //    main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
-                //}
-            }            
+            //    //    main.Instance.PanelContainer.Controls["SearchResultsControl"].BringToFront();
+            //    //}
+            //}            
 
         }
 

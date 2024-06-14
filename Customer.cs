@@ -276,21 +276,46 @@ namespace Database_Application_Chris
 
         private async void addThisCustomer_Click(object sender, EventArgs e)
         {
-            //activate the form to cause validation to go off
+            ////activate the form to cause validation to go off
             nameLbl.Select();
             addressLbl.Select();
 
-            //Ensure all errors cleared
-            if (allErrors.Count > 0)
-            { 
-                MessageBox.Show("Please clear all errors to add customer!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }else
-            {
-                //Customer can be added now
-                AddCustomerFirebase(); 
-            }
+            ////Ensure all errors cleared
+            //if (allErrors.Count > 0)
+            //{ 
+            //    MessageBox.Show("Please clear all errors to add customer!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}else
+            //{
+            //    //Customer can be added now
+            //    AddCustomerFirebase(); 
+            //}
 
-            //Next gather the information from the fields and send to firebase database
+            ValidationProcess(null); // Check all fields
+
+            if (errorsInForm == 0)
+            {
+                DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Customer?", "Add Customer Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult3 == DialogResult.Yes)
+                {
+                    //Try to update
+                    try
+                    {
+                        AddCustomerFirebase();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "Add Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (dialogResult3 == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please clear all errors to add customer!", "Add Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         async void AddCustomerFirebase()
@@ -731,11 +756,11 @@ namespace Database_Application_Chris
         private void addVehicleInterest_Click(object sender, EventArgs e)
         {
             UpdateListToSend();
-            SearchForm search = new SearchForm(true, true, customerResult);
-            search.sentFromAddPage = addCustomer;
-            search.Text = "Fusion Motors: Select a Vehicle";
-            search.titleLbl.Text = "Select a vehicle to add to list";
-            search.Show();
+            //SearchForm search = new SearchForm(true, true, customerResult);
+            //search.sentFromAddPage = addCustomer;
+            //search.Text = "Fusion Motors: Select a Vehicle";
+            //search.titleLbl.Text = "Select a vehicle to add to list";
+            //search.Show();
 
             //if (addVehicle.Text.Length != 0)
             //{
@@ -811,7 +836,7 @@ namespace Database_Application_Chris
             {
                 Vehicle uc = new Vehicle();
                 //Send data of Customer form 
-                uc.vehicleResult = vehicles[selectedIndex];
+                uc.reference = interestedVehiclesListBox.Tag.ToString();
                 //Refresh form
                 uc.RefreshInformation();
 

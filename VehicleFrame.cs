@@ -1,4 +1,5 @@
 ﻿using Google.Cloud.Firestore;
+using System.Collections.Generic;
 
 namespace Database_Application_Chris
 {
@@ -6,27 +7,27 @@ namespace Database_Application_Chris
     public class VehicleFrame
     { 
         [FirestoreProperty]
-        public string enginenumber { get; set; }
+        public string EngineNumber { get; set; }
         [FirestoreProperty]
-        public string chassisnumber { get; set; }
+        public string ChassisNumber { get; set; }
         [FirestoreProperty]
-        public string owner { get; set; }
+        public string Owner { get; set; }
         [FirestoreProperty]
-        public string make { get; set; }
+        public string Make { get; set; }
         [FirestoreProperty]
-        public int model { get; set; }
+        public string Model { get; set; }
         [FirestoreProperty]
-        public string year { get; set; }
+        public int Year { get; set; }
         [FirestoreProperty]
-        public string valuation { get; set; }
+        public int Valuation { get; set; }
         [FirestoreProperty]
-        public string askingprice { get; set; }
+        public int AskingPrice { get; set; }
         [FirestoreProperty]
-        public string colour { get; set; }
+        public string Colour { get; set; }
         [FirestoreProperty]
-        public string comments { get; set; }
+        public string Notes { get; set; } 
         [FirestoreProperty]
-        public string customerInterest { get; set; }
+        public List<string> CustomerInterest { get; set; } 
 
 
         //gotta figure this out

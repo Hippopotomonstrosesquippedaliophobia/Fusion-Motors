@@ -135,8 +135,7 @@ namespace Database_Application_Chris
             this.addCustomerBtn.Text = "+";
             this.toolTip.SetToolTip(this.addCustomerBtn, "Add an interested customer");
             this.addCustomerBtn.UseVisualStyleBackColor = false;
-            this.addCustomerBtn.Visible = false;
-            this.addCustomerBtn.Click += new System.EventHandler(this.addCustomerBtn_Click);
+            this.addCustomerBtn.Visible = false; 
             // 
             // deleteVehicleBtn
             // 
