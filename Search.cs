@@ -1,5 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,6 @@ namespace Database_Application_Chris
 {
     public partial class SearchForm : Form
     {
-
         Firestore conn; // global reference to firestore database
         String reference; //global document reference for firebase document search
 
@@ -66,7 +66,7 @@ namespace Database_Application_Chris
             listView.Visible = true;
         }
         
-        public SearchForm(bool vehicle, bool selection, VehicleFrame model)
+        public SearchForm(bool vehicle, bool selection, CustomerFrame model)
         {
             InitializeComponent();
             listVehicles = new Dictionary<string, object>();
@@ -74,10 +74,10 @@ namespace Database_Application_Chris
             // Tells if this is going to open the customer or send back the information to open customer page
             selectForList = selection;
 
-            //if (selection)
-            //{
-            //    selectForListCModel = model;
-            //}
+            if (selection)
+            {
+                selectForListCModel = model;
+            }
 
             if (vehicle)
             {
@@ -145,23 +145,48 @@ namespace Database_Application_Chris
 
                             int x = 1;
                             foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
-                            {
-                                //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
-
+                            { 
                                 CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
-                                //pair.Key, pair.Value);
-                                var row = new string[] {
-                                                    x.ToString(),
-                                                    custModel.FirstName,
-                                                    custModel.LastName,
-                                                    custModel.ContactNum1,
-                                                    custModel.Address
-                                                };
 
-                                var item = new ListViewItem(row);
-                                x++;
-                                item.Tag = documentSnapshot.Id;
-                                listView.Items.Add(item);
+
+                                String srch = searchTxt.Text.Trim();
+                                Boolean checkFail = false;
+
+
+                                if (lastname.Length <= 0)
+                                {
+                                    for (int i = 0; i < srch.Length; i++)
+                                    {
+                                        if (srch[i] == custModel.FirstName[i])
+                                        {
+                                            //
+                                        }
+                                        else
+                                        {
+                                            checkFail = true;
+                                            break;
+                                        }
+
+                                    }
+                                } 
+
+                                if (!checkFail) 
+                                {
+                                    var row = new string[] {
+                                                        x.ToString(),
+                                                        custModel.FirstName,
+                                                        custModel.LastName,
+                                                        custModel.ContactNum1,
+                                                        custModel.Address
+                                                    };
+
+                                    var item = new ListViewItem(row);
+                                    x++;
+                                    item.Tag = documentSnapshot.Id;
+                                    listView.Items.Add(item);
+
+                                }
+                                
                             }
 
                             // Update with number of records found
@@ -200,8 +225,29 @@ namespace Database_Application_Chris
                             //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
 
                             VehicleFrame vehicleModel = documentSnapshot.ConvertTo<VehicleFrame>();
-                            //pair.Key, pair.Value);
-                            var row = new string[] {
+
+
+                            String srch = searchTxt.Text.Trim();
+                            Boolean checkFail = false;
+
+                             
+                            for (int i = 0; i < srch.Length; i++)
+                            {
+                                if (srch[i] == vehicleModel.Model[i])
+                                {
+                                    //
+                                }
+                                else
+                                {
+                                    checkFail = true;
+                                    break;
+                                }
+
+                            } 
+
+                            if (!checkFail)
+                            {
+                                var row = new string[] {
                                                     x.ToString(),
                                                     vehicleModel.EngineNumber,
                                                     vehicleModel.Make,
@@ -212,10 +258,11 @@ namespace Database_Application_Chris
                                                     vehicleModel.Colour
                                                 };
 
-                            var item = new ListViewItem(row);
-                            x++;
-                            item.Tag = documentSnapshot.Id;
-                            listViewVehicles.Items.Add(item);
+                                var item = new ListViewItem(row);
+                                x++;
+                                item.Tag = documentSnapshot.Id;
+                                listViewVehicles.Items.Add(item);
+                            }
                         }
 
 
@@ -381,8 +428,50 @@ namespace Database_Application_Chris
             }
         }
 
-        void listView_SelectedIndexChanged(object sender, EventArgs e)
-        { 
+        async void listView_SelectedIndexChangedAsync(object sender, EventArgs e)
+        {
+            if (sentFromAddPage)
+            {
+                // UPDATE the passed customer info
+                Dictionary<string, object> dict = new Dictionary<string, object>()
+                        { 
+                        };
+
+                ArrayList array = new ArrayList();
+                array.Add(listViewVehicles.SelectedItems[0].Tag.ToString()); 
+                dict.Add("InterestedVehicles", array);
+
+                //Updating customer on firebase
+                DocumentReference doc = conn.db.Collection("Customers").Document(selectForListCModel.Id);
+                await doc.UpdateAsync(dict);
+
+                reference = doc.Id;
+
+                //Refresh customer page in back
+                // OPEN CUSTOMER
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
+
+                //Open Customer
+                if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                {
+                    Customer uc = new Customer();
+                    uc.Dock = DockStyle.Fill;
+
+                    CustomerFrame cust = new CustomerFrame();
+
+                    uc.reference = doc.Id;  // Reset page variable with new information
+
+                    //Refresh form
+                    uc.RefreshInformation();
+                    main.Instance.PanelContainer.Controls.Add(uc);
+                }
+
+                main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+
+                return;
+            }
+
             if (!isVehicleSearch) // Customer 
             {
                 try

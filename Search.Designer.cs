@@ -125,7 +125,7 @@ namespace Database_Application_Chris
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChangedAsync);
             // 
             // ID
             // 
@@ -207,7 +207,7 @@ namespace Database_Application_Chris
             this.listViewVehicles.TabIndex = 1;
             this.listViewVehicles.UseCompatibleStateImageBehavior = false;
             this.listViewVehicles.View = System.Windows.Forms.View.Details;
-            this.listViewVehicles.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listViewVehicles.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChangedAsync);
             // 
             // columnHeader1
             // 

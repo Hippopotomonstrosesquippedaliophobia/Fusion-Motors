@@ -5,7 +5,10 @@ namespace Database_Application_Chris
 {
     [FirestoreData]
     public class VehicleFrame
-    { 
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
         [FirestoreProperty]
         public string EngineNumber { get; set; }
         [FirestoreProperty]
@@ -28,11 +31,6 @@ namespace Database_Application_Chris
         public string Notes { get; set; } 
         [FirestoreProperty]
         public List<string> CustomerInterest { get; set; } 
-
-
-        //gotta figure this out
-        //[FirestoreProperty]
-        //public string image { get; set; }
 
     }
 }

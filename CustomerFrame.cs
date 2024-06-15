@@ -9,7 +9,7 @@ namespace Database_Application_Chris
     public class CustomerFrame
     {
         [FirestoreProperty]
-        public Guid Id { get; set; }
+        public String Id { get; set; }
 
         [FirestoreProperty]
         public string FirstName { get; set; }
@@ -24,7 +24,7 @@ namespace Database_Application_Chris
         [FirestoreProperty]
         public string[] Emails { get; set; }
         [FirestoreProperty]
-        public List<string> InterestedVehicles { get; set; }
+        public string[] InterestedVehicles { get; set; }
         [FirestoreProperty]
         public bool InProgressFlag { get; set; }
         [FirestoreProperty]

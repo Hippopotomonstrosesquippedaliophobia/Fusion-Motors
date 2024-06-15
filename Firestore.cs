@@ -23,11 +23,9 @@ namespace Database_Application_Chris
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             db = FirestoreDb.Create("fusion-motors");
-
-            //AddCustomID();
-            //FIREBASE CODE END
         }
 
+        //Not being used
         void AddAutoID()
         {
             CollectionReference cll = db.Collection("Login");
@@ -45,8 +43,6 @@ namespace Database_Application_Chris
             cll.AddAsync(dict);
             //MessageBox.Show("Added");
         }
-
-        //Not being used
         void AddCustomID()
         {
             DocumentReference doc = db.Collection("Login").Document("admin");

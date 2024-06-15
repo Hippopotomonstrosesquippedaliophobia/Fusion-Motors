@@ -28,7 +28,7 @@ namespace Database_Application_Chris
 
         List<string> allErrors = new List<string>();
         List<string> RemovedInterestedVehicles = new List<string>();
-        public BindingList<VehicleModel> vehicles = new BindingList<VehicleModel>();
+        public BindingList<VehicleFrame> vehicles = new BindingList<VehicleFrame>();
 
         public Customer()
         {
@@ -148,16 +148,42 @@ namespace Database_Application_Chris
                 inProgressCheckbox.Checked = cust.InProgressFlag;
                 callBackCheckbox.Checked = cust.CallBackFlag;
 
+                int index = 0;
+                vehicles = new BindingList<VehicleFrame>();
+
+                foreach (var vehic in cust.InterestedVehicles)
+                {
+                    if (cust.InterestedVehicles[0] != "") // This is from add page setting this to ""
+                    {
+                        try
+                        {
+                            DocumentReference docref2 = conn.db.Collection("Vehicles").Document(vehic);
+
+                            DocumentSnapshot snap2 = await docref.GetSnapshotAsync();
+                            if (snap.Exists)
+                            {
+                                VehicleFrame vehicle = snap.ConvertTo<VehicleFrame>(); 
+                                vehicles.Add(vehicle);
+                                index++;
+                            }
+
+                            // Attach the list of customers to the ListBox:
+                            interestedVehiclesListBox.DataSource = vehicles;
+                            interestedVehiclesListBox.Text = "hi";
+                            interestedVehiclesListBox.DisplayMember = "Model";
+                        }
+                        catch (Exception err)
+                        {
+
+                        }
+                    }
+                }
+
             }
             else
             {
                 MessageBox.Show("Customer not found!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void UpdateListToSend()
-        {
-             
         }
 
         /*
@@ -174,17 +200,7 @@ namespace Database_Application_Chris
                 { 
                     //removing customer on firebase
                     DocumentReference doc = conn.db.Collection("Customers").Document(reference);
-                    await doc.DeleteAsync();
-
-                    //Refresh all fields back to empty
-                    //reference = "";
-                    //nameLbl.Text = "";
-                    //addressLbl.Text = "";
-                    //num1Lbl.Text = "";
-                    //num2Lbl.Text = "";
-                    //email1Lbl.Text = "";
-                    //email2Lbl.Text = "";
-                    //additionalCommentsLbl.Text = "";
+                    await doc.DeleteAsync(); 
 
                     //Send back Home
                     main.Instance.GoToHomepage();
@@ -209,21 +225,7 @@ namespace Database_Application_Chris
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
-            {
-                //if (nameEdited)
-                //{
-                //    DialogResult dialogResult = MessageBox.Show("You are editing the user's name, is this correct?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-                //        //Do something
-                //        confirmedName = true;
-                //    }
-                //    else if (dialogResult == DialogResult.No)
-                //    {
-                //        return;
-                //    }
-                //} 
-
+            { 
                 DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this customer?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult2 == DialogResult.Yes)
                 {
@@ -264,9 +266,7 @@ namespace Database_Application_Chris
                 else if (dialogResult2 == DialogResult.No)
                 {
                     return;
-                }
-
-                //RefreshInformation(); 
+                } 
             }
             else
             {
@@ -278,17 +278,7 @@ namespace Database_Application_Chris
         {
             ////activate the form to cause validation to go off
             nameLbl.Select();
-            addressLbl.Select();
-
-            ////Ensure all errors cleared
-            //if (allErrors.Count > 0)
-            //{ 
-            //    MessageBox.Show("Please clear all errors to add customer!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}else
-            //{
-            //    //Customer can be added now
-            //    AddCustomerFirebase(); 
-            //}
+            addressLbl.Select(); 
 
             ValidationProcess(null); // Check all fields
 
@@ -339,6 +329,9 @@ namespace Database_Application_Chris
             array.Add(email1Lbl.Text);
             array.Add(email2Lbl.Text); 
             dict.Add("Emails", array);
+
+            ArrayList array2 = new ArrayList();
+            dict.Add("InterestedVehicles", array2);
 
             try
             {
@@ -756,11 +749,12 @@ namespace Database_Application_Chris
         private void addVehicleInterest_Click(object sender, EventArgs e)
         {
             UpdateListToSend();
-            //SearchForm search = new SearchForm(true, true, customerResult);
-            //search.sentFromAddPage = addCustomer;
-            //search.Text = "Fusion Motors: Select a Vehicle";
-            //search.titleLbl.Text = "Select a vehicle to add to list";
-            //search.Show();
+
+            SearchForm search = new SearchForm(true, true, customerResult);
+            search.sentFromAddPage = true;
+            search.Text = "Fusion Motors: Select a Vehicle";
+            search.titleLbl.Text = "Select a vehicle to add to list";
+            search.Show();
 
             //if (addVehicle.Text.Length != 0)
             //{
@@ -769,6 +763,55 @@ namespace Database_Application_Chris
             //    addVehicle.Text = ""; // Clear field
             //    //EnableUpdateBtn();
             //}
+
+            //update on vehicle side then refresh/ reload the page
+
+        }
+
+        private void UpdateListToSend()
+        {
+            customerResult = new CustomerFrame();
+
+            string[] names;
+
+            try
+            {
+
+                names = nameLbl.Text.Trim().Split(' ');
+
+                customerResult.Id = reference;
+                //customerResult.FirstName = names[0].Trim();
+                //customerResult.LastName = names[1].Trim();
+                //customerResult.Address = addressLbl.Text.Trim();
+
+
+                //customerResult.ContactNum1 = num1Lbl.Text.Trim();
+
+                //if (num2Lbl.Text.Trim().Length != 0)
+                //{
+                //    customerResult.ContactNum2 = num2Lbl.Text.Trim();
+                //}
+                //else
+                //{
+                //    customerResult.ContactNum2 = "";
+                //}
+
+                //customerResult.Emails[0] = email1Lbl.Text.Trim();
+
+
+                //customerResult.Emails[1] = email2Lbl.Text.Trim() == "" ? "" : email2Lbl.Text.Trim();
+
+
+
+                //customerResult.InProgressFlag = inProgressCheckbox.Checked;
+                //customerResult.CallBackFlag = callBackCheckbox.Checked;
+                //customerResult.Notes = additionalCommentsLbl.Text;
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void removeVehicle_Click(object sender, EventArgs e)

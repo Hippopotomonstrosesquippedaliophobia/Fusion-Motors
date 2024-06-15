@@ -29,7 +29,7 @@ namespace Database_Application_Chris
                 ContactNum1 = "",
                 ContactNum2 = "",
                 Emails = { },
-                InterestedVehicles = new List<string> { "" },
+                InterestedVehicles = { },
                 InProgressFlag = false,
                 CallBackFlag = false
             };

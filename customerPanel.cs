@@ -43,7 +43,7 @@ namespace Database_Application_Chris
                 uc.Dock = DockStyle.Fill;
 
                 //Send data of Customer form 
-                uc.customerResult = customer;
+                uc.reference = customer.Id.ToString();
                 //Refresh form
                 uc.RefreshInformation();
 
