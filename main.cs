@@ -12,12 +12,16 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Database_Application_Chris.Properties;
 using Google.Cloud.Firestore;
 
 namespace Database_Application_Chris
 {
     public partial class main : Form
     {
+
+        Firestore conn; // global reference to firestore database 
+
         public MongoCRUD db = null;
         HomeControl hc;
         static main _obj;
@@ -115,6 +119,7 @@ namespace Database_Application_Chris
 
             // Set up search Control for reference across main
             //sc = searchResultsControl1;
+            conn = new Firestore();
         }
 
         private void SetVersion()
@@ -172,6 +177,7 @@ namespace Database_Application_Chris
 
         private async void main_Load(object sender, EventArgs e)
         {
+            LoadCustomersToCall();
             // Try to Start Mongo Database
             //try
             //{
@@ -680,9 +686,23 @@ namespace Database_Application_Chris
         }
 
         public async void LoadCustomersToCall()
-        {
-            if (db != null)
-                callBackList = await Task.Run(() => main.Instance.db.LoadCustomersToCallback<CustomerFrame>("Customers"));
+        { 
+            Query allCustomersQuery;
+
+            allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("CallBackFlag", true);
+
+            QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+            callBackList.Clear(); // refresh list
+
+            foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
+            {
+                CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
+                custModel.Id = documentSnapshot.Id.ToString();
+
+                callBackList.Add(custModel); 
+            } 
+                
 
             if (callBackList.Count > 0)
             {
@@ -696,7 +716,7 @@ namespace Database_Application_Chris
                     //Play sound to alert of callback
                     if (playOnce > 0)
                     {
-                        SoundPlayer splayer = new SoundPlayer(@"sound\notification_bell_sound.wav");
+                        SoundPlayer splayer = new SoundPlayer(Resources.notification_bell_sound);
                         splayer.Play();
                         playOnce--;
                     }
@@ -791,6 +811,8 @@ namespace Database_Application_Chris
             {
                 Customer uc = new Customer();
                 //Send data of Customer form 
+
+                uc.reference = callBackList[index].Id;
                 uc.customerResult = callBackList[index];
 
                 //Refresh form

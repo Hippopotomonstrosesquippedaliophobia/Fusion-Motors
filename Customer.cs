@@ -28,7 +28,10 @@ namespace Database_Application_Chris
 
         List<string> allErrors = new List<string>();
         List<string> RemovedInterestedVehicles = new List<string>();
+
         public BindingList<VehicleFrame> vehicles = new BindingList<VehicleFrame>();
+
+        BindingSource bindingSource = new BindingSource();
 
         public Customer()
         {
@@ -149,7 +152,7 @@ namespace Database_Application_Chris
                 callBackCheckbox.Checked = cust.CallBackFlag;
 
                 int index = 0;
-                vehicles = new BindingList<VehicleFrame>();
+                vehicles = new BindingList<VehicleFrame>(); 
 
                 foreach (var vehic in cust.InterestedVehicles)
                 {
@@ -157,20 +160,20 @@ namespace Database_Application_Chris
                     {
                         try
                         {
-                            DocumentReference docref2 = conn.db.Collection("Vehicles").Document(vehic);
+                            DocumentReference docref2 = conn.db.Collection("Vehicles").Document(cust.InterestedVehicles[index]);
 
-                            DocumentSnapshot snap2 = await docref.GetSnapshotAsync();
-                            if (snap.Exists)
+                            DocumentSnapshot snap2 = await docref2.GetSnapshotAsync();
+                            if (snap2.Exists)
                             {
-                                VehicleFrame vehicle = snap.ConvertTo<VehicleFrame>(); 
-                                vehicles.Add(vehicle);
-                                index++;
+                                VehicleFrame vehicle = snap2.ConvertTo<VehicleFrame>();
+                                vehicles.Add(vehicle); 
+                                index++; 
                             }
 
-                            // Attach the list of customers to the ListBox:
+                            //Attach the list of customers to the ListBox:  
                             interestedVehiclesListBox.DataSource = vehicles;
-                            interestedVehiclesListBox.Text = "hi";
                             interestedVehiclesListBox.DisplayMember = "Model";
+                            interestedVehiclesListBox.ValueMember = "Id";
                         }
                         catch (Exception err)
                         {
@@ -251,7 +254,11 @@ namespace Database_Application_Chris
                         array.Add(email1Lbl.Text);
                         array.Add(email2Lbl.Text);
                         dict.Add("Emails", array);
-                         
+
+                        ArrayList array2 = new ArrayList(); 
+                        array2.Add(interestedVehiclesListBox.Items);
+                        dict.Add("InterestedVehicles", array2);
+
                         //Updating customer on firebase
                         DocumentReference doc = conn.db.Collection("Customers").Document(reference);
                         await doc.UpdateAsync(dict);
@@ -780,6 +787,7 @@ namespace Database_Application_Chris
                 names = nameLbl.Text.Trim().Split(' ');
 
                 customerResult.Id = reference;
+
                 //customerResult.FirstName = names[0].Trim();
                 //customerResult.LastName = names[1].Trim();
                 //customerResult.Address = addressLbl.Text.Trim();
@@ -814,29 +822,77 @@ namespace Database_Application_Chris
             }
         }
 
-        private void removeVehicle_Click(object sender, EventArgs e)
+        async void removeVehicle_Click(object sender, EventArgs e)
         {
             //// Get List of removed vehicles for update reasons
-            //int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+            int selectedIndex = interestedVehiclesListBox.SelectedIndex;
 
-            //if (interestedVehiclesListBox.Items.Count != 0)
-            //{
-            //    DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + vehicles[selectedIndex].EngineNum + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    if (dialogResult == DialogResult.Yes)
-            //    {
+            if (interestedVehiclesListBox.Items.Count != 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + interestedVehiclesListBox.SelectedItems.ToString() + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
 
-            //        RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
+                    //RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
 
-            //        vehicles.RemoveAt(selectedIndex); 
-            //        interestedVehiclesListBox.DataSource = vehicles;
-            //        UpdateCustomerList();
-            //    }
-            //    else if (dialogResult == DialogResult.No)
-            //    {
-            //        return;
-            //    }
+                    vehicles.RemoveAt(selectedIndex);
+                    vehicles.ResetBindings();
+                    interestedVehiclesListBox.DataSource = vehicles;
 
-            //}
+                    bool confirmedName = false;
+
+                    ValidationProcess(null); // Check all fields
+
+                    if (errorsInForm == 0)
+                    {
+                        //Try to update
+                        try
+                        {
+                            string[] name = nameLbl.Text.Split(' ');
+                            string[] emails = { email1Lbl.Text, email2Lbl.Text };
+
+                            Dictionary<string, object> dict = new Dictionary<string, object>()
+                            {
+                                {"FirstName", name[0]  },
+                                {"LastName",name[1]  },
+                                {"Address", addressLbl.Text },
+                                {"ContactNum1", num1Lbl.Text },
+                                {"ContactNum2", num2Lbl.Text },
+                                {"InProgressFlag", inProgressCheckbox.Checked },
+                                {"CallBackFlag", callBackCheckbox.Checked },
+                                {"Notes", additionalCommentsLbl.Text.ToString()}
+                            };
+
+                            ArrayList array = new ArrayList();
+                            array.Add(email1Lbl.Text);
+                            array.Add(email2Lbl.Text);
+                            dict.Add("Emails", array);
+
+                            //ArrayList array2 = interestedVehiclesListBox.Items;
+                            //dict.Add("InterestedVehicles", array2);
+
+                            //Updating customer on firebase
+                            DocumentReference doc = conn.db.Collection("Customers").Document(reference);
+                            await doc.UpdateAsync(dict);
+
+                            reference = doc.Id;
+                        }
+                        catch (Exception err)
+                        {
+                            MessageBox.Show(err.Message, "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } 
+                    }
+                    else
+                    {
+                        MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+            }
         }
 
 
@@ -869,25 +925,31 @@ namespace Database_Application_Chris
         }
 
         private void interestedVehiclesListBox_DoubleClick(object sender, EventArgs e)
-        { 
-            int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+        {
+            int selectedIndex = -1;
+            selectedIndex = interestedVehiclesListBox.SelectedIndex;
 
-            //Refresh of controls
-            main.Instance.PanelContainer.Controls.Clear();
-
-            if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+            if (selectedIndex > -1)
             {
-                Vehicle uc = new Vehicle();
-                //Send data of Customer form 
-                uc.reference = interestedVehiclesListBox.Tag.ToString();
-                //Refresh form
-                uc.RefreshInformation();
 
-                uc.Dock = DockStyle.Fill;
-                main.Instance.PanelContainer.Controls.Add(uc);
+                //Refresh of controls
+                main.Instance.PanelContainer.Controls.Clear();
+
+                if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
+                {
+                    Vehicle uc = new Vehicle();
+
+                    //Send data of Customer form  
+                    uc.reference = interestedVehiclesListBox.SelectedValue.ToString();
+                    //Refresh form
+                    uc.RefreshInformation();
+
+                    uc.Dock = DockStyle.Fill;
+                    main.Instance.PanelContainer.Controls.Add(uc);
+                }
+
+                main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
             }
-
-            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
         }
 
         private void viewErrors_Click(object sender, EventArgs e)
