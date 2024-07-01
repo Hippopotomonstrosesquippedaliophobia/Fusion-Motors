@@ -161,6 +161,16 @@ namespace Database_Application_Chris
                 //cll.AddAsync(customerResult); 
 
                 reference = doc.Id;
+
+                //Update ID after adding now
+                DocumentReference doc2 = conn.db.Collection("Vehicles").Document(reference);
+
+                Dictionary<string, object> dict2 = new Dictionary<string, object>()
+                {
+                    { "Id", reference }
+                };
+                await doc.UpdateAsync(dict2);
+
             }
             catch (Exception ex)
             {
@@ -335,6 +345,32 @@ namespace Database_Application_Chris
                 askingPriceLbl.Text = vehicle.AskingPrice.ToString();
                 colourLbl.Text = vehicle.Colour;
                 additionalCommentsLbl.Text = vehicle.Notes;
+
+                int index = 0;
+                customers = new BindingList<CustomerFrame>();
+
+                try
+                {
+                    Query query = conn.db.Collection("Customers").WhereArrayContains("InterestedVehicles", reference);
+                    QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+                    //MessageBox.Show("Reference: "+ reference);
+                    //MessageBox.Show("Count of docs: " + querySnapshot.Count().ToString());
+
+                    foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                    {
+                        customers.Add(documentSnapshot.ConvertTo<CustomerFrame>()); 
+                    }
+
+                    //Attach the list of customers to the ListBox:  
+                    interestedCustomersListBox.DataSource = customers;
+                    interestedCustomersListBox.DisplayMember = "Model";
+                    interestedCustomersListBox.ValueMember = "FirstName";
+                }
+                catch (Exception err)
+                {
+
+                }
 
 
             }
@@ -663,7 +699,7 @@ namespace Database_Application_Chris
             {
                 Customer uc = new Customer();
                 //Send data of Customer form 
-                uc.customerResult = customers[selectedIndex];
+                uc.reference = customers[selectedIndex].Id;
                 //Refresh form
                 uc.RefreshInformation();
 
@@ -671,7 +707,7 @@ namespace Database_Application_Chris
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
 
-            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+            main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
         }
 
         private void viewErrors_Click(object sender, EventArgs e)

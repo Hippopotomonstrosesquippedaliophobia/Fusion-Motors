@@ -1,0 +1,67 @@
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.exe
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Exclude from GIT\fusion-motors-firebase.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.deps.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.runtimeconfig.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.pdb
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\AWSSDK.Core.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\AWSSDK.SecurityToken.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\DnsClient.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Api.CommonProtos.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Api.Gax.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Api.Gax.Grpc.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Apis.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Apis.Auth.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Apis.Core.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Cloud.Firestore.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Cloud.Firestore.V1.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Cloud.Location.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.LongRunning.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Google.Protobuf.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Grpc.Auth.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Grpc.Core.Api.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Grpc.Net.Client.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Grpc.Net.Common.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\MongoDB.Bson.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\MongoDB.Driver.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\MongoDB.Driver.Core.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\MongoDB.Libmongocrypt.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Newtonsoft.Json.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\SharpCompress.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Snappier.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\System.Linq.Async.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\System.Management.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\ZstdSharp.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\mongocrypt.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Microsoft.Windows.SDK.NET.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\WinRT.Runtime.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.csproj.AssemblyReference.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.addHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.Customer.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.customerPanel.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.DatabaseHome.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.HomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.Login.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.main.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.Properties.Resources.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.SearchForm.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.SearchHomeControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.SearchResultsControl.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.SettingsPage.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.Vehicle.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database_Application_Chris.ViewVehicle.resources
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.csproj.GenerateResource.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.AssemblyInfoInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.AssemblyInfo.cs
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.csproj.CoreCompileInputs.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.sourcelink.json
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database.D7C6BA66.Up2Date
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\refint\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.pdb
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\Database Application Chris.genruntimeconfig.cache
+C:\Users\Bronj\source\repos\Fusion-Motors\obj\Release\net8.0-windows10.0.17763.0\win-x64\ref\Fusion Motors.dll

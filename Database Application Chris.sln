@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database Application Chris", "Database Application Chris.csproj", "{A49379E3-D36E-4234-BD3E-9B25E752FAC0}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{323693F2-2A24-40EB-A669-F77CF716A565}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC3FB775-DA48-45F0-A0E5-53AE00DF5FEE}"
 	ProjectSection(SolutionItems) = preProject
 		Exclude from GIT\fusion-motors-firebase-adminsdk-zfk8u-02dabe2724.json = Exclude from GIT\fusion-motors-firebase-adminsdk-zfk8u-02dabe2724.json
@@ -22,8 +20,6 @@ Global
 		{A49379E3-D36E-4234-BD3E-9B25E752FAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A49379E3-D36E-4234-BD3E-9B25E752FAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A49379E3-D36E-4234-BD3E-9B25E752FAC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{323693F2-2A24-40EB-A669-F77CF716A565}.Debug|Any CPU.ActiveCfg = Debug
-		{323693F2-2A24-40EB-A669-F77CF716A565}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

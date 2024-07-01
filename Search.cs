@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -432,44 +433,52 @@ namespace Database_Application_Chris
         {
             if (sentFromAddPage)
             {
-                // UPDATE the passed customer info
-                Dictionary<string, object> dict = new Dictionary<string, object>()
-                        { 
-                        };
-
-                ArrayList array = new ArrayList();
-                array.Add(listViewVehicles.SelectedItems[0].Tag.ToString()); 
-                dict.Add("InterestedVehicles", array);
-
-                //Updating customer on firebase
-                DocumentReference doc = conn.db.Collection("Customers").Document(selectForListCModel.Id);
-                await doc.UpdateAsync(dict);
-
-                reference = doc.Id;
-
-                //Refresh customer page in back
-                // OPEN CUSTOMER
-                //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear();
-
-                //Open Customer
-                if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                try
                 {
-                    Customer uc = new Customer();
-                    uc.Dock = DockStyle.Fill;
+                    // UPDATE the passed customer info
+                    Dictionary<string, object> dict = new Dictionary<string, object>()
+                    {
+                    };
 
-                    CustomerFrame cust = new CustomerFrame();
+                    ArrayList array = new ArrayList();
+                    array.Add(listViewVehicles.SelectedItems[0].Tag.ToString()); //Throws error once clicked twice
+                    dict.Add("InterestedVehicles", array);
 
-                    uc.reference = doc.Id;  // Reset page variable with new information
+                    ////Updating customer on firebase
+                    //DocumentReference doc = conn.db.Collection("Customers").Document(selectForListCModel.Id);
+                    //await doc.UpdateAsync(dict);
 
-                    //Refresh form
-                    uc.RefreshInformation();
-                    main.Instance.PanelContainer.Controls.Add(uc);
+                    //reference = doc.Id;
+
+                    // OPEN CUSTOMER 
+                    main.Instance.PanelContainer.Controls.Clear();
+
+                    //Open Customer
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                    {
+                        Customer uc = new Customer();
+                        uc.Dock = DockStyle.Fill;
+
+                        CustomerFrame cust = new CustomerFrame();
+
+                        uc.reference = selectForListCModel.Id;  // Reset page variable with new information 
+                        uc.UpdateVehicleEXTAsync(array);
+
+                        //Refresh form
+                        //uc.RefreshInformation();
+                        main.Instance.PanelContainer.Controls.Add(uc);
+                    }
+
+                    //listViewVehicles.SelectedItems.Clear();
+
+                    main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+
+                    return;
                 }
-
-                main.Instance.PanelContainer.Controls["Customer"].BringToFront();
-
-                return;
+                catch (Exception ex)
+                {
+                   // MessageBox.Show(ex.ToString());
+                } 
             }
 
             if (!isVehicleSearch) // Customer 
