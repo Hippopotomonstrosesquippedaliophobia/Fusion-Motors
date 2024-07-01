@@ -22,7 +22,7 @@ namespace Database_Application_Chris
             string path = AppDomain.CurrentDomain.BaseDirectory + @"Exclude from GIT/fusion-motors-firebase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
-            db = FirestoreDb.Create("fusion-motors");
+            db = FirestoreDb.Create("fusion-motors");  
         }
 
         //Not being used

@@ -1,4 +1,3 @@
-C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Exclude from GIT\fusion-motors-firebase.json
 C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.exe
 C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.dll
 C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.deps.json

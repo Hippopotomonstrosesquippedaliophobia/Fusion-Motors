@@ -258,7 +258,7 @@ namespace Database_Application_Chris
             //string version = ConfigurationManager.AppSettings["version"];
             //string versionIteration = ConfigurationManager.AppSettings["versionIteration"];
 
-            string lastUpdate = "14th June 2024"; // Change this date as necessary to reflect application update
+            string lastUpdate = "1st July 2024"; // Change this date as necessary to reflect application update
 
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

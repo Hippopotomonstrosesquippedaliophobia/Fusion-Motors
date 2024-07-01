@@ -1,5 +1,4 @@
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.exe
-C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Exclude from GIT\fusion-motors-firebase.json
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.deps.json
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.runtimeconfig.json
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Release\net8.0-windows10.0.17763.0\win-x64\Fusion Motors.dll

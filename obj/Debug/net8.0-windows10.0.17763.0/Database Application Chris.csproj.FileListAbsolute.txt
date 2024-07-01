@@ -1,8 +1,8 @@
-C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.dll
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.exe
-C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Exclude from GIT\fusion-motors-firebase.json
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.deps.json
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.runtimeconfig.json
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\AWSSDK.Core.dll
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\AWSSDK.SecurityToken.dll
 C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\DnsClient.dll
@@ -66,5 +66,5 @@ C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows10.0.17763.0\F
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows10.0.17763.0\refint\Fusion Motors.dll
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows10.0.17763.0\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows10.0.17763.0\Database Application Chris.genruntimeconfig.cache
-C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Fusion Motors.pdb
 C:\Users\Bronj\source\repos\Fusion-Motors\obj\Debug\net8.0-windows10.0.17763.0\ref\Fusion Motors.dll
+C:\Users\Bronj\source\repos\Fusion-Motors\bin\Debug\net8.0-windows10.0.17763.0\Exclude from GIT\fusion-motors-firebase.json
