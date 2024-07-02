@@ -13,64 +13,64 @@ namespace Database_Application_Chris
 
         public Settings()
         {
-            string path = "";
+            //string path = "";
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
-            // Key exists so continue
-            string s = ConfigurationManager.AppSettings["mongoPath"];
+            //// Key exists so continue
+            //string s = ConfigurationManager.AppSettings["mongoPath"];
 
-            if (!String.IsNullOrEmpty(s))
-            { 
-                path = config.AppSettings.Settings["mongoPath"].Value.ToString();
-            }
-            else
-            {
-                if (Directory.Exists(path))
-                {
-                    mongoBinPath = path;
+            //if (!String.IsNullOrEmpty(s))
+            //{ 
+            //    path = config.AppSettings.Settings["mongoPath"].Value.ToString();
+            //}
+            //else
+            //{
+            //    if (Directory.Exists(path))
+            //    {
+            //        mongoBinPath = path;
 
-                    try
-                    {
-                        SetPath(mongoBinPath, 0);
-                    }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.Message, "");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } 
+            //        try
+            //        {
+            //            SetPath(mongoBinPath, 0);
+            //        }
+            //        catch (Exception err)
+            //        {
+            //            MessageBox.Show(err.Message, "");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Mongo file location is invalid!\nPlease select the location of your mongoDB installation", "Mongo File Path Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //} 
         }
 
-        public void SetPath(string path, int type)
-        { 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+        //public void SetPath(string path, int type)
+        //{ 
+        //    Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
-            // Key exists so continue
-            string patherino = ConfigurationManager.AppSettings["mongoPath"];
+        //    // Key exists so continue
+        //    string patherino = ConfigurationManager.AppSettings["mongoPath"];
 
-            if (!String.IsNullOrEmpty(patherino))
-            {
-                if (Directory.Exists(path))
-                {
+        //    if (!String.IsNullOrEmpty(patherino))
+        //    {
+        //        if (Directory.Exists(path))
+        //        {
 
-                }
-            }else
-            {
-                config.AppSettings.Settings.Add("mongoPath", path);
-                config.Save(ConfigurationSaveMode.Minimal);
-            }
+        //        }
+        //    }else
+        //    {
+        //        config.AppSettings.Settings.Add("mongoPath", path);
+        //        config.Save(ConfigurationSaveMode.Minimal);
+        //    }
                          
 
-            if (type == 1)
-            {
-                MessageBox.Show("Mongo Path set to: " + path, "Mongo File Path Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        } 
+        //    if (type == 1)
+        //    {
+        //        MessageBox.Show("Mongo Path set to: " + path, "Mongo File Path Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //} 
 
         public static readonly IDictionary<string, string> commands = new Dictionary<string, string>()
         { 

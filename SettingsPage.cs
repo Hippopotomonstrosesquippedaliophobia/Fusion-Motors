@@ -257,7 +257,8 @@ namespace Database_Application_Chris
             // Key exists so continue
             //string version = ConfigurationManager.AppSettings["version"];
             //string versionIteration = ConfigurationManager.AppSettings["versionIteration"];
-            string lastUpdate = ConfigurationManager.AppSettings["lastUpdate"];
+
+            string lastUpdate = "1st July 2024"; // Change this date as necessary to reflect application update
 
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

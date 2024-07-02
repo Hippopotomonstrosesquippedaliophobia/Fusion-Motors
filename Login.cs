@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -14,6 +15,8 @@ namespace Database_Application_Chris
 {
     public partial class Login : Form
     {
+        Firestore conn; // global reference to firestore database
+
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -33,13 +36,16 @@ namespace Database_Application_Chris
         private static string pasteBin = "https://pastebin.com/raw/LiahpQJq";
         private static string version = "0.0";
 
+        // login status
+        Boolean incorrectUser, incorrectPass = false;
+
         public Login()
         {
             InitializeComponent();
             this.Text = "Fusion Motors: Login";
         }
 
-        
+
 
         /*
          *  Form Functions
@@ -105,7 +111,7 @@ namespace Database_Application_Chris
             // If user hits enter, run login button function
             if (e.KeyData == Keys.Enter)
             {
-                loginBtn.PerformClick(); 
+                loginBtn.PerformClick();
             }
         }
 
@@ -114,7 +120,7 @@ namespace Database_Application_Chris
             // If user hits enter, run login button function
             if (e.KeyData == Keys.Enter)
             {
-                loginBtn.PerformClick(); 
+                loginBtn.PerformClick();
             }
         }
 
@@ -122,35 +128,49 @@ namespace Database_Application_Chris
         {
             string username = usernameTxt.Text.Trim();
             string password = Utilities.HashPassword(passwordTxt.Text.Trim());
+             
+            GetLogin(username, password); 
+        }
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            //config.AppSettings.Settings.Add("owner", username);
-            //config.AppSettings.Settings.Add("application", password);
-            //MessageBox.Show(config.AppSettings.Settings["application"].Value.ToString());
+        public async void GetLogin(string username, string password)
+        { 
+            DocumentReference docref = conn.db.Collection("Login").Document(username);
 
-            //config.Save(ConfigurationSaveMode.Minimal);
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
 
-            string obtainedUsername = config.AppSettings.Settings["owner"].Value.ToString();
-            string obtainedHashedPassword = config.AppSettings.Settings["application"].Value.ToString();
-
-            if (username == obtainedUsername && password == obtainedHashedPassword)
+            if (snap.Exists)
             {
-                main form = new main();
-                form.Show();
-                this.Hide();
-            }
-            else
+                LoginDetails login = snap.ConvertTo<LoginDetails>();
+
+                if (login.username == username)
+                { 
+                    //Dont forget password hasher is used to store account creation password
+                    if (login.password == password)
+                    {
+                        //correct username and password
+                        main form = new main();
+                        form.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        //incorrect password
+                        MessageBox.Show("Incorrect password!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Username not found!" + login.username, "Authentication Error" + username, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } 
+
+            }else
             {
-                if (username != obtainedUsername)
-                {
-                    MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else if (username == obtainedUsername)
-                {
-                    MessageBox.Show("Incorrect password!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }    
+                MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }         
+        }
+
+
 
         private void usernameTxt_Enter(object sender, EventArgs e)
         {
@@ -187,8 +207,11 @@ namespace Database_Application_Chris
             versionLbl.Text = "v" + version;
 
             //Check for updates
-            GetUpdate(); 
-        } 
+            GetUpdate();
+            
+            //Load firestore
+            conn = new Firestore();
+        }
 
         // UPDATE STUFF
         void GetUpdate()
@@ -200,7 +223,7 @@ namespace Database_Application_Chris
 
             WebClient webClient = new WebClient();
 
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString(); 
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             try
             {
@@ -217,7 +240,7 @@ namespace Database_Application_Chris
                 else
                 {
                     throw new Exception("Download link not found or corrupted");
-                } 
+                }
 
                 if (!web.Contains(version)) // Version is not the same as pastebin version
                 {
@@ -259,6 +282,11 @@ namespace Database_Application_Chris
             // Run process
             process.StartInfo = startInfo;
             process.Start();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { 
+            //Send user to email app and insert my email here
         }
     }
 }

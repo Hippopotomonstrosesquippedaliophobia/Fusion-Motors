@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +15,9 @@ namespace Database_Application_Chris
 {
     public partial class SearchForm : Form
     {
+        Firestore conn; // global reference to firestore database
+        String reference; //global document reference for firebase document search
+
         //Mouse drag of window
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -29,26 +35,27 @@ namespace Database_Application_Chris
         bool selectForList = false;
         public bool sentFromAddPage = false;
 
-        public CustomerModel selectForListCModel = new CustomerModel();
+        public CustomerFrame selectForListCModel = new CustomerFrame();
         public VehicleModel selectForListVModel = new VehicleModel();
 
-        public List<CustomerModel> listCustomers;
-        public List<VehicleModel> listVehicles;
+        public Dictionary<string, object> listCustomers;
+        public Dictionary<string, object> listVehicles;
 
         public IDictionary<long, Guid> matchList = new Dictionary<long, Guid>();
 
-        public SearchForm(bool selection, VehicleModel model)
-        {
+        public SearchForm(bool selection, CustomerModel model)
+        { 
+
             InitializeComponent();
-            listCustomers = new List<CustomerModel>();
+            listCustomers = new Dictionary<string, object>();
 
             // Tells if this is going to open the customer or send back the information to open customer page
             selectForList = selection;
 
-            if (selection)
-            {
-                selectForListVModel = model;
-            }
+            //if (selection)
+            //{
+            //    selectForListVModel = model;
+            //}
 
             titleLbl.Text = "Customers";
             searchBtn.Text = "Find a Customer";
@@ -60,10 +67,10 @@ namespace Database_Application_Chris
             listView.Visible = true;
         }
         
-        public SearchForm(bool vehicle, bool selection, CustomerModel model)
+        public SearchForm(bool vehicle, bool selection, CustomerFrame model)
         {
             InitializeComponent();
-            listVehicles = new List<VehicleModel>();
+            listVehicles = new Dictionary<string, object>();
 
             // Tells if this is going to open the customer or send back the information to open customer page
             selectForList = selection;
@@ -115,11 +122,76 @@ namespace Database_Application_Chris
                 {
                     if (searchQuery.Length == 0)
                     {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
+                        UpdateListViewAsync("customers");
                     }
                     else
-                    {
-                        listCustomers = await Task.Run(() => main.Instance.db.LoadCustomerByName<CustomerModel>("Customers", names[0], lastname));
+                    {                        
+                            listView.Items.Clear();
+                            listViewVehicles.Items.Clear();
+                            matchList.Clear();
+
+                            // Query Records 
+                            Query allCustomersQuery;
+
+                            if (lastname.Length > 0) 
+                            {
+                                allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("FirstName", names[0].Trim())
+                                                                                 .WhereEqualTo("LastName", lastname.Trim());
+                            }else
+                            {
+                                allCustomersQuery = conn.db.Collection("Customers").WhereGreaterThanOrEqualTo("FirstName", names[0].Trim())
+                                                                                   .OrderBy("FirstName");
+                            }
+                            QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+                            int x = 1;
+                            foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
+                            { 
+                                CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
+
+
+                                String srch = searchTxt.Text.Trim();
+                                Boolean checkFail = false;
+
+
+                                if (lastname.Length <= 0)
+                                {
+                                    for (int i = 0; i < srch.Length; i++)
+                                    {
+                                        if (srch[i] == custModel.FirstName[i])
+                                        {
+                                            //
+                                        }
+                                        else
+                                        {
+                                            checkFail = true;
+                                            break;
+                                        }
+
+                                    }
+                                } 
+
+                                if (!checkFail) 
+                                {
+                                    var row = new string[] {
+                                                        x.ToString(),
+                                                        custModel.FirstName,
+                                                        custModel.LastName,
+                                                        custModel.ContactNum1,
+                                                        custModel.Address
+                                                    };
+
+                                    var item = new ListViewItem(row);
+                                    x++;
+                                    item.Tag = documentSnapshot.Id;
+                                    listView.Items.Add(item);
+
+                                }
+                                
+                            }
+
+                            // Update with number of records found
+                            countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found"; 
                     }
                 }
                 catch (Exception err)
@@ -127,116 +199,178 @@ namespace Database_Application_Chris
                     MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                UpdateListView<CustomerModel>(listCustomers);
+                //UpdateListView<CustomerFrame>(listCustomers);
             }
             // This is a search for vehicles
             if (isVehicleSearch)
             {
-                try
+                if (searchQuery.Length == 0)
                 {
-                    if (searchQuery.Length == 0)
+                    UpdateListViewAsync("vehicles");
+                }
+                else
+                {
+                    listView.Items.Clear();
+                    listViewVehicles.Items.Clear();
+                    matchList.Clear();
+
+                    try
                     {
-                        listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
+                        // Load Records 
+                        Query allVehiclesQuery = conn.db.Collection("Vehicles").WhereGreaterThanOrEqualTo("Model", searchTxt.Text.Trim()).OrderBy("Model");
+                        QuerySnapshot allVehiclesQuerySnapshot = await allVehiclesQuery.GetSnapshotAsync();
+
+                        int x = 1;
+                        foreach (DocumentSnapshot documentSnapshot in allVehiclesQuerySnapshot.Documents)
+                        {
+                            //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
+
+                            VehicleFrame vehicleModel = documentSnapshot.ConvertTo<VehicleFrame>();
+
+
+                            String srch = searchTxt.Text.Trim();
+                            Boolean checkFail = false;
+
+                             
+                            for (int i = 0; i < srch.Length; i++)
+                            {
+                                if (srch[i] == vehicleModel.Model[i])
+                                {
+                                    //
+                                }
+                                else
+                                {
+                                    checkFail = true;
+                                    break;
+                                }
+
+                            } 
+
+                            if (!checkFail)
+                            {
+                                var row = new string[] {
+                                                    x.ToString(),
+                                                    vehicleModel.EngineNumber,
+                                                    vehicleModel.Make,
+                                                    vehicleModel.Model,
+                                                    vehicleModel.Year.ToString(),
+                                                    vehicleModel.Valuation.ToString(),
+                                                    vehicleModel.AskingPrice.ToString(),
+                                                    vehicleModel.Colour
+                                                };
+
+                                var item = new ListViewItem(row);
+                                x++;
+                                item.Tag = documentSnapshot.Id;
+                                listViewVehicles.Items.Add(item);
+                            }
+                        }
+
+
+                        // Update with number of records found
+                        countLbl.Text = allVehiclesQuerySnapshot.Count() + " Vehicles(s) found";
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        string[] safeSearch = searchQuery.Split(' ');
-
-                        listVehicles = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", safeSearch[0]));
-                    } 
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        countLbl.Text = 0 + " Vehicles(s) found";
+                    }
                 }
 
-                UpdateListView<VehicleModel>(listVehicles);
             }            
         }
 
-        private void UpdateListView<T>(List<T> list)
+        async Task UpdateListViewAsync(string type)
         {
             //Clear out list view and matchList
             listView.Items.Clear();
             listViewVehicles.Items.Clear();
             matchList.Clear();
 
-            if (isVehicleSearch)
+            //If vehicle form
+            if (type == "vehicles")
             {
                 int counter = 0;
                 int ID = 1;
 
-                if (list != null)
+
+                try
                 {
-                    foreach (var record in list)
+                    // Load Records 
+                    Query allVehiclesQuery = conn.db.Collection("Vehicles").OrderBy("Model");
+                    QuerySnapshot allVehiclesQuerySnapshot = await allVehiclesQuery.GetSnapshotAsync();
+
+                    int x = 1;
+                    foreach (DocumentSnapshot documentSnapshot in allVehiclesQuerySnapshot.Documents)
                     {
+                        //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
+
+                        VehicleFrame vehicleModel = documentSnapshot.ConvertTo<VehicleFrame>();
+                        //pair.Key, pair.Value);
                         var row = new string[] {
-                                                ID.ToString(),
-                                                listVehicles[counter].EngineNum,
-                                                listVehicles[counter].Make,
-                                                listVehicles[counter].Model,
-                                                listVehicles[counter].Year.ToString(),
-                                                "$ " + listVehicles[counter].Valuation.ToString(),
-                                                "$ " + listVehicles[counter].AskingPrice.ToString(), 
-                                                listVehicles[counter].Colour
-                                            };
+                                                    x.ToString(),
+                                                    vehicleModel.EngineNumber,
+                                                    vehicleModel.Make,
+                                                    vehicleModel.Model,
+                                                    vehicleModel.Year.ToString(),
+                                                    vehicleModel.Valuation.ToString(),
+                                                    vehicleModel.AskingPrice.ToString(),
+                                                    vehicleModel.Colour
+                                                };
 
                         var item = new ListViewItem(row);
-
-                        item.Tag = record;
+                        x++;
+                        item.Tag = documentSnapshot.Id;
                         listViewVehicles.Items.Add(item);
-
-                        // Set List Equivalent to this id
-                        matchList.Add(ID, listVehicles[counter].Id);
-
-                        counter++;
-                        ID++;
                     }
 
+
                     // Update with number of records found
-                    countLbl.Text = list.Count() + " Vehicle(s) found";
+                    countLbl.Text = allVehiclesQuerySnapshot.Count() + " Vehicles(s) found";
                 }
-                else
+                catch (Exception ex)
                 {
-                    countLbl.Text = 0 + " Vehicle(s) found";
+                    countLbl.Text = 0 + " Vehicles(s) found";
                 }
             }
-            else 
+            else //if customer form
             {
                 int counter = 0;
                 int ID = 1;
 
-                if (list != null)
-                {
-                    foreach (var record in list)
+
+                try { 
+                    // Load Records 
+                    Query allCustomersQuery = conn.db.Collection("Customers").OrderBy("FirstName"); ;
+                    QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+                    int x = 1;
+                    foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
                     {
+                        //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
+
+                        CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>(); 
+                        //pair.Key, pair.Value);
                         var row = new string[] {
-                                                ID.ToString(),
-                                                listCustomers[counter].FirstName, listCustomers[counter].LastName,
-                                                BeautifulPhoneText(listCustomers[counter].ContactNums.ContactNum1.ToString()),
-                                                listCustomers[counter].PrimaryAddress.StreetAddress + ", "
-                                                    + listCustomers[counter].PrimaryAddress.Parish + ", "
-                                                    + listCustomers[counter].PrimaryAddress.Country
-                                            };
+                                                    x.ToString(),
+                                                    custModel.FirstName,
+                                                    custModel.LastName,
+                                                    custModel.ContactNum1,
+                                                    custModel.Address
+                                                };
 
                         var item = new ListViewItem(row);
-
-                        item.Tag = record;
-                        listView.Items.Add(item);
-
-                        // Set List Equivalent to this id
-                        matchList.Add(ID, listCustomers[counter].Id);
-
-                        counter++;
-                        ID++;
-                    }
+                        x++;
+                        item.Tag = documentSnapshot.Id;
+                        listView.Items.Add(item); 
+                    } 
 
                     // Update with number of records found
-                    countLbl.Text = list.Count() + " Customer(s) found";
-                }else
+                    countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found";
+                }
+                catch (Exception ex) 
                 {
                     countLbl.Text = 0 + " Customer(s) found";
-                }
+                } 
             }            
         }
 
@@ -283,239 +417,134 @@ namespace Database_Application_Chris
         // Loads records after form shown
         private async void SearchForm_Shown(object sender, EventArgs e)
         {
+            conn = new Firestore();
+
             if (isVehicleSearch)
             {
-                // Load records
-                listCustomers = null;
-                listVehicles = await Task.Run(() => main.Instance.db.LoadRecords<VehicleModel>("Vehicles"));
-                UpdateListView<VehicleModel>(listVehicles);
+                await UpdateListViewAsync("vehicles");
             }
             else
             {
-                // Load Records
-                listVehicles = null;
-                listCustomers = await Task.Run(() => main.Instance.db.LoadRecords<CustomerModel>("Customers"));
-                UpdateListView<CustomerModel>(listCustomers);
+                await UpdateListViewAsync("customers");
             }
         }
 
-        private async void listView_SelectedIndexChanged(object sender, EventArgs e)
+        async void listView_SelectedIndexChangedAsync(object sender, EventArgs e)
         {
-            long selectedIndex = 1;
+            if (sentFromAddPage)
+            {
+                try
+                {
+                    // UPDATE the passed customer info
+                    Dictionary<string, object> dict = new Dictionary<string, object>()
+                    {
+                    };
+
+                    ArrayList array = new ArrayList();
+                    array.Add(listViewVehicles.SelectedItems[0].Tag.ToString()); //Throws error once clicked twice
+                    dict.Add("InterestedVehicles", array);
+
+                    ////Updating customer on firebase
+                    //DocumentReference doc = conn.db.Collection("Customers").Document(selectForListCModel.Id);
+                    //await doc.UpdateAsync(dict);
+
+                    //reference = doc.Id;
+
+                    // OPEN CUSTOMER 
+                    main.Instance.PanelContainer.Controls.Clear();
+
+                    //Open Customer
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
+                    {
+                        Customer uc = new Customer();
+                        uc.Dock = DockStyle.Fill;
+
+                        CustomerFrame cust = new CustomerFrame();
+
+                        uc.reference = selectForListCModel.Id;  // Reset page variable with new information 
+                        uc.UpdateVehicleEXTAsync(array);
+
+                        //Refresh form
+                        //uc.RefreshInformation();
+                        main.Instance.PanelContainer.Controls.Add(uc);
+                    }
+
+                    //listViewVehicles.SelectedItems.Clear();
+
+                    main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+
+                    return;
+                }
+                catch (Exception ex)
+                {
+                   // MessageBox.Show(ex.ToString());
+                } 
+            }
 
             if (!isVehicleSearch) // Customer 
             {
                 try
                 {
-                    selectedIndex = Int64.Parse(listView.SelectedItems[0].SubItems[0].Text);
+                    string documentID = listView.SelectedItems[0].Tag.ToString();
 
-                    Guid id = matchList[selectedIndex];
+                     
+                    // OPEN CUSTOMER
+                    //Refresh of controls
+                    main.Instance.PanelContainer.Controls.Clear();
 
-                    // OPEN Vehicle
-                    if (!selectForList)
+                    //Open Customer
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
                     {
-                        // OPEN CUSTOMER
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
+                        Customer uc = new Customer();
+                        uc.Dock = DockStyle.Fill;
 
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
-                        {
-                            Customer uc = new Customer();
-                            uc.Dock = DockStyle.Fill;
+                        CustomerFrame cust = new CustomerFrame();
 
-                            CustomerModel cust = new CustomerModel();
+                        uc.reference = documentID;  // Reset page variable with new information
 
-                            try
-                            {
-                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    cust = tempList[0];
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            uc.customerResult = cust; // Reset page variable with new information
-
-                            //Refresh form
-                            uc.RefreshInformation();
-                            main.Instance.PanelContainer.Controls.Add(uc);
-                        }
-
-                        main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
+                        //Refresh form
+                        uc.RefreshInformation();
+                        main.Instance.PanelContainer.Controls.Add(uc);
                     }
-                    else // Selected to pass thru for list from Customer
-                    { 
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
-                        //selectForListCModel
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
-                        {
-                            Vehicle uc = new Vehicle(sentFromAddPage);
-                            uc.Dock = DockStyle.Fill;
 
-                            try
-                            { 
-                                List<CustomerModel> tempList = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", id));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    selectForListVModel.InterestedCustomers.Add(tempList[0].Id.ToString());
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            uc.vehicleResult = selectForListVModel; // Reset page variable with new information
-
-                            //Refresh form
-                            uc.RefreshInformation();
-                            main.Instance.PanelContainer.Controls.Add(uc);
-
-                            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
-                        }
-                    }
+                    main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
                 }
                 catch (Exception err)
                 {
-                    //MessageBox.Show(err.Message, "Index Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(err.Message, "Index Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else // Vehicle Search
             {
                 try
                 {
-                    selectedIndex = Int64.Parse(listViewVehicles.SelectedItems[0].SubItems[0].Text);
+                    string documentID = listViewVehicles.SelectedItems[0].Tag.ToString();
 
-                    Guid id = matchList[selectedIndex];
 
-                    // OPEN Vehicle
-                    if (!selectForList)
+                    // OPEN VEHICLE
+                    //Refresh of controls
+                    main.Instance.PanelContainer.Controls.Clear();
+
+                    //Open Vehicle
+                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
                     {
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
+                        Vehicle uc = new Vehicle();
+                        uc.Dock = DockStyle.Fill;
 
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
-                        { 
-                            Vehicle uc = new Vehicle();
-                            uc.Dock = DockStyle.Fill;
+                        VehicleFrame vehicle = new VehicleFrame();
 
-                            VehicleModel vehic = new VehicleModel();
+                        uc.reference = documentID;  // Reset page variable with new information
 
-                            try
-                            {
-                                var engineNumber = listViewVehicles.SelectedItems[0].SubItems[1].Text;
-                                List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNumber));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    vehic = tempList[0];
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            uc.vehicleResult = vehic; // Reset page variable with new information
-
-                            //Refresh form
-                            uc.RefreshInformation();
-                            main.Instance.PanelContainer.Controls.Add(uc);
-
-                            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
-                        }
-                    }
-                    else // Selected to pass thru for list from Customer
-                    { 
-                        //Refresh of controls
-                        main.Instance.PanelContainer.Controls.Clear();
-                         
-                        //selectForListCModel
-                        //Open Customer
-                        if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
-                        {
-                            Customer uc = new Customer(sentFromAddPage);
-                            uc.Dock = DockStyle.Fill; 
-
-                            try
-                            {
-                                var engineNumber = listViewVehicles.SelectedItems[0].SubItems[1].Text;
-                                List<VehicleModel> tempList = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", engineNumber));
-
-                                if (tempList.Count == 0)
-                                {
-                                    throw new Exception("No record found");
-                                }
-                                else
-                                {
-                                    bool alreadyAdded = false;
-                                    int i = 0;
-
-                                    uc.customerResult = selectForListCModel;
-
-                                    foreach (var veh in uc.customerResult.InterestedVehicles)
-                                    {
-                                        if (tempList[0].EngineNum == uc.customerResult.InterestedVehicles[i])
-                                        {
-                                            alreadyAdded = true;
-                                        }
-                                        i++;
-                                    }
-
-                                    if (!alreadyAdded)
-                                    {
-                                        uc.customerResult.InterestedVehicles.Add(tempList[0].EngineNum);
-                                    }else
-                                    {
-                                        //await Task.Run(() => MessageBox.Show("Already added this vehicle", "Vehicle Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error));
-                                    }
-
-                                    //selectForListCModel.InterestedVehicles.Add(tempList[0].EngineNum);
-                                } 
-                            }
-                            catch (Exception err)
-                            {
-                                //MessageBox.Show(err.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                           // uc.customerResult = selectForListCModel; // Reset page variable with new information
-                            
-
-                            //Refresh form
-                            uc.RefreshInformation();
-
-                            main.Instance.PanelContainer.Controls.Add(uc);
-
-                            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
-                        }
+                        //Refresh form
+                        uc.RefreshInformation();
+                        main.Instance.PanelContainer.Controls.Add(uc);
                     }
 
+                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
                 }
                 catch (Exception err)
                 {
-                    //MessageBox.Show(err.Message, "Index Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(err.Message, "Index Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

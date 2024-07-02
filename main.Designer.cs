@@ -253,7 +253,7 @@ namespace Database_Application_Chris
             this.mongoReconnect.Size = new System.Drawing.Size(38, 32);
             this.mongoReconnect.TabIndex = 4;
             this.mongoReconnect.UseVisualStyleBackColor = true;
-            this.mongoReconnect.Click += new System.EventHandler(this.mongoReconnect_Click);
+            //this.mongoReconnect.Click += new System.EventHandler(this.mongoReconnect_Click);
             // 
             // mongoStatusLbl
             // 

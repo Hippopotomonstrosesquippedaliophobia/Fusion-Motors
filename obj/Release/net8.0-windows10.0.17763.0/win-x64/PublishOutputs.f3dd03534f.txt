@@ -1,0 +1,39 @@
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.exe
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.deps.json
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.runtimeconfig.json
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Fusion Motors.pdb
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Microsoft.Windows.SDK.NET.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\WinRT.Runtime.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\AWSSDK.Core.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\AWSSDK.SecurityToken.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\DnsClient.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Api.CommonProtos.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Api.Gax.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Api.Gax.Grpc.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Apis.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Apis.Auth.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Apis.Core.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Cloud.Firestore.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Cloud.Firestore.V1.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Cloud.Location.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.LongRunning.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Google.Protobuf.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Grpc.Auth.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Grpc.Core.Api.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Grpc.Net.Client.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Grpc.Net.Common.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\MongoDB.Bson.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\MongoDB.Driver.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\MongoDB.Driver.Core.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\MongoDB.Libmongocrypt.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Newtonsoft.Json.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\SharpCompress.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\Snappier.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\System.Linq.Async.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\System.Management.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\ZstdSharp.dll
+C:\Program Files\D e b r o n n i\Fusion Motors Firestore\mongocrypt.dll

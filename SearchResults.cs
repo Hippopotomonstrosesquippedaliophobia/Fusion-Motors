@@ -10,7 +10,9 @@ namespace Database_Application_Chris
 {
     public partial class SearchResultsControl : UserControl
     {
-        public List<CustomerModel> searchResults;
+        public List<String> references = new List<String>();
+
+        public List<CustomerFrame> searchResults;
         public List<Panel> panels;
         private int skip, limit, panelID, recID, lastRecID, totalResults, pageAt, numPages, numOnPage;
         private Size small = new Size(248, 134);
@@ -87,12 +89,8 @@ namespace Database_Application_Chris
             recID = lastRecID;
 
             // If theres a slight remainder, add extra page 
-            numPages = (totalResults / limit);
-
-            if (numPages % limit > 0)
-            {
-                numPages += 1;
-            }
+            //numPages = totalResults / limit;    
+            numPages = ((totalResults / limit ) + (totalResults % limit == 0 ? 0 : 1));  
 
             if (numPages > 1)
             {

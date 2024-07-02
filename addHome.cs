@@ -21,27 +21,15 @@ namespace Database_Application_Chris
             main.Instance.PanelContainer.Controls.Clear();
 
             // Blank Customer Model
-            CustomerModel customer = new CustomerModel
+            CustomerFrame customer = new CustomerFrame
             {
                 FirstName = "",
                 LastName = "",
-                PrimaryAddress = new AddressModel
-                {
-                    StreetAddress = "",
-                    Parish = "",
-                    Country = ""
-                },
-                ContactNums = new ContactModel
-                {
-                    ContactNum1 = 12465555555, //must be like this so database makes it into a long
-                    ContactNum2 = 12465555555,
-                },
-                Emails = new EmailModel
-                {
-                    Email1 = "",
-                    Email2 = "",
-                },
-                InterestedVehicles = new List<string> { "" },
+                Address = "",
+                ContactNum1 = "",
+                ContactNum2 = "",
+                Emails = { },
+                InterestedVehicles = { },
                 InProgressFlag = false,
                 CallBackFlag = false
             };
@@ -63,13 +51,20 @@ namespace Database_Application_Chris
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();
 
-            // Blank Customer Model
-            VehicleModel vehicle = new VehicleModel
+            // Blank Vehicle Model
+            VehicleFrame vehicle = new VehicleFrame
             {
-                EngineNum = "",
-                ChassisNum = "",
+                EngineNumber = "",
+                ChassisNumber = "",
+                Owner = "",
+                Make = "",
+                Model = "",
+                Year = 0,
+                Valuation = 0,
+                AskingPrice = 0,
                 Colour = "",
-                InterestedCustomers = new List<string> { "" }
+                Notes = "",
+                CustomerInterest = { } 
             };
 
             //Open Add Home

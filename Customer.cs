@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,20 +10,30 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.ApplicationModel.Appointments.AppointmentsProvider;
+using Windows.Media.Playback;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Database_Application_Chris
 {
     public partial class Customer : UserControl
     {
-        public CustomerModel customerResult;
+        Firestore conn; // global reference to firestore database
+        public String reference; //global document reference for firebase document search
+
+        public CustomerFrame customerResult;
         public string name = "";
         public bool nameEdited = false; 
         public bool addCustomer = false; 
         public int errorsInForm = 0;
+        public bool updatedVehicles = false;
 
         List<string> allErrors = new List<string>();
-        List<string> RemovedInterestedVehicles = new List<string>();
-        public BindingList<VehicleModel> vehicles = new BindingList<VehicleModel>();
+        //List<string> RemovedInterestedVehicles = new List<string>();
+
+        public BindingList<VehicleFrame> vehicles = new BindingList<VehicleFrame>();
+
+        //BindingSource bindingSource = new BindingSource();
 
         public Customer()
         {
@@ -46,7 +58,7 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addCustomer)
             {
-                customerResult = new CustomerModel();
+                customerResult = new CustomerFrame();
 
                 DisableInterests();
 
@@ -57,10 +69,7 @@ namespace Database_Application_Chris
                 deleteCustomerBtn.Enabled = false;
                 
                 updateCustomerBtn.Visible = false;
-                updateCustomerBtn.Enabled = false;
-
-                // Clear list
-                //customerResult.InterestedVehicles = null;
+                updateCustomerBtn.Enabled = false; 
             }
             else
             {
@@ -97,6 +106,9 @@ namespace Database_Application_Chris
         private void Customer_Load(object sender, EventArgs e)
         {
             //RefreshInformation();
+
+            //Load firestore
+            conn = new Firestore();
         }
 
         /*
@@ -105,213 +117,114 @@ namespace Database_Application_Chris
 
         public async void RefreshInformation()
         {
-            nameLbl.Text = customerResult.FirstName + " "+ customerResult.LastName;
-            name = nameLbl.Text;
+            conn = new Firestore(); //reconnect to firestore db
+            UpdateCustomerList(); //update values and refresh info
 
-            if (customerResult.PrimaryAddress.StreetAddress != "")
+        }
+
+        async void UpdateCustomerList()
+        {
+            DocumentReference docref = conn.db.Collection("Customers").Document(reference);
+
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
+
+            if (snap.Exists)
             {
-                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + ", "
-                                + customerResult.PrimaryAddress.Parish + ", "
-                                + customerResult.PrimaryAddress.Country;
-            }
-            else
-            {
-                addressLbl.Text = customerResult.PrimaryAddress.StreetAddress + " "
-                                + customerResult.PrimaryAddress.Parish + " "
-                                + customerResult.PrimaryAddress.Country;
-            }
+                CustomerFrame cust = snap.ConvertTo<CustomerFrame>();
 
-            BeautifulPhoneText(customerResult.ContactNums.ContactNum1.ToString(), num1Lbl);
+                EnableInterests();
+                addThisCustomer.Visible = false;
+                addThisCustomer.Enabled = false;
 
-            if (customerResult.ContactNums.ContactNum1 != 0)
-            {
-                BeautifulPhoneText(customerResult.ContactNums.ContactNum2.ToString(), num2Lbl);
-            }
-            else
-            {
-                num2Lbl.Text = "";
-            }
+                deleteCustomerBtn.Visible = true;
+                deleteCustomerBtn.Enabled = true;
 
-            email1Lbl.Text = customerResult.Emails.Email1;
+                updateCustomerBtn.Visible = true;
+                updateCustomerBtn.Enabled = true;
 
-            if (customerResult.Emails.Email2 != null)
-            {
-                email2Lbl.Text = customerResult.Emails.Email2;
-            }else
-            {
-                email2Lbl.Text = "";
-            }
+                //Update all fields
+                nameLbl.Text = cust.FirstName + " " + cust.LastName;
+                addressLbl.Text = cust.Address;
+                num1Lbl.Text = cust.ContactNum1;
+                num2Lbl.Text = cust.ContactNum2;
+                email1Lbl.Text = cust.Emails[0];
+                email2Lbl.Text = cust.Emails[1];
+                additionalCommentsLbl.Text = cust.Notes;
+                inProgressCheckbox.Checked = cust.InProgressFlag;
+                callBackCheckbox.Checked = cust.CallBackFlag;
 
-            // Add vehicles to listbox
-            interestedVehiclesListBox.DataSource = null;
+                int index = 0;
+                vehicles = new BindingList<VehicleFrame>(); 
 
-            //List<VehicleModel> vehicles = new List<VehicleModel>();
-            
-            int index = 0;
-            vehicles = new BindingList<VehicleModel>();
-
-            foreach (var vehic in customerResult.InterestedVehicles)
-            {
-                if (customerResult.InterestedVehicles[0] != "") // This is from add page setting this to ""
+                foreach (var vehic in cust.InterestedVehicles)
                 {
-                    try
-                    { 
-                        List<VehicleModel> temp = await Task.Run(() => main.Instance.db.LoadVehicleByEngine<VehicleModel>("Vehicles", customerResult.InterestedVehicles[index]));
-                        vehicles.Add(temp[0]); 
-                        index++;
-
-                    }
-                    catch (Exception err)
+                    if (cust.InterestedVehicles[0] != "") // This is from add page setting this to ""
                     {
+                        try
+                        {
+                            DocumentReference docref2 = conn.db.Collection("Vehicles").Document(cust.InterestedVehicles[index]);
 
+                            DocumentSnapshot snap2 = await docref2.GetSnapshotAsync();
+                            if (snap2.Exists)
+                            {
+                                VehicleFrame vehicle = snap2.ConvertTo<VehicleFrame>();
+                                vehicles.Add(vehicle); 
+                                index++; 
+                            }
+
+                            //Attach the list of customers to the ListBox:  
+                            interestedVehiclesListBox.DataSource = vehicles;
+                            interestedVehiclesListBox.DisplayMember = "Model";
+                            interestedVehiclesListBox.ValueMember = "Id";
+                        }
+                        catch (Exception err)
+                        {
+
+                        }
                     }
                 }
-            }
-            //MessageBox.Show(vehicles.Count.ToString());
 
-            // Attach the list of customers to the ListBox:
-            interestedVehiclesListBox.DataSource = vehicles;
-            interestedVehiclesListBox.DisplayMember = "Model";
-
-            inProgressCheckbox.Checked = customerResult.InProgressFlag;
-            callBackCheckbox.Checked = customerResult.CallBackFlag;
-            additionalCommentsLbl.Text = customerResult.Notes;
-
-            nameEdited = false;
-            //DisableUpdateBtn();
-        }
-
-        private void UpdateCustomerList()
-        {
-            string[] names;
-            names = nameLbl.Text.Trim().Split(' ');
-
-            try
-            {
-                customerResult.FirstName = names[0].Trim();
-                customerResult.LastName = names[1].Trim();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Name error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-            string[] address;
-            address = addressLbl.Text.Split(',');
-
-            try
-            {
-                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
-                customerResult.PrimaryAddress.Parish = address[1].Trim();
-                customerResult.PrimaryAddress.Country = address[2].Trim();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Address error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
-
-            if (num2Lbl.Text.Trim().Length != 0)
-            {
-                customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
-            }else
-            {
-                customerResult.ContactNums.ContactNum2 = 0;
-            }
-
-            customerResult.Emails.Email1 = email1Lbl.Text.Trim();
-
-            if (email2Lbl.Text.Trim().Length != 0)
-            {
-                customerResult.Emails.Email2 = email2Lbl.Text.Trim();
-            }else
-            {
-                customerResult.Emails.Email2 = null;
-            }
-
-            int x = 0;
-            customerResult.InterestedVehicles.Clear();
-
-            foreach (var engineNum in vehicles)
-            {
-                customerResult.InterestedVehicles.Add(vehicles[x].EngineNum);
-                x++;
-            }
-
-            customerResult.InProgressFlag = inProgressCheckbox.Checked;
-            customerResult.CallBackFlag = callBackCheckbox.Checked;
-            customerResult.Notes = additionalCommentsLbl.Text;
-        }
-
-        private void UpdateListToSend()
-        {
-            string[] names;
-            names = nameLbl.Text.Trim().Split(' ');
-
-            try
-            {
-                customerResult.FirstName = names[0].Trim();
-                customerResult.LastName = names[1].Trim();
-            }
-            catch (Exception err)
-            {
-                //MessageBox.Show(err.Message, "Name error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-            string[] address;
-            address = addressLbl.Text.Split(',');
-
-            try
-            {
-                customerResult.PrimaryAddress.StreetAddress = address[0].Trim();
-                customerResult.PrimaryAddress.Parish = address[1].Trim();
-                customerResult.PrimaryAddress.Country = address[2].Trim();
-            }
-            catch (Exception err)
-            {
-                //MessageBox.Show(err.Message, "Address error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            customerResult.ContactNums.ContactNum1 = ConvertTelToInt(num1Lbl.Text.Trim());
-
-            if (num2Lbl.Text.Trim().Length != 0)
-            {
-                customerResult.ContactNums.ContactNum2 = ConvertTelToInt(num2Lbl.Text.Trim());
             }
             else
             {
-                customerResult.ContactNums.ContactNum2 = 0;
+                MessageBox.Show("Customer not found!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
-            customerResult.Emails.Email1 = email1Lbl.Text.Trim();
+        public async void UpdateVehicleEXTAsync(ArrayList arr)
+        {
+            conn = new Firestore(); //reconnect to firestore db
+            DocumentReference docref = conn.db.Collection("Customers").Document(reference);
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
+            CustomerFrame cust = snap.ConvertTo<CustomerFrame>();
 
-            if (email2Lbl.Text.Trim().Length != 0)
+            String[] vehicleLink = cust.InterestedVehicles;
+
+            //Convert to list for easy search
+            List<string> vehicleLinkage = vehicleLink.ToList(); 
+
+
+            for (int i = 0; i < arr.Count; i++)
             {
-                customerResult.Emails.Email2 = email2Lbl.Text.Trim();
-            }
-            else
+                if (!vehicleLinkage.Contains(arr[i]) )
+                {
+                    vehicleLinkage.Add(arr[i].ToString());
+                } 
+            } 
+
+            // UPDATE the passed customer info
+            Dictionary<string, object> dict = new Dictionary<string, object>()
             {
-                customerResult.Emails.Email2 = null;
-            }
+            };
 
-            //int x = 0;
-            //customerResult.InterestedVehicles.Clear();
-            //List<string> interest = new List<string>();
+            var array = vehicleLinkage.ToArray(); 
+            dict.Add("InterestedVehicles", array);
 
-            //for (int i = 0; i < vehicles.Count; i++)
-            //{
-            //    interest.Add(vehicles[i].EngineNum);
-            //}
+            ////Updating customer on firebase
+            DocumentReference doc = conn.db.Collection("Customers").Document(reference);
+            await doc.UpdateAsync(dict);
 
-            //customerResult.InterestedVehicles = interest;
-
-
-            customerResult.InProgressFlag = inProgressCheckbox.Checked;
-            customerResult.CallBackFlag = callBackCheckbox.Checked;
-            customerResult.Notes = additionalCommentsLbl.Text;
+            RefreshInformation();
         }
 
         /*
@@ -319,41 +232,31 @@ namespace Database_Application_Chris
          */
 
         private async void deleteCustomerBtn_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + customerResult.FirstName + " " + customerResult.LastName + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
+        { 
+            DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to delete this customer?", "Customer Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult2 == DialogResult.Yes)
             {
-                //Try to delete
+                //Try to update
                 try
-                {
-                    // update removed vehicles first
-                    int i = 0;
-                    foreach (var rem in customerResult.InterestedVehicles)
-                    {
-                        main.Instance.db.RemoveVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[i], customerResult.Id);
-                        i++;
-                    }
+                { 
+                    //removing customer on firebase
+                    DocumentReference doc = conn.db.Collection("Customers").Document(reference);
+                    await doc.DeleteAsync(); 
 
-                    // Remove vehicle
-                    await Task.Run(() => main.Instance.db.DeleteRecord<CustomerModel>("Customers", customerResult.Id));
-
-                    // update notification bell
-                    main.Instance.LoadCustomersToCall();
+                    //Send back Home
+                    main.Instance.GoToHomepage();
                 }
                 catch (Exception err)
                 {
-                    System.Windows.Forms.MessageBox.Show(err.Message);
+                    MessageBox.Show(err.Message, "Delete Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                //RETURN TO SEARCH
             }
-            else if (dialogResult == DialogResult.No)
+            else if (dialogResult2 == DialogResult.No)
             {
                 return;
             }
 
-            //Send back Home
-            main.Instance.GoToHomepage(); 
+            //RefreshInformation();  
         }
 
         private async void updateCustomerBtn_Click(object sender, EventArgs e)
@@ -362,51 +265,46 @@ namespace Database_Application_Chris
 
             ValidationProcess(null); // Check all fields
 
-            if ( errorsInForm == 0)
+            if (errorsInForm == 0)
             { 
-                if (nameEdited)
-                {
-                    DialogResult dialogResult = MessageBox.Show("You are editing the user's name, is this correct?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        //Do something
-                        confirmedName = true;
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                //Get info from fields
-                UpdateCustomerList();
-
                 DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this customer?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult2 == DialogResult.Yes)
                 {
                     //Try to update
                     try
                     {
-                        // update removed vehicles first
-                        int z = 0;
-                        foreach (var rem in RemovedInterestedVehicles)
+                        string[] name = nameLbl.Text.Split(' ');
+                        string[] emails = { email1Lbl.Text, email2Lbl.Text };
+
+                        Dictionary<string, object> dict = new Dictionary<string, object>()
                         {
-                            main.Instance.db.RemoveVehiclesListInterest<VehicleModel>("Vehicles", RemovedInterestedVehicles[z], customerResult.Id);
-                            z++;
-                        }
+                            {"FirstName", name[0]  },
+                            {"LastName",name[1]  },
+                            {"Address", addressLbl.Text },
+                            {"ContactNum1", num1Lbl.Text },
+                            {"ContactNum2", num2Lbl.Text },
+                            {"InProgressFlag", inProgressCheckbox.Checked },
+                            {"CallBackFlag", callBackCheckbox.Checked },
+                            {"Notes", additionalCommentsLbl.Text.ToString()}
+                        };
 
-                        // Later Update the vehicles which were added 
-                        int x = 0;
-                        foreach (var iv in customerResult.InterestedVehicles)
-                        {                            
-                            main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
-                            x++;
-                        }
+                        ArrayList array = new ArrayList();
+                        array.Add(email1Lbl.Text);
+                        array.Add(email2Lbl.Text);
+                        dict.Add("Emails", array);
 
-                        await Task.Run(() => main.Instance.db.UpsertRecord<CustomerModel>("Customers", customerResult.Id, customerResult));
+                        //ArrayList array2 = new ArrayList(); 
+                        //array2.Add(interestedVehiclesListBox.Items);
+                        //dict.Add("InterestedVehicles", array2);
+                        //MessageBox.Show(interestedVehiclesListBox.Items[0].ToString());
 
-                        // update notification bell
-                        main.Instance.LoadCustomersToCall();
+                        //Vehicles list is updated automatically
+
+                        //Updating customer on firebase
+                        DocumentReference doc = conn.db.Collection("Customers").Document(reference);
+                        await doc.UpdateAsync(dict);
+
+                        reference = doc.Id; 
                     }
                     catch (Exception err)
                     {
@@ -416,44 +314,31 @@ namespace Database_Application_Chris
                 else if (dialogResult2 == DialogResult.No)
                 {
                     return;
-                }
-
-                RefreshInformation();
-                //DisableUpdateBtn();
+                } 
             }
             else
             {
                 MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         private async void addThisCustomer_Click(object sender, EventArgs e)
         {
+            ////activate the form to cause validation to go off
+            nameLbl.Select();
+            addressLbl.Select(); 
+
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
             {
-                UpdateCustomerList();
-
-
-                DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this customer?", "Add Customer Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Customer?", "Add Customer Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult3 == DialogResult.Yes)
                 {
                     //Try to update
                     try
                     {
-                        await Task.Run(() => main.Instance.db.InsertRecord<CustomerModel>("Customers", customerResult));
-
-                        // Update the vehicles which were added 
-                        int x = 0;
-                        foreach (var iv in customerResult.InterestedVehicles)
-                        {
-                            main.Instance.db.UpdateVehiclesListInterest<VehicleModel>("Vehicles", customerResult.InterestedVehicles[x], customerResult.Id);
-                            x++;
-                        }
-
-                        // update notification bell
-                        main.Instance.LoadCustomersToCall();
+                        AddCustomerFirebase();
                     }
                     catch (Exception err)
                     {
@@ -464,32 +349,72 @@ namespace Database_Application_Chris
                 {
                     return;
                 }
-                 
-                //Open view version of the Customer page
-
-                //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear();
-
-                if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
-                {
-                    Customer uc = new Customer();
-                    //Send data of Customer form 
-                    uc.customerResult = customerResult;
-                    //Refresh form
-                    uc.RefreshInformation();
-
-                    uc.Dock = DockStyle.Fill;
-                    main.Instance.PanelContainer.Controls.Add(uc);
-                }
-
-                main.Instance.PanelContainer.Controls["Customer"].BringToFront();
             }
             else
             {
-                MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Add Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please clear all errors to add customer!", "Add Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        async void AddCustomerFirebase()
+        {
+            string[] name = nameLbl.Text.Split(' ');
+            string[] emails = { email1Lbl.Text, email2Lbl.Text };
+
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            { 
+                {"FirstName", name[0]  },
+                {"LastName",name[1]  },
+                {"Address", addressLbl.Text },
+                {"ContactNum1", num1Lbl.Text },
+                {"ContactNum2", num2Lbl.Text }, 
+                {"InProgressFlag", inProgressCheckbox.Checked },
+                {"CallBackFlag", callBackCheckbox.Checked },
+                {"Notes", additionalCommentsLbl.Text.ToString()}
+            };
+
+            ArrayList array = new ArrayList();
+            array.Add(email1Lbl.Text);
+            array.Add(email2Lbl.Text); 
+            dict.Add("Emails", array);
+
+            ArrayList array2 = new ArrayList();
+            dict.Add("InterestedVehicles", array2);
+
+            try
+            {
+
+                //Adding customer to firebase
+                DocumentReference doc = await conn.db.Collection("Customers").AddAsync(dict);
+                //cll.AddAsync(customerResult); 
+
+                reference = doc.Id;
+
+                //Update ID after adding now
+                DocumentReference doc2 = conn.db.Collection("Customers").Document(reference);
+
+                Dictionary<string, object> dict2 = new Dictionary<string, object>()
+                {
+                    { "Id", reference }
+                };
+                await doc.UpdateAsync(dict2);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+             
+
+            //Enable the buttons to change to update mode and not add mode
+            EnableInterests();
+            addThisCustomer.Visible = false;
+            addThisCustomer.Enabled = false;
+
+            deleteCustomerBtn.Visible = true;
+            deleteCustomerBtn.Enabled = true;
+
+            updateCustomerBtn.Visible = true;
+            updateCustomerBtn.Enabled = true;
+        }
 
         /*
          * Field Functions
@@ -566,12 +491,12 @@ namespace Database_Application_Chris
 
         private void interestedVehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //EnableUpdateBtn();
+            EnableUpdateBtn();
         }
 
         private void callBackCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            //EnableUpdateBtn();
+            EnableUpdateBtn();
         }
 
         private void inProgressCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -585,6 +510,8 @@ namespace Database_Application_Chris
                 callBackCheckbox.Checked = false;
                 callBackCheckbox.Enabled = false;
             }
+
+            EnableUpdateBtn() ;
         }
 
         /*
@@ -880,37 +807,106 @@ namespace Database_Application_Chris
         private void addVehicleInterest_Click(object sender, EventArgs e)
         {
             UpdateListToSend();
+
             SearchForm search = new SearchForm(true, true, customerResult);
-            search.sentFromAddPage = addCustomer;
+            search.sentFromAddPage = true;
             search.Text = "Fusion Motors: Select a Vehicle";
             search.titleLbl.Text = "Select a vehicle to add to list";
-            search.Show();
-
-            //if (addVehicle.Text.Length != 0)
-            //{
-            //    // Add vehicles to listbox 
-            //    interestedVehiclesListBox.Items.Add(addVehicle.Text);
-            //    addVehicle.Text = ""; // Clear field
-            //    //EnableUpdateBtn();
-            //}
+            search.Show(); 
         }
 
-        private void removeVehicle_Click(object sender, EventArgs e)
+        private void UpdateListToSend()
         {
-            // Get List of removed vehicles for update reasons
+            customerResult = new CustomerFrame();
+
+            string[] names;
+
+            try
+            {
+
+                names = nameLbl.Text.Trim().Split(' ');
+
+                customerResult.Id = reference; 
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        async void removeVehicle_Click(object sender, EventArgs e)
+        {
+            //// Get List of removed vehicles for update reasons
             int selectedIndex = interestedVehiclesListBox.SelectedIndex;
+
+            //Get customer info
+            conn = new Firestore(); //reconnect to firestore db
+            DocumentReference docref = conn.db.Collection("Customers").Document(reference);
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
+            CustomerFrame cust = snap.ConvertTo<CustomerFrame>();
+
+            //Get vehicle name
+            DocumentReference docref2 = conn.db.Collection("Vehicles").Document(cust.InterestedVehicles[selectedIndex]);
+            DocumentSnapshot snap2 = await docref2.GetSnapshotAsync();
+            VehicleFrame veh = snap2.ConvertTo<VehicleFrame>();
+
+            // UPDATE the passed customer info
+            Dictionary<string, object> dict = new Dictionary<string, object>()
+            {
+            };
 
             if (interestedVehiclesListBox.Items.Count != 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + vehicles[selectedIndex].EngineNum + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + veh.Year + " " +veh.Make + " " +veh.Model + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
 
-                    RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
+                    //RemovedInterestedVehicles.Add(vehicles[selectedIndex].EngineNum);
 
-                    vehicles.RemoveAt(selectedIndex); 
+                    vehicles.RemoveAt(selectedIndex);
+                    vehicles.ResetBindings();
                     interestedVehiclesListBox.DataSource = vehicles;
-                    UpdateCustomerList();
+                     
+                    ValidationProcess(null); // Check all fields
+
+                    if (errorsInForm == 0)
+                    {
+                        //Try to update
+                        try
+                        {
+
+                            List<string> remove = new List<string>();
+
+                            if (cust.InterestedVehicles.Contains(cust.InterestedVehicles[selectedIndex]))
+                            {
+                                remove = cust.InterestedVehicles.ToList();
+                                remove.RemoveAt(selectedIndex);
+                            }
+
+                            //Convert back to arraylist
+                            String[] array = remove.ToArray();                  
+
+                            // UPDATE the passed customer info
+                            Dictionary<string, object> dictionary = new Dictionary<string, object>
+                            {
+                                { "InterestedVehicles", array }
+                            };
+
+                            //Now update the customer
+                            DocumentReference doc3 = conn.db.Collection("Customers").Document(reference);
+                            await doc3.UpdateAsync(dictionary);
+
+                        }
+                        catch (Exception err)
+                        {
+                            MessageBox.Show(err.Message, "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } 
+                    }
+                    else
+                    {
+                        MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -950,17 +946,18 @@ namespace Database_Application_Chris
         }
 
         private void interestedVehiclesListBox_DoubleClick(object sender, EventArgs e)
-        { 
+        {
             int selectedIndex = interestedVehiclesListBox.SelectedIndex;
-
+             
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();
 
             if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
             {
                 Vehicle uc = new Vehicle();
-                //Send data of Customer form 
-                uc.vehicleResult = vehicles[selectedIndex];
+
+                //Send data of Customer form  
+                uc.reference = interestedVehiclesListBox.SelectedValue.ToString();
                 //Refresh form
                 uc.RefreshInformation();
 
@@ -968,7 +965,7 @@ namespace Database_Application_Chris
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
 
-            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
+            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront(); 
         }
 
         private void viewErrors_Click(object sender, EventArgs e)

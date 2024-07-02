@@ -11,7 +11,7 @@ namespace Database_Application_Chris
 {
     public partial class customerPanel : UserControl
     {
-        public CustomerModel customer;
+        public CustomerFrame customer;
 
         public customerPanel()
         {
@@ -26,9 +26,9 @@ namespace Database_Application_Chris
         public void RefreshInformation()
         {
             name.Text = customer.FirstName + " " + customer.LastName;
-            num.Text = customer.ContactNums.ContactNum1.ToString();
-            address.Text = customer.PrimaryAddress.StreetAddress;
-            parish.Text = customer.PrimaryAddress.Parish;
+            num.Text = customer.ContactNum2.ToString();
+            address.Text = customer.Address;
+            //parish.Text = customer.Address.Parish;
         }
 
         private void selectBtn_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Database_Application_Chris
                 uc.Dock = DockStyle.Fill;
 
                 //Send data of Customer form 
-                uc.customerResult = customer;
+                uc.reference = customer.Id.ToString();
                 //Refresh form
                 uc.RefreshInformation();
 

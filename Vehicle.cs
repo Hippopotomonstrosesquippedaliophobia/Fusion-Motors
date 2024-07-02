@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Cloud.Firestore;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,21 +17,24 @@ namespace Database_Application_Chris
 {
     public partial class Vehicle : UserControl
     {
-        public VehicleModel vehicleResult;
-        public bool engineNumEdited = false;
+        Firestore conn; // global reference to firestore database
+        public String reference; //global document reference for firebase document search
+
+        public VehicleFrame vehicleResult;
+        public bool engineNumEdited = false; 
         public bool addVehicle = false;
         public int errorsInForm = 0;
 
         private List<string> allErrors = new List<string>();
 
-        public BindingList<CustomerModel> customers = new BindingList<CustomerModel>();
+        public BindingList<CustomerFrame> customers = new BindingList<CustomerFrame>();
 
         byte[] TEMPIMG = null;
 
         public Vehicle()
         {
             InitializeComponent();
-            FixDate();
+            FixDate(); //asynchronously updates the fields as well
 
             addThisVehicle.Visible = false;
             addThisVehicle.Enabled = false;
@@ -46,12 +51,12 @@ namespace Database_Application_Chris
         public Vehicle(bool addVehicle)
         {
             InitializeComponent();
-            FixDate();
+            FixDate(); //asynchronously updates the fields as well
 
             // Switched to add mode
             if (addVehicle)
             {
-                vehicleResult = new VehicleModel(); 
+                vehicleResult = new VehicleFrame(); 
 
                 addThisVehicle.Visible = true;
                 addThisVehicle.Enabled = true;
@@ -79,34 +84,43 @@ namespace Database_Application_Chris
             }
         }
 
+        void InitFirebase()
+        {
+            //Load firestore
+            conn = new Firestore();
+        }
+
         /*
          * Button Functions
          */
 
-        public void FixDate()
+        public async void FixDate()
         {
             //Format date time picker to just year
             yearLbl.Format = DateTimePickerFormat.Custom;
             yearLbl.CustomFormat = "yyyy";
-            yearLbl.ShowUpDown = true; 
+            yearLbl.ShowUpDown = true;
+
+            InitFirebase();
         }
 
         private async void addThisVehicle_Click(object sender, EventArgs e)
         {
+            ////activate the form to cause validation to go off
+            chassisNumLbl.Select();
+            modelLbl.Select();
+
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
-            {
-                //Get info from fields
-                UpdateVehicleList();
-
+            {                
                 DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Vehicle?", "Add Vehicle Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult3 == DialogResult.Yes)
                 {
                     //Try to update
                     try
                     {
-                        await Task.Run(() => main.Instance.db.InsertRecord<VehicleModel>("Vehicles", vehicleResult));
+                        AddVehicleFirebase();
                     }
                     catch (Exception err)
                     {
@@ -116,48 +130,82 @@ namespace Database_Application_Chris
                 else if (dialogResult3 == DialogResult.No)
                 {
                     return;
-                }
-
-                //Open view version of the Customer page
-
-                //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear();
-
-                // If only one returned, go directly to Customer page 
-
-                    if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
-                    {
-                        Vehicle uc = new Vehicle();
-                        //Send data of Customer form 
-                        uc.vehicleResult = vehicleResult;
-
-                        //Refresh form
-                        uc.RefreshInformation();
-
-                        uc.Dock = DockStyle.Fill;
-                        main.Instance.PanelContainer.Controls.Add(uc);
-                    }
-
-                    main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
+                } 
             }
             else
             {
-                MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please clear all errors to add vehicle!", "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        async void AddVehicleFirebase()
+        {           
+            try
+            {
+                Dictionary<string, object> dict = new Dictionary<string, object>()
+                {
+                    {"EngineNumber",  engineNumLbl.Text  },
+                    {"ChassisNumber", chassisNumLbl.Text  },
+                    {"Owner",  ownerLbl.Text },
+                    {"Make", makeLbl.Text },
+                    {"Model", modelLbl.Text },
+                    {"Year",  Int32.Parse(yearLbl.Text)},
+                    {"Valuation",  Int32.Parse(valuationLbl.Text)},
+                    {"AskingPrice", Int32.Parse(askingPriceLbl.Text)},
+                    {"Colour", colourLbl.Text},
+                    {"Notes", additionalCommentsLbl.Text}
+                };
+
+                //Adding customer to firebase
+                DocumentReference doc = await conn.db.Collection("Vehicles").AddAsync(dict);
+                //cll.AddAsync(customerResult); 
+
+                reference = doc.Id;
+
+                //Update ID after adding now
+                DocumentReference doc2 = conn.db.Collection("Vehicles").Document(reference);
+
+                Dictionary<string, object> dict2 = new Dictionary<string, object>()
+                {
+                    { "Id", reference }
+                };
+                await doc.UpdateAsync(dict2);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            engineNumEdited = false;
+
+            //Enable the buttons to change to update mode and not add mode 
+            addThisVehicle.Visible = false;
+            addThisVehicle.Enabled = false;
+
+            deleteVehicleBtn.Visible = true;
+            deleteVehicleBtn.Enabled = true;
+
+            updateVehicleBtn.Visible = true;
+            updateVehicleBtn.Enabled = true;
         }
 
         private async void updateVehicleBtn_Click(object sender, EventArgs e)
         {
+            ////activate the form to cause validation to go off
+            chassisNumLbl.Select();
+            modelLbl.Select();
+
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
             {
-                //Get info from fields
-                UpdateVehicleList();
+                //Get info from fields 
 
                 if (engineNumEdited)
                 {
-                    DialogResult dialogResult = MessageBox.Show("You are editing the vehicle's engine number, is this correct?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("You are possibly editing the vehicle's engine number, do you wish to proceed?", "Vehicle Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         //Do something - Does nothing here but allows function to continue
@@ -174,7 +222,31 @@ namespace Database_Application_Chris
                     //Try to update
                     try
                     {
-                        await Task.Run(() => main.Instance.db.UpsertRecord<VehicleModel>("Vehicles", vehicleResult.Id, vehicleResult));
+
+                        Dictionary<string, object> dict = new Dictionary<string, object>()
+                        {
+                            {"EngineNumber",  engineNumLbl.Text  },
+                            {"ChassisNumber", chassisNumLbl.Text  },
+                            {"Owner",  ownerLbl.Text },
+                            {"Make", makeLbl.Text },
+                            {"Model", modelLbl.Text },
+                            {"Year",  Int32.Parse(yearLbl.Text)},
+                            {"Valuation",  Int32.Parse(valuationLbl.Text)},
+                            {"AskingPrice", Int32.Parse(askingPriceLbl.Text)},
+                            {"Colour", colourLbl.Text},
+                            {"Notes", additionalCommentsLbl.Text}
+                        };
+
+                        //ArrayList array = new ArrayList();
+                        //array.Add(email1Lbl.Text);
+                        //array.Add(email2Lbl.Text);
+                        //dict.Add("Emails", array);
+
+                        //Updating customer on firebase
+                        DocumentReference doc = conn.db.Collection("Vehicles").Document(reference);
+                        await doc.UpdateAsync(dict);
+
+                        reference = doc.Id;
 
                         engineNumEdited = false; // resets this variable for future
                     }
@@ -186,39 +258,32 @@ namespace Database_Application_Chris
                 else if (dialogResult2 == DialogResult.No)
                 {
                     return;
-                }
-
-                RefreshInformation();
-                //DisableUpdateBtn();
+                } 
             }
             else
             {
-                MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please clear all errors to add vehicle!", "Add Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private async void deleteVehicleBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete " + vehicleResult.EngineNum + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you wish to delete this vehicle?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 //Try to delete
                 try
-                {
-                    // update removed vehicles first
-                    int i = 0;
-                    foreach (var rem in vehicleResult.InterestedCustomers)
-                    {
-                        Guid newGuid = Guid.Parse(vehicleResult.InterestedCustomers[i]);
-                        main.Instance.db.RemoveCustomersListInterest<CustomerModel>("Customers", vehicleResult.EngineNum, newGuid);
-                        i++;
-                    }
-                     
-                    await Task.Run(() => main.Instance.db.DeleteRecord<VehicleModel>("Vehicles", vehicleResult.Id));
+                { 
+                    //removing vehicle on firebase
+                    DocumentReference doc = conn.db.Collection("Vehicles").Document(reference);
+                    await doc.DeleteAsync();
+
+                    //Send back Home
+                    main.Instance.GoToHomepage();
                 }
                 catch (Exception err)
                 {
-                    System.Windows.Forms.MessageBox.Show(err.Message);
+                    MessageBox.Show(err.Message, "Delete Vehicle Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 //RETURN TO SEARCH
@@ -227,9 +292,6 @@ namespace Database_Application_Chris
             {
                 return;
             }
-
-            //Send back Home
-            main.Instance.GoToHomepage();
         }
 
         // List Box Stuff
@@ -247,24 +309,7 @@ namespace Database_Application_Chris
             {
                 return;
             }
-        }
-
-        private void addCustomerBtn_Click(object sender, EventArgs e)
-        { 
-            UpdateListToSend();
-            SearchForm search = new SearchForm(true, vehicleResult);
-            search.sentFromAddPage = addVehicle;
-            search.Text = "Fusion Motors: Select a Customer";
-            search.titleLbl.Text = "Select a customer to add to list";
-            search.Show();
-            //if (addCustomer.Text.Length != 0)
-            //{
-            //    // Add vehicles to listbox 
-            //    interestedCustomersListBox.Items.Add(addCustomer.Text);
-            //    addCustomer.Text = ""; // Clear field
-            //    //EnableUpdateBtn();
-            //}
-        }
+        } 
 
         /*
          * Data Update Functions
@@ -272,130 +317,129 @@ namespace Database_Application_Chris
 
         public async void RefreshInformation()
         {
-            ownerLbl.Text = vehicleResult.Owner;
+            DocumentReference docref = conn.db.Collection("Vehicles").Document(reference);
 
-            engineNumLbl.Text = vehicleResult.EngineNum;
-            chassisNumLbl.Text = vehicleResult.ChassisNum;
-            colourLbl.Text = vehicleResult.Colour;
+            DocumentSnapshot snap = await docref.GetSnapshotAsync();
 
-            makeLbl.Text = vehicleResult.Make;
-            modelLbl.Text = vehicleResult.Model;
-            yearLbl.Text = DateTime.ParseExact(vehicleResult.Year.ToString(), "yyyy", null).ToString(); 
-
-            valuationLbl.Text = vehicleResult.Valuation.ToString();
-            askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
-            additionalCommentsLbl.Text = vehicleResult.Notes;
-
-            //imageOfCar.Image = ByteToImage(vehicleResult.Image);
-            TEMPIMG = vehicleResult.Image;
-
-            try
+            if (snap.Exists)
             {
-                if (TEMPIMG != null)
+                VehicleFrame vehicle = snap.ConvertTo<VehicleFrame>();
+
+                addThisVehicle.Visible = false;
+                addThisVehicle.Enabled = false;
+
+                deleteVehicleBtn.Visible = true;
+                deleteVehicleBtn.Enabled = true;
+
+                updateVehicleBtn.Visible = true;
+                updateVehicleBtn.Enabled = true;
+
+                //Update all fields
+                engineNumLbl.Text = vehicle.EngineNumber;
+                chassisNumLbl.Text = vehicle.ChassisNumber;
+                ownerLbl.Text = vehicle.Owner;
+                makeLbl.Text = vehicle.Make;
+                modelLbl.Text = vehicle.Model;
+                yearLbl.Text = new DateTime(Convert.ToInt32(vehicle.Year), 1, 1).ToString();
+                valuationLbl.Text = vehicle.Valuation.ToString();
+                askingPriceLbl.Text = vehicle.AskingPrice.ToString();
+                colourLbl.Text = vehicle.Colour;
+                additionalCommentsLbl.Text = vehicle.Notes;
+
+                int index = 0;
+                customers = new BindingList<CustomerFrame>();
+
+                try
                 {
-                    imageOfCar.Image = ByteToImage(TEMPIMG);
-                }
-            }
-            catch (Exception err)
-            { 
-                MessageBox.Show("No image found for this vehicle in database!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                imageOfCar.Image = null;
-            }
+                    Query query = conn.db.Collection("Customers").WhereArrayContains("InterestedVehicles", reference);
+                    QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 
-            // Add vehicles to listbox 
+                    //MessageBox.Show("Reference: "+ reference);
+                    //MessageBox.Show("Count of docs: " + querySnapshot.Count().ToString());
 
-            customers = new BindingList<CustomerModel>();
-            int index = 0;
-
-            foreach (var cust in vehicleResult.InterestedCustomers)
-            {
-                if (vehicleResult.InterestedCustomers[0] != "") // This is from add page setting this to ""
-                {
-                    try
+                    foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
                     {
-                        Guid newGuid = Guid.Parse(cust);
-                        List<CustomerModel> temp = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerModel>("Customers", newGuid));
-                        customers.Add(temp[0]); 
-                        index++;
-
-                    } 
-                    catch (Exception err)
-                    {
-
+                        customers.Add(documentSnapshot.ConvertTo<CustomerFrame>()); 
                     }
+
+                    //Attach the list of customers to the ListBox:  
+                    interestedCustomersListBox.DataSource = customers;
+                    interestedCustomersListBox.DisplayMember = "Model";
+                    interestedCustomersListBox.ValueMember = "FirstName";
                 }
+                catch (Exception err)
+                {
+
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Vehicle not found!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Attach the list of customers to the ListBox:
-            interestedCustomersListBox.DataSource = customers;
-            interestedCustomersListBox.DisplayMember = "FirstName";
+            //ownerLbl.Text = vehicleResult.Owner;
+
+            //engineNumLbl.Text = vehicleResult.EngineNum;
+            //chassisNumLbl.Text = vehicleResult.ChassisNum;
+            //colourLbl.Text = vehicleResult.Colour;
+
+            //makeLbl.Text = vehicleResult.Make;
+            //modelLbl.Text = vehicleResult.Model;
+            //yearLbl.Text = DateTime.ParseExact(vehicleResult.Year.ToString(), "yyyy", null).ToString(); 
+
+            //valuationLbl.Text = vehicleResult.Valuation.ToString();
+            //askingPriceLbl.Text = vehicleResult.AskingPrice.ToString();
+            //additionalCommentsLbl.Text = vehicleResult.Notes;
+
+            ////imageOfCar.Image = ByteToImage(vehicleResult.Image);
+            //TEMPIMG = vehicleResult.Image;
+
+            //try
+            //{
+            //    if (TEMPIMG != null)
+            //    {
+            //        imageOfCar.Image = ByteToImage(TEMPIMG);
+            //    }
+            //}
+            //catch (Exception err)
+            //{ 
+            //    MessageBox.Show("No image found for this vehicle in database!", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    imageOfCar.Image = null;
+            //}
+
+            //// Add vehicles to listbox 
+
+            //customers = new BindingList<CustomerFrame>();
+            //int index = 0;
+
+            //foreach (var cust in vehicleResult.InterestedCustomers)
+            //{
+            //    if (vehicleResult.InterestedCustomers[0] != "") // This is from add page setting this to ""
+            //    {
+            //        try
+            //        {
+            //            Guid newGuid = Guid.Parse(cust);
+            //            List<CustomerFrame> temp = await Task.Run(() => main.Instance.db.LoadCustomerById<CustomerFrame>("Customers", newGuid));
+            //            customers.Add(temp[0]); 
+            //            index++;
+
+            //        } 
+            //        catch (Exception err)
+            //        {
+
+            //        }
+            //    }
+            //}
+
+            //// Attach the list of customers to the ListBox:
+            //interestedCustomersListBox.DataSource = customers;
+            //interestedCustomersListBox.DisplayMember = "FirstName";
 
             //DisableUpdateBtn();
         }
 
-        private void UpdateVehicleList()
-        {
-            vehicleResult.Owner = ownerLbl.Text.Trim();
-
-            vehicleResult.EngineNum = engineNumLbl.Text.Trim();
-            vehicleResult.ChassisNum = chassisNumLbl.Text.Trim();
-            vehicleResult.Colour = colourLbl.Text.Trim();
-
-            int year = 2021;
-            double valuation = 0;
-            double askingprice = 0;
-
-            try
-            {
-                year = Int32.Parse(yearLbl.Text.Trim());
-                valuation = double.Parse(valuationLbl.Text, CultureInfo.InvariantCulture);
-                askingprice = double.Parse(askingPriceLbl.Text, CultureInfo.InvariantCulture);
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("Error converting values from textboxes into numbers \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            vehicleResult.Make = makeLbl.Text.Trim();
-            vehicleResult.Model = modelLbl.Text.Trim();
-            vehicleResult.Year = year;
-
-            vehicleResult.Valuation = valuation;
-            vehicleResult.AskingPrice = askingprice;
-
-            //vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
-
-            int x = 0;
-            vehicleResult.InterestedCustomers.Clear();
-
-            foreach (var id in customers)
-            {
-                vehicleResult.InterestedCustomers.Add(customers[x].Id.ToString());
-                x++;
-            }
-
-            vehicleResult.Notes = additionalCommentsLbl.Text;
-
-            if (location.Text != "-")
-            {
-                try
-                {
-                    if (imageOfCar.Image != null)
-                    {
-                        vehicleResult.Image = ImageToByte(imageOfCar.Image);
-                    }
-                } catch (Exception err)
-                {
-                    MessageBox.Show("Error converting image to database readable format!", "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                vehicleResult.Image = null;
-            }
-
-        }
-        
         public static byte[] ImageToByte(Image img)
         {
             ImageConverter converter = new ImageConverter();
@@ -410,40 +454,7 @@ namespace Database_Application_Chris
             Bitmap bm = new Bitmap(mStream, false);
             mStream.Dispose();
             return bm;
-        }
-
-        private void UpdateListToSend()
-        {
-            vehicleResult.Owner = ownerLbl.Text.Trim();
-
-            vehicleResult.EngineNum = engineNumLbl.Text.Trim();
-            vehicleResult.ChassisNum = chassisNumLbl.Text.Trim();
-            vehicleResult.Colour = colourLbl.Text.Trim();
-
-            int year = 2021;
-            double valuation = 0;
-            double askingprice = 0;
-
-            try
-            {
-                year = Int32.Parse(yearLbl.Text.Trim());
-                valuation = double.Parse(valuationLbl.Text, CultureInfo.InvariantCulture);
-                askingprice = double.Parse(askingPriceLbl.Text, CultureInfo.InvariantCulture);
-            }
-            catch (Exception err)
-            {
-                //MessageBox.Show("Error converting values from textboxes into numbers \n" + err, "Conversion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            vehicleResult.Make = makeLbl.Text.Trim();
-            vehicleResult.Model = modelLbl.Text.Trim();
-            vehicleResult.Year = year;
-
-            vehicleResult.Valuation = valuation;
-            vehicleResult.AskingPrice = askingprice;
-
-            //vehicleResult.InterestedCustomers = interestedCustomersListBox.Items.Cast<string>().ToList();
-        }
+        } 
 
         /*
         * Field Functions
@@ -459,13 +470,16 @@ namespace Database_Application_Chris
             ValidationProcess(engineNumLbl);
 
             //Sets engine num edited variable based on if it has been edited for update purposes
-            if (!engineNumLbl.Text.Trim().Equals(vehicleResult.EngineNum))
-            {
-                engineNumEdited = true;
-            }else
-            {
-                engineNumEdited = false;
-            }
+            //if (!engineNumLbl.Text.Trim().Equals(vehicleResult.EngineNumber))
+            //{
+            //    engineNumEdited = true;
+            //}else
+            //{
+            //    engineNumEdited = false;
+            //}
+
+            //Assume its been changed
+            engineNumEdited = true;
         }
 
         private void chassisNumLbl_Leave(object sender, EventArgs e)
@@ -685,7 +699,7 @@ namespace Database_Application_Chris
             {
                 Customer uc = new Customer();
                 //Send data of Customer form 
-                uc.customerResult = customers[selectedIndex];
+                uc.reference = customers[selectedIndex].Id;
                 //Refresh form
                 uc.RefreshInformation();
 
@@ -693,7 +707,7 @@ namespace Database_Application_Chris
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
 
-            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
+            main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
         }
 
         private void viewErrors_Click(object sender, EventArgs e)
