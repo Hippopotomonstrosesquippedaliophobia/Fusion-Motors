@@ -2,12 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,7 +39,7 @@ namespace Database_Application_Chris
         public IDictionary<long, Guid> matchList = new Dictionary<long, Guid>();
 
         public SearchForm(bool selection, CustomerModel model)
-        { 
+        {
 
             InitializeComponent();
             listCustomers = new Dictionary<string, object>();
@@ -66,7 +61,7 @@ namespace Database_Application_Chris
             listView.Enabled = true;
             listView.Visible = true;
         }
-        
+
         public SearchForm(bool vehicle, bool selection, CustomerFrame model)
         {
             InitializeComponent();
@@ -88,7 +83,7 @@ namespace Database_Application_Chris
 
                 listViewVehicles.Enabled = true;
                 listViewVehicles.Visible = true;
-                
+
                 listView.Enabled = false;
                 listView.Visible = false;
             }
@@ -100,7 +95,7 @@ namespace Database_Application_Chris
 
         private async void searchBtn_Click(object sender, EventArgs e)
         {
-            string searchQuery = searchTxt.Text.Trim(); 
+            string searchQuery = searchTxt.Text.Trim();
 
             string name = searchQuery;
             string[] names = name.Split(' ');
@@ -125,55 +120,56 @@ namespace Database_Application_Chris
                         UpdateListViewAsync("customers");
                     }
                     else
-                    {                        
-                            listView.Items.Clear();
-                            listViewVehicles.Items.Clear();
-                            matchList.Clear();
+                    {
+                        listView.Items.Clear();
+                        listViewVehicles.Items.Clear();
+                        matchList.Clear();
 
-                            // Query Records 
-                            Query allCustomersQuery;
+                        // Query Records 
+                        Query allCustomersQuery;
 
-                            if (lastname.Length > 0) 
+                        if (lastname.Length > 0)
+                        {
+                            allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("FirstName", names[0].Trim())
+                                                                             .WhereEqualTo("LastName", lastname.Trim());
+                        }
+                        else
+                        {
+                            allCustomersQuery = conn.db.Collection("Customers").WhereGreaterThanOrEqualTo("FirstName", names[0].Trim())
+                                                                               .OrderBy("FirstName");
+                        }
+                        QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
+
+                        int x = 1;
+                        foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
+                        {
+                            CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
+
+
+                            String srch = searchTxt.Text.Trim();
+                            Boolean checkFail = false;
+
+
+                            if (lastname.Length <= 0)
                             {
-                                allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("FirstName", names[0].Trim())
-                                                                                 .WhereEqualTo("LastName", lastname.Trim());
-                            }else
-                            {
-                                allCustomersQuery = conn.db.Collection("Customers").WhereGreaterThanOrEqualTo("FirstName", names[0].Trim())
-                                                                                   .OrderBy("FirstName");
-                            }
-                            QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
-
-                            int x = 1;
-                            foreach (DocumentSnapshot documentSnapshot in allCustomersQuerySnapshot.Documents)
-                            { 
-                                CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
-
-
-                                String srch = searchTxt.Text.Trim();
-                                Boolean checkFail = false;
-
-
-                                if (lastname.Length <= 0)
+                                for (int i = 0; i < srch.Length; i++)
                                 {
-                                    for (int i = 0; i < srch.Length; i++)
+                                    if (srch[i] == custModel.FirstName[i])
                                     {
-                                        if (srch[i] == custModel.FirstName[i])
-                                        {
-                                            //
-                                        }
-                                        else
-                                        {
-                                            checkFail = true;
-                                            break;
-                                        }
-
+                                        //
                                     }
-                                } 
+                                    else
+                                    {
+                                        checkFail = true;
+                                        break;
+                                    }
 
-                                if (!checkFail) 
-                                {
-                                    var row = new string[] {
+                                }
+                            }
+
+                            if (!checkFail)
+                            {
+                                var row = new string[] {
                                                         x.ToString(),
                                                         custModel.FirstName,
                                                         custModel.LastName,
@@ -181,17 +177,17 @@ namespace Database_Application_Chris
                                                         custModel.Address
                                                     };
 
-                                    var item = new ListViewItem(row);
-                                    x++;
-                                    item.Tag = documentSnapshot.Id;
-                                    listView.Items.Add(item);
+                                var item = new ListViewItem(row);
+                                x++;
+                                item.Tag = documentSnapshot.Id;
+                                listView.Items.Add(item);
 
-                                }
-                                
                             }
 
-                            // Update with number of records found
-                            countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found"; 
+                        }
+
+                        // Update with number of records found
+                        countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found";
                     }
                 }
                 catch (Exception err)
@@ -231,7 +227,7 @@ namespace Database_Application_Chris
                             String srch = searchTxt.Text.Trim();
                             Boolean checkFail = false;
 
-                             
+
                             for (int i = 0; i < srch.Length; i++)
                             {
                                 if (srch[i] == vehicleModel.Model[i])
@@ -244,7 +240,7 @@ namespace Database_Application_Chris
                                     break;
                                 }
 
-                            } 
+                            }
 
                             if (!checkFail)
                             {
@@ -276,7 +272,7 @@ namespace Database_Application_Chris
                     }
                 }
 
-            }            
+            }
         }
 
         async Task UpdateListViewAsync(string type)
@@ -338,7 +334,8 @@ namespace Database_Application_Chris
                 int ID = 1;
 
 
-                try { 
+                try
+                {
                     // Load Records 
                     Query allCustomersQuery = conn.db.Collection("Customers").OrderBy("FirstName"); ;
                     QuerySnapshot allCustomersQuerySnapshot = await allCustomersQuery.GetSnapshotAsync();
@@ -348,7 +345,7 @@ namespace Database_Application_Chris
                     {
                         //Console.WriteLine("Document data for {0} document:", documentSnapshot.Id);
 
-                        CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>(); 
+                        CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
                         //pair.Key, pair.Value);
                         var row = new string[] {
                                                     x.ToString(),
@@ -361,17 +358,17 @@ namespace Database_Application_Chris
                         var item = new ListViewItem(row);
                         x++;
                         item.Tag = documentSnapshot.Id;
-                        listView.Items.Add(item); 
-                    } 
+                        listView.Items.Add(item);
+                    }
 
                     // Update with number of records found
                     countLbl.Text = allCustomersQuerySnapshot.Count() + " Customer(s) found";
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     countLbl.Text = 0 + " Customer(s) found";
-                } 
-            }            
+                }
+            }
         }
 
         /*
@@ -477,8 +474,8 @@ namespace Database_Application_Chris
                 }
                 catch (Exception ex)
                 {
-                   // MessageBox.Show(ex.ToString());
-                } 
+                    // MessageBox.Show(ex.ToString());
+                }
             }
 
             if (!isVehicleSearch) // Customer 
@@ -487,7 +484,7 @@ namespace Database_Application_Chris
                 {
                     string documentID = listView.SelectedItems[0].Tag.ToString();
 
-                     
+
                     // OPEN CUSTOMER
                     //Refresh of controls
                     main.Instance.PanelContainer.Controls.Clear();
@@ -507,7 +504,7 @@ namespace Database_Application_Chris
                         main.Instance.PanelContainer.Controls.Add(uc);
                     }
 
-                    main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
+                    main.Instance.PanelContainer.Controls["Customer"].BringToFront();
                 }
                 catch (Exception err)
                 {
@@ -557,7 +554,7 @@ namespace Database_Application_Chris
             {
                 // No Area Code
                 reconstructedNum = extractedNum.Insert(3, "-");
-                reconstructedNum = "+ 1 (246) " + reconstructedNum; 
+                reconstructedNum = "+ 1 (246) " + reconstructedNum;
             }
             else if (extractedNum.Length == 10)
             {
@@ -566,7 +563,7 @@ namespace Database_Application_Chris
                 reconstructedNum = reconstructedNum.Insert(4, ")");
                 reconstructedNum = reconstructedNum.Insert(5, " ");
                 reconstructedNum = reconstructedNum.Insert(9, "-");
-                reconstructedNum = "+ 1 " + reconstructedNum; 
+                reconstructedNum = "+ 1 " + reconstructedNum;
             }
             else if (extractedNum.Length == 11)
             {
@@ -577,7 +574,7 @@ namespace Database_Application_Chris
                 reconstructedNum = reconstructedNum.Insert(4, "(");
                 reconstructedNum = reconstructedNum.Insert(8, ")");
                 reconstructedNum = reconstructedNum.Insert(9, " ");
-                reconstructedNum = reconstructedNum.Insert(13, "-"); 
+                reconstructedNum = reconstructedNum.Insert(13, "-");
             }
 
             return reconstructedNum;

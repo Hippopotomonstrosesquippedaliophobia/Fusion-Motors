@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -24,7 +20,7 @@ namespace Database_Application_Chris
         {
             InitializeComponent();
             vehicleImg.Image = ByteToImage(image);
-        } 
+        }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {

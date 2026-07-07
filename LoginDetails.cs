@@ -4,7 +4,7 @@ namespace Database_Application_Chris
 {
     [FirestoreData]
     public class LoginDetails
-    { 
+    {
         [FirestoreProperty]
         public string datecreated { get; set; }
         [FirestoreProperty]

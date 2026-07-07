@@ -3,16 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
-using Windows.Media.Playback;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Database_Application_Chris
 {
@@ -23,8 +16,8 @@ namespace Database_Application_Chris
 
         public CustomerFrame customerResult;
         public string name = "";
-        public bool nameEdited = false; 
-        public bool addCustomer = false; 
+        public bool nameEdited = false;
+        public bool addCustomer = false;
         public int errorsInForm = 0;
         public bool updatedVehicles = false;
 
@@ -50,7 +43,7 @@ namespace Database_Application_Chris
             updateCustomerBtn.Visible = true;
             updateCustomerBtn.Enabled = true;
         }
-        
+
         public Customer(bool addCustomer)
         {
             InitializeComponent();
@@ -67,9 +60,9 @@ namespace Database_Application_Chris
 
                 deleteCustomerBtn.Visible = false;
                 deleteCustomerBtn.Enabled = false;
-                
+
                 updateCustomerBtn.Visible = false;
-                updateCustomerBtn.Enabled = false; 
+                updateCustomerBtn.Enabled = false;
             }
             else
             {
@@ -93,7 +86,7 @@ namespace Database_Application_Chris
             addVehicleBtn.Visible = false;
             removeVehicleBtn.Visible = false;
         }
-        
+
         private void EnableInterests()
         {
             addVehicleBtn.Enabled = true;
@@ -154,7 +147,7 @@ namespace Database_Application_Chris
                 callBackCheckbox.Checked = cust.CallBackFlag;
 
                 int index = 0;
-                vehicles = new BindingList<VehicleFrame>(); 
+                vehicles = new BindingList<VehicleFrame>();
 
                 foreach (var vehic in cust.InterestedVehicles)
                 {
@@ -168,8 +161,8 @@ namespace Database_Application_Chris
                             if (snap2.Exists)
                             {
                                 VehicleFrame vehicle = snap2.ConvertTo<VehicleFrame>();
-                                vehicles.Add(vehicle); 
-                                index++; 
+                                vehicles.Add(vehicle);
+                                index++;
                             }
 
                             //Attach the list of customers to the ListBox:  
@@ -201,23 +194,23 @@ namespace Database_Application_Chris
             String[] vehicleLink = cust.InterestedVehicles;
 
             //Convert to list for easy search
-            List<string> vehicleLinkage = vehicleLink.ToList(); 
+            List<string> vehicleLinkage = vehicleLink.ToList();
 
 
             for (int i = 0; i < arr.Count; i++)
             {
-                if (!vehicleLinkage.Contains(arr[i]) )
+                if (!vehicleLinkage.Contains(arr[i]))
                 {
                     vehicleLinkage.Add(arr[i].ToString());
-                } 
-            } 
+                }
+            }
 
             // UPDATE the passed customer info
             Dictionary<string, object> dict = new Dictionary<string, object>()
             {
             };
 
-            var array = vehicleLinkage.ToArray(); 
+            var array = vehicleLinkage.ToArray();
             dict.Add("InterestedVehicles", array);
 
             ////Updating customer on firebase
@@ -232,16 +225,16 @@ namespace Database_Application_Chris
          */
 
         private async void deleteCustomerBtn_Click(object sender, EventArgs e)
-        { 
+        {
             DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to delete this customer?", "Customer Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult2 == DialogResult.Yes)
             {
                 //Try to update
                 try
-                { 
+                {
                     //removing customer on firebase
                     DocumentReference doc = conn.db.Collection("Customers").Document(reference);
-                    await doc.DeleteAsync(); 
+                    await doc.DeleteAsync();
 
                     //Send back Home
                     main.Instance.GoToHomepage();
@@ -266,7 +259,7 @@ namespace Database_Application_Chris
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
-            { 
+            {
                 DialogResult dialogResult2 = MessageBox.Show("Are you sure you wish to update this customer?", "Customer Information Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult2 == DialogResult.Yes)
                 {
@@ -304,7 +297,7 @@ namespace Database_Application_Chris
                         DocumentReference doc = conn.db.Collection("Customers").Document(reference);
                         await doc.UpdateAsync(dict);
 
-                        reference = doc.Id; 
+                        reference = doc.Id;
                     }
                     catch (Exception err)
                     {
@@ -314,19 +307,19 @@ namespace Database_Application_Chris
                 else if (dialogResult2 == DialogResult.No)
                 {
                     return;
-                } 
+                }
             }
             else
             {
                 MessageBox.Show("There are " + errorsInForm + " errors in the form. \nPlease fix them to continue", "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
 
         private async void addThisCustomer_Click(object sender, EventArgs e)
         {
             ////activate the form to cause validation to go off
             nameLbl.Select();
-            addressLbl.Select(); 
+            addressLbl.Select();
 
             ValidationProcess(null); // Check all fields
 
@@ -362,12 +355,12 @@ namespace Database_Application_Chris
             string[] emails = { email1Lbl.Text, email2Lbl.Text };
 
             Dictionary<string, object> dict = new Dictionary<string, object>()
-            { 
+            {
                 {"FirstName", name[0]  },
                 {"LastName",name[1]  },
                 {"Address", addressLbl.Text },
                 {"ContactNum1", num1Lbl.Text },
-                {"ContactNum2", num2Lbl.Text }, 
+                {"ContactNum2", num2Lbl.Text },
                 {"InProgressFlag", inProgressCheckbox.Checked },
                 {"CallBackFlag", callBackCheckbox.Checked },
                 {"Notes", additionalCommentsLbl.Text.ToString()}
@@ -375,7 +368,7 @@ namespace Database_Application_Chris
 
             ArrayList array = new ArrayList();
             array.Add(email1Lbl.Text);
-            array.Add(email2Lbl.Text); 
+            array.Add(email2Lbl.Text);
             dict.Add("Emails", array);
 
             ArrayList array2 = new ArrayList();
@@ -399,10 +392,11 @@ namespace Database_Application_Chris
                 };
                 await doc.UpdateAsync(dict2);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
-             
+
 
             //Enable the buttons to change to update mode and not add mode
             EnableInterests();
@@ -428,7 +422,7 @@ namespace Database_Application_Chris
                 foreach (var letter in name)
                 {
                     if (letter != nameLbl.Text[counter])
-                    { 
+                    {
                         nameEdited = true;
                         return;
                     }
@@ -444,8 +438,8 @@ namespace Database_Application_Chris
         }
 
         private void addressLbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(addressLbl); 
+        {
+            ValidationProcess(addressLbl);
         }
 
         private void num1Lbl_Leave(object sender, EventArgs e)
@@ -457,14 +451,15 @@ namespace Database_Application_Chris
                 FormatNum(num1Lbl);
             }
         }
-         
+
         private void num2Lbl_Leave(object sender, EventArgs e)
         {
             if (num2Lbl.Text.Trim().Length != 0)
             {
                 ValidationProcess(num2Lbl);
                 FormatNum(num2Lbl);
-            }else
+            }
+            else
             {
                 label3.ForeColor = Color.Black;
                 num2Lbl.ForeColor = Color.Black;
@@ -472,8 +467,8 @@ namespace Database_Application_Chris
         }
 
         private void email1Lbl_Leave(object sender, EventArgs e)
-        { 
-            ValidationProcess(email1Lbl); 
+        {
+            ValidationProcess(email1Lbl);
         }
 
         private void email2Lbl_Leave(object sender, EventArgs e)
@@ -511,7 +506,7 @@ namespace Database_Application_Chris
                 callBackCheckbox.Enabled = false;
             }
 
-            EnableUpdateBtn() ;
+            EnableUpdateBtn();
         }
 
         /*
@@ -612,8 +607,8 @@ namespace Database_Application_Chris
         }
 
         private void ChangeFieldColourValidate(TextBox field, int checker)
-        { 
-            field.ForeColor = Color.Red; 
+        {
+            field.ForeColor = Color.Red;
         }
 
         private void ValidationProcess(TextBox field)
@@ -698,7 +693,7 @@ namespace Database_Application_Chris
                     viewErrors.Enabled = false;
                     viewErrors.Visible = false;
 
-                    errorsInForm = 0; 
+                    errorsInForm = 0;
                 }
 
                 return;
@@ -709,7 +704,7 @@ namespace Database_Application_Chris
                 case "nameLbl":
                     err = validate.CheckName(nameLbl.Text.Trim());
                     counter += err.Count;
-                    OutputErrors(field, err); 
+                    OutputErrors(field, err);
                     break;
                 case "addressLbl":
                     err = validate.CheckAddress(addressLbl.Text.Trim());
@@ -721,7 +716,7 @@ namespace Database_Application_Chris
                     counter += err.Count;
                     OutputErrors(field, err);
                     break;
-                case "num2Lbl": 
+                case "num2Lbl":
                     err = validate.CheckNum(num2Lbl.Text.Trim());
                     counter += err.Count;
                     OutputErrors(field, err);
@@ -763,7 +758,7 @@ namespace Database_Application_Chris
                 //EnableUpdateBtn();
             }
             else if (err.Count > 0)
-            { 
+            {
                 field.ForeColor = Color.Red;
                 //DisableUpdateBtn(); // Only enable updates if all checks are correct
 
@@ -812,7 +807,7 @@ namespace Database_Application_Chris
             search.sentFromAddPage = true;
             search.Text = "Fusion Motors: Select a Vehicle";
             search.titleLbl.Text = "Select a vehicle to add to list";
-            search.Show(); 
+            search.Show();
         }
 
         private void UpdateListToSend()
@@ -826,7 +821,7 @@ namespace Database_Application_Chris
 
                 names = nameLbl.Text.Trim().Split(' ');
 
-                customerResult.Id = reference; 
+                customerResult.Id = reference;
 
             }
             catch (Exception err)
@@ -858,7 +853,7 @@ namespace Database_Application_Chris
 
             if (interestedVehiclesListBox.Items.Count != 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + veh.Year + " " +veh.Make + " " +veh.Model + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this vehicle : " + veh.Year + " " + veh.Make + " " + veh.Model + " from the customers interested list?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
 
@@ -867,7 +862,7 @@ namespace Database_Application_Chris
                     vehicles.RemoveAt(selectedIndex);
                     vehicles.ResetBindings();
                     interestedVehiclesListBox.DataSource = vehicles;
-                     
+
                     ValidationProcess(null); // Check all fields
 
                     if (errorsInForm == 0)
@@ -885,7 +880,7 @@ namespace Database_Application_Chris
                             }
 
                             //Convert back to arraylist
-                            String[] array = remove.ToArray();                  
+                            String[] array = remove.ToArray();
 
                             // UPDATE the passed customer info
                             Dictionary<string, object> dictionary = new Dictionary<string, object>
@@ -901,7 +896,7 @@ namespace Database_Application_Chris
                         catch (Exception err)
                         {
                             MessageBox.Show(err.Message, "Update Customer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        } 
+                        }
                     }
                     else
                     {
@@ -948,7 +943,7 @@ namespace Database_Application_Chris
         private void interestedVehiclesListBox_DoubleClick(object sender, EventArgs e)
         {
             int selectedIndex = interestedVehiclesListBox.SelectedIndex;
-             
+
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();
 
@@ -965,7 +960,7 @@ namespace Database_Application_Chris
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
 
-            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront(); 
+            main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
         }
 
         private void viewErrors_Click(object sender, EventArgs e)
@@ -980,7 +975,8 @@ namespace Database_Application_Chris
                 if (i == 0)
                 {
                     errs = allErrors[i];
-                }else
+                }
+                else
                 {
                     errs += "\n" + allErrors[i];
                 }
@@ -990,7 +986,8 @@ namespace Database_Application_Chris
             if (allErrors.Count != 0)
             {
                 MessageBox.Show(errs, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }else
+            }
+            else
             {
                 MessageBox.Show("All errors cleared!", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

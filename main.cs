@@ -1,19 +1,13 @@
-﻿using System;
+﻿using Database_Application_Chris.Properties;
+using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq.Expressions;
 using System.Media;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Database_Application_Chris.Properties;
-using Google.Cloud.Firestore;
 
 namespace Database_Application_Chris
 {
@@ -30,8 +24,8 @@ namespace Database_Application_Chris
         public double milliseconds = 2000; //2 seconds - 32 seconds wait in total due to mongo 30 sec timeout
         public double millisecondsNotify = 10000; //10 seconds - 10 seconds to make button shake
 
-        public double elapsedMilliseconds = 0;  
-        public double elapsedMilliseconds2 = 0;  
+        public double elapsedMilliseconds = 0;
+        public double elapsedMilliseconds2 = 0;
 
         public System.Timers.Timer clock;
         public bool alertDisconnect = false;
@@ -63,7 +57,7 @@ namespace Database_Application_Chris
         private Size old_size = new Size(1207, 688);
         public bool maximized = false;
 
-        public static main Instance 
+        public static main Instance
         {
             get
             {
@@ -85,7 +79,7 @@ namespace Database_Application_Chris
         private Settings settings = new Settings();
 
         // Call back peeps 
-        List<CustomerFrame> callBackList = new List<CustomerFrame>(); 
+        List<CustomerFrame> callBackList = new List<CustomerFrame>();
 
         public main()
         {
@@ -97,7 +91,7 @@ namespace Database_Application_Chris
         {
             _obj = this;
             hc = new HomeControl();
-            clock = new System.Timers.Timer(); 
+            clock = new System.Timers.Timer();
 
             //// Disables horizontal scroll on side panel  
             panel1.AutoScroll = false;
@@ -168,7 +162,7 @@ namespace Database_Application_Chris
                             notificationBtn.Location = originalLocation;
                         }
                     }
-                    
+
 
                     elapsedMilliseconds2 = 0; //Reset checker varaiable 
                 }
@@ -255,7 +249,7 @@ namespace Database_Application_Chris
                 // Run process
                 process.StartInfo = startInfo;
                 process.Start();
-            } 
+            }
         }
 
         private void RunCmd(string command, string info, string directory)
@@ -351,7 +345,7 @@ namespace Database_Application_Chris
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            GoToHomepage(); 
+            GoToHomepage();
             LoadCustomersToCall();
         }
 
@@ -382,12 +376,12 @@ namespace Database_Application_Chris
             sidePanel.Top = AddBtn.Top;
 
             //Refresh of controls
-            main.Instance.PanelContainer.Controls.Clear(); 
+            main.Instance.PanelContainer.Controls.Clear();
 
             //Open Add Home
             if (!main.Instance.PanelContainer.Controls.ContainsKey("addHome"))
             {
-                addHome uc = new addHome(); 
+                addHome uc = new addHome();
                 uc.Dock = DockStyle.Fill;
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
@@ -418,7 +412,7 @@ namespace Database_Application_Chris
         {
             Title.Text = "View Database";
             sidePanel.Height = DatabaseBtn.Height;
-            sidePanel.Top = DatabaseBtn.Top;             
+            sidePanel.Top = DatabaseBtn.Top;
 
             //Refresh of controls
             main.Instance.PanelContainer.Controls.Clear();
@@ -645,7 +639,7 @@ namespace Database_Application_Chris
         private void minimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        } 
+        }
 
         //Occurs when form is closed
         private void main_FormClosing(object sender, FormClosingEventArgs e)
@@ -686,7 +680,7 @@ namespace Database_Application_Chris
         }
 
         public async void LoadCustomersToCall()
-        { 
+        {
             Query allCustomersQuery;
 
             allCustomersQuery = conn.db.Collection("Customers").WhereEqualTo("CallBackFlag", true);
@@ -700,15 +694,16 @@ namespace Database_Application_Chris
                 CustomerFrame custModel = documentSnapshot.ConvertTo<CustomerFrame>();
                 custModel.Id = documentSnapshot.Id.ToString();
 
-                callBackList.Add(custModel); 
-            } 
-                
+                callBackList.Add(custModel);
+            }
+
 
             if (callBackList.Count > 0)
             {
                 int i = 0;
 
-                main.Instance.Invoke((System.Windows.Forms.MethodInvoker)delegate {
+                main.Instance.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                {
                     // Running on the UI thread 
                     contextMenuStrip.DropShadowEnabled = true;
                     contextMenuStrip.Items.Clear();
@@ -726,12 +721,13 @@ namespace Database_Application_Chris
 
 
                     foreach (var cus in callBackList)
-                    { 
+                    {
                         contextMenuStrip.Items.Add(callBackList[i].FirstName + " " + callBackList[i].LastName);
                         i++;
                     }
                 });
-            }else if (callBackList.Count == 0)
+            }
+            else if (callBackList.Count == 0)
             {
                 // Clear list and change notification icon to reflect change
                 contextMenuStrip.Items.Clear();
@@ -747,7 +743,8 @@ namespace Database_Application_Chris
             if (type == 1)
             {
                 MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }else if (type ==2)
+            }
+            else if (type == 2)
             {
                 MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -865,7 +862,7 @@ namespace Database_Application_Chris
         {
             int delta = pos - edge;
             return delta <= SnapDist;
-        } 
+        }
 
         protected override void OnResizeEnd(EventArgs e)
         {
@@ -877,17 +874,17 @@ namespace Database_Application_Chris
             {
                 MaxWindow();
             }
-            else 
+            else
             {
                 if (maximized)
                 {
                     old_loc.Y = MousePosition.Y;
                     MaxWindow();
-                } 
+                }
             }
             if (DoSnap(scn.WorkingArea.Right, this.Right)) this.Left = scn.WorkingArea.Right - this.Width;
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom)) this.Top = scn.WorkingArea.Bottom - this.Height;
         }
-         
+
     }
 }

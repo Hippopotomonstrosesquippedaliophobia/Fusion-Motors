@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,12 +26,12 @@ namespace Database_Application_Chris
             try
             {
                 if (main.Instance.db != null)
-                { 
+                {
                     listList = main.Instance.db.GetCollections();
                 }
             }
             catch (Exception err)
-            { 
+            {
 
             }
 
@@ -263,7 +259,7 @@ namespace Database_Application_Chris
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             versionLbl.Text = "v" + version;
-            lastUpDate.Text = lastUpdate;  
+            lastUpDate.Text = lastUpdate;
         }
 
         private void importTablesBtn_Click(object sender, EventArgs e)
@@ -280,7 +276,7 @@ namespace Database_Application_Chris
                     if (file1Txt.Text == "Customers.json")
                     {
                         DialogResult dialogResult = MessageBox.Show("Are you sure you wish to overwrite existing table data with this file's data?", "Import Inquiry", MessageBoxButtons.YesNo);
-                       
+
                         if (dialogResult == DialogResult.Yes)
                         {
                             main.Instance.RunCmd(Settings.commands["importMongoCustomers"] + file1TextBox.Text + "\" ", settings.commandsInfo["importMongoCustomers"]);
@@ -288,7 +284,7 @@ namespace Database_Application_Chris
                         else
                         {
                             MessageBox.Show("Action aborted for first file", "Command Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        } 
+                        }
                     }
                     if (file1Txt.Text == "Vehicles.json")
                     {
@@ -311,7 +307,8 @@ namespace Database_Application_Chris
 
                 success.Add("File 1: " + file1Txt.Text + " has been successfully imported");
 
-            } else
+            }
+            else
             {
                 if (file1TextBox.Text.Length == 0)
                 {
@@ -320,11 +317,11 @@ namespace Database_Application_Chris
                 else
                 {
                     err.Add("First file: Invalid");
-                } 
+                }
             }
 
-            
-            if (file2Txt.Text == "Customers.json" || file2Txt.Text == "Vehicles.json" )
+
+            if (file2Txt.Text == "Customers.json" || file2Txt.Text == "Vehicles.json")
             {
                 try
                 {
@@ -365,7 +362,7 @@ namespace Database_Application_Chris
             }
             else
             {
-                if (file2TextBox.Text.Length == 0 )
+                if (file2TextBox.Text.Length == 0)
                 {
                     // Do nothing
                 }
@@ -420,7 +417,7 @@ namespace Database_Application_Chris
 
         private void SettingsPage_Load(object sender, EventArgs e)
         {
-            ListTables();   
+            ListTables();
         }
 
         private async void ListTables()
@@ -428,7 +425,7 @@ namespace Database_Application_Chris
             List<string> listList = new List<string>();
 
             listTables.Text = "-";
-            
+
             try
             {
                 listList = await Task.Run(() => DatabaseCollections());
@@ -450,7 +447,8 @@ namespace Database_Application_Chris
                     }
 
                     listTables.Text = list;
-                }else
+                }
+                else
                 {
                     listTables.Text = "-";
                 }
@@ -475,7 +473,7 @@ namespace Database_Application_Chris
                 {
                     tableComboBox.Items.Add(item);
                 }
-            } 
+            }
         }
 
         private void ImportPanel_Enter(object sender, EventArgs e)
@@ -528,7 +526,8 @@ namespace Database_Application_Chris
                         {
                             main.Instance.RunCmd("mongoexport --collection=" + tableComboBox.Text + " --db=" + database + " --out=\"" + exportLocationTxt.Text + @"\" + fileName + "\"", "Exports table to file in specified location");
                             MessageBox.Show("Successfully Exported!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                        }else
+                        }
+                        else
                         {
                             MessageBox.Show("Cannot export", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                         }
@@ -538,7 +537,7 @@ namespace Database_Application_Chris
 
                     }
                 }
-            else
+                else
                 {
                     MessageBox.Show("Please select a location to export the file to", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }

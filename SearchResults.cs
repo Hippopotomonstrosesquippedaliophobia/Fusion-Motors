@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -90,13 +87,14 @@ namespace Database_Application_Chris
 
             // If theres a slight remainder, add extra page 
             //numPages = totalResults / limit;    
-            numPages = ((totalResults / limit ) + (totalResults % limit == 0 ? 0 : 1));  
+            numPages = ((totalResults / limit) + (totalResults % limit == 0 ? 0 : 1));
 
             if (numPages > 1)
             {
                 backBtn.Enabled = false;
                 fwdBtn.Enabled = true;
-            }else
+            }
+            else
             {
                 backBtn.Enabled = false;
                 fwdBtn.Enabled = false;
@@ -123,7 +121,7 @@ namespace Database_Application_Chris
             numOnPage = 0;
 
             foreach (var rec in searchResults)
-            { 
+            {
                 skip = (pageAt - 1) * limit;
 
                 if (recID > skip - 1 && recID < (limit + skip) && recID < searchResults.Count)
@@ -137,15 +135,15 @@ namespace Database_Application_Chris
                     lastRecID++;
                     numOnPage++;
                 }
-                recID++; 
+                recID++;
             }
 
             if (totalResults == 0)
             {
                 numPages = 1;
 
-            }    
-            numResultsLbl.Text = " " +totalResults + " Results | Page " + pageAt + " of " +numPages;
+            }
+            numResultsLbl.Text = " " + totalResults + " Results | Page " + pageAt + " of " + numPages;
         }
 
         private void ClearPanels()
@@ -182,9 +180,9 @@ namespace Database_Application_Chris
             panels.Add(Result6);
             panels.Add(Result7);
             panels.Add(Result8);
-            panels.Add(Result9); 
+            panels.Add(Result9);
 
         }
-         
+
     }
 }

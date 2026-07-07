@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using Google.Cloud.Firestore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Google.Cloud.Firestore;
-using MongoDB.Driver.Core.Operations;
 
 namespace Database_Application_Chris
 {
@@ -16,13 +9,13 @@ namespace Database_Application_Chris
 
         public FirestoreDb db; // global reference to firestore database
 
-        public Firestore() 
+        public Firestore()
         {
             //Connect to firebase
             string path = AppDomain.CurrentDomain.BaseDirectory + @"Exclude from GIT/fusion-motors-firebase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
-            db = FirestoreDb.Create("fusion-motors");  
+            db = FirestoreDb.Create("fusion-motors");
         }
 
         //Not being used
@@ -37,7 +30,7 @@ namespace Database_Application_Chris
                 {"username","admin" },
                 {"password","password" },
                 {"priviledge", 0 },
-                {"datecreated", "11/06/2024" } 
+                {"datecreated", "11/06/2024" }
             };
 
             cll.AddAsync(dict);
@@ -72,7 +65,7 @@ namespace Database_Application_Chris
             //dict.Add("List added", dict2);
 
 
-            doc.SetAsync(dict); 
+            doc.SetAsync(dict);
         }
     }
 }

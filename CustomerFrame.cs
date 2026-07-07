@@ -1,6 +1,4 @@
 ﻿using Google.Cloud.Firestore;
-using MongoDB.Bson.Serialization.Attributes;
-using System.Collections.Generic;
 using System;
 
 namespace Database_Application_Chris

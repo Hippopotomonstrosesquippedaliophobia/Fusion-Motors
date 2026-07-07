@@ -1,16 +1,10 @@
 ﻿using Google.Cloud.Firestore;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -21,7 +15,7 @@ namespace Database_Application_Chris
         public String reference; //global document reference for firebase document search
 
         public VehicleFrame vehicleResult;
-        public bool engineNumEdited = false; 
+        public bool engineNumEdited = false;
         public bool addVehicle = false;
         public int errorsInForm = 0;
 
@@ -47,7 +41,7 @@ namespace Database_Application_Chris
 
             location.Text = "";
         }
-        
+
         public Vehicle(bool addVehicle)
         {
             InitializeComponent();
@@ -56,7 +50,7 @@ namespace Database_Application_Chris
             // Switched to add mode
             if (addVehicle)
             {
-                vehicleResult = new VehicleFrame(); 
+                vehicleResult = new VehicleFrame();
 
                 addThisVehicle.Visible = true;
                 addThisVehicle.Enabled = true;
@@ -113,7 +107,7 @@ namespace Database_Application_Chris
             ValidationProcess(null); // Check all fields
 
             if (errorsInForm == 0)
-            {                
+            {
                 DialogResult dialogResult3 = MessageBox.Show("Are you sure you wish to add this Vehicle?", "Add Vehicle Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult3 == DialogResult.Yes)
                 {
@@ -130,7 +124,7 @@ namespace Database_Application_Chris
                 else if (dialogResult3 == DialogResult.No)
                 {
                     return;
-                } 
+                }
             }
             else
             {
@@ -139,7 +133,7 @@ namespace Database_Application_Chris
         }
 
         async void AddVehicleFirebase()
-        {           
+        {
             try
             {
                 Dictionary<string, object> dict = new Dictionary<string, object>()
@@ -258,7 +252,7 @@ namespace Database_Application_Chris
                 else if (dialogResult2 == DialogResult.No)
                 {
                     return;
-                } 
+                }
             }
             else
             {
@@ -273,7 +267,7 @@ namespace Database_Application_Chris
             {
                 //Try to delete
                 try
-                { 
+                {
                     //removing vehicle on firebase
                     DocumentReference doc = conn.db.Collection("Vehicles").Document(reference);
                     await doc.DeleteAsync();
@@ -297,7 +291,7 @@ namespace Database_Application_Chris
         // List Box Stuff
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            var clicked =  interestedCustomersListBox.SelectedIndex;
+            var clicked = interestedCustomersListBox.SelectedIndex;
 
             DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this person from interested customers list: " + customers[clicked].FirstName + " " + customers[clicked].LastName + " ? ", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
@@ -309,7 +303,7 @@ namespace Database_Application_Chris
             {
                 return;
             }
-        } 
+        }
 
         /*
          * Data Update Functions
@@ -359,7 +353,7 @@ namespace Database_Application_Chris
 
                     foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
                     {
-                        customers.Add(documentSnapshot.ConvertTo<CustomerFrame>()); 
+                        customers.Add(documentSnapshot.ConvertTo<CustomerFrame>());
                     }
 
                     //Attach the list of customers to the ListBox:  
@@ -454,7 +448,7 @@ namespace Database_Application_Chris
             Bitmap bm = new Bitmap(mStream, false);
             mStream.Dispose();
             return bm;
-        } 
+        }
 
         /*
         * Field Functions
@@ -608,7 +602,7 @@ namespace Database_Application_Chris
                 case "colourLbl":
                     err = validate.CheckColour(colourLbl.Text.Trim());
                     OutputErrors(field, err);
-                    break; 
+                    break;
                 default:
                     err.Add("Cannot resolve validation query - Error occurred");
                     OutputErrors(field, err);
@@ -664,7 +658,7 @@ namespace Database_Application_Chris
         {
             string valuation = valuationLbl.Text.Trim();
             Regex rg = new Regex(@"^[0-9\.]$");
-             
+
             string newValuation = Regex.Replace(valuation, @"[^0-9\.]+", String.Empty);
             valuationLbl.Text = newValuation;
 
@@ -689,11 +683,11 @@ namespace Database_Application_Chris
         }
 
         private void interestedCustomersListBox_DoubleClick(object sender, EventArgs e)
-        { 
+        {
             int selectedIndex = interestedCustomersListBox.SelectedIndex;
 
             //Refresh of controls
-            main.Instance.PanelContainer.Controls.Clear(); 
+            main.Instance.PanelContainer.Controls.Clear();
 
             if (!main.Instance.PanelContainer.Controls.ContainsKey("Customer"))
             {
@@ -707,7 +701,7 @@ namespace Database_Application_Chris
                 main.Instance.PanelContainer.Controls.Add(uc);
             }
 
-            main.Instance.PanelContainer.Controls["Customer"].BringToFront(); 
+            main.Instance.PanelContainer.Controls["Customer"].BringToFront();
         }
 
         private void viewErrors_Click(object sender, EventArgs e)
@@ -819,6 +813,6 @@ namespace Database_Application_Chris
                     //Do nothing
                 }
             }
-        } 
+        }
     }
 }

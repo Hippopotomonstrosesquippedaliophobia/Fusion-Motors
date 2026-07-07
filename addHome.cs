@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -64,7 +59,7 @@ namespace Database_Application_Chris
                 AskingPrice = 0,
                 Colour = "",
                 Notes = "",
-                CustomerInterest = { } 
+                CustomerInterest = { }
             };
 
             //Open Add Home

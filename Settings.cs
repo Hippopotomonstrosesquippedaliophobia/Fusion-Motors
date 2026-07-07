@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Windows.Forms;
 
 namespace Database_Application_Chris
 {
     public class Settings
-    { 
+    {
         public static string mongoBinPath; //@"C:\Program Files\MongoDB\Server\4.4\bin"; // @ stops escape
         public static string storeDBLocation = @"Database"; //@"C:\Program Files\MongoDB\Server\4.4\bin"; // @ stops escape
 
@@ -64,7 +61,7 @@ namespace Database_Application_Chris
         //        config.AppSettings.Settings.Add("mongoPath", path);
         //        config.Save(ConfigurationSaveMode.Minimal);
         //    }
-                         
+
 
         //    if (type == 1)
         //    {
@@ -73,7 +70,7 @@ namespace Database_Application_Chris
         //} 
 
         public static readonly IDictionary<string, string> commands = new Dictionary<string, string>()
-        { 
+        {
             {"mongoServiceStart", "mongod.exe --dbpath \"" + AppDomain.CurrentDomain.BaseDirectory + @"\Database" + "\""},
             {"mongoServiceEnd", "taskkill /F /IM mongod.exe"},
             {"makeDirDB", @"mkdir Database"},
@@ -82,7 +79,7 @@ namespace Database_Application_Chris
         };
 
         public readonly IDictionary<string, string> commandsInfo = new Dictionary<string, string>()
-        { 
+        {
             {"mongoServiceStart", "Starts the mongo database background service, allowing you to connect"},
             {"mongoServiceEnd", "Stops the mongo database background service to free up resources"},
             {"makeDirDB", "Creating directory for MongoDB"},
@@ -90,6 +87,6 @@ namespace Database_Application_Chris
             {"importMongoVehicles", "Imports provided file into mongo database"}
         };
 
-       
+
     }
 }

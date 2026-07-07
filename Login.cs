@@ -1,14 +1,9 @@
 ﻿using Google.Cloud.Firestore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -128,12 +123,12 @@ namespace Database_Application_Chris
         {
             string username = usernameTxt.Text.Trim();
             string password = Utilities.HashPassword(passwordTxt.Text.Trim());
-             
-            GetLogin(username, password); 
+
+            GetLogin(username, password);
         }
 
         public async void GetLogin(string username, string password)
-        { 
+        {
             DocumentReference docref = conn.db.Collection("Login").Document(username);
 
             DocumentSnapshot snap = await docref.GetSnapshotAsync();
@@ -143,7 +138,7 @@ namespace Database_Application_Chris
                 LoginDetails login = snap.ConvertTo<LoginDetails>();
 
                 if (login.username == username)
-                { 
+                {
                     //Dont forget password hasher is used to store account creation password
                     if (login.password == password)
                     {
@@ -161,9 +156,10 @@ namespace Database_Application_Chris
                 else
                 {
                     MessageBox.Show("Username not found!" + login.username, "Authentication Error" + username, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } 
+                }
 
-            }else
+            }
+            else
             {
                 MessageBox.Show("Username not found!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -208,7 +204,7 @@ namespace Database_Application_Chris
 
             //Check for updates
             GetUpdate();
-            
+
             //Load firestore
             conn = new Firestore();
         }
@@ -285,7 +281,7 @@ namespace Database_Application_Chris
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { 
+        {
             //Send user to email app and insert my email here
         }
     }

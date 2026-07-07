@@ -4,16 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
 {
     public class MongoCRUD
     {
-        private IMongoDatabase db { get; } 
+        private IMongoDatabase db { get; }
 
-        public MongoCRUD (string database)
+        public MongoCRUD(string database)
         {
             var credential = MongoCredential.CreateCredential(database, "admin", "chriscod");
 
@@ -28,7 +27,7 @@ namespace Database_Application_Chris
             {
 
             }
-        } 
+        }
 
         public void GetConnection()
         {
@@ -36,21 +35,23 @@ namespace Database_Application_Chris
             {
                 db.RunCommand((Command<BsonDocument>)"{ping:1}");
 
-                main.Instance.Invoke((MethodInvoker)delegate {
+                main.Instance.Invoke((MethodInvoker)delegate
+                {
                     // Running on the UI thread
                     Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
                     string database = config.AppSettings.Settings["database"].Value.ToString();
 
-                    main.Instance.mongoStatusLblTxt = "Mongo: Connected";   
-                    main.Instance.mongoDBLblTxt = database;   
+                    main.Instance.mongoStatusLblTxt = "Mongo: Connected";
+                    main.Instance.mongoDBLblTxt = database;
                 });
             }
             catch (Exception err)
             {
-                main.Instance.Invoke((MethodInvoker)delegate {
+                main.Instance.Invoke((MethodInvoker)delegate
+                {
                     // Running on the UI thread
                     main.Instance.mongoStatusLblTxt = "Mongo: Not Connected";
-                    main.Instance.mongoDBLblTxt = "No Database"; 
+                    main.Instance.mongoDBLblTxt = "No Database";
 
                     if (!main.Instance.alertDisconnect)
                     {
@@ -102,7 +103,7 @@ namespace Database_Application_Chris
             try
             {
                 if (typeof(T) == typeof(CustomerFrame))
-                { 
+                {
                     return collection.Find(new BsonDocument())
                         .Sort(Builders<T>.Sort.Ascending("FirstName").Ascending("LastName"))
                         .ToList();
@@ -117,12 +118,13 @@ namespace Database_Application_Chris
                 {
                     return collection.Find(new BsonDocument()).ToList();
                 }
-            } catch (Exception err)
+            }
+            catch (Exception err)
             {
                 return null;
             }
         }
-        
+
         public List<CustomerFrame> LoadCustomersToCallback<CustomerFrame>(string table)
         {
             var collection = db.GetCollection<CustomerFrame>(table);
@@ -144,21 +146,21 @@ namespace Database_Application_Chris
 
         public List<T> LoadCustomerByName<T>(string table, string firstName, string lastName)
         {
-            
-                var collection = db.GetCollection<T>(table);
 
-                //Starts with assumption only first name is provided
-                var filter = Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i"));
+            var collection = db.GetCollection<T>(table);
 
-                // If last name provided, then uses this variant of filter
-                if (!firstName.Equals("") && !lastName.Equals(""))
-                {
-                    filter = Builders<T>.Filter.And(
-                                                    Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i")),
-                                                    Builders<T>.Filter.Regex("LastName", new BsonRegularExpression("/^" + lastName + "/i"))
-                                                );
+            //Starts with assumption only first name is provided
+            var filter = Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i"));
 
-                }
+            // If last name provided, then uses this variant of filter
+            if (!firstName.Equals("") && !lastName.Equals(""))
+            {
+                filter = Builders<T>.Filter.And(
+                                                Builders<T>.Filter.Regex("FirstName", new BsonRegularExpression("/^" + firstName + "/i")),
+                                                Builders<T>.Filter.Regex("LastName", new BsonRegularExpression("/^" + lastName + "/i"))
+                                            );
+
+            }
             try
             {
                 return collection.Find(filter)
@@ -177,7 +179,7 @@ namespace Database_Application_Chris
 
             // Checks for engine no despite capitalization
             var filter = Builders<T>.Filter.Eq("Id", id);
-             
+
             try
             {
                 return collection.Find(filter).ToList();
@@ -210,7 +212,7 @@ namespace Database_Application_Chris
 
         public void UpdateVehiclesListInterest<T>(string table, string vehicleId, Guid id)
         {
-            var collection = db.GetCollection<VehicleModel>("Vehicles"); 
+            var collection = db.GetCollection<VehicleModel>("Vehicles");
 
             try
             {
@@ -219,7 +221,7 @@ namespace Database_Application_Chris
                 List<string> idValue = new List<string>();
                 idValue.Add(id.ToString());
 
-                var update = Builders<VehicleModel>.Update.AddToSetEach(c => c.InterestedCustomers, idValue); 
+                var update = Builders<VehicleModel>.Update.AddToSetEach(c => c.InterestedCustomers, idValue);
                 collection.UpdateOne(filter, update, new UpdateOptions { IsUpsert = true });
             }
             catch (Exception err)
@@ -233,10 +235,10 @@ namespace Database_Application_Chris
             var collection = db.GetCollection<VehicleModel>("Vehicles");
 
             try
-            { 
-                var filter = Builders<VehicleModel>.Filter.Eq("EngineNum", vehicleId.Trim()); 
+            {
+                var filter = Builders<VehicleModel>.Filter.Eq("EngineNum", vehicleId.Trim());
 
-                var update = Builders<VehicleModel>.Update.Pull(c => c.InterestedCustomers, id.ToString()); 
+                var update = Builders<VehicleModel>.Update.Pull(c => c.InterestedCustomers, id.ToString());
                 collection.UpdateOne(filter, update);
             }
             catch (Exception err)
@@ -252,7 +254,7 @@ namespace Database_Application_Chris
             try
             {
                 var filter = Builders<CustomerFrame>.Filter.Eq("Id", id);
-                 
+
 
                 var update = Builders<CustomerFrame>.Update.Pull(c => c.InterestedVehicles, vehicleId);
                 collection.UpdateOne(filter, update);
@@ -276,13 +278,13 @@ namespace Database_Application_Chris
                                                     new ReplaceOptions { IsUpsert = true }
                                                    );
 
-                MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly); 
+                MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Upsert Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly); 
+                MessageBox.Show(err.Message, "Upsert Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
-        } 
+        }
 
         public void DeleteRecord<T>(string table, Guid id)
         {

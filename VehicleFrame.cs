@@ -28,9 +28,9 @@ namespace Database_Application_Chris
         [FirestoreProperty]
         public string Colour { get; set; }
         [FirestoreProperty]
-        public string Notes { get; set; } 
+        public string Notes { get; set; }
         [FirestoreProperty]
-        public List<string> CustomerInterest { get; set; } 
+        public List<string> CustomerInterest { get; set; }
 
     }
 }

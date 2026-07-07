@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace Database_Application_Chris
 {
@@ -19,7 +15,7 @@ namespace Database_Application_Chris
 
             if (name == "")
             {
-                err.Add("Name cannot be blank!"); 
+                err.Add("Name cannot be blank!");
             }
             try
             {
@@ -27,7 +23,8 @@ namespace Database_Application_Chris
                 {
                     err.Add("More than one name must be added!");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 err.Add("More than one name must be added!");
             }
@@ -44,7 +41,8 @@ namespace Database_Application_Chris
                             err.Add("Too many spaces between names");
                             tooManySpaces = true;
                         }
-                    } else
+                    }
+                    else
                     {
                         countNames++;
                     }
@@ -73,7 +71,7 @@ namespace Database_Application_Chris
                     if (!IsAlphabet) // Not all letters in name
                     {
                         err.Add("Please only use letters");
-                    } 
+                    }
                 }
             }
             return err;
@@ -115,11 +113,11 @@ namespace Database_Application_Chris
                 {
                     extractedNum += number[i];
                 }
-            } 
-            if ((extractedNum.Length != 7) && (extractedNum.Length != 10)  && (extractedNum.Length != 11))
+            }
+            if ((extractedNum.Length != 7) && (extractedNum.Length != 10) && (extractedNum.Length != 11))
             {
                 err.Add("Number format invalid");
-            } 
+            }
 
             return err;
         }
@@ -132,7 +130,7 @@ namespace Database_Application_Chris
 
             if (address == "")
             {
-                err.Add("Address should not be empty!"); 
+                err.Add("Address should not be empty!");
             }
 
             if (addressPieces.Length != 3)
@@ -147,7 +145,7 @@ namespace Database_Application_Chris
         {
             List<string> err = new List<string>();
 
-             
+
 
             return err;
         }
@@ -175,7 +173,7 @@ namespace Database_Application_Chris
         {
             List<string> err = new List<string>();
 
-            string[] splitChassisNum = chassisNum.Split(' '); 
+            string[] splitChassisNum = chassisNum.Split(' ');
 
             if (chassisNum.Length == 0)
             {
@@ -190,7 +188,7 @@ namespace Database_Application_Chris
 
             return err;
         }
-        
+
         public List<string> CheckColour(string colour)
         {
             List<string> err = new List<string>();
@@ -206,7 +204,7 @@ namespace Database_Application_Chris
         public List<string> CheckPrices(string price)
         {
             List<string> err = new List<string>();
-             
+
             if (price.Length == 0)
             {
                 err.Add("Vehicles should have both an asking price and valuation price!");
@@ -231,7 +229,7 @@ namespace Database_Application_Chris
             if (make.Length == 0)
             {
                 err.Add("Vehicles should have a make!");
-            } 
+            }
 
             return err;
         }

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Database_Application_Chris
@@ -14,7 +9,7 @@ namespace Database_Application_Chris
         {
             InitializeComponent();
         }
-         
+
         public object GetHomeClockTxt()
         {
             return homeClockTxt;

@@ -1,15 +1,9 @@
 ﻿using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.Networking;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Database_Application_Chris
 {
@@ -43,7 +37,7 @@ namespace Database_Application_Chris
             {
                 searchTxt.Text = "";
                 searchTxt.ForeColor = Color.Black;
-            } 
+            }
         }
 
         private void searchTxt_Leave(object sender, EventArgs e)
@@ -56,8 +50,8 @@ namespace Database_Application_Chris
                     searchTxt.Text = vehicleTipString;
 
                 searchTxt.ForeColor = Color.DarkGray;
-            } 
-        } 
+            }
+        }
 
         private void radioSelection()
         {
@@ -69,7 +63,7 @@ namespace Database_Application_Chris
                 {
                     searchTxt.Text = customerTipString;
                     searchTxt.ForeColor = Color.DarkGray;
-                } 
+                }
             }
             else if (vehiclesRadio.Checked)
             {
@@ -176,9 +170,9 @@ namespace Database_Application_Chris
                     {
                         custModel.Id = documentSnapshot.Id;
                         listResults.Add(custModel);
-                    } 
+                    }
                 }
-                 
+
                 // Nothing found
                 if (allCustomersQuerySnapshot.Count() == 0)
                 {
@@ -243,9 +237,9 @@ namespace Database_Application_Chris
                 foreach (DocumentSnapshot documentSnapshot in allVehiclesQuerySnapshot.Documents)
                 {
                     VehicleFrame vehicleModel = documentSnapshot.ConvertTo<VehicleFrame>();
-                     
+
                     vehicleModel.Id = documentSnapshot.Id;
-                    listResults.Add(vehicleModel); 
+                    listResults.Add(vehicleModel);
                 }
 
                 // Nothing found
@@ -256,11 +250,11 @@ namespace Database_Application_Chris
                 }
 
                 //Refresh of controls
-                main.Instance.PanelContainer.Controls.Clear(); 
+                main.Instance.PanelContainer.Controls.Clear();
 
                 // If only one returned, go directly to Vehicle page
                 if (listResults.Count() >= 1)
-                { 
+                {
                     if (!main.Instance.PanelContainer.Controls.ContainsKey("Vehicle"))
                     {
                         //Send data of Vehicle form 
@@ -276,7 +270,7 @@ namespace Database_Application_Chris
                     main.Instance.PanelContainer.Controls["Vehicle"].BringToFront();
 
                     return;
-                } 
+                }
             }
 
         }
