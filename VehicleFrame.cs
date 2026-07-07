@@ -16,6 +16,8 @@ namespace Database_Application_Chris
         [FirestoreProperty]
         public string Owner { get; set; }
         [FirestoreProperty]
+        public string Agent { get; set; }
+        [FirestoreProperty]
         public string Make { get; set; }
         [FirestoreProperty]
         public string Model { get; set; }

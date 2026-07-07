@@ -144,6 +144,7 @@ namespace Database_Application_Chris
                     {
                         //correct username and password
                         main form = new main();
+                        form.userNameLbl.Text = login.firstname + " " + login.lastname;
                         form.Show();
                         this.Hide();
                     }

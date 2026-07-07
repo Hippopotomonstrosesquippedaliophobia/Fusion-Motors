@@ -30,7 +30,7 @@ namespace Database_Application_Chris
         public System.Timers.Timer clock;
         public bool alertDisconnect = false;
 
-        public string mongoStatusLblTxt = "Mongo: Not Connected";
+        public string userLbl = "No user";
         public string mongoDBLblTxt = "No Database";
 
         private int playOnce = 1;
@@ -325,7 +325,7 @@ namespace Database_Application_Chris
         // Sends user to homepage
         public void GoToHomepage()
         {
-            Title.Text = "Homepage";
+            Title.Text = "Welcome";
             sidePanel.Height = homeBtn.Height;
             sidePanel.Top = homeBtn.Top;
 
@@ -886,5 +886,23 @@ namespace Database_Application_Chris
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom)) this.Top = scn.WorkingArea.Bottom - this.Height;
         }
 
+        private void assignedBtn_Click(object sender, EventArgs e)
+        {
+            Title.Text = "Assigned";
+            sidePanel.Height = assignedBtn.Height;
+            sidePanel.Top = assignedBtn.Top;
+
+            //Refresh of controls
+            main.Instance.PanelContainer.Controls.Clear();
+
+            //Open Add Home
+            if (!main.Instance.PanelContainer.Controls.ContainsKey("assignedHome"))
+            {
+                assignedHome uc = new assignedHome();
+                uc.Dock = DockStyle.Fill;
+                main.Instance.PanelContainer.Controls.Add(uc);
+            }
+            main.Instance.PanelContainer.Controls["assignedHome"].BringToFront();
+        }
     }
 }

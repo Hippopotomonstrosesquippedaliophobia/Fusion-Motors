@@ -141,6 +141,7 @@ namespace Database_Application_Chris
                     {"EngineNumber",  engineNumLbl.Text  },
                     {"ChassisNumber", chassisNumLbl.Text  },
                     {"Owner",  ownerLbl.Text },
+                    {"Agent",  agentCombo.Text },
                     {"Make", makeLbl.Text },
                     {"Model", modelLbl.Text },
                     {"Year",  Int32.Parse(yearLbl.Text)},
@@ -222,6 +223,7 @@ namespace Database_Application_Chris
                             {"EngineNumber",  engineNumLbl.Text  },
                             {"ChassisNumber", chassisNumLbl.Text  },
                             {"Owner",  ownerLbl.Text },
+                            {"Agent",  agentCombo.Text },
                             {"Make", makeLbl.Text },
                             {"Model", modelLbl.Text },
                             {"Year",  Int32.Parse(yearLbl.Text)},
@@ -360,6 +362,36 @@ namespace Database_Application_Chris
                     interestedCustomersListBox.DataSource = customers;
                     interestedCustomersListBox.DisplayMember = "Model";
                     interestedCustomersListBox.ValueMember = "FirstName";
+
+
+                    //
+                    //
+                    //Combobox shennanigans 
+                    CollectionReference doc = conn.db.Collection("Login");
+                    QuerySnapshot snapshot = await doc.GetSnapshotAsync();
+
+                    agentCombo.Items.Clear();
+                    agentCombo.Items.Add("");
+
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        if (document.GetValue<string>("firstname").Equals("Administrator"))
+                        { 
+                            //DO NOTHING
+                        }
+                        else    
+                            agentCombo.Items.Add(document.GetValue<string>("firstname"));
+                    }
+
+                    //After populating the list box, set the text of the current agent
+                    if (agentCombo.Items.Contains(vehicle.Agent))
+                    {
+                        agentCombo.Text = vehicle.Agent;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Agent listed for vehicle!", "Vehicle Agent Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch (Exception err)
                 {
@@ -502,12 +534,12 @@ namespace Database_Application_Chris
             updateVehicleBtn.Visible = false;
         }
 
-        private void ChangeFieldColourValidate(TextBox field, int checker)
+        private void ChangeFieldColourValidate(System.Windows.Forms.TextBox field, int checker)
         {
             field.ForeColor = Color.Red;
         }
 
-        private void ValidationProcess(TextBox field)
+        private void ValidationProcess(System.Windows.Forms.TextBox field)
         {
             validation validate = new validation();
 
@@ -621,7 +653,7 @@ namespace Database_Application_Chris
             }
         }
 
-        private void OutputErrors(TextBox field, List<string> err)
+        private void OutputErrors(System.Windows.Forms.TextBox field, List<string> err)
         {
             if (err.Count == 0) // No Errors returned
             {
@@ -814,5 +846,6 @@ namespace Database_Application_Chris
                 }
             }
         }
+         
     }
 }

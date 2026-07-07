@@ -7,6 +7,8 @@ namespace Database_Application_Chris
     {
         public Guid Id { get; set; }
 
+
+        public string Agent { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public AddressModel PrimaryAddress { get; set; }

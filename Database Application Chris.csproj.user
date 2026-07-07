@@ -8,6 +8,9 @@
     <Compile Update="addHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="assignedHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ViewVehicle.cs">
       <SubType>Form</SubType>
     </Compile>

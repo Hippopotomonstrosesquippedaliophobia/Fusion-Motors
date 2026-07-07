@@ -41,7 +41,7 @@ namespace Database_Application_Chris
                     Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
                     string database = config.AppSettings.Settings["database"].Value.ToString();
 
-                    main.Instance.mongoStatusLblTxt = "Mongo: Connected";
+                    //main.Instance.mongoStatusLblTxt = "Mongo: Connected";
                     main.Instance.mongoDBLblTxt = database;
                 });
             }
@@ -50,7 +50,7 @@ namespace Database_Application_Chris
                 main.Instance.Invoke((MethodInvoker)delegate
                 {
                     // Running on the UI thread
-                    main.Instance.mongoStatusLblTxt = "Mongo: Not Connected";
+                    //main.Instance.mongoStatusLblTxt = "Mongo: Not Connected";
                     main.Instance.mongoDBLblTxt = "No Database";
 
                     if (!main.Instance.alertDisconnect)

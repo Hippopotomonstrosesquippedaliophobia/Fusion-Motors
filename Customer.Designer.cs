@@ -29,448 +29,465 @@ namespace Database_Application_Chris
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.nameLbl = new System.Windows.Forms.TextBox();
-            this.addressLbl = new System.Windows.Forms.TextBox();
-            this.num1Lbl = new System.Windows.Forms.TextBox();
-            this.num2Lbl = new System.Windows.Forms.TextBox();
-            this.email2Lbl = new System.Windows.Forms.TextBox();
-            this.email1Lbl = new System.Windows.Forms.TextBox();
-            this.interestedVehiclesListBox = new System.Windows.Forms.ListBox();
-            this.inProgressCheckbox = new System.Windows.Forms.CheckBox();
-            this.callBackCheckbox = new System.Windows.Forms.CheckBox();
-            this.updateCustomerBtn = new System.Windows.Forms.Button();
-            this.deleteCustomerBtn = new System.Windows.Forms.Button();
-            this.addVehicleBtn = new System.Windows.Forms.Button();
-            this.addThisCustomer = new System.Windows.Forms.Button();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.removeVehicleBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.additionalCommentsLbl = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.viewErrors = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            panel1 = new System.Windows.Forms.Panel();
+            nameLbl = new System.Windows.Forms.TextBox();
+            addressLbl = new System.Windows.Forms.TextBox();
+            num1Lbl = new System.Windows.Forms.TextBox();
+            num2Lbl = new System.Windows.Forms.TextBox();
+            email2Lbl = new System.Windows.Forms.TextBox();
+            email1Lbl = new System.Windows.Forms.TextBox();
+            interestedVehiclesListBox = new System.Windows.Forms.ListBox();
+            inProgressCheckbox = new System.Windows.Forms.CheckBox();
+            callBackCheckbox = new System.Windows.Forms.CheckBox();
+            updateCustomerBtn = new System.Windows.Forms.Button();
+            deleteCustomerBtn = new System.Windows.Forms.Button();
+            addVehicleBtn = new System.Windows.Forms.Button();
+            addThisCustomer = new System.Windows.Forms.Button();
+            toolTip = new System.Windows.Forms.ToolTip(components);
+            removeVehicleBtn = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            additionalCommentsLbl = new System.Windows.Forms.TextBox();
+            label7 = new System.Windows.Forms.Label();
+            panel2 = new System.Windows.Forms.Panel();
+            viewErrors = new System.Windows.Forms.Button();
+            panel3 = new System.Windows.Forms.Panel();
+            panel4 = new System.Windows.Forms.Panel();
+            label8 = new System.Windows.Forms.Label();
+            agentCombo = new System.Windows.Forms.ComboBox();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.Gold;
-            this.panel1.Controls.Add(this.nameLbl);
-            this.panel1.Location = new System.Drawing.Point(0, 14);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(711, 46);
-            this.panel1.TabIndex = 0;
+            panel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panel1.BackColor = System.Drawing.Color.Gold;
+            panel1.Controls.Add(nameLbl);
+            panel1.Location = new System.Drawing.Point(0, 14);
+            panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(711, 46);
+            panel1.TabIndex = 0;
             // 
             // nameLbl
             // 
-            this.nameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameLbl.BackColor = System.Drawing.Color.Gold;
-            this.nameLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameLbl.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.nameLbl.Location = new System.Drawing.Point(62, 11);
-            this.nameLbl.Name = "nameLbl";
-            this.nameLbl.Size = new System.Drawing.Size(578, 24);
-            this.nameLbl.TabIndex = 2;
-            this.nameLbl.Leave += new System.EventHandler(this.nameLbl_Leave);
+            nameLbl.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            nameLbl.BackColor = System.Drawing.Color.Gold;
+            nameLbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            nameLbl.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            nameLbl.Location = new System.Drawing.Point(62, 11);
+            nameLbl.Name = "nameLbl";
+            nameLbl.Size = new System.Drawing.Size(578, 24);
+            nameLbl.TabIndex = 2;
+            nameLbl.Leave += nameLbl_Leave;
             // 
             // addressLbl
             // 
-            this.addressLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressLbl.BackColor = System.Drawing.Color.White;
-            this.addressLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.addressLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addressLbl.Location = new System.Drawing.Point(63, 107);
-            this.addressLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addressLbl.Name = "addressLbl";
-            this.addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.addressLbl.Size = new System.Drawing.Size(645, 22);
-            this.addressLbl.TabIndex = 1;
-            this.toolTip.SetToolTip(this.addressLbl, "Address");
-            this.addressLbl.ForeColorChanged += new System.EventHandler(this.addressLbl_ForeColorChanged);
-            this.addressLbl.Leave += new System.EventHandler(this.addressLbl_Leave);
+            addressLbl.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            addressLbl.BackColor = System.Drawing.Color.White;
+            addressLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            addressLbl.Font = new System.Drawing.Font("Century Gothic", 9F);
+            addressLbl.Location = new System.Drawing.Point(63, 107);
+            addressLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            addressLbl.Name = "addressLbl";
+            addressLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            addressLbl.Size = new System.Drawing.Size(645, 22);
+            addressLbl.TabIndex = 1;
+            toolTip.SetToolTip(addressLbl, "Address");
+            addressLbl.ForeColorChanged += addressLbl_ForeColorChanged;
+            addressLbl.Leave += addressLbl_Leave;
             // 
             // num1Lbl
             // 
-            this.num1Lbl.BackColor = System.Drawing.Color.White;
-            this.num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.num1Lbl.Location = new System.Drawing.Point(63, 169);
-            this.num1Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.num1Lbl.Name = "num1Lbl";
-            this.num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.num1Lbl.Size = new System.Drawing.Size(268, 22);
-            this.num1Lbl.TabIndex = 1;
-            this.toolTip.SetToolTip(this.num1Lbl, "Primary number");
-            this.num1Lbl.ForeColorChanged += new System.EventHandler(this.num1Lbl_ForeColorChanged);
-            this.num1Lbl.Leave += new System.EventHandler(this.num1Lbl_Leave);
+            num1Lbl.BackColor = System.Drawing.Color.White;
+            num1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            num1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F);
+            num1Lbl.Location = new System.Drawing.Point(63, 169);
+            num1Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            num1Lbl.Name = "num1Lbl";
+            num1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            num1Lbl.Size = new System.Drawing.Size(268, 22);
+            num1Lbl.TabIndex = 1;
+            toolTip.SetToolTip(num1Lbl, "Primary number");
+            num1Lbl.ForeColorChanged += num1Lbl_ForeColorChanged;
+            num1Lbl.Leave += num1Lbl_Leave;
             // 
             // num2Lbl
             // 
-            this.num2Lbl.BackColor = System.Drawing.Color.White;
-            this.num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.num2Lbl.Location = new System.Drawing.Point(358, 169);
-            this.num2Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.num2Lbl.Name = "num2Lbl";
-            this.num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.num2Lbl.Size = new System.Drawing.Size(268, 22);
-            this.num2Lbl.TabIndex = 1;
-            this.toolTip.SetToolTip(this.num2Lbl, "Secondary number");
-            this.num2Lbl.ForeColorChanged += new System.EventHandler(this.num2Lbl_ForeColorChanged);
-            this.num2Lbl.Leave += new System.EventHandler(this.num2Lbl_Leave);
+            num2Lbl.BackColor = System.Drawing.Color.White;
+            num2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            num2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F);
+            num2Lbl.Location = new System.Drawing.Point(358, 169);
+            num2Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            num2Lbl.Name = "num2Lbl";
+            num2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            num2Lbl.Size = new System.Drawing.Size(268, 22);
+            num2Lbl.TabIndex = 1;
+            toolTip.SetToolTip(num2Lbl, "Secondary number");
+            num2Lbl.ForeColorChanged += num2Lbl_ForeColorChanged;
+            num2Lbl.Leave += num2Lbl_Leave;
             // 
             // email2Lbl
             // 
-            this.email2Lbl.BackColor = System.Drawing.Color.White;
-            this.email2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.email2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.email2Lbl.Location = new System.Drawing.Point(358, 230);
-            this.email2Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.email2Lbl.Name = "email2Lbl";
-            this.email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.email2Lbl.Size = new System.Drawing.Size(268, 22);
-            this.email2Lbl.TabIndex = 1;
-            this.toolTip.SetToolTip(this.email2Lbl, "Secondary email");
-            this.email2Lbl.ForeColorChanged += new System.EventHandler(this.email2Lbl_ForeColorChanged);
-            this.email2Lbl.Leave += new System.EventHandler(this.email2Lbl_Leave);
+            email2Lbl.BackColor = System.Drawing.Color.White;
+            email2Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            email2Lbl.Font = new System.Drawing.Font("Century Gothic", 9F);
+            email2Lbl.Location = new System.Drawing.Point(358, 230);
+            email2Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            email2Lbl.Name = "email2Lbl";
+            email2Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            email2Lbl.Size = new System.Drawing.Size(268, 22);
+            email2Lbl.TabIndex = 1;
+            toolTip.SetToolTip(email2Lbl, "Secondary email");
+            email2Lbl.ForeColorChanged += email2Lbl_ForeColorChanged;
+            email2Lbl.Leave += email2Lbl_Leave;
             // 
             // email1Lbl
             // 
-            this.email1Lbl.BackColor = System.Drawing.Color.White;
-            this.email1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.email1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.email1Lbl.Location = new System.Drawing.Point(63, 230);
-            this.email1Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.email1Lbl.Name = "email1Lbl";
-            this.email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.email1Lbl.Size = new System.Drawing.Size(268, 22);
-            this.email1Lbl.TabIndex = 1;
-            this.toolTip.SetToolTip(this.email1Lbl, "Primary email");
-            this.email1Lbl.ForeColorChanged += new System.EventHandler(this.email1Lbl_ForeColorChanged);
-            this.email1Lbl.Leave += new System.EventHandler(this.email1Lbl_Leave);
+            email1Lbl.BackColor = System.Drawing.Color.White;
+            email1Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            email1Lbl.Font = new System.Drawing.Font("Century Gothic", 9F);
+            email1Lbl.Location = new System.Drawing.Point(63, 230);
+            email1Lbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            email1Lbl.Name = "email1Lbl";
+            email1Lbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            email1Lbl.Size = new System.Drawing.Size(268, 22);
+            email1Lbl.TabIndex = 1;
+            toolTip.SetToolTip(email1Lbl, "Primary email");
+            email1Lbl.ForeColorChanged += email1Lbl_ForeColorChanged;
+            email1Lbl.Leave += email1Lbl_Leave;
             // 
             // interestedVehiclesListBox
             // 
-            this.interestedVehiclesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.interestedVehiclesListBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.interestedVehiclesListBox.FormattingEnabled = true;
-            this.interestedVehiclesListBox.ItemHeight = 19;
-            this.interestedVehiclesListBox.Location = new System.Drawing.Point(24, 0);
-            this.interestedVehiclesListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.interestedVehiclesListBox.Name = "interestedVehiclesListBox";
-            this.interestedVehiclesListBox.Size = new System.Drawing.Size(237, 403);
-            this.interestedVehiclesListBox.TabIndex = 2;
-            this.toolTip.SetToolTip(this.interestedVehiclesListBox, "List of vehicle\'s this customer is interested in");
-            this.interestedVehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.interestedVehiclesListBox_SelectedIndexChanged);
-            this.interestedVehiclesListBox.DoubleClick += new System.EventHandler(this.interestedVehiclesListBox_DoubleClick);
+            interestedVehiclesListBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            interestedVehiclesListBox.Font = new System.Drawing.Font("Century Gothic", 10.2F);
+            interestedVehiclesListBox.FormattingEnabled = true;
+            interestedVehiclesListBox.ItemHeight = 19;
+            interestedVehiclesListBox.Location = new System.Drawing.Point(24, 0);
+            interestedVehiclesListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            interestedVehiclesListBox.Name = "interestedVehiclesListBox";
+            interestedVehiclesListBox.Size = new System.Drawing.Size(237, 403);
+            interestedVehiclesListBox.TabIndex = 2;
+            toolTip.SetToolTip(interestedVehiclesListBox, "List of vehicle's this customer is interested in");
+            interestedVehiclesListBox.SelectedIndexChanged += interestedVehiclesListBox_SelectedIndexChanged;
+            interestedVehiclesListBox.DoubleClick += interestedVehiclesListBox_DoubleClick;
             // 
             // inProgressCheckbox
             // 
-            this.inProgressCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.inProgressCheckbox.AutoSize = true;
-            this.inProgressCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.inProgressCheckbox.Location = new System.Drawing.Point(119, 18);
-            this.inProgressCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.inProgressCheckbox.Name = "inProgressCheckbox";
-            this.inProgressCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.inProgressCheckbox.Size = new System.Drawing.Size(147, 23);
-            this.inProgressCheckbox.TabIndex = 4;
-            this.inProgressCheckbox.Text = "Currently Seeking";
-            this.toolTip.SetToolTip(this.inProgressCheckbox, "Indicate if the customer is currently doing business");
-            this.inProgressCheckbox.UseVisualStyleBackColor = true;
-            this.inProgressCheckbox.CheckedChanged += new System.EventHandler(this.inProgressCheckbox_CheckedChanged);
+            inProgressCheckbox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            inProgressCheckbox.AutoSize = true;
+            inProgressCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F);
+            inProgressCheckbox.Location = new System.Drawing.Point(119, 18);
+            inProgressCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            inProgressCheckbox.Name = "inProgressCheckbox";
+            inProgressCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            inProgressCheckbox.Size = new System.Drawing.Size(147, 23);
+            inProgressCheckbox.TabIndex = 4;
+            inProgressCheckbox.Text = "Currently Seeking";
+            toolTip.SetToolTip(inProgressCheckbox, "Indicate if the customer is currently doing business");
+            inProgressCheckbox.UseVisualStyleBackColor = true;
+            inProgressCheckbox.CheckedChanged += inProgressCheckbox_CheckedChanged;
             // 
             // callBackCheckbox
             // 
-            this.callBackCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.callBackCheckbox.AutoSize = true;
-            this.callBackCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.callBackCheckbox.Location = new System.Drawing.Point(172, 40);
-            this.callBackCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.callBackCheckbox.Name = "callBackCheckbox";
-            this.callBackCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.callBackCheckbox.Size = new System.Drawing.Size(95, 23);
-            this.callBackCheckbox.TabIndex = 4;
-            this.callBackCheckbox.Text = "Call back";
-            this.toolTip.SetToolTip(this.callBackCheckbox, "Indicate if the customer is to be called back");
-            this.callBackCheckbox.UseVisualStyleBackColor = true;
-            this.callBackCheckbox.CheckedChanged += new System.EventHandler(this.callBackCheckbox_CheckedChanged);
+            callBackCheckbox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            callBackCheckbox.AutoSize = true;
+            callBackCheckbox.Font = new System.Drawing.Font("Century Gothic", 10.2F);
+            callBackCheckbox.Location = new System.Drawing.Point(172, 40);
+            callBackCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            callBackCheckbox.Name = "callBackCheckbox";
+            callBackCheckbox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            callBackCheckbox.Size = new System.Drawing.Size(95, 23);
+            callBackCheckbox.TabIndex = 4;
+            callBackCheckbox.Text = "Call back";
+            toolTip.SetToolTip(callBackCheckbox, "Indicate if the customer is to be called back");
+            callBackCheckbox.UseVisualStyleBackColor = true;
+            callBackCheckbox.CheckedChanged += callBackCheckbox_CheckedChanged;
             // 
             // updateCustomerBtn
             // 
-            this.updateCustomerBtn.BackColor = System.Drawing.Color.Gold;
-            this.updateCustomerBtn.Enabled = false;
-            this.updateCustomerBtn.FlatAppearance.BorderSize = 0;
-            this.updateCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updateCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.updateCustomerBtn.Location = new System.Drawing.Point(205, 14);
-            this.updateCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.updateCustomerBtn.Name = "updateCustomerBtn";
-            this.updateCustomerBtn.Size = new System.Drawing.Size(130, 33);
-            this.updateCustomerBtn.TabIndex = 5;
-            this.updateCustomerBtn.Text = "↻ Update";
-            this.updateCustomerBtn.UseVisualStyleBackColor = false;
-            this.updateCustomerBtn.Visible = false;
-            this.updateCustomerBtn.Click += new System.EventHandler(this.updateCustomerBtn_Click);
+            updateCustomerBtn.BackColor = System.Drawing.Color.Gold;
+            updateCustomerBtn.Enabled = false;
+            updateCustomerBtn.FlatAppearance.BorderSize = 0;
+            updateCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            updateCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F);
+            updateCustomerBtn.Location = new System.Drawing.Point(205, 14);
+            updateCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            updateCustomerBtn.Name = "updateCustomerBtn";
+            updateCustomerBtn.Size = new System.Drawing.Size(130, 33);
+            updateCustomerBtn.TabIndex = 5;
+            updateCustomerBtn.Text = "↻ Update";
+            updateCustomerBtn.UseVisualStyleBackColor = false;
+            updateCustomerBtn.Visible = false;
+            updateCustomerBtn.Click += updateCustomerBtn_Click;
             // 
             // deleteCustomerBtn
             // 
-            this.deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
-            this.deleteCustomerBtn.FlatAppearance.BorderSize = 0;
-            this.deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteCustomerBtn.Location = new System.Drawing.Point(62, 14);
-            this.deleteCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.deleteCustomerBtn.Name = "deleteCustomerBtn";
-            this.deleteCustomerBtn.Size = new System.Drawing.Size(130, 33);
-            this.deleteCustomerBtn.TabIndex = 5;
-            this.deleteCustomerBtn.Text = "🗑️ Delete";
-            this.deleteCustomerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.deleteCustomerBtn.UseVisualStyleBackColor = false;
-            this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
+            deleteCustomerBtn.BackColor = System.Drawing.Color.Gold;
+            deleteCustomerBtn.FlatAppearance.BorderSize = 0;
+            deleteCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            deleteCustomerBtn.Font = new System.Drawing.Font("Century Gothic", 9F);
+            deleteCustomerBtn.Location = new System.Drawing.Point(62, 14);
+            deleteCustomerBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            deleteCustomerBtn.Name = "deleteCustomerBtn";
+            deleteCustomerBtn.Size = new System.Drawing.Size(130, 33);
+            deleteCustomerBtn.TabIndex = 5;
+            deleteCustomerBtn.Text = "🗑️ Delete";
+            deleteCustomerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            deleteCustomerBtn.UseVisualStyleBackColor = false;
+            deleteCustomerBtn.Click += deleteCustomerBtn_Click;
             // 
             // addVehicleBtn
             // 
-            this.addVehicleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addVehicleBtn.BackColor = System.Drawing.Color.Gold;
-            this.addVehicleBtn.FlatAppearance.BorderSize = 0;
-            this.addVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addVehicleBtn.Location = new System.Drawing.Point(739, 14);
-            this.addVehicleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addVehicleBtn.Name = "addVehicleBtn";
-            this.addVehicleBtn.Size = new System.Drawing.Size(190, 33);
-            this.addVehicleBtn.TabIndex = 5;
-            this.addVehicleBtn.Text = "+  ";
-            this.toolTip.SetToolTip(this.addVehicleBtn, "Add a vehicle which the customer is interested in");
-            this.addVehicleBtn.UseVisualStyleBackColor = false;
-            this.addVehicleBtn.Click += new System.EventHandler(this.addVehicleInterest_Click);
+            addVehicleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            addVehicleBtn.BackColor = System.Drawing.Color.Gold;
+            addVehicleBtn.FlatAppearance.BorderSize = 0;
+            addVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            addVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F);
+            addVehicleBtn.Location = new System.Drawing.Point(739, 14);
+            addVehicleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            addVehicleBtn.Name = "addVehicleBtn";
+            addVehicleBtn.Size = new System.Drawing.Size(190, 33);
+            addVehicleBtn.TabIndex = 5;
+            addVehicleBtn.Text = "+  ";
+            toolTip.SetToolTip(addVehicleBtn, "Add a vehicle which the customer is interested in");
+            addVehicleBtn.UseVisualStyleBackColor = false;
+            addVehicleBtn.Click += addVehicleInterest_Click;
             // 
             // addThisCustomer
             // 
-            this.addThisCustomer.BackColor = System.Drawing.Color.Gold;
-            this.addThisCustomer.Enabled = false;
-            this.addThisCustomer.FlatAppearance.BorderSize = 0;
-            this.addThisCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addThisCustomer.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addThisCustomer.Location = new System.Drawing.Point(62, 14);
-            this.addThisCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addThisCustomer.Name = "addThisCustomer";
-            this.addThisCustomer.Size = new System.Drawing.Size(272, 33);
-            this.addThisCustomer.TabIndex = 5;
-            this.addThisCustomer.Text = "+ Add Customer";
-            this.toolTip.SetToolTip(this.addThisCustomer, "Add this customer to the database");
-            this.addThisCustomer.UseVisualStyleBackColor = false;
-            this.addThisCustomer.Visible = false;
-            this.addThisCustomer.Click += new System.EventHandler(this.addThisCustomer_Click);
+            addThisCustomer.BackColor = System.Drawing.Color.Gold;
+            addThisCustomer.Enabled = false;
+            addThisCustomer.FlatAppearance.BorderSize = 0;
+            addThisCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            addThisCustomer.Font = new System.Drawing.Font("Century Gothic", 9F);
+            addThisCustomer.Location = new System.Drawing.Point(62, 14);
+            addThisCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            addThisCustomer.Name = "addThisCustomer";
+            addThisCustomer.Size = new System.Drawing.Size(272, 33);
+            addThisCustomer.TabIndex = 5;
+            addThisCustomer.Text = "+ Add Customer";
+            toolTip.SetToolTip(addThisCustomer, "Add this customer to the database");
+            addThisCustomer.UseVisualStyleBackColor = false;
+            addThisCustomer.Visible = false;
+            addThisCustomer.Click += addThisCustomer_Click;
             // 
             // removeVehicleBtn
             // 
-            this.removeVehicleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeVehicleBtn.BackColor = System.Drawing.Color.Gold;
-            this.removeVehicleBtn.FlatAppearance.BorderSize = 0;
-            this.removeVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.removeVehicleBtn.Image = global::Database_Application_Chris.Properties.Resources.bin_small;
-            this.removeVehicleBtn.Location = new System.Drawing.Point(934, 14);
-            this.removeVehicleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.removeVehicleBtn.Name = "removeVehicleBtn";
-            this.removeVehicleBtn.Size = new System.Drawing.Size(47, 33);
-            this.removeVehicleBtn.TabIndex = 5;
-            this.toolTip.SetToolTip(this.removeVehicleBtn, "Delete a vehicle from the interested list");
-            this.removeVehicleBtn.UseVisualStyleBackColor = false;
-            this.removeVehicleBtn.Click += new System.EventHandler(this.removeVehicle_Click);
+            removeVehicleBtn.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            removeVehicleBtn.BackColor = System.Drawing.Color.Gold;
+            removeVehicleBtn.FlatAppearance.BorderSize = 0;
+            removeVehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            removeVehicleBtn.Font = new System.Drawing.Font("Century Gothic", 9F);
+            removeVehicleBtn.Image = Properties.Resources.bin_small;
+            removeVehicleBtn.Location = new System.Drawing.Point(934, 14);
+            removeVehicleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            removeVehicleBtn.Name = "removeVehicleBtn";
+            removeVehicleBtn.Size = new System.Drawing.Size(47, 33);
+            removeVehicleBtn.TabIndex = 5;
+            toolTip.SetToolTip(removeVehicleBtn, "Delete a vehicle from the interested list");
+            removeVehicleBtn.UseVisualStyleBackColor = false;
+            removeVehicleBtn.Click += removeVehicle_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(63, 92);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Address:";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label1.Location = new System.Drawing.Point(63, 92);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(51, 16);
+            label1.TabIndex = 6;
+            label1.Text = "Address:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(63, 154);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 16);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Primary Contact Number:";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label2.Location = new System.Drawing.Point(63, 154);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(144, 16);
+            label2.TabIndex = 6;
+            label2.Text = "Primary Contact Number:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(358, 154);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Secondary Contact Number:";
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label3.Location = new System.Drawing.Point(358, 154);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(164, 16);
+            label3.TabIndex = 6;
+            label3.Text = "Secondary Contact Number:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(63, 215);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 16);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Primary Email Address:";
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label4.Location = new System.Drawing.Point(63, 215);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(124, 16);
+            label4.TabIndex = 6;
+            label4.Text = "Primary Email Address:";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(358, 215);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 16);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Secondary Email Address:";
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label5.Location = new System.Drawing.Point(358, 215);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(144, 16);
+            label5.TabIndex = 6;
+            label5.Text = "Secondary Email Address:";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(63, 277);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Additional Comments:";
+            label6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label6.Location = new System.Drawing.Point(63, 277);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(126, 16);
+            label6.TabIndex = 6;
+            label6.Text = "Additional Comments:";
             // 
             // additionalCommentsLbl
             // 
-            this.additionalCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.additionalCommentsLbl.Location = new System.Drawing.Point(63, 292);
-            this.additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.additionalCommentsLbl.Multiline = true;
-            this.additionalCommentsLbl.Name = "additionalCommentsLbl";
-            this.additionalCommentsLbl.Size = new System.Drawing.Size(645, 220);
-            this.additionalCommentsLbl.TabIndex = 7;
+            additionalCommentsLbl.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            additionalCommentsLbl.Location = new System.Drawing.Point(63, 292);
+            additionalCommentsLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            additionalCommentsLbl.Multiline = true;
+            additionalCommentsLbl.Name = "additionalCommentsLbl";
+            additionalCommentsLbl.Size = new System.Drawing.Size(645, 168);
+            additionalCommentsLbl.TabIndex = 7;
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(37, 88);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Interested in:";
+            label7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Century Gothic", 7.8F);
+            label7.Location = new System.Drawing.Point(37, 88);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(76, 16);
+            label7.TabIndex = 6;
+            label7.Text = "Interested in:";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.viewErrors);
-            this.panel2.Controls.Add(this.addVehicleBtn);
-            this.panel2.Controls.Add(this.removeVehicleBtn);
-            this.panel2.Controls.Add(this.addThisCustomer);
-            this.panel2.Controls.Add(this.updateCustomerBtn);
-            this.panel2.Controls.Add(this.deleteCustomerBtn);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 520);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1018, 74);
-            this.panel2.TabIndex = 8;
+            panel2.Controls.Add(viewErrors);
+            panel2.Controls.Add(addVehicleBtn);
+            panel2.Controls.Add(removeVehicleBtn);
+            panel2.Controls.Add(addThisCustomer);
+            panel2.Controls.Add(updateCustomerBtn);
+            panel2.Controls.Add(deleteCustomerBtn);
+            panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            panel2.Location = new System.Drawing.Point(0, 520);
+            panel2.Name = "panel2";
+            panel2.Size = new System.Drawing.Size(1018, 74);
+            panel2.TabIndex = 8;
             // 
             // viewErrors
             // 
-            this.viewErrors.BackColor = System.Drawing.Color.Red;
-            this.viewErrors.Enabled = false;
-            this.viewErrors.FlatAppearance.BorderSize = 0;
-            this.viewErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.viewErrors.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.viewErrors.ForeColor = System.Drawing.Color.White;
-            this.viewErrors.Location = new System.Drawing.Point(358, 14);
-            this.viewErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.viewErrors.Name = "viewErrors";
-            this.viewErrors.Size = new System.Drawing.Size(130, 33);
-            this.viewErrors.TabIndex = 5;
-            this.viewErrors.Text = "View Errors";
-            this.viewErrors.UseVisualStyleBackColor = false;
-            this.viewErrors.Visible = false;
-            this.viewErrors.Click += new System.EventHandler(this.viewErrors_Click);
+            viewErrors.BackColor = System.Drawing.Color.Red;
+            viewErrors.Enabled = false;
+            viewErrors.FlatAppearance.BorderSize = 0;
+            viewErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            viewErrors.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            viewErrors.ForeColor = System.Drawing.Color.White;
+            viewErrors.Location = new System.Drawing.Point(358, 14);
+            viewErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            viewErrors.Name = "viewErrors";
+            viewErrors.Size = new System.Drawing.Size(130, 33);
+            viewErrors.TabIndex = 5;
+            viewErrors.Text = "View Errors";
+            viewErrors.UseVisualStyleBackColor = false;
+            viewErrors.Visible = false;
+            viewErrors.Click += viewErrors_Click;
             // 
             // panel3
             // 
-            this.panel3.AutoSize = true;
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.inProgressCheckbox);
-            this.panel3.Controls.Add(this.callBackCheckbox);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(717, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(301, 520);
-            this.panel3.TabIndex = 9;
+            panel3.AutoSize = true;
+            panel3.Controls.Add(panel4);
+            panel3.Controls.Add(label7);
+            panel3.Controls.Add(inProgressCheckbox);
+            panel3.Controls.Add(callBackCheckbox);
+            panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            panel3.Location = new System.Drawing.Point(717, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new System.Drawing.Size(301, 520);
+            panel3.TabIndex = 9;
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.panel4.Controls.Add(this.interestedVehiclesListBox);
-            this.panel4.Location = new System.Drawing.Point(6, 107);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(264, 408);
-            this.panel4.TabIndex = 7;
+            panel4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            panel4.Controls.Add(interestedVehiclesListBox);
+            panel4.Location = new System.Drawing.Point(6, 107);
+            panel4.Name = "panel4";
+            panel4.Size = new System.Drawing.Size(264, 408);
+            panel4.TabIndex = 7;
+            // 
+            // label8
+            // 
+            label8.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label8.Location = new System.Drawing.Point(62, 474);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(38, 13);
+            label8.TabIndex = 24;
+            label8.Text = "Agent";
+            // 
+            // agentCombo
+            // 
+            agentCombo.FormattingEnabled = true;
+            agentCombo.Location = new System.Drawing.Point(64, 490);
+            agentCombo.Name = "agentCombo";
+            agentCombo.Size = new System.Drawing.Size(267, 23);
+            agentCombo.TabIndex = 23;
             // 
             // Customer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.addressLbl);
-            this.Controls.Add(this.num1Lbl);
-            this.Controls.Add(this.num2Lbl);
-            this.Controls.Add(this.email1Lbl);
-            this.Controls.Add(this.email2Lbl);
-            this.Controls.Add(this.additionalCommentsLbl);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Customer";
-            this.Size = new System.Drawing.Size(1018, 594);
-            this.Load += new System.EventHandler(this.Customer_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Customer_MouseClick);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Controls.Add(label8);
+            Controls.Add(agentCombo);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(addressLbl);
+            Controls.Add(num1Lbl);
+            Controls.Add(num2Lbl);
+            Controls.Add(email1Lbl);
+            Controls.Add(email2Lbl);
+            Controls.Add(additionalCommentsLbl);
+            Controls.Add(label3);
+            Controls.Add(label5);
+            Controls.Add(label6);
+            Controls.Add(label4);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            Name = "Customer";
+            Size = new System.Drawing.Size(1018, 594);
+            Load += Customer_Load;
+            MouseClick += Customer_MouseClick;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -503,5 +520,7 @@ namespace Database_Application_Chris
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox nameLbl;
         private System.Windows.Forms.Button viewErrors;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox agentCombo;
     }
 }

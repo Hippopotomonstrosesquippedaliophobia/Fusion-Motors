@@ -11,6 +11,7 @@ namespace Database_Application_Chris
         public Guid Id { get; set; }
 
         public string Owner { get; set; }
+        public string Agent { get; set; }
         public string EngineNum { get; set; }
         public string ChassisNum { get; set; }
         public string Colour { get; set; }

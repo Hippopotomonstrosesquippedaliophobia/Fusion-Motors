@@ -146,6 +146,42 @@ namespace Database_Application_Chris
                 inProgressCheckbox.Checked = cust.InProgressFlag;
                 callBackCheckbox.Checked = cust.CallBackFlag;
 
+                try
+                {
+                    //
+                    //
+                    //Combobox shennanigans 
+                    CollectionReference doc = conn.db.Collection("Login");
+                    QuerySnapshot snapshot = await doc.GetSnapshotAsync();
+
+                    agentCombo.Items.Clear();
+                    agentCombo.Items.Add("");
+
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        if (document.GetValue<string>("firstname").Equals("Administrator"))
+                        {
+                            //DO NOTHING
+                        }
+                        else
+                            agentCombo.Items.Add(document.GetValue<string>("firstname"));
+                    }
+
+                    //After populating the list box, set the text of the current agent
+                    if (agentCombo.Items.Contains(cust.Agent))
+                    {
+                        agentCombo.Text = cust.Agent;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Agent listed for vehicle!", "Vehicle Agent Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch(Exception err)
+                {
+
+                }
+
                 int index = 0;
                 vehicles = new BindingList<VehicleFrame>();
 
@@ -168,7 +204,8 @@ namespace Database_Application_Chris
                             //Attach the list of customers to the ListBox:  
                             interestedVehiclesListBox.DataSource = vehicles;
                             interestedVehiclesListBox.DisplayMember = "Model";
-                            interestedVehiclesListBox.ValueMember = "Id";
+                            interestedVehiclesListBox.ValueMember = "Id";            
+
                         }
                         catch (Exception err)
                         {
@@ -273,6 +310,7 @@ namespace Database_Application_Chris
                         {
                             {"FirstName", name[0]  },
                             {"LastName",name[1]  },
+                            {"Agent", agentCombo.Text },
                             {"Address", addressLbl.Text },
                             {"ContactNum1", num1Lbl.Text },
                             {"ContactNum2", num2Lbl.Text },
@@ -358,6 +396,7 @@ namespace Database_Application_Chris
             {
                 {"FirstName", name[0]  },
                 {"LastName",name[1]  },
+                {"Agent", agentCombo.Text },
                 {"Address", addressLbl.Text },
                 {"ContactNum1", num1Lbl.Text },
                 {"ContactNum2", num2Lbl.Text },
@@ -376,7 +415,6 @@ namespace Database_Application_Chris
 
             try
             {
-
                 //Adding customer to firebase
                 DocumentReference doc = await conn.db.Collection("Customers").AddAsync(dict);
                 //cll.AddAsync(customerResult); 

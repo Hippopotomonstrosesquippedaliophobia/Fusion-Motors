@@ -36,6 +36,7 @@ namespace Database_Application_Chris
             cll.AddAsync(dict);
             //MessageBox.Show("Added");
         }
+
         void AddCustomID()
         {
             DocumentReference doc = db.Collection("Login").Document("admin");

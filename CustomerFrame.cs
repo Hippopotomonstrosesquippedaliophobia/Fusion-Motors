@@ -9,6 +9,10 @@ namespace Database_Application_Chris
         [FirestoreProperty]
         public String Id { get; set; }
 
+
+        [FirestoreProperty]
+        public string Agent { get; set; }
+
         [FirestoreProperty]
         public string FirstName { get; set; }
         [FirestoreProperty]
